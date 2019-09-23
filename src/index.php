@@ -1,3 +1,3 @@
 <?php
-    header("view/palanquee.php");
+    header("Location: view/palanquee.php");
 ?>
