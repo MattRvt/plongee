@@ -1,8 +1,3 @@
-<html>
-    <head>
-
-    </head>
-    <body>
-
-    </body>
-</html>
+<?php
+    header("view/palanquee.php");
+?>
