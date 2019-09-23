@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr">
-  <head>
-    <meta charset="utf-8">
-    <title>Creer une palanquée</title>
-	    <script></script>
-  </head>
-  <body>
-	<form name="palanquee" action= "" method="post" enctype="multipart/form-data">
+<?php require_once ("Header.php");?>
+<form name="palanquee" action= "" method="post" enctype="multipart/form-data">
 		<fieldset>
 		<legend><b>Créer une palanquée</b></legend>
 		<br />
@@ -34,5 +27,5 @@
         <br />
 	  <br />	  
 	</form>
-  </body>
-</html>
+<?php require_once ("Footer.php");?>
+
