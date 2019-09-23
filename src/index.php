@@ -5,7 +5,7 @@
     <body>
         <?php
             include_once 'settings.php';
-            include_once('BDD/DbConnector.php');
+            include_once('model/BDD/DbConnector.php');
 
             $dbreader = new DbConnector();
             $pdo = $dbreader->getConnection();
