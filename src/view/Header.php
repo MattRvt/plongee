@@ -2,7 +2,7 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <title>Creer une palanquée</title>
+        <title>SUBALLIGATOR</title>
         <script></script>
     </head>
     <body>
