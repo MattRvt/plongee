@@ -28,7 +28,7 @@ if ( !empty($_POST ))
         $erreur = true;
     }
 
-    if (isset($_POST['embarcation'])) 
+    if ($_POST['embarcation'] != 'rien')
 		$embarcation = $_POST['embarcation'];  
 	else 
 	{
@@ -83,6 +83,8 @@ if ( !empty($_POST ))
 }
 if ($erreur == true)
 {
-	include ("palanquee.php")	 ;
+    include ("palanquee.php");
+} else {
+	echo "Votre palanquee a bien été enregistrée! <br/>";
 }
 ?>
