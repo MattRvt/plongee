@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>SUBALLIGATOR</title>
-        <script></script>
+        <script src="fonctions.js"></script>
     </head>
     <body>
 <?php require_once("../model/Settings.php")?>
