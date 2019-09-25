@@ -1,6 +1,6 @@
 <?php
 
-include_once('DbConnector.php');
+include_once('../DbConnector.php');
 
 class DbPalanqueWriter
 {

@@ -1,8 +1,8 @@
 <?php
 
-include_once('DbConnector.php');
+include_once('../DbConnector.php');
 
-class DbPersonneWriter
+class DbDirecteurWriter
 {
     private $dbConnector;
 
@@ -11,7 +11,7 @@ class DbPersonneWriter
         $this->dbConnector = new DbConnector();
     }
 
-    public function addPersonne($PER_NOM,$PER_PRENOM)
+    public function addPersonne($PER_NUM)
     {
         try
         {
@@ -22,10 +22,9 @@ class DbPersonneWriter
             return false;
         }
 
-        $statement = $this->dbConnector->prepStatement($pdo,"INSERT INTO `plo_personne`(`PER_NOM`, `PER_PRENOM`) VALUES (:PER_NOM,:PER_PRENOM)");
+        $statement = $this->dbConnector->prepStatement($pdo,"INSERT INTO `plo_directeur`(`PER_NUM`) VALUES (:PER_NUM)");
 
-        $statement->bindParam(':PER_NOM', $PER_NOM);
-        $statement->bindParam(':PER_PRENOM', $PER_PRENOM);
+        $statement->bindParam(':PER_NUM', $PER_NUM);
 
         $res = $this->dbConnector->execStatement($statement);
         return $res;

@@ -1,8 +1,8 @@
 <?php
 
-include_once('DbConnector.php');
+include_once('../DbConnector.php');
 
-class DbSecuSurfaceWriter
+class DbEmbarcationWriter
 {
     private $dbConnector;
 
@@ -11,7 +11,7 @@ class DbSecuSurfaceWriter
         $this->dbConnector = new DbConnector();
     }
 
-    public function addPersonne($PER_NUM)
+    public function addPersonne($EMB_NUM,$EMB_NOM)
     {
         try
         {
@@ -22,9 +22,10 @@ class DbSecuSurfaceWriter
             return false;
         }
 
-        $statement = $this->dbConnector->prepStatement($pdo,"INSERT INTO `plo_securite_de_surface`(`PER_NUM`) VALUES (:PER_NUM);");
+        $statement = $this->dbConnector->prepStatement($pdo,"INSERT INTO `plo_embarcation`(`EMB_NUM`, `EMB_NOM`) VALUES (:EMB_NUM,:EMB_NOM)");
 
-        $statement->bindParam(':PER_NUM', $PER_NUM);
+        $statement->bindParam(':EMB_NUM', $EMB_NUM);
+        $statement->bindParam(':EMB_NOM', $EMB_NOM);
 
         $res = $this->dbConnector->execStatement($statement);
         return $res;
