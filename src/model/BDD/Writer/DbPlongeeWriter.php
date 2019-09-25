@@ -1,7 +1,5 @@
 <?php
 
-include_once('../DbConnector.php');
-
 class DbPlongeeWriter
 {
     private $dbConnector;
