@@ -1,7 +1,5 @@
 <?php
 
-include_once('../DbConnector.php');
-
 class DbAptitudeWriter
 {
     private $dbConnector;
