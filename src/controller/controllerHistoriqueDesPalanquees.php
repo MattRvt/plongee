@@ -22,3 +22,5 @@ class controllerHistoriqeDesPlanquees
         $this->_view->generate(array());
     }
 }
+
+?>

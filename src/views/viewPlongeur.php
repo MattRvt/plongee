@@ -13,17 +13,20 @@
         </select><br/>
         <label for="aptitude">Aptitude: </label>
         <select id="aptitude">
-            <option value="rien">--Please choose an option--</option>
+            <option value="">--Please choose an option--</option>
             <?php
-            $aptitude = selectAptitude();
-
+            require_once('../controller/controllerPlongeur.php');
+            $controller = new ControllerPlongeur;
+            $aptitude = $controller->selectAptiude();
             foreach ($aptitude as $item) {
-                $libelle = $item[0];
+                $label = $item[0];
                 $code = $item[1];
-                $option = "<option value=\"" . $code + "\" <?php VerifSelectAptitude(\"aptitude\",\"".$code."\"); ?>>" . $libelle . "</option>";
+                $option = "<option value=\"" . $code . $label . "</option>";
             }
             ?>
-        </select><br/>
+        </select>
+
+
     </fieldset>
     <br/>
     <input type="submit" name="EN" value="Envoyer" onclick="return testerValid()"> 		&nbsp;&nbsp;&nbsp;

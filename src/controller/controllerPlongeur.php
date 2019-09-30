@@ -6,12 +6,9 @@ class controllerPlongeur
 
     public function __construct($url)
     {
-        if(isset($url) && count($url) > 1)
-        {
+        if (isset($url) && count($url) > 1) {
             throw new Exception('Page introuvable');
-        }
-        else
-        {
+        } else {
             $this->mentions();
         }
     }
@@ -21,5 +18,16 @@ class controllerPlongeur
         $this->_view = new View('Plongeur');
         $this->_view->generate(array());
     }
+
+    public function selectAptiude()
+    {
+        require_once('model/modelAptitude.php');
+        $reader = new modelAptitude();
+        $aptitude = $reader->getAllAptitude();
+        return $aptitude;
+    }
+
+
 }
+
 ?>

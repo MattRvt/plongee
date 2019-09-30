@@ -22,3 +22,4 @@ class controllerPalanquee
         $this->_view->generate(array());
     }
 }
+?>
