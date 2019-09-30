@@ -18,7 +18,7 @@ class controllerPalanquee
 
     public function mentions()
     {
-        $this->_view = new View('ajout palanquées');
+        $this->_view = new View('Palanquee');
         $this->_view->generate(array());
     }
 }
