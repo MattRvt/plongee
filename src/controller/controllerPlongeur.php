@@ -21,4 +21,7 @@ class controllerPlongeur
         $this->_view = new View('Plongeur');
         $this->_view->generate(array());
     }
+
+
 }
+?>

@@ -22,3 +22,4 @@ class controllerTest
         $this->_view->generate(array());
     }
 }
+?>

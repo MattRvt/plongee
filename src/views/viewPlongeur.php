@@ -6,23 +6,17 @@
         <label for="prenom">Prenom: </label><input type="text" name="prenom" size="30" maxlength="50" placeholder="Prénom" value="<?php verifierRempli("prenom");?>" ><br/>
          <label for="fonction">Fonction<label
         <label for="aptitude">Aptitude: </label>
-        <!--<select id="aptitude">
+        <select id="aptitude">
             <option value="">--Please choose an option--</option>
             <?php
-            /*
             $aptitude = selectAptiude();
-
             foreach ($aptitude as $item) {
                 $labelle = $item[0];
                 $code = $item[1];
                 $option = "<option value=\"" . $code + "\">" . $labelle . "</option>";
-
-
-                //">Dog;
             }
-            */
             ?>
-        </select>-->
+        </select>
 
 
     </fieldset>
