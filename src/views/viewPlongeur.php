@@ -21,15 +21,13 @@
             foreach ($aptitude as $item) {
                 $label = $item[0];
                 $code = $item[1];
-                $option = "<option value=\"" . $code . $label . "</option>";
+                $option = "<option value=\"" . $code ."\" <?php VerifSelectFonction(\"fonction\", \"" . $code . "\") ?>" . $label . "</option>";
             }
             ?>
         </select>
-
-
     </fieldset>
     <br/>
-    <input type="submit" name="EN" value="Envoyer" onclick="return testerValid()"> 		&nbsp;&nbsp;&nbsp;
+    <input type="submit" name="EN" value="Envoyer" onclick="return testerValid()"/>
     <br/>
     <br/>
 </form>

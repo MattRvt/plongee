@@ -1,4 +1,4 @@
-<?php $this->_title = "Acceuil" ?>
+<?php $this->_title = "Accueil" ?>
 
 <!DOCTYPE html>
 <html lang="fr">
