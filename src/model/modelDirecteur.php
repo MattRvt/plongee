@@ -2,6 +2,11 @@
 
 class statementmodelDirecteur extends model
 {
+    public function getAll()
+    {
+        return $this->selectAll('plo_directeur');
+    }
+
     public function addPersonne($PER_NUM)
     {
         $statement = $this->getBdd()->prepare("INSERT INTO `plo_directeur`(`PER_NUM`) VALUES (:PER_NUM)");

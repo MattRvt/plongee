@@ -3,6 +3,11 @@
 
 class modelSite extends model
 {
+    public function getAll()
+    {
+        return $this->selectAll('site');
+    }
+
     public function addPersonne($SIT_NUM,$SIT_NOM,$SIT_LOCALISATION)
     {
         $statement = $this->getBdd()->prepare("INSERT INTO `site`(`SIT_NUM`, `SIT_NOM`, `SIT_LOCALISATION`) VALUES (:SIT_NUM,:SIT_NOM,:SIT_LOCALISATION)");

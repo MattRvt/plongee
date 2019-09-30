@@ -4,7 +4,7 @@ class modelConcerner extends model
 {
     public function getAll()
     {
-        return $this->selectAll('plo_aptitude');
+        return $this->selectAll('plo_concerner');
     }
 
     public function addPersonne($PLO_DATE,$PLO_MATIN_APRESMIDI, $PAL_NUM, $PER_NUM)
