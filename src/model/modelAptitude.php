@@ -6,7 +6,7 @@ class modelAptitude extends model
 
     public function getAllAptitude()
     {
-        $this->selectAll('plo_aptitude');
+        return $this->selectAll('plo_aptitude');
     }
 
     public function addPersonne($APT_CODE,$APT_LIBELLE)
