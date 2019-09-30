@@ -24,7 +24,7 @@ class Router
                 //Construction + référencement du controller à utiliser.
                 $controller = ucfirst(strtolower($url[0]));
                 $controllerClass = "Controller".$controller;
-                $controllerFile = "controllers/".$controllerClass.".php";
+                $controllerFile = "controller/".$controllerClass.".php";
 
                 //une fois construit, on regarde si le fichier existe
                 if(file_exists($controllerFile))
