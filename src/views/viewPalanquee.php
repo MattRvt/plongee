@@ -1,6 +1,4 @@
-<?php 
-	require_once ("Header.php");
-?>
+
 <form name="palanquee" action= "../controller/traitementPalanquee.php" method="post" enctype="multipart/form-data">
 		<fieldset>
 		<legend><b>Créer une palanquée</b></legend>
