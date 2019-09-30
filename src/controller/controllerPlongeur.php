@@ -21,8 +21,10 @@ class controllerPlongeur
 
     public function selectAptiude()
     {
-        //select aptitude de dbreader
-        return [0][0];
+        require_once('model/modelAptitude.php');
+        $reader = new modelAptitude();
+        $aptitude = $reader->getAllAptitude();
+        return $aptitude;
     }
 
 
