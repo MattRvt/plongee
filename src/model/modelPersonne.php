@@ -3,6 +3,11 @@
 
 class modelPersonne extends model
 {
+    public function getAll()
+    {
+        return $this->selectAll('plo_personne');
+    }
+
     public function addPersonne($PER_NOM,$PER_PRENOM)
     {
         $statement = $this->getBdd()->prepare("INSERT INTO `plo_personne`(`PER_NOM`, `PER_PRENOM`) VALUES (:PER_NOM,:PER_PRENOM)");
