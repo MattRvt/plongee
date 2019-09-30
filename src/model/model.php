@@ -30,13 +30,4 @@ abstract class model
         $req->closeCursor();
         return $data;
     }
-
-    protected function selectAllCondition($table, $condition,$valeur)
-    {
-        $req = self::$_bdd->prepare('SELECT * FROM'.$table.'WHERE'.$condition.'='.$valeur);
-        $req->execute();
-        $data = $req->fetch(PDO::FETCH_ASSOC);
-        $req->closeCursor();
-        return $data;
-    }
 }
