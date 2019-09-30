@@ -27,8 +27,7 @@
         <br />
 	  <br />	  
 	</form>
-<?php 
-require_once ("Footer.php");
+<?php
 
 function verifierRempli($n)
 {  
