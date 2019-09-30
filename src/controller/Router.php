@@ -35,7 +35,7 @@ class Router
                 }
                 else
                 {
-                    throw new Exception('Page introuvable');
+                    throw new Exception('Page '.$controllerFile.' introuvable');
                 }
             }
             else

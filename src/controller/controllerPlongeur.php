@@ -1,6 +1,6 @@
 <?php
 
-class controllerMentions
+class controllerAjouterOuModifierDonneePlongeur
 {
     private $_view;
 
@@ -18,7 +18,7 @@ class controllerMentions
 
     public function mentions()
     {
-        $this->_view = new View('ajouter ou modifier plongeur');
+        $this->_view = new View('Plongeur');
         $this->_view->generate(array());
     }
 }

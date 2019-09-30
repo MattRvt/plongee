@@ -1,4 +1,3 @@
-<?php require_once("Header.php"); ?>
 <form name="palanquee" action="" method="post" enctype="multipart/form-data">
     <fieldset>
         <legend><b>Ajouter une personne</b></legend>
@@ -31,6 +30,3 @@
     <br/>
     <br/>
 </form>
-
-
-<?php require_once("Footer.php"); ?>
