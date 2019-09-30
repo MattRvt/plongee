@@ -18,7 +18,7 @@ class controllerHistoriqeDesPlanquees
 
     public function mentions()
     {
-        $this->_view = new View('Historique des palanquées');
+        $this->_view = new View('HistoriqeDesPlanquees');
         $this->_view->generate(array());
     }
 }
