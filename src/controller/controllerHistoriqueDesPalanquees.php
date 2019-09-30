@@ -1,6 +1,6 @@
 <?php
 
-class controllerAjouterOuModifierDonneePlongeur
+class controllerHistoriqeDesPlanquees
 {
     private $_view;
 
@@ -18,7 +18,7 @@ class controllerAjouterOuModifierDonneePlongeur
 
     public function mentions()
     {
-        $this->_view = new View('AjouterOuModifierDonneePlongeur');
+        $this->_view = new View('Historique des palanquées');
         $this->_view->generate(array());
     }
 }

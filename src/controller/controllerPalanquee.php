@@ -1,6 +1,6 @@
 <?php
 
-class controllerAcceuil
+class controllerPalanquee
 {
     private $_view;
 
@@ -18,7 +18,7 @@ class controllerAcceuil
 
     public function mentions()
     {
-        $this->_view = new View('Accueil');
+        $this->_view = new View('Palanquee');
         $this->_view->generate(array());
     }
 }
