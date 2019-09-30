@@ -41,7 +41,7 @@ class Router
             else
             {
                 //La page à lancer par défaut
-                $this->_view = new view('Optilife');
+                $this->_view = new view('Acceuil');
                 $this->_view->generate(array());
             }
 
