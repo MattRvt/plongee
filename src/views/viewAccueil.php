@@ -7,9 +7,9 @@
 </head>
 <body>
 
-<input type="button" value="Ajouter un plongeur ou modifier ses données personnelles" onclick="window.location.href='AjouterOuModifierDonneePlonjeur.php'"></br>
-<input type="button" value="Ajouter une palanquée" onclick="window.location.href='palanquee.php'"></br>
-<input type="button" value="Historique des palanquées" onclick="window.location.href='HistoriqueDesPalanquees.php'"></br>
+<input type="button" value="Ajouter un plongeur ou modifier ses données personnelles" onclick="window.location.href='index?url=AjouterOuModifierDonneePlonjeur'"></br>
+<input type="button" value="Ajouter une palanquée" onclick="window.location.href='index?url=palanquee'"></br>
+<input type="button" value="Historique des palanquées" onclick="window.location.href='index?url=HistoriqueDesPalanquees'"></br>
 
 </body>
 </html>
