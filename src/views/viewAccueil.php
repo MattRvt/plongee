@@ -1,3 +1,5 @@
+<?php $this->_title = "Acceuil" ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <meta charset="UTF-8"/>
