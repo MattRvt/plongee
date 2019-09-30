@@ -22,3 +22,4 @@ class controllerPlongeur
         $this->_view->generate(array());
     }
 }
+?>

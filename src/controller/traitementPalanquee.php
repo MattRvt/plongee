@@ -12,7 +12,7 @@ if ( !empty($_POST ))
 		$erreur = true;
     }
     
-	if (isset($_POST['seance'])) 
+	if (isset($_POST['seance']) && $_POST['seance'] != 'rien') 
 		$seance = $_POST['seance'];  
 	else 
 	{
@@ -28,7 +28,7 @@ if ( !empty($_POST ))
         $erreur = true;
     }
 
-    if ($_POST['embarcation'] != 'rien')
+    if (isset($_POST['embarcation']) && $_POST['embarcation'] != 'rien')
 		$embarcation = $_POST['embarcation'];  
 	else 
 	{
@@ -83,7 +83,7 @@ if ( !empty($_POST ))
 }
 if ($erreur == true)
 {
-    include("palanquee.php");
+    include("../views/viewPalanquee.php");
 } else {
 	echo "Votre palanquee a bien été enregistrée! <br/>";
 }

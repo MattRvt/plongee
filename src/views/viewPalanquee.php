@@ -5,12 +5,14 @@
 		<br />
 		<label for="date">Date : </label><input type="date" name="datePalanquee" size="30" maxlength="50" value="<?php verifierRempli("date");?>"><br />
         <select name="seance" size="1">
+			<option value="rien">--Please choose an option--</option>
 		    <option value="matin" <?php VerifSelectSeance("seance","matin"); ?>>Matin</option>
 		    <option value="apres-Midi" <?php VerifSelectSeance("seance","apres-midi")?>>Après-midi</option>
 		    <option value="soir" <?php VerifSelectSeance("seance","soir")?>>Soir</option>
         </select><br/>
         <label for="lieu">Lieu de la plongée : </label><input type="text" name="lieu" placeholder="Lieu?" value="<?php verifierRempli("lieu");?>"><br />
         <select name="embarcation" size="1"> 
+			<option value="rien">--Please choose an option--</option>
 		    <option value="beclem" <?php VerifSelectEmbarcation("embarcation","beclem"); ?>>Beclem</option>
 		    <option value="estelenn" <?php VerifSelectEmbarcation("embarcation","estelem"); ?>>Estelenn</option>
 		</select><br/>
