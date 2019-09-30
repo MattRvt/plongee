@@ -1,6 +1,6 @@
 <?php
 
-class controllerMentions
+class controllerHistoriqeDesPlanquees
 {
     private $_view;
 

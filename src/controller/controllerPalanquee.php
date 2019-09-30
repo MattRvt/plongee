@@ -1,6 +1,6 @@
 <?php
 
-class controllerMentions
+class controllerPalanquee
 {
     private $_view;
 

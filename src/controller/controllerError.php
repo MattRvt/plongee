@@ -1,6 +1,6 @@
 <?php
 
-class controllerMentions
+class controllerError
 {
     private $_view;
 
