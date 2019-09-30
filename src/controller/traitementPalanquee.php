@@ -83,7 +83,7 @@ if ( !empty($_POST ))
 }
 if ($erreur == true)
 {
-    include ("palanquee.php");
+    include("palanquee.php");
 } else {
 	echo "Votre palanquee a bien été enregistrée! <br/>";
 }
