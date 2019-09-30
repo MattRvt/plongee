@@ -6,4 +6,3 @@
         <script src="../fonctions.js"></script>
     </head>
     <body>
-<?php require_once("model/Settings.php");?>
