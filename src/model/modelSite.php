@@ -1,14 +1,8 @@
 <?php
 
-class DbSiteWriter
+
+class modelSite extends model
 {
-    private $dbConnector;
-
-    public function __construct()
-    {
-        $this->dbConnector = new DbConnector();
-    }
-
     public function addPersonne($SIT_NUM,$SIT_NOM,$SIT_LOCALISATION)
     {
         try
