@@ -6,5 +6,4 @@
         <script src="../fonctions.js"></script>
     </head>
     <body>
-<?php require_once("../model/Settings.php");
-require_once("../model/BDD/DbConnector.php");?>
+<?php require_once("model/Settings.php");?>
