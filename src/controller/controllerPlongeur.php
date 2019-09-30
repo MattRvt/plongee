@@ -1,6 +1,6 @@
 <?php
 
-class controllerAjouterOuModifierDonneePlongeur
+class controllerPlongeur
 {
     private $_view;
 

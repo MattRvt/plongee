@@ -1,6 +1,6 @@
 <?php
 
-class controllerMentions
+class controllerAcceuil
 {
     private $_view;
 
