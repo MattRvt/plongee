@@ -11,7 +11,7 @@ class modelSite extends model
         $statement->bindParam(':SIT_NOM', $SIT_NOM);
         $statement->bindParam(':SIT_LOCALISATION', $SIT_LOCALISATION);
 
-        $res = $this->getBdd()->execStatement($statement);
+        $res = $statement->execute();
         return $res;
     }
 }
