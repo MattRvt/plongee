@@ -4,7 +4,7 @@
 class modelAptitude extends model
 {
 
-    public function getAllAptitude()
+    public function getAll()
     {
         return $this->selectAll('plo_aptitude');
     }
