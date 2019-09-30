@@ -8,13 +8,11 @@
         <select id="aptitude">
             <option value="">--Please choose an option--</option>
             <?php
-
             $aptitude = selectAptiude();
             foreach ($aptitude as $item) {
                 $labelle = $item[0];
                 $code = $item[1];
                 $option = "<option value=\"" . $code + "\">" . $labelle . "</option>";
-
             }
             ?>
         </select>
