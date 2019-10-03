@@ -1,4 +1,4 @@
-<form name="palanquee" action="../controller/traitementPlongeur" method="post" enctype="multipart/form-data">
+<form name="palanquee" action="controller/traitementPlongeur" method="post" enctype="multipart/form-data">
     <fieldset>
         <legend><b>Ajouter une personne</b></legend>
         <br/>
@@ -15,7 +15,7 @@
         <select id="aptitude">
             <option value="">--Please choose an option--</option>
             <?php
-            require_once('../controller/controllerPlongeur.php');
+            require_once('controller/controllerPlongeur.php');
             $controller = new ControllerPlongeur;
             $aptitude = $controller->selectAptiude();
             foreach ($aptitude as $item) {
@@ -27,7 +27,7 @@
         </select>
     </fieldset>
     <br/>
-    <input type="submit" name="EN" value="Envoyer" onclick="return testerValid()"/>
+    <input type="submit" name="EN" value="Envoyer" onclick="return testerValid()"> 		&nbsp;&nbsp;&nbsp;
     <br/>
     <br/>
 </form>
