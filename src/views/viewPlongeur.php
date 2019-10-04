@@ -1,6 +1,4 @@
 <form name="palanquee" action="controller/traitementPlongeur" method="post" enctype="multipart/form-data">
-<input type="submit" name="EN" value="Envoyer" onclick="return testerValid()">
-    <br />
     <fieldset>
         <legend><b>Ajouter une personne</b></legend>
         <br/>
@@ -18,8 +16,7 @@
             <option value="">--Please choose an option--</option>
             <?php
             require_once('controller/controllerPlongeur.php');
-            $controller = new ControllerPlongeur();
-            $aptitude = $controller->selectAptiude();
+            $aptitude = $this->_controller->selectAptitude();
             foreach ($aptitude as $item) {
                 $label = $item[0];
                 $code = $item[1];
@@ -29,7 +26,8 @@
         </select>
     </fieldset>
     <br />
-	
+	<input type="submit" name="EN" value="Envoyer" onclick="return testerValid()">
+    <br />
 	<br />	  
 </form>
 
