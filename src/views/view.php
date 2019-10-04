@@ -4,6 +4,7 @@ class view
 {
     private $_file;
     private $_title;
+    private $controller;
 
     public function __construct($action)
     {
@@ -11,8 +12,10 @@ class view
         $this->_file = 'views/view'.$action.'.php';
     }
 
-    public function generate($data)
+    public function generate($data, $controller)
     {
+        $this->controller = $controller;
+
         //construit la vue à afficher avec le header et le footer
         $content = $this->generateFile($this->_file, $data);
 

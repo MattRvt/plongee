@@ -1,4 +1,6 @@
-<form name="palanquee" action="../controller/traitementPlongeur" method="post" enctype="multipart/form-data">
+<?php            print_r($this->controller->selectAptitude());?>
+
+<form name="palanquee" action="controller/traitementPlongeur" method="post" enctype="multipart/form-data">
     <fieldset>
         <legend><b>Ajouter une personne</b></legend>
         <br/>
@@ -15,9 +17,8 @@
         <select id="aptitude">
             <option value="">--Please choose an option--</option>
             <?php
-            require_once('../controller/controllerPlongeur.php');
-            $controller = new ControllerPlongeur;
-            $aptitude = $controller->selectAptiude();
+            
+            $aptitude = $this->controller->selectAptitude();
             foreach ($aptitude as $item) {
                 $label = $item[0];
                 $code = $item[1];
@@ -26,10 +27,10 @@
             ?>
         </select>
     </fieldset>
-    <br/>
-    <input type="submit" name="EN" value="Envoyer" onclick="return testerValid()"/>
-    <br/>
-    <br/>
+    <br />
+	<input type="submit" name="EN" value="Envoyer" onclick="return testerValid()">
+    <br />
+	<br />	  
 </form>
 
 <?php
@@ -54,7 +55,7 @@ function VerifSelectAptitude($n)
 		}
 	}
 
-	function VerifSelectFonction($n)
+function VerifSelectFonction($n)
 	{
 	if (isset($_POST["fonction"]))
 	{

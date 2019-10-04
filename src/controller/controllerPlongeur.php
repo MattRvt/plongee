@@ -16,10 +16,10 @@ class controllerPlongeur
     public function mentions()
     {
         $this->_view = new View('Plongeur');
-        $this->_view->generate(array());
+        $this->_view->generate(array(),$this);
     }
 
-    public function selectAptiude()
+    public function selectAptitude()
     {
         require_once('model/modelAptitude.php');
         $reader = new modelAptitude();

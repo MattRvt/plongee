@@ -19,7 +19,7 @@ class controllerTest
     public function mentions()
     {
         $this->_view = new View('Test');
-        $this->_view->generate(array());
+        $this->_view->generate(array(),$this);
     }
 }
 ?>
