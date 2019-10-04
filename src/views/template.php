@@ -6,9 +6,9 @@
     </head>
     <body>
         <div id="header">
-            <?php require_once 'templateInfo/header.php'; ?>
+            <?php require_once 'views/templateInfo/Header.php'; ?>
         </div>
         <?php echo $content ?>
-        <?php require_once 'templateInfo/Footer.php'; ?>
+        <?php require_once 'views/templateInfo/Footer.php'; ?>
     </body>
 </html>

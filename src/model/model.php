@@ -25,6 +25,7 @@ abstract class model
     protected function selectAll($table)
     {
         $pdo = $this->getBdd();
+        $table = strtoupper($table);
 
         $sql = "SELECT * FROM ".$table;
 
