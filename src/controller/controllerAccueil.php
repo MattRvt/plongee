@@ -19,7 +19,7 @@ class controllerAcceuil
     public function mentions()
     {
         $this->_view = new View('Accueil');
-        $this->_view->generate(array());
+        $this->_view->generate(array(),$this);
     }
 }
 ?>

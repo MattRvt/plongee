@@ -19,6 +19,6 @@ class controllerError
     public function mentions()
     {
         $this->_view = new View('Error');
-        $this->_view->generate(array());
+        $this->_view->generate(array(),$this);
     }
 }
