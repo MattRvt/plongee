@@ -1,6 +1,6 @@
 <?php
 
-class controllerHistoriqeDesPlanquees
+class controllerHistoriqueDesPalanquees
 {
     private $_view;
 
@@ -18,7 +18,7 @@ class controllerHistoriqeDesPlanquees
 
     public function mentions()
     {
-        $this->_view = new View('HistoriqeDesPlanquees');
+        $this->_view = new View('HistoriqueDesPalanquees');
         $this->_view->generate(array());
     }
 }

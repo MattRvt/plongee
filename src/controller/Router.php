@@ -13,7 +13,24 @@ class Router
         {
 
             //Chargement automatique des classes
-            spl_autoload_register(function($class){require_once('model/'.$class.'.php');});
+            spl_autoload_register(function($class){
+                $pathContorllers = 'Controllers/' . $class . '.php';
+                $pathViews = 'views/' . $class . '.php';
+                $pathModels = 'Models/' . $class . '.php';
+
+                if (file_exists($pathContorllers))
+                {
+                    require_once($pathContorllers);
+                }
+                elseif (file_exists($pathViews))
+                {
+                    require_once($pathViews);
+                }
+                elseif (file_exists($pathModels))
+                {
+                    require_once($pathModels);
+                }
+            });
 
             $url = '';
 
@@ -24,7 +41,7 @@ class Router
 
                 //Construction + référencement du controller à utiliser.
                 $controller = $url[0];
-                $controllerClass = "Controller".$controller;
+                $controllerClass = "controller".$controller;
                 $controllerFile = "controller/".$controllerClass.".php";
 
                 //une fois construit, on regarde si le fichier existe
