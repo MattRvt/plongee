@@ -1,4 +1,6 @@
 <form name="palanquee" action="controller/traitementPlongeur" method="post" enctype="multipart/form-data">
+<input type="submit" name="EN" value="Envoyer" onclick="return testerValid()">
+    <br />
     <fieldset>
         <legend><b>Ajouter une personne</b></legend>
         <br/>
@@ -16,7 +18,7 @@
             <option value="">--Please choose an option--</option>
             <?php
             require_once('controller/controllerPlongeur.php');
-            $controller = new ControllerPlongeur;
+            $controller = new ControllerPlongeur();
             $aptitude = $controller->selectAptiude();
             foreach ($aptitude as $item) {
                 $label = $item[0];
@@ -26,10 +28,9 @@
             ?>
         </select>
     </fieldset>
-    <br/>
-    <input type="submit" name="EN" value="Envoyer" onclick="return testerValid()"> 		&nbsp;&nbsp;&nbsp;
-    <br/>
-    <br/>
+    <br />
+	
+	<br />	  
 </form>
 
 <?php
@@ -54,7 +55,7 @@ function VerifSelectAptitude($n)
 		}
 	}
 
-	function VerifSelectFonction($n)
+function VerifSelectFonction($n)
 	{
 	if (isset($_POST["fonction"]))
 	{
