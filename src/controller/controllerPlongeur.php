@@ -23,7 +23,7 @@ class controllerPlongeur
     {
         require_once('model/modelAptitude.php');
         $reader = new modelAptitude();
-        $aptitude = $reader->getAllAptitude();
+        $aptitude = $reader->getAll();
         return $aptitude;
     }
 

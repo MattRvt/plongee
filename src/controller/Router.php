@@ -14,9 +14,9 @@ class Router
 
             //Chargement automatique des classes
             spl_autoload_register(function($class){
-                $pathContorllers = 'Controllers/' . $class . '.php';
+                $pathContorllers = 'controller/' . $class . '.php';
                 $pathViews = 'views/' . $class . '.php';
-                $pathModels = 'Models/' . $class . '.php';
+                $pathModels = 'model/' . $class . '.php';
 
                 if (file_exists($pathContorllers))
                 {
@@ -58,9 +58,9 @@ class Router
             }
             else
             {
-                //La page à lancer par défaut
-                $this->_view = new view('Accueil');
-                $this->_view->generate(array());
+                require_once("controller/controllerAccueil.php");
+                //on crée une instance de la classe incluse
+                $this->_controller = new controllerAcceuil(array(1=>1));
             }
 
         }
@@ -68,7 +68,7 @@ class Router
         {
             $errorMsg = $e->getMessage();
             $this->_view = new view('Error');
-            $this->_view->generate(array('errorMsg' => $errorMsg));
+            $this->_view->generate(array('errorMsg' => $errorMsg),NULL);
         }
     }
 }

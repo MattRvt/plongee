@@ -1,6 +1,5 @@
 <?php
 
-
 class modelAptitude extends model
 {
 

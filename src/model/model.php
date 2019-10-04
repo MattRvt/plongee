@@ -24,8 +24,17 @@ abstract class model
 
     protected function selectAll($table)
     {
-        $req = self::$_bdd->prepare('SELECT * FROM'.$table);
-        $req->execute();
+        $pdo = $this->getBdd();
+
+        $r = [
+            'table' => $table
+        ];
+
+        $sql = "SELECT * FROM :table";
+
+        $req = $pdo->prepare($sql);
+        $req->execute($r);
+
         $data = $req->fetch(PDO::FETCH_ASSOC);
         $req->closeCursor();
         return $data;
