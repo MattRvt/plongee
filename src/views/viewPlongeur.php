@@ -1,3 +1,5 @@
+<?php            print_r($this->controller->selectAptitude());?>
+
 <form name="palanquee" action="controller/traitementPlongeur" method="post" enctype="multipart/form-data">
     <fieldset>
         <legend><b>Ajouter une personne</b></legend>
@@ -15,8 +17,8 @@
         <select id="aptitude">
             <option value="">--Please choose an option--</option>
             <?php
-            require_once('controller/controllerPlongeur.php');
-            $aptitude = $this->_controller->selectAptitude();
+            
+            $aptitude = $this->controller->selectAptitude();
             foreach ($aptitude as $item) {
                 $label = $item[0];
                 $code = $item[1];

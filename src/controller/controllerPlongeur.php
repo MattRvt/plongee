@@ -19,7 +19,7 @@ class controllerPlongeur
         $this->_view->generate(array(),$this);
     }
 
-    public function selectAptiude()
+    public function selectAptitude()
     {
         require_once('model/modelAptitude.php');
         $reader = new modelAptitude();
