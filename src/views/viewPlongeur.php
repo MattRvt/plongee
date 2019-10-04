@@ -1,3 +1,8 @@
+<?php echo "<pre>";
+$aptitude = $this->controller->selectAptitude();
+print_r($aptitude);
+echo "</pre>";?>
+
 <form name="palanquee" action="controller/traitementPlongeur" method="post" enctype="multipart/form-data">
     <fieldset>
         <legend><b>Ajouter une personne</b></legend>
@@ -17,7 +22,7 @@
             <?php
             
             $aptitude = $this->controller->selectAptitude();
-            foreach ($aptitude as $item) {
+            foreach ($aptitude['APT_LIBELLE'] as $item) {
                 $label = $item[0];
                 $code = $item[1];
                 $option = "<option value=\"" . $code ."\" <?php VerifSelectFonction(\"fonction\", \"" . $code . "\") ?>" . $label . "</option>";

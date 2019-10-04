@@ -31,8 +31,9 @@ abstract class model
         $req = $pdo->prepare($sql);
         $req->execute();
 
-        $data = $req->fetch(PDO::FETCH_ASSOC);
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
         $req->closeCursor();
+        
         return $data;
     }
 }
