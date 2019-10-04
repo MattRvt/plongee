@@ -22,10 +22,10 @@ echo "</pre>";?>
             <?php
             
             $aptitude = $this->controller->selectAptitude();
-            foreach ($aptitude['APT_LIBELLE'] as $item) {
-                $label = $item[0];
-                $code = $item[1];
-                $option = "<option value=\"" . $code ."\" <?php VerifSelectFonction(\"fonction\", \"" . $code . "\") ?>" . $label . "</option>";
+            foreach ($aptitude as $item) {
+                $label = $item['APT_LIBELLE'];
+                $code = $item['APT_CODE'];
+                echo "<option value=\"" . $code ."\" <?php VerifSelectFonction(\"fonction\", \"" . $code . "\") ?>" . $label . "</option>";
             }
             ?>
         </select>

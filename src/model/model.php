@@ -33,7 +33,7 @@ abstract class model
 
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
         $req->closeCursor();
-        
+
         return $data;
     }
 }
