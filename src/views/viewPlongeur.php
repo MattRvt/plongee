@@ -1,4 +1,4 @@
-<?php            print_r($this->controller->selectAptitude());?>
+<?php print_r($this->controller->selectAptitude());?>
 
 <form name="palanquee" action="controller/traitementPlongeur" method="post" enctype="multipart/form-data">
     <fieldset>
