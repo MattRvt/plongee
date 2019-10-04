@@ -9,7 +9,7 @@ abstract class model
     {
         require_once("model/Settings.php");
         $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ';charset=utf8';
-        self::$_bdd = new PDO($dsn, 'root', '');
+        self::$_bdd = new PDO($dsn, DB_USER, DB_PASSWORD);
         self::$_bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
 
@@ -26,14 +26,10 @@ abstract class model
     {
         $pdo = $this->getBdd();
 
-        $r = [
-            'table' => $table
-        ];
-
-        $sql = "SELECT * FROM :table";
+        $sql = "SELECT * FROM ".$table;
 
         $req = $pdo->prepare($sql);
-        $req->execute($r);
+        $req->execute();
 
         $data = $req->fetch(PDO::FETCH_ASSOC);
         $req->closeCursor();

@@ -1,5 +1,3 @@
-<?php            print_r($this->controller->selectAptitude());?>
-
 <form name="palanquee" action="controller/traitementPlongeur" method="post" enctype="multipart/form-data">
     <fieldset>
         <legend><b>Ajouter une personne</b></legend>
