@@ -1,8 +1,3 @@
-<?php echo "<pre>";
-$aptitude = $this->controller->selectAptitude();
-print_r($aptitude);
-echo "</pre>";?>
-
 <form name="palanquee" action="controller/traitementPlongeur" method="post" enctype="multipart/form-data">
     <fieldset>
         <legend><b>Ajouter une personne</b></legend>
