@@ -16,8 +16,8 @@
 		    <option value="beclem" <?php VerifSelectEmbarcation("embarcation","beclem"); ?>>Beclem</option>
 		    <option value="estelenn" <?php VerifSelectEmbarcation("embarcation","estelem"); ?>>Estelenn</option>
 		</select><br/>
-        <label for="effectifPlongeurs">Effectif de plongeurs : </label><input type="number" name="effectifPlongeurs" value="<?php verifierRempli("effectifPlongeurs");?>"><br />
-        <label for="effectifBateau">Effectif du bateau : </label><input type="number" name="effectifBateau" value="<?php verifierRempli("effectifBateau");?>"><br />
+        <label for="effectifPlongeurs">Effectif de plongeurs : </label><input type="number" name="effectifPlongeurs" value="<?php verifierRempli("effectifPlongeurs");?>" min="2" max="5"><br />
+        <label for="effectifBateau">Effectif du bateau : </label><input type="number" name="effectifBateau" value="<?php verifierRempli("effectifBateau");?>" min="4" max="7"><br />
 		<label for="directeurPlongee">Directeur de plongée : </label><input type="text" name="directeurPlongee" placeholder="directeur de plongée?" value="<?php verifierRempli("directeurPlongee");?>"> <br />
         <label for="securiteSurface">Sécurité de surface : </label><input type="text" name="securiteSurface" placeholder="sécurité de surface?" value="<?php verifierRempli("securiteSurface");?>"> <br />
 		<br />	   
