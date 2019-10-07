@@ -15,7 +15,7 @@ class controllerNewPlongeur
 
     public function mentions()
     {
-        $this->_view = new View('Plongeur');
+        $this->_view = new View('NewPlongeur');
         $this->_view->generate(array(),$this);
     }
 
