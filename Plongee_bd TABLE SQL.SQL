@@ -205,7 +205,7 @@ INSERT INTO `plo_plongeur`(`PER_NUM`,`APT_CODE`) VALUES (5,"PPB");
 
 INSERT INTO `plo_securite_de_surface`(`PER_NUM`) VALUES (1);
 
-INSERT INTO `plo_directeur`(`PER_NUM`) VALUES (2);jjj
+INSERT INTO `plo_directeur`(`PER_NUM`) VALUES (2);
 
 
 
