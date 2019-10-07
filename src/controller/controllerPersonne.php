@@ -1,6 +1,6 @@
 <?php
 
-class controllerHistoriqueDesPalanquees
+class controllerPersonne
 {
     private $_view;
 
@@ -13,21 +13,17 @@ class controllerHistoriqueDesPalanquees
         }
     }
 
-    public function selectPalanquee()
-    {
-        require_once('model/modelPalanque.php');
-        $reader = new modelPalanque();
-        $palanquee = $reader->getAll();
-        return $palanquee;
-    }
-
     public function mentions()
     {
-        $this->_view = new View('HistoriqueDesPalanquees');
+        $this->_view = new View('Personne');
         $this->_view->generate(array(), $this);
     }
 
-
+    public function selectAllNonPlongeur()
+    {
+        require_once('model/modelPersonne.php');
+        $reader = new modelPlongeur();
+        $plongeur = $reader->getAll();
+        return $plongeur;
+    }
 }
-
-?>

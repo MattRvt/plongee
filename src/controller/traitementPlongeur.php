@@ -47,7 +47,7 @@ if ( !empty($_POST ))
 }
 if ($erreur == true)
 {
-    include("../views/viewAjouterPlongeur.php");
+    include("../views/viewNewPlongeur.php");
 } else {
 	echo "Vous avez bien été enregistré! <br/>";
 }
