@@ -1,6 +1,6 @@
 <?php
 
-class controllerPlongeur
+class controllerPersonne
 {
     private $_view;
 
@@ -15,7 +15,15 @@ class controllerPlongeur
 
     public function mentions()
     {
-        $this->_view = new View('Plongeur');
+        $this->_view = new View('Personne');
         $this->_view->generate(array(), $this);
+    }
+
+    public function selectAllNonPlongeur()
+    {
+        require_once('model/modelPersonne.php');
+        $reader = new modelPlongeur();
+        $plongeur = $reader->getAll();
+        return $plongeur;
     }
 }
