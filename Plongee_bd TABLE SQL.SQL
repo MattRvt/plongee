@@ -173,29 +173,42 @@ ALTER TABLE PLO_CONCERNER
   ADD FOREIGN KEY FK_PLO_CONCERNER_PLO_PLONGEUR (PER_NUM)
       REFERENCES PLO_PLONGEUR (PER_NUM) ;
 
+
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('B', 'Baptï¿½me');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PPB', 'prï¿½paration plongeur Bronze');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PPA', 'prï¿½paration plongeur Argent');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PN1', 'prï¿½paration plongeur Niveau1');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PN2', 'prï¿½paration plongeur Niveau 2');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PN3', 'prï¿½paration plongeur Niveau 3');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PN4', 'prï¿½paration plongeur Niveau 4');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PE-6', 'plongeur encadrï¿½ jusquï¿½ï¿½ 6 m.');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PE-12', 'plongeur encadrï¿½ jusquï¿½ï¿½ 12 m.');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PE-20', 'plongeur encadrï¿½ jusquï¿½ï¿½ 20 m.');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PE-40', 'plongeur encadrï¿½ jusquï¿½ï¿½ 40 m.');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PA-20', 'plongeur autonome jusquï¿½ï¿½ 20 m.');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PA-40', 'plongeur autonome jusquï¿½ï¿½ 40 m.');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PA-60', 'plongeur autonome jusquï¿½ï¿½ 60 m.');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E1', 'encadrant jusquï¿½ï¿½ 6 m.');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E2', 'encadrant jusquï¿½ï¿½ 40 m.');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E3', 'encadrant moniteur fï¿½dï¿½ral 1');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E4', 'encadrant moniteur fï¿½dï¿½ral 2');
+
 INSERT INTO `PLO_PERSONNE`(`PER_NOM`, `PER_PRENOM`) VALUES ("Audabram","Luc");
+INSERT INTO `PLO_PERSONNE`(`PER_NOM`, `PER_PRENOM`) VALUES ("Rivat","Matthis");
+INSERT INTO `PLO_PERSONNE`(`PER_NOM`, `PER_PRENOM`) VALUES ("Chavas","Nathan");
+INSERT INTO `PLO_PERSONNE`(`PER_NOM`, `PER_PRENOM`) VALUES ("Simonin","Melissande");
+INSERT INTO `PLO_PERSONNE`(`PER_NOM`, `PER_PRENOM`) VALUES ("Geumeunoix","Khaled");
+
+INSERT INTO `plo_plongeur`(`PER_NUM`,`APT_CODE`) VALUES (3,"B");
+
+
+
+
 
 INSERT INTO `PLO_DIRECTEUR`(`PER_NUM`) VALUES (1);
 
-INSERT INTO `PLO_SECURITE_DE_SURFACE`(`PER_NUM`) VALUES (1);
+INSERT INTO `PLO_SECURITE_DE_SURFACE`(`PER_NUM`) VALUES (2);
 
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('B', 'Baptême');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PPB', 'préparation plongeur Bronze');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PPA', 'préparation plongeur Argent');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PN1', 'préparation plongeur Niveau1');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PN2', 'préparation plongeur Niveau 2');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PN3', 'préparation plongeur Niveau 3');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PN4', 'préparation plongeur Niveau 4');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PE-6', 'plongeur encadré jusqu’à 6 m.');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PE-12', 'plongeur encadré jusqu’à 12 m.');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PE-20', 'plongeur encadré jusqu’à 20 m.');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PE-40', 'plongeur encadré jusqu’à 40 m.');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PA-20', 'plongeur autonome jusqu’à 20 m.');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PA-40', 'plongeur autonome jusqu’à 40 m.');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PA-60', 'plongeur autonome jusqu’à 60 m.');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E1', 'encadrant jusqu’à 6 m.');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E2', 'encadrant jusqu’à 40 m.');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E3', 'encadrant moniteur fédéral 1');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E4', 'encadrant moniteur fédéral 2');
+
 
 
