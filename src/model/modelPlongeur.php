@@ -10,7 +10,18 @@ class modelPlongeur extends model
 
     public function get($numPersonne)
     {
-        return $this->getBdd()->query("select * from PLO_PLONGEUR where PLO_NUM = $numPersonne");
+        $pdo = $this->getBdd();
+
+        $sql = "SELECT * FROM PLO_PLONGEUR where PLO_NUM = :numPersonne";
+
+        $req = $pdo->prepare($sql);
+        $req.bindValue(":numPersonne",$numPersonne);
+        $req->execute();
+
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
     }
 
     public function addPersonne($PER_NUM,$APT_CODE)
