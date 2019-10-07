@@ -13,12 +13,6 @@ class controllerHistoriqueDesPalanquees
         }
     }
 
-    public function mentions()
-    {
-        $this->_view = new View('HistoriqueDesPalanquees');
-        $this->_view->generate(array(), $this);
-    }
-
     public function selectPalanquee()
     {
         require_once('model/modelPalanque.php');
@@ -26,6 +20,14 @@ class controllerHistoriqueDesPalanquees
         $palanquee = $reader->getAll();
         return $palanquee;
     }
+
+    public function mentions()
+    {
+        $this->_view = new View('HistoriqueDesPalanquees');
+        $this->_view->generate(array(), $this);
+    }
+
+
 }
 
 ?>

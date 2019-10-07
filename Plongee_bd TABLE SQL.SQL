@@ -200,6 +200,12 @@ INSERT INTO `PLO_PERSONNE`(`PER_NOM`, `PER_PRENOM`) VALUES ("Simonin","Melissand
 INSERT INTO `PLO_PERSONNE`(`PER_NOM`, `PER_PRENOM`) VALUES ("Geumeunoix","Khaled");
 
 INSERT INTO `plo_plongeur`(`PER_NUM`,`APT_CODE`) VALUES (3,"B");
+INSERT INTO `plo_plongeur`(`PER_NUM`,`APT_CODE`) VALUES (4,"E4");
+INSERT INTO `plo_plongeur`(`PER_NUM`,`APT_CODE`) VALUES (5,"PPB");
+
+INSERT INTO `plo_securite_de_surface`(`PER_NUM`) VALUES (1);
+
+INSERT INTO `plo_directeur`(`PER_NUM`) VALUES (2);
 
 
 
