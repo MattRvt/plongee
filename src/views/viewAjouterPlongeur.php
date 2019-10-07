@@ -1,4 +1,4 @@
-<form name="palanquee" action="controller/traitementPlongeur" method="post" enctype="multipart/form-data">
+<form name="plongeur" action="controller/traitementPlongeur" method="post" enctype="multipart/form-data">
     <fieldset>
         <legend><b>Ajouter une personne</b></legend>
         <br/>

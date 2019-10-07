@@ -8,6 +8,11 @@ class modelPlongeur extends model
         return $this->selectAll('plo_plongeur');
     }
 
+    public function get($numPersonne)
+    {
+        return $this->getBdd()->query("select * from PLO_PLONGEUR where PLO_NUM = $numPersonne");
+    }
+
     public function addPersonne($PER_NUM,$APT_CODE)
     {
         $statement = $this->getBdd()->prepare("INSERT INTO `plo_plongeur`(`PER_NUM`, `APT_CODE`) VALUES (:PER_NUM,:APT_CODE)");
