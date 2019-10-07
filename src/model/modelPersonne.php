@@ -23,10 +23,7 @@ class modelPersonne extends model
     {
         $pdo = $this->getBdd();
 
-        $sql = "SELECT * FROM `PLO_PERSONNE` WHERE PER_NUM NOT IN
-{ 
-	SELECT `PER_NUM` FROM `plo_plongeur`;
-}";
+        $sql = "
 
         $req = $pdo->prepare($sql);
         $req->execute();
