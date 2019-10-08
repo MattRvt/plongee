@@ -10,7 +10,7 @@ class modelPersonne extends model
 
     public function addPersonne($PER_NOM,$PER_PRENOM)
     {
-        $statement = $this->getBdd()->prepare("INSERT INTO `plo_personne`(`PER_NOM`, `PER_PRENOM`) VALUES (:PER_NOM,:PER_PRENOM)");
+        $statement = $this->getBdd()->prepare("INSERT INTO `PLO_PERSONNE`(`PER_NOM`, `PER_PRENOM`) VALUES (:PER_NOM,:PER_PRENOM)");
 
         $statement->bindParam(':PER_NOM', $PER_NOM);
         $statement->bindParam(':PER_PRENOM', $PER_PRENOM);
@@ -23,9 +23,9 @@ class modelPersonne extends model
     {
         $pdo = $this->getBdd();
 
-        $sql = "SELECT * from plo_personne where per_num not in
+        $sql = "SELECT * from PLO_PERSONNE where per_num not in
                 (
-                    select per_num from plo_plongeur
+                    select per_num from PLO_PLONGEUR
                 )";
 
         $req = $pdo->prepare($sql);
