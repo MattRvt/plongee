@@ -22,8 +22,16 @@ class controllerListePersonne
     public function selectAllNonPlongeur()
     {
         require_once('model/modelPersonne.php');
+        $reader = new modelPersonne();
+        $nonPlongeur = $reader->getNonPlongeur();
+        return $nonPlongeur;
+    }
+
+    public function selectAllPlongeur()
+    {
+        require_once('model/modelPlongeur.php');
         $reader = new modelPlongeur();
-        $plongeur = $reader->getNonPlongeur();
-        return $plongeur;
+        $nonPlongeur = $reader->selectPlongeurPersonne();
+        return $nonPlongeur;
     }
 }
