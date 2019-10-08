@@ -173,12 +173,6 @@ ALTER TABLE PLO_CONCERNER
   ADD FOREIGN KEY FK_PLO_CONCERNER_PLO_PLONGEUR (PER_NUM)
       REFERENCES PLO_PLONGEUR (PER_NUM) ;
 
-INSERT INTO `PLO_PERSONNE`(`PER_NUM`, `PER_NOM`, `PER_PRENOM`, `PER_ACTIVE`, `PER_DATE_CERTIF_MED`) VALUES (1,'Audabram','Luc',1,STR_TO_DATE('21/5/2013','%d/%m/%Y'));
-
-INSERT INTO `PLO_DIRECTEUR`(`PER_NUM`) VALUES (1);
-
-INSERT INTO `PLO_SECURITE_DE_SURFACE`(`PER_NUM`) VALUES (1);
-
 INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('B', 'Baptï¿½me');
 INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PPB', 'prï¿½paration plongeur Bronze');
 INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PPA', 'prï¿½paration plongeur Argent');
@@ -198,24 +192,122 @@ INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E2', 'encadrant 
 INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E3', 'encadrant moniteur fï¿½dï¿½ral 1');
 INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E4', 'encadrant moniteur fï¿½dï¿½ral 2');
 
-INSERT INTO `PLO_PERSONNE`( `PER_NUM`,`PER_NOM`, `PER_PRENOM`) VALUES (0,"Audabram","Luc");
-INSERT INTO `PLO_PERSONNE`( `PER_NUM`,`PER_NOM`, `PER_PRENOM`) VALUES (1,"Rivat","Matthis");
-INSERT INTO `PLO_PERSONNE`( `PER_NUM`,`PER_NOM`, `PER_PRENOM`) VALUES (2,"Chavas","Nathan");
-INSERT INTO `PLO_PERSONNE`( `PER_NUM`,`PER_NOM`, `PER_PRENOM`) VALUES (3,"Simonin","Melissande");
-INSERT INTO `PLO_PERSONNE`( `PER_NUM`,`PER_NOM`, `PER_PRENOM`) VALUES (4,"Geumeunoix","Khaled");
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (0,'Audabram','Luc',1,STR_TO_DATE('5/9/2019','%d/%m/%Y'));
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (1,'Rivat','Matthis',0,STR_TO_DATE('6/9/2019','%d/%m/%Y'));
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (2,'Simonin','Simonin',0,STR_TO_DATE('7/9/2019','%d/%m/%Y'));
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (3,'Chavas','Chavas',1,STR_TO_DATE('7/9/2019','%d/%m/%Y'));
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (4,'Faible ',' Voleur',1,STR_TO_DATE('8/9/2019','%d/%m/%Y'));
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (5,'Occupé ','Bonheur',0,STR_TO_DATE('9/9/2019','%d/%m/%Y'));
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (6,'Pieds nus ','Hôpital',1,STR_TO_DATE('10/9/2019','%d/%m/%Y'));
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (7,'Scaphandre  ','Ouragan',1,STR_TO_DATE('10/9/2019','%d/%m/%Y'));
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (8,'Sofa ','Orifice',0,STR_TO_DATE('10/9/2019','%d/%m/%Y'));
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (9,'Demi-sœur ','Rendez-vous',0,STR_TO_DATE('11/9/2019','%d/%m/%Y'));
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (10,'autonome','Transpirer',0,STR_TO_DATE('12/9/2019','%d/%m/%Y'));
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (11,'Apache ','Épais',1,STR_TO_DATE('13/9/2019','%d/%m/%Y'));
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (12,'Engrener ','Timing',1,STR_TO_DATE('14/9/2019','%d/%m/%Y'));
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (13,'Raisin ','Partie',0,STR_TO_DATE('15/9/2019','%d/%m/%Y'));
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (14,'Accouplé ','Moudre ',0,STR_TO_DATE('16/9/2019','%d/%m/%Y'));
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (15,'Sportif ','Épine ',1,STR_TO_DATE('17/9/2019','%d/%m/%Y'));
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (16,'Souche ','Sirop ',0,STR_TO_DATE('18/9/2019','%d/%m/%Y'));
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (17,'Velu ','Anecdote ',1,STR_TO_DATE('19/9/2019','%d/%m/%Y'));
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (18,'Libération ','Mélanger',1,STR_TO_DATE('20/9/2019','%d/%m/%Y'));
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (19,'Érosion ','Horrible ',0,STR_TO_DATE('21/9/2019','%d/%m/%Y'));
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (20,'Galon ','Télévision ',0,STR_TO_DATE('22/9/2019','%d/%m/%Y'));
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (21,'Remplir ','France ',1,STR_TO_DATE('23/9/2019','%d/%m/%Y'));
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (22,'Visite ','Iceberg',0,STR_TO_DATE('23/9/2019','%d/%m/%Y'));
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (23,'Sibérie ','Congélateur ',0,STR_TO_DATE('24/9/2019','%d/%m/%Y'));
+insert into `plo_personne`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (24,'Poker ','Écureuil',1,STR_TO_DATE('25/9/2019','%d/%m/%Y'));
 
 INSERT INTO `plo_plongeur`(`PER_NUM`,`APT_CODE`) VALUES (3,"B");
 INSERT INTO `plo_plongeur`(`PER_NUM`,`APT_CODE`) VALUES (4,"E4");
 INSERT INTO `plo_plongeur`(`PER_NUM`,`APT_CODE`) VALUES (5,"PPB");
+INSERT INTO `plo_plongeur`(`PER_NUM`,`APT_CODE`) VALUES (7,"PN1");
+INSERT INTO `plo_plongeur`(`PER_NUM`,`APT_CODE`) VALUES (13,"PE-20");
+INSERT INTO `plo_plongeur`(`PER_NUM`,`APT_CODE`) VALUES (0,"PE-40");
+INSERT INTO `plo_plongeur`(`PER_NUM`,`APT_CODE`) VALUES (22,"PN3");
+INSERT INTO `plo_plongeur`(`PER_NUM`,`APT_CODE`) VALUES (24,"E3");
+INSERT INTO `plo_plongeur`(`PER_NUM`,`APT_CODE`) VALUES (18,"PPB"); 
 
 INSERT INTO `plo_securite_de_surface`(`PER_NUM`) VALUES (1);
+INSERT INTO `plo_securite_de_surface`(`PER_NUM`) VALUES (5);
+INSERT INTO `plo_securite_de_surface`(`PER_NUM`) VALUES (4);
+INSERT INTO `plo_securite_de_surface`(`PER_NUM`) VALUES (9);
 
 INSERT INTO `plo_directeur`(`PER_NUM`) VALUES (2);
+INSERT INTO `plo_directeur`(`PER_NUM`) VALUES (1);
+INSERT INTO `plo_directeur`(`PER_NUM`) VALUES (6);
 
+INSERT INTO `plo_embarcation`(`EMB_NUM`, `EMB_NOM`) VALUES (1,"titanic");
+INSERT INTO `plo_embarcation`(`EMB_NUM`, `EMB_NOM`) VALUES (2,"Black Pearl");
+INSERT INTO `plo_embarcation`(`EMB_NUM`, `EMB_NOM`) VALUES (3,"Hollandais volant");
 
+INSERT INTO `plo_site`(`SIT_NUM`, `SIT_NOM`, `SIT_LOCALISATION`) VALUES (1,"Triangle des bermude","Pacifique");
+INSERT INTO `plo_site`(`SIT_NUM`, `SIT_NOM`, `SIT_LOCALISATION`) VALUES (2,"Caraibe","Caraibe");
+INSERT INTO `plo_site`(`SIT_NUM`, `SIT_NOM`, `SIT_LOCALISATION`) VALUES (3,"Atlantide","Perdu");
 
+INSERT INTO `PLO_PLONGEE`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `SIT_NUM`, `EMB_NUM`, `PER_NUM_DIR`, `PER_NUM_SECU`, `PLO_EFFECTIF_PLONGEURS`, `PLO_EFFECTIF_BATEAU`, `PLO_NB_PALANQUEES`, `PLO_ETAT`) VALUES (STR_TO_DATE('10/10/2019','%d/%m/%Y'),"m",1,1,1,1,10,15,5,"bon");
+INSERT INTO `PLO_PLONGEE`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `SIT_NUM`, `EMB_NUM`, `PER_NUM_DIR`, `PER_NUM_SECU`, `PLO_EFFECTIF_PLONGEURS`, `PLO_EFFECTIF_BATEAU`, `PLO_NB_PALANQUEES`, `PLO_ETAT`) VALUES (STR_TO_DATE('15/10/2019','%d/%m/%Y'),"m",1,2,2,5,2,20,5,"pasouf");
+INSERT INTO `PLO_PLONGEE`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `SIT_NUM`, `EMB_NUM`, `PER_NUM_DIR`, `PER_NUM_SECU`, `PLO_EFFECTIF_PLONGEURS`, `PLO_EFFECTIF_BATEAU`, `PLO_NB_PALANQUEES`, `PLO_ETAT`) VALUES (STR_TO_DATE('16/10/2019','%d/%m/%Y'),"A",2,1,6,4,20,26,5,"pasmal");
+INSERT INTO `PLO_PLONGEE`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `SIT_NUM`, `EMB_NUM`, `PER_NUM_DIR`, `PER_NUM_SECU`, `PLO_EFFECTIF_PLONGEURS`, `PLO_EFFECTIF_BATEAU`, `PLO_NB_PALANQUEES`, `PLO_ETAT`) VALUES (STR_TO_DATE('20/10/2019','%d/%m/%Y'),"A",2,2,2,9,5,7,5,"mouais");
+INSERT INTO `PLO_PLONGEE`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `SIT_NUM`, `EMB_NUM`, `PER_NUM_DIR`, `PER_NUM_SECU`, `PLO_EFFECTIF_PLONGEURS`, `PLO_EFFECTIF_BATEAU`, `PLO_NB_PALANQUEES`, `PLO_ETAT`) VALUES (STR_TO_DATE('29/10/2019','%d/%m/%Y'),"m",3,3,1,5,3,3,5,"cool");
 
+INSERT INTO `plo_palanquee`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PAL_PROFONDEUR_MAX`, `PAL_DUREE_MAX`, `PAL_HEURE_IMMERSION`, `PAL_HEURE_SORTIE_EAU`, `PAL_PROFONDEUR_REELLE`, `PAL_DUREE_FOND`) VALUES (STR_TO_DATE('10/10/2019','%d/%m/%Y'),"m",1,10,5,TIME_FORMAT('10', '%h'),TIME_FORMAT('11', '%h'),4000,5);
+INSERT INTO `plo_palanquee`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PAL_PROFONDEUR_MAX`, `PAL_DUREE_MAX`, `PAL_HEURE_IMMERSION`, `PAL_HEURE_SORTIE_EAU`, `PAL_PROFONDEUR_REELLE`, `PAL_DUREE_FOND`) VALUES (STR_TO_DATE('10/10/2019','%d/%m/%Y'),"m",2,15,10,TIME_FORMAT('15', '%h'),TIME_FORMAT('16', '%h'),3000,15);
+INSERT INTO `plo_palanquee`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PAL_PROFONDEUR_MAX`, `PAL_DUREE_MAX`, `PAL_HEURE_IMMERSION`, `PAL_HEURE_SORTIE_EAU`, `PAL_PROFONDEUR_REELLE`, `PAL_DUREE_FOND`) VALUES (STR_TO_DATE('15/10/2019','%d/%m/%Y'),"m",3,5,15,TIME_FORMAT('11', '%h'),TIME_FORMAT('12', '%h'),1000,20);
+INSERT INTO `plo_palanquee`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PAL_PROFONDEUR_MAX`, `PAL_DUREE_MAX`, `PAL_HEURE_IMMERSION`, `PAL_HEURE_SORTIE_EAU`, `PAL_PROFONDEUR_REELLE`, `PAL_DUREE_FOND`) VALUES (STR_TO_DATE('15/10/2019','%d/%m/%Y'),"m",4,20,20,TIME_FORMAT('12', '%h'),TIME_FORMAT('13', '%h'),2000,10);
+INSERT INTO `plo_palanquee`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PAL_PROFONDEUR_MAX`, `PAL_DUREE_MAX`, `PAL_HEURE_IMMERSION`, `PAL_HEURE_SORTIE_EAU`, `PAL_PROFONDEUR_REELLE`, `PAL_DUREE_FOND`) VALUES (STR_TO_DATE('16/10/2019','%d/%m/%Y'),"A",5,10,5,TIME_FORMAT('19', '%h'),TIME_FORMAT('20', '%h'),100,20);
+INSERT INTO `plo_palanquee`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PAL_PROFONDEUR_MAX`, `PAL_DUREE_MAX`, `PAL_HEURE_IMMERSION`, `PAL_HEURE_SORTIE_EAU`, `PAL_PROFONDEUR_REELLE`, `PAL_DUREE_FOND`) VALUES (STR_TO_DATE('16/10/2019','%d/%m/%Y'),"A",6,15,10,TIME_FORMAT('14', '%h'),TIME_FORMAT('15', '%h'),200,15);
+INSERT INTO `plo_palanquee`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PAL_PROFONDEUR_MAX`, `PAL_DUREE_MAX`, `PAL_HEURE_IMMERSION`, `PAL_HEURE_SORTIE_EAU`, `PAL_PROFONDEUR_REELLE`, `PAL_DUREE_FOND`) VALUES (STR_TO_DATE('20/10/2019','%d/%m/%Y'),"A",7,20,10,TIME_FORMAT('9', '%h'),TIME_FORMAT('10', '%h'),500,15);
+INSERT INTO `plo_palanquee`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PAL_PROFONDEUR_MAX`, `PAL_DUREE_MAX`, `PAL_HEURE_IMMERSION`, `PAL_HEURE_SORTIE_EAU`, `PAL_PROFONDEUR_REELLE`, `PAL_DUREE_FOND`) VALUES (STR_TO_DATE('20/10/2019','%d/%m/%Y'),"A",8,5,15,TIME_FORMAT('8', '%h'),TIME_FORMAT('9', '%h'),8000,10);
+INSERT INTO `plo_palanquee`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PAL_PROFONDEUR_MAX`, `PAL_DUREE_MAX`, `PAL_HEURE_IMMERSION`, `PAL_HEURE_SORTIE_EAU`, `PAL_PROFONDEUR_REELLE`, `PAL_DUREE_FOND`) VALUES (STR_TO_DATE('29/10/2019','%d/%m/%Y'),"m",9,20,20,TIME_FORMAT('7', '%h'),TIME_FORMAT('8', '%h'),600,5);
+INSERT INTO `plo_palanquee`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PAL_PROFONDEUR_MAX`, `PAL_DUREE_MAX`, `PAL_HEURE_IMMERSION`, `PAL_HEURE_SORTIE_EAU`, `PAL_PROFONDEUR_REELLE`, `PAL_DUREE_FOND`) VALUES (STR_TO_DATE('29/10/2019','%d/%m/%Y'),"m",10,5,20,TIME_FORMAT('21', '%h'),TIME_FORMAT('22', '%h'),20,15);
 
-INSERT INTO `PLO_DIRECTEUR`(`PER_NUM`) VALUES (1);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('10/10/2019','%d/%m/%Y'),"m",1,3);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('10/10/2019','%d/%m/%Y'),"m",1,4);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('10/10/2019','%d/%m/%Y'),"m",1,5);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('10/10/2019','%d/%m/%Y'),"m",1,7);
 
-INSERT INTO `PLO_SECURITE_DE_SURFACE`(`PER_NUM`) VALUES (2);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('10/10/2019','%d/%m/%Y'),"m",2,3);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('10/10/2019','%d/%m/%Y'),"m",2,4);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('10/10/2019','%d/%m/%Y'),"m",2,7);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('10/10/2019','%d/%m/%Y'),"m",2,13);
+
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('15/10/2019','%d/%m/%Y'),"m",3,0);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('15/10/2019','%d/%m/%Y'),"m",3,22);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('15/10/2019','%d/%m/%Y'),"m",3,24);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('15/10/2019','%d/%m/%Y'),"m",3,5);
+
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('15/10/2019','%d/%m/%Y'),"m",4,18);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('15/10/2019','%d/%m/%Y'),"m",4,13);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('15/10/2019','%d/%m/%Y'),"m",4,7);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('15/10/2019','%d/%m/%Y'),"m",4,3);
+
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('16/10/2019','%d/%m/%Y'),"A",5,3);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('16/10/2019','%d/%m/%Y'),"A",5,4);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('16/10/2019','%d/%m/%Y'),"A",5,5);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('16/10/2019','%d/%m/%Y'),"A",5,24);
+
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('16/10/2019','%d/%m/%Y'),"A",6,3);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('16/10/2019','%d/%m/%Y'),"A",6,18);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('16/10/2019','%d/%m/%Y'),"A",6,22);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('16/10/2019','%d/%m/%Y'),"A",6,13);
+
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('20/10/2019','%d/%m/%Y'),"A",7,24);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('20/10/2019','%d/%m/%Y'),"A",7,18);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('20/10/2019','%d/%m/%Y'),"A",7,22);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('20/10/2019','%d/%m/%Y'),"A",7,4);
+
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('20/10/2019','%d/%m/%Y'),"A",8,3);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('20/10/2019','%d/%m/%Y'),"A",8,4);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('20/10/2019','%d/%m/%Y'),"A",8,7);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('20/10/2019','%d/%m/%Y'),"A",8,13);
+
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('29/10/2019','%d/%m/%Y'),"m",9,0);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('29/10/2019','%d/%m/%Y'),"m",9,24);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('29/10/2019','%d/%m/%Y'),"m",9,18);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('29/10/2019','%d/%m/%Y'),"m",9,13);
+
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('29/10/2019','%d/%m/%Y'),"m",10,3);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('29/10/2019','%d/%m/%Y'),"m",10,5);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('29/10/2019','%d/%m/%Y'),"m",10,4);
+INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('29/10/2019','%d/%m/%Y'),"m",10,0);
