@@ -60,7 +60,7 @@ class Router
             {
                 require_once("controller/controllerAccueil.php");
                 //on crée une instance de la classe incluse
-                $this->_controller = new controllerAcceuil(array(1=>1));
+                $this->_controller = new controllerAccueil(array(1=>1));
             }
 
         }
