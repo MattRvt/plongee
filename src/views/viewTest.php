@@ -1,9 +1,8 @@
 <?php
 
 
-$listePlongee = $this->controller->getPongee();
+$listePlongee = $this->controller->getParticipation();
 echo "<pre>";
-
 print_r ($listePlongee);
 echo "</pre>"
 ?>

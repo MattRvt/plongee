@@ -1,6 +1,6 @@
 <?php
 
-class controllerTest
+class controllerListPersonne
 {
     private $_view;
 
@@ -15,18 +15,15 @@ class controllerTest
 
     public function mentions()
     {
-        $this->_view = new View('Test');
+        $this->_view = new View('ListPersonne');
         $this->_view->generate(array(), $this);
     }
 
-    public function getPongee()
+    public function selectAllNonPlongeur()
     {
-        require_once('model/modelAptitude.php');
-        $reader = new modelAptitude();
-        $aptitude = $reader->getAll();
-        return $aptitude;
-
+        require_once('model/modelPersonne.php');
+        $reader = new modelPlongeur();
+        $plongeur = $reader->getAll();
+        return $plongeur;
     }
 }
-
-?>
