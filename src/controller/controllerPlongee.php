@@ -16,17 +16,38 @@ class controllerPlongee
     public function mentions()
     {
         $this->_view = new View('Plongee');
-        $this->_view->generate(array(),$this);
+        $this->_view->generate(array(), $this);
+
+        //traitemnt du formulaire
+        $this->traitementFormulaire();
+
+
     }
 
-    /*public function selectAptitude()
+    public function traitementFormulaire()
     {
-        require_once('model/modelAptitude.php');
-        $reader = new modelAptitude();
-        $aptitude = $reader->getAll();
-        return $aptitude;
-    }*/
+        if (isset($_POST['date'])) {
+            $date = $_POST['date'];
+            echo "date : $date <br />";
+        }
 
+
+        echo "données post :<br>";
+        if (!empty($_POST)) {
+
+            //debug:
+            echo "<pre>";
+            print_r($_POST);
+            echo "</pre>";
+        } else {
+            echo "vide <br>";
+        }
+        echo "fin données";
+    }
+    /*
+
+
+*/
 
 }
 
