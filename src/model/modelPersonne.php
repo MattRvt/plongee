@@ -23,7 +23,7 @@ class modelPersonne extends model
     {
         $pdo = $this->getBdd();
 
-        $sql = "
+        $sql = "";
 
         $req = $pdo->prepare($sql);
         $req->execute();
