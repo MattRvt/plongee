@@ -1,3 +1,4 @@
+<meta charset="utf-8" />
 Numero d'identification: <?php $Personne = $this->controller->selectPersonne(4); //Apres recup $_POST['PER_NUM'] et echo
             $numPersonne = $Personne['PER_NUM'];
             echo $numPersonne;?> <br/>
