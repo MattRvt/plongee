@@ -19,11 +19,14 @@ class modelPersonne extends model
         return $res;
     }
 
-   /* public function getNonPlongeur()
+   public function getNonPlongeur()
     {
         $pdo = $this->getBdd();
 
-        $sql = "SELECT * FROM PLO_PLONGEUR where PLO_NUM = :numPersonne";
+        $sql = "SELECT * from plo_personne where per_num not in
+                (
+                    select per_num from plo_plongeur
+                )";
 
         $req = $pdo->prepare($sql);
         $req->execute();
@@ -32,5 +35,4 @@ class modelPersonne extends model
         $req->closeCursor();
 
         return $data;
-    }*/ //Ca sert à r je trouve
-}
+    }

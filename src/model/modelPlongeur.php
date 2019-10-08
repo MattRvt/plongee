@@ -24,7 +24,7 @@ class modelPlongeur extends model
         return $data;
     }
 
-    public function addPersonne($PER_NUM,$APT_CODE)
+    public function addPlongeur($PER_NUM,$APT_CODE)
     {
         $statement = $this->getBdd()->prepare("INSERT INTO `plo_plongeur`(`PER_NUM`, `APT_CODE`) VALUES (:PER_NUM,:APT_CODE)");
 
@@ -33,5 +33,20 @@ class modelPlongeur extends model
 
         $res = $statement->execute();
         return $res;
+    }
+
+    public function selectPlongeurPersonne()
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "select * from plo_personne join plo_plongeur using(per_num);";
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
     }
 }
