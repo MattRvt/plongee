@@ -23,7 +23,7 @@ class controllerListPersonne
     {
         require_once('model/modelPersonne.php');
         $reader = new modelPlongeur();
-        $plongeur = $reader->getAll();
+        $plongeur = $reader->getNonPlongeur();
         return $plongeur;
     }
 }
