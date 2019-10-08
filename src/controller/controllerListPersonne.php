@@ -21,7 +21,7 @@ class controllerListPersonne
 
     public function selectAllNonPlongeur()
     {
-        require_once('model/modelListePersonne.php');
+        require_once('model/modelPersonne.php');
         $reader = new modelPlongeur();
         $plongeur = $reader->getAll();
         return $plongeur;
