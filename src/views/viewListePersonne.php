@@ -18,11 +18,11 @@
             <?php
             for($j=0;$j<5;$j++){
             ?>
-                <td><?php   if ($j=5) ?>
-                                <input type="button" value="Modifier Personne" onclick="window.location.href='ModifierPlongeur'"><br/><br/><br/> 
-                            <?php
-                            else
-                                print_r($personne[$i][$j]);  ?></td>
+                <td>    <?php if ($j < 5)
+                                print_r($personne[$i][$j]);
+                            else ?>
+                            <input type="button" value="Modifier Personne" onclick="window.location.href='ModifierPlongeur'">
+                </td>
             <?php
             }
             ?>
