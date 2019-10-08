@@ -19,14 +19,6 @@ class controllerTest
         $this->_view->generate(array(), $this);
     }
 
-    public function getPongee()
-    {
-        require_once('model/modelAptitude.php');
-        $reader = new modelAptitude();
-        $aptitude = $reader->getAll();
-        return $aptitude;
-
-    }
 }
 
 ?>

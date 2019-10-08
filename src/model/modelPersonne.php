@@ -19,7 +19,7 @@ class modelPersonne extends model
         return $res;
     }
 
-    public function getNonPlongeur()
+   public function getNonPlongeur()
     {
         $pdo = $this->getBdd();
 
