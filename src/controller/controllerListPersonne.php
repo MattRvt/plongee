@@ -19,19 +19,11 @@ class controllerPersonne
         $this->_view->generate(array(), $this);
     }
 
-    public function selectAllPlongeur()
+    public function selectAllPersonne()
     {
         require_once('model/modelPersonne.php');
-        $reader = new modelPlongeur();
-        $plongeur = $reader->getAll();
-        return $plongeur;
-    }
-
-    public function selectAllNonPlongeur()
-    {
-        require_once('model/modelPersonne.php');
-        $reader = new modelPlongeur();
-        $nonPlongeur = $reader->getAll();
-        return $nonPlongeur;
+        $reader = new modelPersonne();
+        $personne = $reader->getAll();
+        return $personne;
     }
 }
