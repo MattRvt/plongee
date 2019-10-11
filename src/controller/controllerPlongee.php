@@ -24,6 +24,20 @@ class controllerPlongee
 
     }
 
+
+    public function verifierRempli($n)
+    {
+
+        if (isset($_POST[$n])) {
+            $var = $_POST[$n];
+            //if ($var <> "")
+            echo $var;
+        } else {
+            echo "";
+        }
+    }
+
+
     public function traitementFormulaire()
     {
         if (isset($_POST['date'])) {
