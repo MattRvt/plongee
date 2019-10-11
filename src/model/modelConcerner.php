@@ -10,7 +10,7 @@ class modelConcerner extends model
     public function addPersonne($PLO_DATE,$PLO_MATIN_APRESMIDI, $PAL_NUM, $PER_NUM)
     {
 
-        $statement = $this->getBdd()->prepare("INSERT INTO `plo_concerner`(`PLO_DATE`, `PLO_MATIN_APRESMIDI`, `PAL_NUM`, `PER_NUM`) VALUES (:PLO_DATE,:PLO_MATIN_APRESMIDI,:PAL_NUM,:PER_NUM)");
+        $statement = $this->getBdd()->prepare("INSERT INTO `PLO_CONCERNER`(`PLO_DATE`, `PLO_MATIN_APRESMIDI`, `PAL_NUM`, `PER_NUM`) VALUES (:PLO_DATE,:PLO_MATIN_APRESMIDI,:PAL_NUM,:PER_NUM)");
 
         $statement->bindParam(':PLO_DATE', $PLO_DATE);
         $statement->bindParam(':PLO_MATIN_APRESMIDI', $PLO_MATIN_APRESMIDI);
