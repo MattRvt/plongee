@@ -12,8 +12,12 @@
 
         ><br/>
         <label for="siteNom">nom du site: </label>
-        <input type="text" name="siteNom" size="30" maxlength="50" value="<?php $this->controller->verifierRempli("siteNom"); ?>"
-        ><br/>
+
+        <select id="fonction">
+            <?php $this->controller->listeDeroulante("table","raw") ?>
+        </select>
+
+        <br/>
         <label for="effectifs">effectifs: </label> <--calc auto--> <br/>
         <label for="nomSecuriteDeSurface">sécurité de surface: </label>
         <input type="text"

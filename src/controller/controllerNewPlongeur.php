@@ -1,6 +1,6 @@
 <?php
 
-class controllerNewPlongeur
+class controllerNewPlongeur extends controller
 {
     private $_view;
 
@@ -19,12 +19,15 @@ class controllerNewPlongeur
         $this->_view->generate(array(),$this);
     }
 
-    public function selectAptitude()
+    public  function selectAptitude()
     {
         require_once('model/modelAptitude.php');
         $reader = new modelAptitude();
+        echo $this->listeDeroulante($reader, "APT_LIBELLE","APT_CODE");
+       /* require_once('model/modelAptitude.php');
+        $reader = new modelAptitude();
         $aptitude = $reader->getAll();
-        return $aptitude;
+        return $aptitude;*/
     }
 }
 

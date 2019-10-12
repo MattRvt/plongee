@@ -1,6 +1,6 @@
 <?php
 
-class statementmodelDirecteur extends model
+class modelDirecteur extends model
 {
     public function getAll()
     {
