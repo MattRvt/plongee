@@ -1,6 +1,6 @@
 <?php
 
-class controllerError
+class controllerError  extends controller
 {
     private $_view;
 

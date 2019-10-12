@@ -1,6 +1,6 @@
 <?php
 
-class controllerTest
+class controllerTest  extends controller
 {
     private $_view;
 

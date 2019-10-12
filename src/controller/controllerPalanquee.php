@@ -1,6 +1,6 @@
 <?php
 
-class controllerPalanquee
+class controllerPalanquee  extends controller
 {
     private $_view;
 

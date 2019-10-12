@@ -1,6 +1,6 @@
 <?php
 
-class controllerPlongee
+class controllerPlongee  extends controller
 {
     private $_view;
 

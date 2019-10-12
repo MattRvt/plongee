@@ -1,6 +1,6 @@
 <?php
 
-class controllerAjouterPlongeur
+class controllerAjouterPlongeur  extends controller
 {
     private $_view;
 

@@ -1,6 +1,6 @@
 <?php
 
-class controllerAccueil
+class controllerAccueil  extends controller
 {
     private $_view;
 

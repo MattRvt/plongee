@@ -1,6 +1,6 @@
 <?php
 
-class controllerHistoriqueDesPalanquees
+class controllerHistoriqueDesPalanquees  extends controller
 {
     private $_view;
 
