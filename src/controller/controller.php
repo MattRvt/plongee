@@ -11,18 +11,19 @@ abstract class controller
      * @param $code valeur du select (value)
      * @param $defaultCode parametre optionel permetant de definir une valeur par defaut
      */
+
     public function listeDeroulante($req, $label, $code, $defaultCode=null)
     {
-        echo "<option value=\"\" hidden>--Please choose an option--</option>";
+        $text = "<option value=\"\" hidden>--Please choose an option--</option>";
         foreach ($req as $ligne) {
             $labelOption = $ligne[$label];
             $codeOption = $ligne[$code];
             if ($defaultCode == $codeOption) {
-                echo "<option value=\"" . $codeOption . "\" Selected> " . $labelOption . "</option>";
+                $text = $text."<option value=\"" . $codeOption . "\" Selected> " . $labelOption . "</option>";
             } else {
-                echo "<option value=\"" . $codeOption . "\" > " . $labelOption . "</option>";
+                $text = $text."<option value=\"" . $codeOption . "\" > " . $labelOption . "</option>";
             }
-
         }
+        return $text;
     }
 }

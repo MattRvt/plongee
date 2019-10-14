@@ -1,7 +1,9 @@
 var personne = {
     nom: "",
     prenom: "",
-    fonction: "",
+    plongeur: "",
+    directeur: "",
+    secuSurface: "",
     aptitude: ""
 };
 
@@ -9,31 +11,51 @@ function addPersonne()
 {
     personne.nom = document.getElementById('nom').value;
     personne.prenom = document.getElementById('prenom').value;
-    personne.fonction = document.getElementById('fonction').value;
-    personne.aptitude = document.getElementById('aptitude').value;
+    personne.plongeur = document.getElementById('Plongeur').checked;
+    personne.directeur = document.getElementById('Directeur').checked;
+    personne.secuSurface = document.getElementById('SecuriteSurface').checked;
 
     $("#erreur").html("");
 
     var xhr = initXHR();
+    xhr.open('POST', 'index.php?url=NewPlongeur', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    if(personne.fonction != "" && personne.aptitude == "")
+    var text = "personne=personne$nom="+personne.nom+"$prenom="+personne.prenom;
+    if(personne.plongeur)
     {
-        $("#erreur").html("Veuillez selectionner une aptitude");
+        personne.aptitude = document.getElementById('aptitude').value;
+        text = text+"$plongeur=plongeur$aptitude="+personne.aptitude;
     }
-    else if(personne.fonction == "" && personne.aptitude != "")
+    if(personne.directeur)
     {
-        $("#erreur").html("Veuillez selectionner une fonction");
+        text = text+"$directeur=directeur";
     }
-    else if(personne.fonction == "" && personne.aptitude == "")
+    if(personne.secuSurface)
     {
-        xhr.open('POST', 'index.php?url=AddPersonneInBase', false);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send('');
+        text = text+"securiteSurface=securiteSurface";
+    }
+
+    xhr.send(text);
+    $("#erreur").html(xhr.responseText);
+}
+
+function selectAptitude()
+{
+    personne.plongeur = document.getElementById('Plongeur').checked;
+
+    if(personne.plongeur == false)
+    {
+        $("#selectAptitude").html("");
     }
     else
     {
-        xhr.open('POST', 'index.php?url=AddPlongeurInBase', false);
+        var xhr = initXHR();
+        xhr.open('POST', 'index.php?url=SelectAptitude', false);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send('');
+        xhr.send();
+
+        var text = xhr.responseText;
+        $("#selectAptitude").html(text);
     }
 }

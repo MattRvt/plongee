@@ -7,7 +7,7 @@ class modelDirecteur extends model
         return $this->selectAll('plo_directeur');
     }
 
-    public function addPersonne($PER_NUM)
+    public function addDirecteur($PER_NUM)
     {
         $statement = $this->getBdd()->prepare("INSERT INTO `PLO_DIRECTEUR`(`PER_NUM`) VALUES (:PER_NUM)");
 
