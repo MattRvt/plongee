@@ -31,7 +31,7 @@ class controllerListePersonne  extends controller
     {
         require_once('model/modelPlongeur.php');
         $reader = new modelPlongeur();
-        $nonPlongeur = $reader->selectPlongeurPersonne();
-        return $nonPlongeur;
+        $Plongeur = $reader->selectPlongeurPersonne();
+        return $Plongeur;
     }
 }
