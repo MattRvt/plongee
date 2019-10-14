@@ -9,7 +9,7 @@ class Router
 
     public function routeRequete()
     {
-        require_once("models/Settings.php");
+        require_once("model/Settings.php");
         try
         {
             //Chargement automatique des classes

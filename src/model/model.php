@@ -7,7 +7,6 @@ abstract class model
 
     private static function setBdd()
     {
-        require_once("model/Settings.php");
         $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ';charset=utf8';
         self::$_bdd = new PDO($dsn, DB_USER, DB_PASSWORD);
         self::$_bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
