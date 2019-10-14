@@ -4,10 +4,8 @@ class controllerNewPlongeur extends controller
 {
     public  function selectAptitude()
     {
-        require_once('model/modelAptitude.php');
         $reader = new modelAptitude();
-        $aptitude = $reader->getAll();
-        return $aptitude;
+        echo $this->listeDeroulante($reader, "APT_LIBELLE","APT_CODE");
     }
 
     public function getLastNum(){
@@ -15,8 +13,6 @@ class controllerNewPlongeur extends controller
         $reader = new modelPlongeur();
         $lastPlongeur = $reader->getLastPlongeur();
         return $lastPlongeur[0];
-    }
-        echo $this->listeDeroulante($reader, "APT_LIBELLE","APT_CODE");
     }
 
     function verifierRempli($n)
@@ -43,15 +39,6 @@ class controllerNewPlongeur extends controller
             if ($_POST["fonction"] == $n)
                 echo "selected";
         }
-
-    public function addPlongeurPersonne($aptitude){
-        require_once('model/modelPlongeur.php');
-        $reader = new modelPlongeur();
-        $num = $reader->getLastNum;
-        $reader->addPlongeur($num, $aptitude);
-        require_once('model/modelPersonne.php');
-        $reader = new modelPersonne();
-        $reader->addPersonne($num, $nom, $prenom);
     }
 
     public function traitementFormulaire(){
