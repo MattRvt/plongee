@@ -12,11 +12,12 @@ abstract class controller
      */
     public function listeDeroulante($req, $label, $code)
     {//TODO enregistrer valeur saisie
-        echo "<option value=\"\" hidden>--Please choose an option--</option>";
+        $text = '<option value="" hidden>--Please choose an option--</option>';
         foreach ($req as $ligne) {
             $labelOption = $ligne[$label];
             $codeOption = $ligne[$code];
-            echo "<option value=\"" . $codeOption . "\" > " . $labelOption . "</option>";
+            $text = $text.'<option value="' . $codeOption . '" > ' . $labelOption . '</option>';
         }
+        return $text;
     }
 }

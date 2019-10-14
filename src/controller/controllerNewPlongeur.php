@@ -2,12 +2,6 @@
 
 class controllerNewPlongeur extends controller
 {
-    public function selectAptitude()
-    {
-        $reader = new modelAptitude();
-        echo $this->listeDeroulante($reader, "APT_LIBELLE","APT_CODE");
-    }
-
     public function getNewNum(){
         require_once('model/modelPlongeur.php');
         $reader = new modelPlongeur();
