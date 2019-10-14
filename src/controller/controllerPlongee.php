@@ -40,6 +40,7 @@ class controllerPlongee extends controller
 
     public function traitementFormulaire()
     {
+
         echo "données post :<br>";
         echo "<pre>";
         print_r($_POST);
@@ -75,12 +76,45 @@ class controllerPlongee extends controller
         }
     }
 
+    public function selectMoment()
+    {
+        $req = array(
+            array(
+                'CODE' => 'M',
+                'LIBELLE' => 'matin'
+            ),
+            array(
+                'CODE' => 'A',
+                'LIBELLE' => 'apres-midi'
+            ),
+            array(
+                'CODE' => 'S',
+                'LIBELLE' => 'soir'
+            )
+        );
+
+        if (isset($_POST['moment'])) {
+            $defaultCode = $_POST['moment'];
+        } else {
+            $defaultCode = null;
+        }
+        echo $this->listeDeroulante($req, "LIBELLE", "CODE", $defaultCode);
+    }
+
     public function selectSite()
     {
         require_once('model/modelSite.php');
         $reader = new modelSite();
         $req = $reader->getAll();
-        echo $this->listeDeroulante($req, "SIT_NOM", "SIT_NUM");
+        if (isset($_POST['site'])) {
+            $defaultCode = $_POST['site'];
+        } else {
+            $defaultCode = null;
+        }
+
+
+
+        echo $this->listeDeroulante($req, "SIT_NOM", "SIT_NUM", $defaultCode);
     }
 
     public function selectDirecteurDePlongee()
@@ -88,7 +122,12 @@ class controllerPlongee extends controller
         require_once('model/modelPersonne.php');
         $reader = new modelPersonne();
         $req = $reader->getDirecteurDePlongee();
-        echo $this->listeDeroulante($req, "PER_NOM", "PER_NUM");
+        if (isset($_POST['directeurDePlongee'])) {
+            $defaultCode = $_POST['directeurDePlongee'];
+        } else {
+            $defaultCode = null;
+        }
+        echo $this->listeDeroulante($req, "PER_NOM", "PER_NUM", $defaultCode);
     }
 
     public function selectSecuriteDeSurface()
@@ -96,7 +135,12 @@ class controllerPlongee extends controller
         require_once('model/modelPersonne.php');
         $reader = new modelPersonne();
         $req = $reader->getSecuriteDeSurface();
-        echo $this->listeDeroulante($req, "PER_NOM", "PER_NUM");
+        if (isset($_POST['securiteDeSurface'])) {
+            $defaultCode = $_POST['securiteDeSurface'];
+        } else {
+            $defaultCode = null;
+        }
+        echo $this->listeDeroulante($req, "PER_NOM", "PER_NUM", $defaultCode);
     }
 
     public function selectEmbarcation()
@@ -104,7 +148,12 @@ class controllerPlongee extends controller
         require_once('model/modelEmbarcation.php');
         $reader = new modelEmbarcation();
         $req = $reader->getAll();
-        echo $this->listeDeroulante($req, "EMB_NOM", "EMB_NUM");
+        if (isset($_POST['embarcation'])) {
+            $defaultCode = $_POST['embarcation'];
+        } else {
+            $defaultCode = null;
+        }
+        echo $this->listeDeroulante($req, "EMB_NOM", "EMB_NUM", $defaultCode);
     }
 
 

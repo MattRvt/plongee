@@ -8,10 +8,7 @@
         ><br/>
         <label for="date">moment: </label>
         <select name="moment" value="<?php $this->controller->verifierRempli("moment"); ?>">
-            <option value="" hidden>--Please choose an option--</option>
-            <option value="m" >matin</option>
-            <option value="a" >apres-midi</option>
-            <option value="s" >soir</option>
+            <?php $this->controller->selectMoment() ?>
         </select>
         <br/>
         <label for="directeurDePlongee">Directeur de plongée: </label>
