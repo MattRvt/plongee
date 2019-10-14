@@ -9,10 +9,10 @@ $controller = new controllerNewPlongeur();
             <br/>
 
             <label for="nom">Nom: </label><input type="text" id="nom" name="nom" size="30" maxlength="50" placeholder="Nom"
-                                                 value="<?php $controller->verifierRempli("nom"); ?>"><br/>
+                                                 value="<?php $controller->verifierRempli("nom"); ?>" required><br/>
             <label for="prenom">Prenom: </label><input type="text" id="nom" name="prenom" size="30" maxlength="50"
                                                        placeholder="Prénom"
-                                                       value="<?php $controller->verifierRempli("prenom"); ?>"><br/>
+                                                       value="<?php $controller->verifierRempli("prenom"); ?>" required><br/>
 
             <label for="fonction">Fonction</label>
             <select id="fonction">
