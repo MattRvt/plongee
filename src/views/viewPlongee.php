@@ -6,11 +6,15 @@
         <input type="date" name="date"
                value="<?php $this->controller->verifierRempli("date"); ?>"
         ><br/>
-        <label for="directeurDePlongee">Directeur de plongée: (entrez un nom identique a celui de la BDD) </label>
-        <input type="text" name="directeurDePlongee" size="30" maxlength="50"
-               value="<?php $this->controller->verifierRempli("directeurDePlongee"); ?>"
-
-        ><br/>
+        <label for="date">moment: </label>
+        <select name="moment" value="<?php $this->controller->verifierRempli("moment"); ?>">
+            <?php $this->controller->selectMoment() ?>
+        </select>
+        <br/>
+        <label for="directeurDePlongee">Directeur de plongée: </label>
+        <select name="directeurDePlongee" >
+            <?php $this->controller->selectDirecteurDePlongee() ?>
+        </select><br/>
         <label for="siteNom">nom du site: </label>
 
         <select name="site" value="<?php $this->controller->verifierRempli("site"); ?>">
@@ -19,17 +23,19 @@
 
         <br/>
         <label for="effectifs">effectifs: </label> <--calc auto--> <br/>
-        <label for="nomSecuriteDeSurface">sécurité de surface: (entrez un nom identique a celui de la BDD) </label>
-        <input type="text"
-               name="nomSecuriteDeSurface" size="30"
+        <label for="securiteDeSurface">securite de surface: </label> <br/>
+        <select name="securiteDeSurface" >
+            <?php $this->controller->selectSecuriteDeSurface() ?>
+        </select><br/>
+        <label for="embarcation">embarcation: </label>
+        <select name="embarcation" >
+            <?php $this->controller->selectEmbarcation() ?>
+        </select><br/>
+
+        <label for="etat">etat; </label>
+        <input type="text" name="etat" size="30"
                maxlength="50"
-               value="<?php $this->controller->verifierRempli("nomSecuriteDeSurface"); ?>"
-        ><br/>
-        <label for="observation">observation: </label> <--probablement inutile --> <br/>
-        <label for="meteoEtMaree">météo et marée: </label>
-        <input type="text" name="meteoEtMaree" size="30"
-               maxlength="50"
-               value="<?php $this->controller->verifierRempli("meteoEtMaree"); ?>"
+               value="<?php $this->controller->verifierRempli("etat"); ?>"
         ><br/>
     </fieldset>
     <fieldset>
