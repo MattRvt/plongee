@@ -2,17 +2,44 @@
 
 class controllerNewPlongeur extends controller
 {
-    public  function selectAptitude()
+    public function selectAptitude()
     {
         $reader = new modelAptitude();
         echo $this->listeDeroulante($reader, "APT_LIBELLE","APT_CODE");
     }
 
-    public function getLastNum(){
+    public function getNewNum(){
         require_once('model/modelPlongeur.php');
         $reader = new modelPlongeur();
         $lastPlongeur = $reader->getLastPlongeur();
-        return $lastPlongeur[0];
+        return $lastPlongeur[0]++;
+    }
+
+    public function addPersonnePlongeur($num, $nom, $prenom, $aptitude){
+        require_once('model/modelPersonne.php');
+        $reader = new modelPersonne();
+        $reader->addPersonnePlongeur($num, $nom, $prenom);
+        require_once('model/modelPlongeur.php');
+        $reader = new modelPlongeur();
+        $reader->addPlongeur($num, $aptitude);
+    }
+
+    public function addPersonneDirecteur($num, $nom, $prenom, $aptitude){
+        require_once('model/modelPersonne.php');
+        $reader = new modelPersonne();
+        $reader->addPersonne($num, $nom, $prenom);
+        require_once('model/modelDirecteur.php');
+        $reader = new modelDirecteur();
+        $reader->addDirecteur($num);
+    }
+
+    public function addPersonneSecuriteSurface($num, $nom, $prenom, $aptitude){
+        require_once('model/modelPersonne.php');
+        $reader = new modelPersonne();
+        $reader->addPersonne($num, $nom, $prenom);
+        require_once('model/modelSecuriteSurface.php');
+        $reader = new modelSecuriteSurface();
+        $reader->addSecuriteSurface($num);
     }
 
     function verifierRempli($n)

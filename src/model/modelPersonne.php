@@ -8,10 +8,11 @@ class modelPersonne extends model
         return $this->selectAll('plo_personne');
     }
 
-    public function addPersonne($PER_NOM, $PER_PRENOM)
+    public function addPersonne($PER_NUM, $PER_NOM, $PER_PRENOM)
     {
-        $statement = $this->getBdd()->prepare("INSERT INTO `PLO_PERSONNE`(`PER_NOM`, `PER_PRENOM`) VALUES (:PER_NOM,:PER_PRENOM)");
+        $statement = $this->getBdd()->prepare("INSERT INTO `PLO_PERSONNE`(`PER_NUM`, `PER_NOM`, `PER_PRENOM`) VALUES (:PER_NUM, :PER_NOM,:PER_PRENOM)");
 
+        $statement->bindParam(':PER_NUM', $PER_NUM);
         $statement->bindParam(':PER_NOM', $PER_NOM);
         $statement->bindParam(':PER_PRENOM', $PER_PRENOM);
 
