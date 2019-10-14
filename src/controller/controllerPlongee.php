@@ -59,6 +59,13 @@ class controllerPlongee  extends controller
         echo "fin données";
     }
 
+    public  function selectSite()
+    {
+        require_once('model/modelSite.php');
+        $reader = new modelSite();
+        echo $this->listeDeroulante($reader, "SIT_NOM","SIT_NUM");
+    }
+
 
     /*
 requette ajout plongé

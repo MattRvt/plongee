@@ -24,10 +24,6 @@ class controllerNewPlongeur extends controller
         require_once('model/modelAptitude.php');
         $reader = new modelAptitude();
         echo $this->listeDeroulante($reader, "APT_LIBELLE","APT_CODE");
-       /* require_once('model/modelAptitude.php');
-        $reader = new modelAptitude();
-        $aptitude = $reader->getAll();
-        return $aptitude;*/
     }
 }
 

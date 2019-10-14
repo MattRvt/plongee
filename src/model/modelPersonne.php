@@ -8,7 +8,7 @@ class modelPersonne extends model
         return $this->selectAll('plo_personne');
     }
 
-    public function addPersonne($PER_NOM,$PER_PRENOM)
+    public function addPersonne($PER_NOM, $PER_PRENOM)
     {
         $statement = $this->getBdd()->prepare("INSERT INTO `PLO_PERSONNE`(`PER_NOM`, `PER_PRENOM`) VALUES (:PER_NOM,:PER_PRENOM)");
 
@@ -19,7 +19,7 @@ class modelPersonne extends model
         return $res;
     }
 
-   public function getNonPlongeur()
+    public function getNonPlongeur()
     {
         $pdo = $this->getBdd();
 
@@ -28,6 +28,21 @@ class modelPersonne extends model
                     select per_num from PLO_PLONGEUR
                 )";
 
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
+    }
+
+    public function getSecuriteDeSurface()
+    {
+        $pdo = $this->getBdd();
+        $sql = "select * from plo_personne where PER_NUM in (
+                     select PER_NUM from plo_securite_de_surface
+                )";
         $req = $pdo->prepare($sql);
         $req->execute();
 

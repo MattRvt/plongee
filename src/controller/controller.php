@@ -12,8 +12,8 @@ abstract class controller
      */
     public function listeDeroulante($reader, $label, $code)
     {
-        echo "<option value=\"null\">--Please choose an option--</option>";
-        $req = $reader->getAll();
+        echo "<option value=\"null\" disabled hidden>--Please choose an option--</option>";
+        $req = $reader->getAll(); //cause erreur
         $values = $req;
         foreach ($values as $ligne) {
             $labelOption = $ligne[$label];

@@ -5,7 +5,7 @@ class modelSite extends model
 {
     public function getAll()
     {
-        return $this->selectAll('site');
+        return $this->selectAll('plo_site');
     }
 
     public function addPersonne($SIT_NUM,$SIT_NOM,$SIT_LOCALISATION)
