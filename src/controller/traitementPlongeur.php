@@ -47,15 +47,15 @@ if ( !empty($_POST ))
 }
 if ($erreur == true)
 {
-    include("../views/viewNewPlongeur.php");
+    include("../views/modal/NewPlongeur.php");
 } else {
     echo "Vous avez bien été enregistré! <br/>";
     $num = $this->controller->getNewNum();
     if ($fonction == "plongeur")
         $this->controller->addPersonnePlongeur($num, $nom, $prenom, $aptitude);
-    /*if ($fonction == "directeur")
+    if ($fonction == "directeur")
         $this->controller->addPersonneDirecteur($num, $nom, $prenom);
     if ($fonction == "securiteSurface")
-        $this->controller->addPersonneSecuriteSurface($num, $nom, $prenom);*/
+        $this->controller->addPersonneSecuriteSurface($num, $nom, $prenom);
 }
 ?>
