@@ -16,7 +16,7 @@ function addPersonne()
 
     xhr.open('POST', 'index.php?url=AddPlongeurInBase', false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send('pseudo=' + tabConn.pseudo + '&mdp=' + tabConn.mdp);
+    xhr.send('');
 
     //reset des messages
     $("#erreur").html("");
