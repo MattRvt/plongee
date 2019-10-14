@@ -8,7 +8,7 @@ class controllerNewPlongeur extends controller
         echo $this->listeDeroulante($reader, "APT_LIBELLE","APT_CODE");
     }
 
-    public function getLastNum(){
+    public function getNewNum(){
         require_once('model/modelPlongeur.php');
         $reader = new modelPlongeur();
         $lastPlongeur = $reader->getLastPlongeur();
