@@ -5,7 +5,7 @@
     <p>Nom  -------------  Prenom  -------------  niveau  -------------  fonction  -------------  aptitude(liste si plongeur)</p>
 </fieldset><br/><br/>
 
-<input type="button" value="Ajouter Personne" onclick="window.location.href='NewPlongeur'"><br/><br/><br/>
+<a class="waves-effect waves-light btn modal-trigger" href="#newPlongeurModal">Ajouter Personne</a>
 
 <fieldset>
     <?php
