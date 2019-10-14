@@ -10,6 +10,9 @@
 <script src="controller/javascript/ajax.js"></script>
 <script src="controller/javascript/ajoutPersonne.js"></script>
 
+<!-- Css projet -->
+<link rel="stylesheet" href="views/Css/modal.css">
+
 <!-- Initialisation Materialize -->
 <script>
     $(document).ready(function(){
