@@ -8,7 +8,7 @@ class modelPlongee extends model
         return $this->selectAll('plo_plongee');
     }
 
-    public function addPersonne($PLO_DATE,$PLO_MATIN_APRESMIDI,$SIT_NUM,$EMB_NUM,$PER_NUM_DIR,$PER_NUM_SECU,$PLO_EFFECTIF_PLONGEURS,$PLO_EFFECTIF_BATEAU,$PLO_NB_PALANQUEES)
+    public function addPlongee($PLO_DATE,$PLO_MATIN_APRESMIDI,$SIT_NUM,$EMB_NUM,$PER_NUM_DIR,$PER_NUM_SECU,$PLO_EFFECTIF_PLONGEURS,$PLO_EFFECTIF_BATEAU,$PLO_NB_PALANQUEES)
     {
         $statement = $this->getBdd()->prepare("INSERT INTO `PLO_PLONGEE`(`PLO_DATE`, `PLO_MATIN_APRESMIDI`, `SIT_NUM`, `EMB_NUM`, `PER_NUM_DIR`, `PER_NUM_SECU`, `PLO_EFFECTIF_PLONGEURS`, `PLO_EFFECTIF_BATEAU`, `PLO_NB_PALANQUEES`) VALUES (:PLO_DATE,:PLO_MATIN_APRESMIDI,:SIT_NUM,:EMB_NUM,:PER_NUM_DIR,:PER_NUM_SECU,:PLO_EFFECTIF_PLONGEURS,:PLO_EFFECTIF_BATEAU,:PLO_NB_PALANQUEES)");
 
@@ -25,4 +25,6 @@ class modelPlongee extends model
         $res = $statement->execStatement();
         return $res;
     }
+
+    
 }

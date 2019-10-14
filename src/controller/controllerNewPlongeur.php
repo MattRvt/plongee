@@ -33,6 +33,33 @@ class controllerNewPlongeur extends controller
         $lastPlongeur = $reader->getLastPlongeur();
         return $lastPlongeur[0];
     }
+        echo $this->listeDeroulante($reader, "APT_LIBELLE","APT_CODE");
+    }
+
+    function verifierRempli($n)
+    {
+        if (isset($_POST[$n])) {
+            $var = $_POST[$n];
+            if ($var <> "")
+                echo $var;
+        } else
+            echo "";
+    }
+
+    function VerifSelectAptitude($n)
+    {
+        if (isset($_POST["seance"])) {
+            if ($_POST["seance"] == $n)
+                echo "selected";
+        }
+    }
+
+    function VerifSelectFonction($n)
+    {
+        if (isset($_POST["fonction"])) {
+            if ($_POST["fonction"] == $n)
+                echo "selected";
+        }
 
     public function addPlongeurPersonne($aptitude){
         require_once('model/modelPlongeur.php');
