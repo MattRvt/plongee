@@ -32,7 +32,7 @@ $controller = new controllerNewPlongeur();
             <select id="aptitude">
                 <option value="">--Please choose an option--</option>
                 <?php
-                $aptitude = $this->controller->selectAptitude();
+                $aptitude = $controller->selectAptitude();
                 ?>
             </select>
 
