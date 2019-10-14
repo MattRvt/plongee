@@ -27,8 +27,8 @@ class controllerNewPlongeur extends controller
 
     function VerifSelectAptitude($n)
     {
-        if (isset($_POST["seance"])) {
-            if ($_POST["seance"] == $n)
+        if (isset($_POST["aptitude"])) {
+            if ($_POST["aptitude"] == $n)
                 echo "selected";
         }
     }
