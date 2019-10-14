@@ -12,7 +12,34 @@ class controllerNewPlongeur extends controller
         require_once('model/modelPlongeur.php');
         $reader = new modelPlongeur();
         $lastPlongeur = $reader->getLastPlongeur();
-        return $lastPlongeur[0];
+        return $lastPlongeur[0]++;
+    }
+
+    public function addPersonnePlongeur($num, $nom, $prenom, $aptitude){
+        require_once('model/modelPersonne.php');
+        $reader = new modelPersonne();
+        $reader->addPersonnePlongeur($num, $nom, $prenom);
+        require_once('model/modelPlongeur.php');
+        $reader = new modelPlongeur();
+        $reader->addPlongeur($num, $aptitude);
+    }
+
+    public function addPersonneDirecteur($num, $nom, $prenom, $aptitude){
+        require_once('model/modelPersonne.php');
+        $reader = new modelPersonne();
+        $reader->addPersonne($num, $nom, $prenom);
+        require_once('model/modelDirecteur.php');
+        $reader = new modelDirecteur();
+        $reader->addDirecteur($num);
+    }
+
+    public function addPersonneSecuriteSurface($num, $nom, $prenom, $aptitude){
+        require_once('model/modelPersonne.php');
+        $reader = new modelPersonne();
+        $reader->addPersonne($num, $nom, $prenom);
+        require_once('model/modelSecuriteSurface.php');
+        $reader = new modelSecuriteSurface();
+        $reader->addSecuriteSurface($num);
     }
 
     function verifierRempli($n)

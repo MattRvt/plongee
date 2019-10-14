@@ -7,7 +7,7 @@ class modelSecuSurface extends model
         return $this->selectAll('plo_securite_de_surface');
     }
 
-    public function addPersonne($PER_NUM)
+    public function addSecuriteSurface($PER_NUM)
     {
         $statement = $this->getBdd()->prepare("INSERT INTO `PLO_SECURITE_DE_SURFACE`(`PER_NUM`) VALUES (:PER_NUM)");
 

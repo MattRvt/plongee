@@ -51,13 +51,12 @@ if ($erreur == true)
 } else {
     echo "Vous avez bien été enregistré! <br/>";
     $num = $this->controller->getLastNum();
-    $this->controller->addPersonne($num, $nom, $prenom);
     if ($fonction == "plongeur")
-        $this->controller->addPlongeur($num, $aptitude);
+        $this->controller->addPersonnePlongeur($num, $nom, $prenom, $aptitude);
         //TODO: Faire les fonctions
     /*if ($fonction == "directeur")
-        $this->controller->addPlongeur($num, $aptitude);
+        $this->controller->addPersonneDirecteur($num, $nom, $prenom);
     if ($fonction == "securiteSurface")
-        $this->controller->addPlongeur($num, $aptitude);*/
+        $this->controller->addPersonneSecuriteSurface($num, $nom, $prenom);*/
 }
 ?>
