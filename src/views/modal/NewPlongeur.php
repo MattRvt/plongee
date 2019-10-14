@@ -1,18 +1,10 @@
-<?php
-require_once("controller/controllerNewPlongeur.php");
-$controller = new controllerNewPlongeur();
-?>
 <div class="modal" id="newPlongeurModal">
     <div class="modal-content">
-        <form>
             <legend><b>Ajouter une personne</b></legend>
             <br/>
 
-            <h6 for="nom">Nom: </h6><input type="text" id="nom" name="nom" size="30" maxlength="50" placeholder="Nom"
-                                                 value="<?php $controller->verifierRempli("nom"); ?>" required><br/>
-            <h6 for="prenom">Prenom: </h6><input type="text" id="nom" name="prenom" size="30" maxlength="50"
-                                                       placeholder="Prénom"
-                                                       value="<?php $controller->verifierRempli("prenom"); ?>" required><br/>
+            <h6 for="nom">Nom: </h6><input type="text" id="nom" name="nom" size="30" maxlength="50" placeholder="Nom" required><br/>
+            <h6 for="prenom">Prenom: </h6><input type="text" id="prenom" name="prenom" size="30" maxlength="50" placeholder="Prénom" required><br/>
             <h6>Fonction </h6>
 
             <label>
@@ -34,8 +26,7 @@ $controller = new controllerNewPlongeur();
 
             <div id="selectAptitude" class="input-field col s12"></div>
 
-            <input type="submit" name="EN" value="Envoyer" onclick="addPersonne()">
-        </form>
+            <input type="submit" name="EN" onclick="addPersonne()">
         <div id="erreur"></div>
     </div>
 </div>
