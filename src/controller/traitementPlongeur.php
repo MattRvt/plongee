@@ -16,11 +16,11 @@ if ( !empty($_POST ))
 		$prenom = $_POST['prenom'];  
 	else 
 	{
-		echo "le prénom n'a pas été sélectionné <br />";
+		echo "le prénom n'a pas été renseigné <br />";
 		$erreur = true;
     }
 
-    if (isset($_POST['fonction']) && ($_POST['fonction'] != 'rien')) 
+    if (isset($_POST['fonction'])) 
         $fonction = $_POST['fonction'] ; 
     else 
     {
@@ -28,7 +28,7 @@ if ( !empty($_POST ))
         $erreur = true;
     }
 
-    if (isset($_POST['aptitude']) && ($_POST['aptitude'] != 'rien')) 
+    if (isset($_POST['aptitude']))
         $aptitude = $_POST['aptitude'] ; 
     else 
     {
@@ -49,6 +49,9 @@ if ($erreur == true)
 {
     include("../views/viewNewPlongeur.php");
 } else {
-	echo "Vous avez bien été enregistré! <br/>";
+    echo "Vous avez bien été enregistré! <br/>";
+    $num = $this->controller->getLastNum();
+    $this->controller->addPersonne($num, $nom, $prenom);
+    $this->controller->addPlongeur($num, $aptitude);
 }
 ?>
