@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <title><?php echo $this->_title ?></title>
+        <?php require_once 'views/temlateInfo/head.php'; ?>
     </head>
     <body>
         <div id="header">
