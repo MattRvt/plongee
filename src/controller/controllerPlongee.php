@@ -57,6 +57,10 @@ class controllerPlongee  extends controller
             echo "vide <br>";
         }
         echo "fin données";
+
+
+
+        $this->model->insertionPlongee();
     }
 
     public  function selectSite()
