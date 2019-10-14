@@ -9,14 +9,14 @@ class Router
 
     public function routeRequete()
     {
-        require_once("model/Settings.php");
+        require_once ("model/Settings.php");
         try
         {
             //Chargement automatique des classes
             spl_autoload_register(function($class){
-                $pathContorllers = 'Controllers/' . $class . '.php';
+                $pathContorllers = 'Controller/' . $class . '.php';
                 $pathViews = 'views/' . $class . '.php';
-                $pathModels = 'Models/' . $class . '.php';
+                $pathModels = 'Model/' . $class . '.php';
 
                 if (file_exists($pathContorllers))
                 {
@@ -42,7 +42,7 @@ class Router
                 //Construction + référencement du controller à utiliser.
                 $controller = ucfirst(strtolower($url[0]));
                 $controllerClass = "Controller".$controller;
-                $controllerFile = "controllers/".$controllerClass.".php";
+                $controllerFile = "controller/".$controllerClass.".php";
 
                 //une fois construit, on regarde si le fichier existe
                 if(file_exists($controllerFile))
@@ -58,9 +58,9 @@ class Router
             }
             else
             {
-                //La page à lancer par défaut
-                require_once ("controllerOptilife.php");
-                $this->_view = new controllerOptilife('Optilife');
+                require_once("controller/controllerAccueil.php");
+                //on crée une instance de la classe incluse
+                $this->_controller = new controllerAccueil(array(1=>1));
             }
 
         }
@@ -68,7 +68,7 @@ class Router
         {
             $errorMsg = $e->getMessage();
             $this->_view = new view('Error');
-            $this->_view->generate(array('errorMsg' => $errorMsg));
+            $this->_view->generate(array('errorMsg' => $errorMsg),NULL);
         }
     }
 }
