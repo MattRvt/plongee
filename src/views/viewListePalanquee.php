@@ -5,7 +5,7 @@
 </fieldset><br/><br/>
 
 <a class="waves-effect waves-light btn modal-trigger" href="#newPalanquee">Ajouter Palanquee</a>
-<input type="button" value="Ajouter Palanquee" onclick="window.location.href='NewPalanquee'"><br/>
+<input type="button" value="Ajouter Palanquee" onclick="window.location.href='modal/NewPalanquee'"><br/>
 
 <fieldset>
     <?php

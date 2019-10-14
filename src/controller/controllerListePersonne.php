@@ -28,7 +28,6 @@ class controllerListePersonne  extends controller
         }
         $this->_view = new View('ListePersonne');
         $this->_view->generate(array(), $this);
-
     }
 
     public function selectAllNonPlongeur()
