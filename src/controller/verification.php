@@ -1,44 +1,44 @@
 <meta charset="UTF-8">
 <?php
 
-$pattern="#[a-zA-Z][a-z 'A-Z]*-?[a-z 'A-Z]*-{0,2}[a-z 'A-Z]*-?[a-z 'A-Z]*#i"; //Pour noms
+$pattern="#^['A-Za-z]+(([- ]['A-Za-z ])?['A-Za-z]*)*-{0,2}(([- ]['A-Za-z ])?['A-Za-z]*)*$#i"; //Pour noms
 $illegal = "#€$%^&*()+=[];,./{}|:!<>?~";
 
 $tab = array("Ébé-ébé","ébé-ébé","ébé-Ébé","éÉé-Ébé",
-"'éÉ'é-É'bé'",
-"'éæé-É'bé'",
-"'éæé-É'Ŭé'",
-"'é !é-É'Ŭé'",
-"éé''éé--uù'  gg",
-"Éééé--gg--gg",
-"DE LA TR€UC",
-"DE LA TRUC",
-"ééééééééééééééééééééééééééééééééééééééééééééééé",
-"ùùùùùùùùùùùùùùùùùùùù",
-"-péron-de - la   branche-",
-"pied-de-biche",
-"Ferdinand--SaintMalo ALAnage",
-"Ferdinand--SaintMalo-ALAnage",
-"aa--bb--cc",
-"A' ' b",
-"Añ'",
-"'",
-"x~",
-"A '' b",
-"bénard     ébert",
-"ÆøœŒøñ",
-"\a",
-"\\a",
-"b\\a",
-"b\a",
-"Æ'-'nO",
-"çççç ççç ÇÇÇÇ ÇÇÇ",
-"àâ-äé-èê-ëïî-ôöù-ûü-ÿç",
-"ÀÂÄÉÈÊËÏÎÔÖÙÛÜŸÇ"
+    "'éÉ'é-É'bé'",
+    "'éæé-É'bé'",
+    "'éæé-É'Ŭé'",
+    "'é !é-É'Ŭé'",
+    "éé''éé--uù'  gg",
+    "Éééé--gg--gg",
+    "DE LA TR€UC",
+    "DE LA TRUC",
+    "ééééééééééééééééééééééééééééééééééééééééééééééé",
+    "ùùùùùùùùùùùùùùùùùùùù",
+    "-péron-de - la   branche-",
+    "pied-de-biche",
+    "Ferdinand--SaintMalo ALAnage",
+    "Ferdinand--SaintMalo-ALAnage",
+    "aa--bb--cc",
+    "A' ' b",
+    "Añ'",
+    "'",
+    "x~",
+    "A '' b",
+    "bénard     ébert",
+    "ÆøœŒøñ",
+    "\a",
+    "\\a",
+    "b\\a",
+    "b\a",
+    "Æ'-'nO",
+    "çççç ççç ÇÇÇÇ ÇÇÇ",
+    "àâ-äé-èê-ëïî-ôöù-ûü-ÿç",
+    "ÀÂÄÉÈÊËÏÎÔÖÙÛÜŸÇ"
 );
 foreach ($tab as $clé=>$contenu){
     echo " \$clé:$clé   \$mot: $contenu \n";
-    verifierPrenom($contenu,$pattern,$illegal);
+    verifierNom($contenu,$pattern,$illegal);
     echo "\n <hr> \n";
 }
 
@@ -67,7 +67,6 @@ function convertNom($nom){
     $nom=preg_replace("#Ŭ#","U",$nom);
     $nom=preg_replace("#ø#","o",$nom);
     $nom=preg_replace("#(œ|Œ)#","OE",$nom);
-    $nom=preg_replace("#€#","!",$nom);
     $nom=preg_replace("#ñ#","n",$nom);
     return $nom;
 
@@ -86,17 +85,12 @@ function skip_ucaccent($s){
 }
 
 
-function verifTiret($nom){
-    $tab = explode("--",$nom);
-    return sizeof($tab);
-}
-
 function verifierNom($nom, $pattern, $illegal){
 
     $nom = convertNom($nom);
     $nom = skip_accents($nom,"[A-Za-z]");
     $nom = strtoupper($nom);
-    if (preg_match($pattern,$nom,$tab) && !verif_illegal($nom,$illegal) && verifTiret($nom)<3 && strlen($nom)<=30){
+    if (preg_match($pattern,$nom,$tab) && verif_illegal($nom,$illegal) && strlen($nom)<=30){
         echo "OK : \"$nom\"\n";
     }
     else{
@@ -129,8 +123,10 @@ function verifierPrenom($prenom, $pattern, $illegal){
     }
     $prenom4 = implode("'",$explodedquote);
 
+    $prenom5 = skip_accents($prenom4,"[A-Za-z]");
 
-    if (preg_match($pattern,$prenom4,$tab)&& verif_illegal($prenom4,$illegal)  && verifTiret($prenom4)==1 && strlen($prenom4)<=30){
+
+    if (preg_match($pattern,$prenom5,$tab)&& verif_illegal($prenom5,$illegal)  &&  strlen($prenom5)<=30){
         echo "OK : \"$prenom4\"\n";
     }
     else{

@@ -25,13 +25,32 @@ class modelPersonne extends model
 
         $sql = "SELECT * from PLO_PERSONNE where per_num not in
                 (
-                    select per_num from PLO_PLONGEUR
+                    SELECT per_num from PLO_PLONGEUR
                 )";
 
         $req = $pdo->prepare($sql);
         $req->execute();
 
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
+    }
+
+    public function isPlongeur($PER_NUM)
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "SELECT * from PLO_PERSONNE where :PER_NUM in
+                (
+                    SELECT PER_NUM from PLO_PLONGEUR
+                )";
+
+        $req = $pdo->prepare($sql);
+        $req->bindParam(':PER_NUM', $PER_NUM);
+        $req->execute();
+
+        $data = $req->fetch(PDO::FETCH_ASSOC);
         $req->closeCursor();
 
         return $data;
