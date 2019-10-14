@@ -50,10 +50,9 @@ if ($erreur == true)
     include("../views/viewNewPlongeur.php");
 } else {
     echo "Vous avez bien été enregistré! <br/>";
-    $num = $this->controller->getLastNum();
+    $num = $this->controller->getNewNum();
     if ($fonction == "plongeur")
         $this->controller->addPersonnePlongeur($num, $nom, $prenom, $aptitude);
-        //TODO: Faire les fonctions
     /*if ($fonction == "directeur")
         $this->controller->addPersonneDirecteur($num, $nom, $prenom);
     if ($fonction == "securiteSurface")
