@@ -38,5 +38,6 @@ $controller = new controllerNewPlongeur();
 
             <input type="submit" name="EN" value="Envoyer" onclick="addPersonne()">
         </form>
+        <div id="erreur"></div>
     </div>
 </div>
