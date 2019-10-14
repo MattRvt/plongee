@@ -15,7 +15,6 @@ class controllerListePersonne  extends controller
 
     public function mentions()
     {
-        print_r($_POST);
         if (!empty($_POST['modifier'])){
             $id = $_POST['num'];
             $nom = $_POST['nom'];

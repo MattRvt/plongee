@@ -1,6 +1,5 @@
 <br/>
 
-
 <fieldset>
     <p>Nom  -------------  Prenom  -------------  niveau  -------------  fonction  -------------  aptitude(liste si plongeur)</p>
 </fieldset><br/><br/>
