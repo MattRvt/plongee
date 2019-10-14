@@ -3,15 +3,15 @@
         <legend><b>Ajouter une personne</b></legend>
         <br/>
         <label for="nom">Nom: </label><input type="text" name="nom" size="30" maxlength="50" placeholder="Nom"
-                                             value="<?php verifierRempli("nom"); ?>"><br/>
+                                             value="<?php $this->controller->verifierRempli("nom"); ?>"><br/>
         <label for="prenom">Prenom: </label><input type="text" name="prenom" size="30" maxlength="50"
-                                                   placeholder="Prénom" value="<?php verifierRempli("prenom"); ?>"><br/>
+                                                   placeholder="Prénom" value="<?php $this->controller->verifierRempli("prenom"); ?>"><br/>
         <label for="fonction">Fonction<label>
                 <select id="fonction">
                     <option value="rien">--Please choose an option--</option>
-                    <option value="plongeur" <?php VerifSelectFonction("fonction", "plongeur"); ?>>Plongeur</option>
-                    <option value="directeur" <?php VerifSelectFonction("fonction", "directeur"); ?>>Directeur</option>
-                    <option value="securiteSurface" <?php VerifSelectFonction("fonction", "securiteSurface"); ?>>
+                    <option value="plongeur" <?php $this->controller->VerifSelectFonction("fonction", "plongeur"); ?>>Plongeur</option>
+                    <option value="directeur" <?php $this->controller->VerifSelectFonction("fonction", "directeur"); ?>>Directeur</option>
+                    <option value="securiteSurface" <?php $this->controller->VerifSelectFonction("fonction", "securiteSurface"); ?>>
                         Sécurité de surface
                     </option>
                 </select><br/>
@@ -25,32 +25,3 @@
     <br/>
     <br/>
 </form>
-
-<?php
-function verifierRempli($n)
-{
-    if (isset($_POST[$n])) {
-        $var = $_POST[$n];
-        if ($var <> "")
-            echo $var;
-    } else
-        echo "";
-}
-
-function VerifSelectAptitude($n)
-{
-    if (isset($_POST["seance"])) {
-        if ($_POST["seance"] == $n)
-            echo "selected";
-    }
-}
-
-function VerifSelectFonction($n)
-{
-    if (isset($_POST["fonction"])) {
-        if ($_POST["fonction"] == $n)
-            echo "selected";
-    }
-}
-
-?>
