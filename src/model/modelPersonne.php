@@ -62,10 +62,33 @@ class modelPersonne extends model
         $req = $pdo->prepare($sql);
         $req->bindParam(':PER_NUM', $PER_NUM);
         $req->execute();
-
         $data = $req->fetch(PDO::FETCH_ASSOC);
         $req->closeCursor();
 
         return $data;
     }
+
+    public function modifyPersonne($PER_NUM, $PER_NOM, $PER_PRENOM)
+    {
+        $statement = $this->getBdd()->prepare("UPDATE PLO_PERSONNE SET PER_NOM = :PER_NOM, PER_PRENOM = :PER_PRENOM WHERE PER_NUM = :PER_NUM");
+
+        $statement->bindParam(':PER_NUM', $PER_NUM);
+        $statement->bindParam(':PER_NOM', $PER_NOM);
+        $statement->bindParam(':PER_PRENOM', $PER_PRENOM);
+
+        $res = $statement->execute();
+        return $res;
+    }
+
+    public function statePersonne($PER_NUM, $VAL)
+    {
+        $statement = $this->getBdd()->prepare("UPDATE PLO_PERSONNE SET PER_ACTIVE = :VAL WHERE PER_NUM = :PER_NUM");
+
+        $statement->bindParam(':PER_NUM', $PER_NUM);
+        $statement->bindParam(':VAL', $VAL);
+
+        $res = $statement->execute();
+        return $res;
+    }
+
 }
