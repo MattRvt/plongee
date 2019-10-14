@@ -50,6 +50,19 @@ class modelPersonne extends model
         $data = $req->fetchAll(PDO::FETCH_ASSOC);
         return $data;
     }
+
+    public function getDirecteurDePlongee()
+    {
+        $pdo = $this->getBdd();
+        $sql = "select * from plo_personne where PER_NUM in (
+                     select PER_NUM from plo_directeur
+                )";
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        return $data;
+    }
     
     public function isPlongeur($PER_NUM)
     {
