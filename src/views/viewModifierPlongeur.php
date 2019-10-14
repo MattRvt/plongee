@@ -2,7 +2,7 @@
 $num = $_GET["param"];
 require_once ('model/modelPersonne.php');
 ?>
-<form action="index.php" method="get">
+<form action="ListePersonne" method="get">
     Numero d'identification : <?php $Personne = $this->controller->selectPersonne($num); //Apres recup $_POST['PER_NUM'] et echo
                 $numPersonne = $Personne['PER_NUM'];
                 echo $numPersonne."<br/>" ;?>
