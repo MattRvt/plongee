@@ -1,5 +1,5 @@
 <?php
-$num = $_GET["param"];
+$num = $_GET["param"]; // faire vérif en JS pour les champs
 require_once ('model/modelPersonne.php');
 ?>
 <form action="ListePersonne" method="post">
@@ -8,14 +8,14 @@ require_once ('model/modelPersonne.php');
                 echo $numPersonne."<br/>" ;
                 echo "<input type=\"hidden\" value =".$numPersonne."  id=\"num\" name=\"num\"/> <br/>" ;?>
     Nom : <?php $nomPersonne = $Personne['PER_NOM'];
-                echo "<input type=\"text\" value =".$nomPersonne."  id=\"nom\" name=\"nom\"/> <br/>" ;?>
+                echo "<input type=\"text\" value =".$nomPersonne." class=\"inputBox\" id=\"nom\" name=\"nom\" onkeyup=\"verification(0)\" onfocusout='unfocus(\"nom\")' /> <br/>" ;?>
     Prénom : <?php $prenomPersonne = $Personne['PER_PRENOM'];
-                echo "<input type=\"text\" value =".$prenomPersonne."  id=\"prenom\" name=\"prenom\"/> <br/>" ;?> <br/>
+                echo "<input type=\"text\" value =".$prenomPersonne." class=\"inputBox\" id=\"prenom\" name=\"prenom\" onkeyup=\"verification(1)\" onfocusout='unfocus(\"prenom\")' /> <br/>" ;?> <br/>
     <?php
     $instancePersonne = new modelPersonne();
     $Plonger = $instancePersonne->isPlongeur($numPersonne);
     if (!empty($Plonger)){
-        echo 'Aptitude :';
+        echo 'Aptitude : ';
         $Plongeur = $this->controller->selectPlongeur($numPersonne);
         $aptitudePlongeur = $Plongeur['APT_CODE'];
         echo $aptitudePlongeur .'<br/>';
@@ -28,4 +28,6 @@ require_once ('model/modelPersonne.php');
         echo "\"Désactiver\"";
     }?> name="etat"/>
 </form>
+
+
 

@@ -9,6 +9,7 @@
 <!-- Javascript Projet -->
 <script src="controller/javascript/ajax.js"></script>
 <script src="controller/javascript/ajoutPersonne.js"></script>
+<script src="controller/javascript/verification.js"></script>
 
 <!-- Css projet -->
 <link rel="stylesheet" href="views/Css/modal.css">
