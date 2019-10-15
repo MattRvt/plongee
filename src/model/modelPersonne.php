@@ -8,6 +8,21 @@ class modelPersonne extends model
         return $this->selectAll('plo_personne');
     }
 
+    public function getLastPersonne(){
+        $pdo = $this->getBdd();
+
+        $sql = "SELECT * FROM PLO_PERSONNE WHERE PER_NUM = (SELECT MAX(PER_NUM) FROM PLO_PERSONNE)";
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data[0];
+    }
+
+
     public function addPersonne($PER_NUM, $PER_NOM, $PER_PRENOM)
     {
         $statement = $this->getBdd()->prepare("INSERT INTO `PLO_PERSONNE`(`PER_NUM`, `PER_NOM`, `PER_PRENOM`) VALUES (:PER_NUM, :PER_NOM,:PER_PRENOM)");

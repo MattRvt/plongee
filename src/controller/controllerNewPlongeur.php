@@ -13,26 +13,21 @@ class controllerNewPlongeur extends controller
         if (isset($url) && count($url) > 1) {
             throw new Exception('Page introuvable');
         } else {
-            echo "1111";
             $this->num = $this->getNewNum();
             $this->nom = $_POST["nom"];
             $this->prenom = $_POST["prenom"];
 
             if (!empty($_POST["personne"])) {
-                echo "222222";
                 $this->addPersonne();
             }
             if (!empty($_POST["plongeur"])) {
-                echo "333333";
                 $this->aptitude = $_POST["aptitude"];
                 $this->addPlongeur();
             }
             if (!empty($_POST["directeur"])) {
-                echo "444444";
                 $this->addDirecteur();
             }
             if (!empty($_POST["securiteSurface"])) {
-                echo "555555";
                 $this->addSecuriteSurface();
             }
         }
@@ -41,9 +36,9 @@ class controllerNewPlongeur extends controller
     public function getNewNum()
     {
         require_once('model/modelPlongeur.php');
-        $reader = new modelPlongeur();
-        $lastPlongeur = $reader->getLastPlongeur();
-        return $lastPlongeur[0]++;
+        $reader = new modelPersonne();
+        $lastPersonne = $reader->getLastPersonne();
+        return ++$lastPersonne["PER_NUM"];
     }
 
     public function addPersonne()
@@ -69,7 +64,7 @@ class controllerNewPlongeur extends controller
 
     public function addSecuriteSurface()
     {
-        require_once('model/modelSecuriteSurface.php');
+        require_once('model/modelSecuSurface.php');
         $reader = new modelSecuSurface();
         $reader->addSecuriteSurface($this->num);
     }

@@ -3,8 +3,8 @@
             <legend><b>Ajouter une personne</b></legend>
             <br/>
 
-            <h6 for="nom">Nom: </h6><input type="text" id="nom" name="nom" size="30" maxlength="50" placeholder="Nom" required><br/>
-            <h6 for="prenom">Prenom: </h6><input type="text" id="prenom" name="prenom" size="30" maxlength="50" placeholder="Prénom" required><br/>
+            <h6 for="nom">Nom: </h6><input type="text" id="nom" name="nom" size="30" maxlength="50" placeholder="Nom"><br/>
+            <h6 for="prenom">Prenom: </h6><input type="text" id="prenom" name="prenom" size="30" maxlength="50" placeholder="Prénom"><br/>
             <h6>Fonction </h6>
 
             <label>
