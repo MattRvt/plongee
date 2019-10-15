@@ -8,7 +8,21 @@ class modelPlongee extends model
         return $this->selectAll('plo_plongee');
     }
 
-    public function addPlongee($PLO_DATE, $PLO_MATIN_APRESMIDI, $SIT_NUM, $EMB_NUM, $PER_NUM_DIR, $PER_NUM_SECU, $PLO_EFFECTIF_PLONGEURS, $PLO_EFFECTIF_BATEAU, $PLO_NB_PALANQUEES,$PLO_ETAT)
+    /**
+     * add data to DB
+     * @param $PLO_DATE
+     * @param $PLO_MATIN_APRESMIDI
+     * @param $SIT_NUM
+     * @param $EMB_NUM
+     * @param $PER_NUM_DIR
+     * @param $PER_NUM_SECU
+     * @param $PLO_EFFECTIF_PLONGEURS
+     * @param $PLO_EFFECTIF_BATEAU
+     * @param $PLO_NB_PALANQUEES
+     * @param $PLO_ETAT
+     * @throws PDOException in case of write failur
+     */
+    public function addPlongee($PLO_DATE, $PLO_MATIN_APRESMIDI, $SIT_NUM, $EMB_NUM, $PER_NUM_DIR, $PER_NUM_SECU, $PLO_EFFECTIF_PLONGEURS, $PLO_EFFECTIF_BATEAU, $PLO_NB_PALANQUEES, $PLO_ETAT)
     {
         $statement = $this->getBdd()->prepare("INSERT INTO `PLO_PLONGEE`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `SIT_NUM`, `EMB_NUM`, `PER_NUM_DIR`, `PER_NUM_SECU`, `PLO_EFFECTIF_PLONGEURS`, `PLO_EFFECTIF_BATEAU`, `PLO_NB_PALANQUEES`,`PLO_ETAT`) VALUES (:PLO_DATE,:PLO_MATIN_APRESMIDI,:SIT_NUM,:EMB_NUM,:PER_NUM_DIR,:PER_NUM_SECU,:PLO_EFFECTIF_PLONGEURS,:PLO_EFFECTIF_BATEAU,:PLO_NB_PALANQUEES,:PLO_ETAT)");
 
@@ -23,16 +37,18 @@ class modelPlongee extends model
         $statement->bindParam(':PLO_NB_PALANQUEES', $PLO_NB_PALANQUEES);
         $statement->bindParam(':PLO_ETAT', $PLO_ETAT);
 
-
-
+        set_error_handler(function ($severity, $message, $file, $line) {
+            throw new ErrorException($message, $severity, $severity, $file, $line);
+        });
         $statement->execute();
+        restore_error_handler();
 
-        $data = $statement->fetchAll(PDO::FETCH_ASSOC);
-        $statement->closeCursor();
-
-        return $data;
     }
 
+    /**
+     * format the data and choose wether to add or update a line
+     * @param $data table of value from the controller
+     */
     public function addOrModifyPlongee($data)
     {
 
@@ -45,11 +61,11 @@ class modelPlongee extends model
         $PLO_EFFECTIF_PLONGEURS = 0;
         $PLO_EFFECTIF_BATEAU = 0;
         $PLO_NB_PALANQUEES = 0;
-        $PLO_ETAT = $data['etat']; //TODO
+        $PLO_ETAT = $data['etat'];
 
-        $plongeeExiste = false; //TODO
+        $plongeeExiste = false;
         if ($plongeeExiste) {
-
+//TODO
         } else {
             $this->addPlongee($PLO_DATE, $PLO_MATIN_APRESMIDI, $SIT_NUM, $EMB_NUM, $PER_NUM_DIR, $PER_NUM_SECU, $PLO_EFFECTIF_PLONGEURS, $PLO_EFFECTIF_BATEAU, $PLO_NB_PALANQUEES, $PLO_ETAT);
         }

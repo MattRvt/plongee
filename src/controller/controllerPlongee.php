@@ -37,16 +37,11 @@ class controllerPlongee extends controller
         }
     }
 
-
+    /**
+     * method for saving data to the DB
+     */
     public function traitementFormulaire()
     {
-
-        echo "données post :<br>";
-        echo "<pre>";
-        print_r($_POST);
-        echo "</pre>";
-        echo "fin données </br>";
-
         if (!empty($_POST)) {
             $valide =
                 (!empty($_POST['date'])) &&
@@ -62,13 +57,17 @@ class controllerPlongee extends controller
                 (!empty($_POST['hArrivee'])) &&
                 (!empty($_POST['tpsRealise'])) &&
                 (!empty($_POST['profondeurRealise']));
-
             $data = $_POST;
-
             if ($valide) {
                 require_once('model/modelPlongee.php');
                 $model = new modelPlongee();
-                $model->addOrModifyPlongee($data);
+                try {
+                    $model->addOrModifyPlongee($data);
+                    echo '<strong>Donées correctement enregistré.</strong>';
+                } catch (Exception $e) {
+                    //echo 'Exception reçue : ',  $e->getMessage(), "\n";
+                    echo '<strong>Erreur d\'ecriture dans la base. <br></strong> ', $e->getMessage();
+                }
             } else {
                 echo '<strong>erreur, formulaire invalide</strong>';
             }
@@ -111,9 +110,6 @@ class controllerPlongee extends controller
         } else {
             $defaultCode = null;
         }
-
-
-
         echo $this->listeDeroulante($req, "SIT_NOM", "SIT_NUM", $defaultCode);
     }
 

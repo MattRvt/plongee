@@ -8,20 +8,6 @@ class modelPlongeur extends model
         return $this->selectAll('plo_plongeur');
     }
 
-    public function getLastPlongeur(){
-        $pdo = $this->getBdd();
-
-        $sql = "SELECT * FROM PLO_PLONGEUR WHERE PER_NUM = (SELECT MAX(PER_NUM) FROM PLO_PLONGEUR)";
-
-        $req = $pdo->prepare($sql);
-        $req->execute();
-
-        $data = $req->fetchAll(PDO::FETCH_ASSOC);
-        $req->closeCursor();
-
-        return $data[0];
-    }
-
     public function get($numPersonne)
     {
         $pdo = $this->getBdd();

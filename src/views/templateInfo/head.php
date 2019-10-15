@@ -10,9 +10,11 @@
 <script src="controller/javascript/ajax.js"></script>
 <script src="controller/javascript/ajoutPersonne.js"></script>
 <script src="controller/javascript/verification.js"></script>
+<script src="controller/javascript/modal.js"></script>
 
 <!-- Css projet -->
 <link rel="stylesheet" href="views/Css/modal.css">
+<link rel="stylesheet" href="views/Css/navbar.css">
 
 <!-- Initialisation Materialize -->
 <script>
@@ -25,14 +27,6 @@
     });
 
     $(document).ready(function(){
-        $('.datepicker').datepicker();
-    });
-
-    $(document).ready(function(){
-        $('.collapsible').collapsible();
-    });
-
-    $(document).ready(function(){
-        $('.datepicker').datepicker();
+        $(".dropdown-trigger").dropdown();
     });
 </script>

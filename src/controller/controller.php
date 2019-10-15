@@ -14,7 +14,7 @@ abstract class controller
 
     public function listeDeroulante($req, $label, $code, $defaultCode=null)
     {
-        $text = "<option value=\"\" hidden>--Please choose an option--</option>";
+        $text = "<option value=\"rien\" hidden>--Please choose an option--</option>";
         foreach ($req as $ligne) {
             $labelOption = $ligne[$label];
             $codeOption = $ligne[$code];
