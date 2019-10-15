@@ -23,13 +23,15 @@ class modelPersonne extends model
     }
 
 
-    public function addPersonne($PER_NUM, $PER_NOM, $PER_PRENOM)
+    public function addPersonne($PER_NUM, $PER_NOM, $PER_PRENOM, $dateCertif)
     {
-        $statement = $this->getBdd()->prepare("INSERT INTO `PLO_PERSONNE`(`PER_NUM`, `PER_NOM`, `PER_PRENOM`) VALUES (:PER_NUM, :PER_NOM,:PER_PRENOM)");
+        echo $dateCertif;
+        $statement = $this->getBdd()->prepare("INSERT INTO `PLO_PERSONNE`(`PER_NUM`, `PER_NOM`, `PER_PRENOM`, `PER_ACTIVE`, `PER_DATE_CERTIF_MED` ) VALUES (:PER_NUM, :PER_NOM,:PER_PRENOM,1,:DATECERTIF)");
 
         $statement->bindParam(':PER_NUM', $PER_NUM);
         $statement->bindParam(':PER_NOM', $PER_NOM);
         $statement->bindParam(':PER_PRENOM', $PER_PRENOM);
+        $statement->bindParam(':DATECERTIF', $dateCertif);
 
         $res = $statement->execute();
         return $res;
