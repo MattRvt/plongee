@@ -57,7 +57,7 @@ class controllerNewPlongeur extends controller
     {
         require_once('model/modelPlongeur.php');
         $reader = new modelPlongeur();
-        $reader->addPlongeur($num, $this->aptitude);
+        $reader->addPlongeur($this->num, $this->aptitude);
     }
 
     public function addDirecteur()
