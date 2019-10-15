@@ -13,6 +13,7 @@
 
 <!-- Css projet -->
 <link rel="stylesheet" href="views/Css/modal.css">
+<link rel="stylesheet" href="views/Css/navbar.css">
 
 <!-- Initialisation Materialize -->
 <script>
@@ -25,14 +26,6 @@
     });
 
     $(document).ready(function(){
-        $('.datepicker').datepicker();
-    });
-
-    $(document).ready(function(){
-        $('.collapsible').collapsible();
-    });
-
-    $(document).ready(function(){
-        $('.datepicker').datepicker();
+        $(".dropdown-trigger").dropdown();
     });
 </script>
