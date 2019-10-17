@@ -22,11 +22,11 @@ class controllerListePlongee
     public function listePlongee()
     {
         $plongee = $this->selectPlongee();
-        foreach ($plongee as $key => $content)
+        foreach ($plongee as $key => $contents)
         {
             echo '<tr>';
-
-            foreach ($content as $key => $content)
+            
+            foreach ($contents as $key => $content)
             {
                 echo '<td>';
                 if($key == "PLO_DATE")echo "Date => ".$content;
@@ -37,6 +37,7 @@ class controllerListePlongee
                 else if($key == "PER_NUM_SECU")$this->secuPlongee($content);
                 echo '</td>';
             }
+            echo '<td><input type="button" value="Detail" onclick="window.location.href=\'Plongee&date='.$contents['PLO_DATE'].'&matMidSoi='.$contents['PLO_MAT_MID_SOI'].'\'"> </td>';
 
             echo '</tr>';
         }
