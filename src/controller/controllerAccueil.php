@@ -19,5 +19,4 @@ class controllerAccueil extends controller
         $this->_view->generate(array(), $this);
     }
 }
-
 ?>

@@ -11,7 +11,7 @@
             <li><a href="ListePersonne">ListePersonne</a></li>
             <li><a href="Palanquee">Ajouter une palanquée</a></li>
             <li><a href="ListePalanquee">voir ou éditer une palanquée</a></li>
-            <li><a href="plongee">plongee</a></li>
+            <li><a href="Plongee">plongee</a></li>
         </ul>
 
     </div>
