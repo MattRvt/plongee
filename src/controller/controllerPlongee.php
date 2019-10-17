@@ -17,6 +17,10 @@ class controllerPlongee extends controller
     {
 
         $this->traitementFormulaire();
+        $plongeeDefinit = (!empty($_GET["date"]) and !empty($_GET["matMidSoi"]));
+        if ($plongeeDefinit) {
+            $this->chargerPlongee();
+        }
         $this->_view = new View('Plongee');
 
         $this->_view->generate(array(), $this);
@@ -50,7 +54,7 @@ class controllerPlongee extends controller
                 (!empty($_POST['site'])) &&
                 (!empty($_POST['securiteDeSurface'])) &&
                 (!empty($_POST['embarcation'])) &&
-                (!empty($_POST['etat'])) ;
+                (!empty($_POST['etat']));
             $data = $_POST;
             if ($valide) {
                 require_once('model/modelPlongee.php');
@@ -131,7 +135,7 @@ class controllerPlongee extends controller
         }
         echo $this->listeDeroulante($req, "PER_NOM", "PER_NUM", $defaultCode);
     }
-//TODO deplacer le modele dans modele embarcation
+
     public function selectEmbarcation()
     {
         require_once('model/modelEmbarcation.php');
@@ -145,7 +149,18 @@ class controllerPlongee extends controller
         echo $this->listeDeroulante($req, "EMB_NOM", "EMB_NUM", $defaultCode);
     }
 
-
+    public function chargerPlongee()
+    {
+        $_POST['date'] = $_GET["date"];
+        $_POST['moment'] = $_GET["matMidSoi"];
+        $reader = new modelPlongee();
+        $plongee = $reader->getMatch($_GET["date"], $_GET["matMidSoi"])[0];
+        $_POST['directeurDePlongee'] = $plongee["PER_NUM_DIR"];
+        $_POST['site'] = $plongee["SIT_NUM"];
+        $_POST['securiteDeSurface'] = $plongee["PER_NUM_SECU"];
+        $_POST['embarcation'] = $plongee["EMB_NUM"];
+        $_POST['etat'] = $plongee["PLO_ETAT"];
+    }
 
 
     /*
