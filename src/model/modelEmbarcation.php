@@ -18,4 +18,19 @@ class modelEmbarcation extends model
         $res = $statement->execStatement();
         return $res;
     }
+
+    public function getEmbarcationByNum($num)
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "SELECT * FROM PLO_EMBARCATION WHERE EMB_NUM = ".$num;
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
+    }
 }

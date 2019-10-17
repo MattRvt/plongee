@@ -122,4 +122,19 @@ class modelPersonne extends model
         return $res;
     }
 
+    public function getPersonneByNum($num)
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "SELECT * FROM PLO_PERSONNE WHERE PER_NUM = ".$num;
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
+    }
+
 }
