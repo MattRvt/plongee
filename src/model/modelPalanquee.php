@@ -1,7 +1,7 @@
 <?php
 
 
-class modelPalanque extends model
+class modelPalanquee extends model
 {
     public function getAll()
     {
