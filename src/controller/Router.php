@@ -14,9 +14,9 @@ class Router
         {
             //Chargement automatique des classes
             spl_autoload_register(function($class){
-                $pathContorllers = 'Controller/' . $class . '.php';
+                $pathContorllers = 'controller/' . $class . '.php';
                 $pathViews = 'views/' . $class . '.php';
-                $pathModels = 'Model/' . $class . '.php';
+                $pathModels = 'model/' . $class . '.php';
 
                 if (file_exists($pathContorllers))
                 {
@@ -40,8 +40,8 @@ class Router
                 $url = explode('/',filter_var($_GET['url']),FILTER_SANITIZE_URL);
 
                 //Construction + référencement du controller à utiliser.
-                $controller = ucfirst(strtolower($url[0]));
-                $controllerClass = "Controller".$controller;
+                $controller = $url[0];
+                $controllerClass = "controller".$controller;
                 $controllerFile = "controller/".$controllerClass.".php";
 
                 //une fois construit, on regarde si le fichier existe
@@ -53,7 +53,7 @@ class Router
                 }
                 else
                 {
-                    throw new Exception('Page introuvable');
+                    throw new Exception("Page introuvable : $controllerFile : $controllerClass");
                 }
             }
             else

@@ -1,15 +1,13 @@
 <br/>
 
 <fieldset>
-    <p>Date  -------------  Séance  -------------  Num palanquée  -------------  Profondeur max  -------------  Duree max ------------- Heure immersion ------------- Heure sortie de l'eau ------------- Profondeur réelle ------------- Durée du fond</p>
+    <p>Date  -------  Séance  -------  Num palanquée  -------  Profondeur max  -------  Duree max ------- Heure immersion ------- Heure sortie de l'eau ------- Profondeur réelle ------ Durée du fond</p>
 </fieldset><br/><br/>
 
-<a class="waves-effect waves-light btn modal-trigger" href="#newPalanquee">Ajouter Palanquee</a>
-<input type="button" value="Ajouter Palanquee" onclick="window.location.href='modal/NewPalanquee'"><br/>
-
+<a class="waves-effect waves-light btn modal-trigger" href="#newPalanqueeModal">Ajouter Palanquee</a>
 <fieldset>
     <?php
-    $palanquee = $this->controller-> getAll();
+    $palanquee = $this->controller-> selectAll();
     ?>
     Palanquée
     <table>
