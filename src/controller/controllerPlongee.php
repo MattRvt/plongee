@@ -59,7 +59,6 @@ class controllerPlongee extends controller
                     $model->addOrModifyPlongee($data);
                     echo '<strong>Donées correctement enregistré.</strong>';
                 } catch (Exception $e) {
-                    //echo 'Exception reçue : ',  $e->getMessage(), "\n";
                     echo '<strong>Erreur d\'ecriture dans la base. <br></strong> ', $e->getMessage();
                 }
             } else {
@@ -132,7 +131,7 @@ class controllerPlongee extends controller
         }
         echo $this->listeDeroulante($req, "PER_NOM", "PER_NUM", $defaultCode);
     }
-
+//TODO deplacer le modele dans modele embarcation
     public function selectEmbarcation()
     {
         require_once('model/modelEmbarcation.php');
@@ -145,6 +144,8 @@ class controllerPlongee extends controller
         }
         echo $this->listeDeroulante($req, "EMB_NOM", "EMB_NUM", $defaultCode);
     }
+
+
 
 
     /*
