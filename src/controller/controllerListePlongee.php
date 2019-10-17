@@ -25,7 +25,7 @@ class controllerListePlongee
         foreach ($plongee as $key => $contents)
         {
             echo '<tr>';
-            
+
             foreach ($contents as $key => $content)
             {
                 echo '<td>';
