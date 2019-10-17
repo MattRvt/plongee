@@ -14,9 +14,9 @@ class Router
         {
             //Chargement automatique des classes
             spl_autoload_register(function($class){
-                $pathContorllers = 'Controller/' . $class . '.php';
+                $pathContorllers = 'controller/' . $class . '.php';
                 $pathViews = 'views/' . $class . '.php';
-                $pathModels = 'Model/' . $class . '.php';
+                $pathModels = 'model/' . $class . '.php';
 
                 if (file_exists($pathContorllers))
                 {
