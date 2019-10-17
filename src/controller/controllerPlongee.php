@@ -50,13 +50,7 @@ class controllerPlongee extends controller
                 (!empty($_POST['site'])) &&
                 (!empty($_POST['securiteDeSurface'])) &&
                 (!empty($_POST['embarcation'])) &&
-                (!empty($_POST['etat'])) &&
-                (!empty($_POST['hDepart'])) &&
-                (!empty($_POST['tpsPervu'])) &&
-                (!empty($_POST['profondeurPrevu'])) &&
-                (!empty($_POST['hArrivee'])) &&
-                (!empty($_POST['tpsRealise'])) &&
-                (!empty($_POST['profondeurRealise']));
+                (!empty($_POST['etat'])) ;
             $data = $_POST;
             if ($valide) {
                 require_once('model/modelPlongee.php');

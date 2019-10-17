@@ -46,7 +46,7 @@ class modelPlongee extends model
     }
 
     /**
-     * format the data and choose wether to add or update a line
+     * format the data and choose whether to add or update a line
      * @param $data table of value from the controller
      */
     public function addOrModifyPlongee($data)
