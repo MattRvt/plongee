@@ -1,5 +1,5 @@
 <?php
-$num = $_GET["param"]; // faire vérif en JS pour les champs
+/*$num = $_GET["param"]; // faire vérif en JS pour les champs
 require_once ('model/modelPersonne.php');
 ?>
 <form id="send" onsubmit="return verifSubmit()" method="post" >
@@ -38,7 +38,7 @@ require_once ('model/modelPersonne.php');
         echo "\"Désactiver\"";
     }?> name="etat"/>
 
-</form>
+</form>*/
 
 
 

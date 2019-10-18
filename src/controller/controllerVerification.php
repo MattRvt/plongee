@@ -1,8 +1,6 @@
 
 <?php
 
-
-
 class controllerVerification extends controller
 {
 
