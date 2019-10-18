@@ -16,16 +16,30 @@ function addPersonne() {
     personne.directeur = document.getElementById('Directeur').checked;
     personne.secuSurface = document.getElementById('SecuriteSurface').checked;
 
+    var valid = true;
+
     $("#erreur").html("");
 
+    if (verification(0,0) == 0){
+        $("#erreurN").html("Le nom ne correspond pas à un format adapté.");
+        valid = false;
+    }
+    if (verification(1,0) == 0){
+        $("#erreurP").html("Le prénom ne correspond pas à un format adapté.");
+        valid = false;
+    }
     if (personne.nom == "" || personne.prenom == "" || personne.dateCertif == "") {
-        $("#erreur").html("Une personne a obligatoirement un nom, un prenom et une date de certificat");
-    } else {
+        $("#erreur").html("Une personne a obligatoirement un nom, un prenom et une date de certificat.");
+        valid = false;
+    }
+    else if (valid) {
         if(personne.plongeur && document.getElementById('aptitude').value == "rien")
         {
             $("#erreur").html("Un plongeur a obligatoirement une aptitude");
         }
         else {
+            personne.nom = verification(0,1);
+            personne.prenom = verification(1,1);
             var xhr = initXHR();
             xhr.open('POST', 'index.php?url=NewPlongeur', false);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -41,6 +55,7 @@ function addPersonne() {
             if (personne.secuSurface) {
                 text = text + "&securiteSurface=securiteSurface";
             }
+
 
             xhr.send(text);
             alert("personne Ajouté ");
