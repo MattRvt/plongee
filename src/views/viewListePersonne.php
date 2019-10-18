@@ -14,8 +14,7 @@
     <div id="listNonPlongeur"></div>
     <br/><br/>
 </fieldset><br/><br/><br/>
-
-<input type="button" value="Ajouter Personne" onclick="window.location.href='NewPlongeur'"><br/>
+<a class="waves-effect waves-light btn modal-trigger" href="#newPlongeurModal" onclick="initModalAjoutPers()">Ajouter Personne</a><br/>
 <script type='text/javascript'>initListPers();</script>
 
 
