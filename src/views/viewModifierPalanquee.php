@@ -2,7 +2,7 @@
 $numPalanquee = $_GET["param"]; // faire vérif en JS pour les champs
 require_once ('model/modelPalanquee.php');
 ?>
-<form id="send" onsubmit="return verifSubmit()" method="post" >
+<form id="send" action= "" onsubmit="return verifSubmit()" method="post" >
     Numero d'identification : <?php $palanquee = $this->controller->selectPalanquee($numPalanquee); //Apres recup $_POST['PAL_NUM'] et echo
                 $numPalanquee = $palanquee['PAL_NUM'];
                 echo $numPalanquee.'<br/>';
@@ -83,15 +83,12 @@ require_once ('model/modelPalanquee.php');
     echo "<input type=\"number\" value =".$dureeFondPalanquee." class=\"inputBox\" id=\"dureeFond\" name=\"dureeFond\" onkeyup=\"validation(0)\" onfocusout='unfocus(\"dureeFond\")'/> <br/>" ;
     echo "<span id = \"spanDureeFond\" class=\"red-text text-darken-2\"><script type=\"text/javascript\">afficheErreur(0)</script></span>";?>
 
+    <input type="submit" value="Modifier" name="modifier"/>
 
     <?php
-    $instancePalanquee = new modelPalanquee();
-    $palanquee = $instancePalanquee->isPlongeur($numPersonne);
-    if (!empty($Plonger)){
-        echo 'Aptitude : ';
-        $Plongeur = $this->controller->selectPlongeur($numPersonne);
-        $aptitudePlongeur = $Plongeur['APT_CODE'];
-        echo $aptitudePlongeur .'<br/>';
-    }?>
-    <input type="submit" value="Modifier" name="modifier"/>
+    if (){
+        header("http://plongee/ListePalanquee");
+    }
+    ?>
+
 </form>

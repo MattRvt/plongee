@@ -41,27 +41,23 @@ class modelPalanquee extends model
         return $res;
     }
 
-    public function modifyPersonne($PER_NUM, $PER_NOM, $PER_PRENOM)
+    public function modifyPalanquee($PAL_NUM, $PLO_DATE, $PLO_MAT_MID_SOI, $PAL_PROFONDEUR_MAX, $PAL_DUREE_MAX, $PAL_HEURE_IMMERSION, $PAL_HEURE_SORTIE_EAU, $PAL_PROFONDEUR_REELLE, $PAL_DUREE_FOND)
     {
-        $statement = $this->getBdd()->prepare("UPDATE PLO_PERSONNE SET PER_NOM = :PER_NOM, PER_PRENOM = :PER_PRENOM WHERE PER_NUM = :PER_NUM");
+        $statement = $this->getBdd()->prepare("UPDATE PLO_PALANQUEE SET PLO_DATE = :PLO_DATE, PLO_MAT_MID_SOI = :PLO_MAT_MID_SOI, PAL_PROFONDEUR_MAX = :PAL_PROFONDEUR_MAX, PAL_DUREE_MAX = :PAL_DUREE_MAX, PAL_HEURE_IMMERSION = :PAL_HEURE_IMMERSION, PAL_HEURE_SORTIE_EAU = :PAL_SORTIE_EAU, PAL_PROFONDEUR_REELLE = :PAL_PROFONDEUR_REELLE, PAL_DUREE_FOND = :PAL_DUREE_FOND  WHERE PAL_NUM = :PAL_NUM");
 
-        $statement->bindParam(':PER_NUM', $PER_NUM);
-        $statement->bindParam(':PER_NOM', $PER_NOM);
-        $statement->bindParam(':PER_PRENOM', $PER_PRENOM);
+        $statement->bindParam(':PLO_DATE', $PLO_DATE);
+        $statement->bindParam(':PLO_MAT_MID_SOI', $PLO_MAT_MID_SOI);
+        $statement->bindParam(':PAL_PROFONDEUR_MAX', $PAL_PROFONDEUR_MAX);
+        $statement->bindParam(':PAL_DUREE_MAX', $PAL_DUREE_MAX);
+        $statement->bindParam(':PAL_HEURE_IMMERSION', $PAL_HEURE_IMMERSION);
+        $statement->bindParam(':PAL_HEURE_SORTIE_EAU', $PAL_HEURE_SORTIE_EAU);
+        $statement->bindParam(':PAL_PROFONDEUR_REELLE', $PAL_PROFONDEUR_REELLE);
+        $statement->bindParam(':PAL_DUREE_FOND', $PAL_DUREE_FOND);
 
         $res = $statement->execute();
         return $res;
     }
 
-    public function statePersonne($PER_NUM, $VAL)
-    {
-        $statement = $this->getBdd()->prepare("UPDATE PLO_PERSONNE SET PER_ACTIVE = :VAL WHERE PER_NUM = :PER_NUM");
-
-        $statement->bindParam(':PER_NUM', $PER_NUM);
-        $statement->bindParam(':VAL', $VAL);
-
-        $res = $statement->execute();
-        return $res;
     public function getDansPlongee($date,$moment){
         $pdo = $this->getBdd();
 
