@@ -24,7 +24,7 @@
                         echo $key2.' => '.$content2;
                         echo '</td>';
                     }
-                    //echo '<td><input type="button" value="Modifier Palanquee" onclick="window.location.href=\'ModifierPalanquee&param='.$content["PER_NUM"].'\'"> </td>';
+                    echo '<td><input type="button" value="Modifier Palanquee" onclick="window.location.href=\'ModifierPalanquee&param='.$content["PAL_NUM"].'\'"> </td>';
                
             echo '</tr>';
         }
