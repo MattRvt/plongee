@@ -17,6 +17,10 @@ class controllerPlongee extends controller
     {
 
         $this->traitementFormulaire();
+        $plongeeDefinit = (!empty($_GET["date"]) and !empty($_GET["matMidSoi"]));
+        if ($plongeeDefinit) {
+            $this->chargerPlongee();
+        }
         $this->_view = new View('Plongee');
 
         $this->_view->generate(array(), $this);
@@ -24,8 +28,42 @@ class controllerPlongee extends controller
 
     }
 
+    public function listePalanquees()
+    {
+        if (isset($_POST['moment']) && isset($_POST['date'])) {
+            $palanquee = $this->selectAll();
+        }else{
+            $palanquee=null;
+        }
+        if (!is_null($palanquee)) {
 
-    public function verifierRempli($n)
+            foreach ($palanquee as $key => $content) {
+                echo '<tr>';
+                foreach ($content as $key2 => $content2) {
+                    echo '<td>';
+                    echo $key2 . ' => ' . $content2;
+                    echo '</td>';
+                }
+                echo '</tr>';
+            }
+        }else{
+            echo 'la plongée selectionné est vide';
+        }
+    }
+
+    public function selectAll()
+    {
+        require_once('model/modelPalanquee.php');
+        $reader = new modelPalanquee();
+        $moment = $_POST['moment'];
+        $date = $_POST['date'];
+        $palanquee = $reader->getDansPlongee($date, $moment);
+        return $palanquee;
+    }
+
+
+    public
+    function verifierRempli($n)
     {
 
         if (isset($_POST[$n])) {
@@ -40,7 +78,8 @@ class controllerPlongee extends controller
     /**
      * method for saving data to the DB
      */
-    public function traitementFormulaire()
+    public
+    function traitementFormulaire()
     {
         if (!empty($_POST)) {
             $valide =
@@ -50,13 +89,7 @@ class controllerPlongee extends controller
                 (!empty($_POST['site'])) &&
                 (!empty($_POST['securiteDeSurface'])) &&
                 (!empty($_POST['embarcation'])) &&
-                (!empty($_POST['etat'])) &&
-                (!empty($_POST['hDepart'])) &&
-                (!empty($_POST['tpsPervu'])) &&
-                (!empty($_POST['profondeurPrevu'])) &&
-                (!empty($_POST['hArrivee'])) &&
-                (!empty($_POST['tpsRealise'])) &&
-                (!empty($_POST['profondeurRealise']));
+                (!empty($_POST['etat']));
             $data = $_POST;
             if ($valide) {
                 require_once('model/modelPlongee.php');
@@ -65,7 +98,6 @@ class controllerPlongee extends controller
                     $model->addOrModifyPlongee($data);
                     echo '<strong>Donées correctement enregistré.</strong>';
                 } catch (Exception $e) {
-                    //echo 'Exception reçue : ',  $e->getMessage(), "\n";
                     echo '<strong>Erreur d\'ecriture dans la base. <br></strong> ', $e->getMessage();
                 }
             } else {
@@ -75,7 +107,8 @@ class controllerPlongee extends controller
         }
     }
 
-    public function selectMoment()
+    public
+    function selectMoment()
     {
         $req = array(
             array(
@@ -100,7 +133,8 @@ class controllerPlongee extends controller
         echo $this->listeDeroulante($req, "LIBELLE", "CODE", $defaultCode);
     }
 
-    public function selectSite()
+    public
+    function selectSite()
     {
         require_once('model/modelSite.php');
         $reader = new modelSite();
@@ -113,7 +147,8 @@ class controllerPlongee extends controller
         echo $this->listeDeroulante($req, "SIT_NOM", "SIT_NUM", $defaultCode);
     }
 
-    public function selectDirecteurDePlongee()
+    public
+    function selectDirecteurDePlongee()
     {
         require_once('model/modelPersonne.php');
         $reader = new modelPersonne();
@@ -126,7 +161,8 @@ class controllerPlongee extends controller
         echo $this->listeDeroulante($req, "PER_NOM", "PER_NUM", $defaultCode);
     }
 
-    public function selectSecuriteDeSurface()
+    public
+    function selectSecuriteDeSurface()
     {
         require_once('model/modelPersonne.php');
         $reader = new modelPersonne();
@@ -139,7 +175,8 @@ class controllerPlongee extends controller
         echo $this->listeDeroulante($req, "PER_NOM", "PER_NUM", $defaultCode);
     }
 
-    public function selectEmbarcation()
+    public
+    function selectEmbarcation()
     {
         require_once('model/modelEmbarcation.php');
         $reader = new modelEmbarcation();
@@ -150,6 +187,23 @@ class controllerPlongee extends controller
             $defaultCode = null;
         }
         echo $this->listeDeroulante($req, "EMB_NOM", "EMB_NUM", $defaultCode);
+    }
+
+    public
+    function chargerPlongee()
+    {
+        $_POST['date'] = $_GET["date"];
+        $_POST['moment'] = $_GET["matMidSoi"];
+        $reader = new modelPlongee();
+        $plongee = $reader->getMatch($_GET["date"], $_GET["matMidSoi"])[0];
+        if (isset($plongee)){
+
+        if (array_key_exists("PER_NUM_DIR", $plongee)){$_POST['directeurDePlongee'] = $plongee["PER_NUM_DIR"];}
+        if (isset($plongee["SIT_NUM"])){$_POST['site'] = $plongee["SIT_NUM"];}
+        if (isset($plongee["PER_NUM_SECU"])){$_POST['securiteDeSurface'] = $plongee["PER_NUM_SECU"];}
+        if (isset($plongee["EMB_NUM"])){$_POST['embarcation'] = $plongee["EMB_NUM"];}
+        if (isset($plongee["PLO_ETAT"])){$_POST['etat'] = $plongee["PLO_ETAT"];}
+        }
     }
 
 

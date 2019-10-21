@@ -12,7 +12,7 @@
         </select>
         <br/>
         <label for="directeurDePlongee">Directeur de plongée: </label>
-        <select name="directeurDePlongee" >
+        <select name="directeurDePlongee">
             <?php $this->controller->selectDirecteurDePlongee() ?>
         </select><br/>
         <label for="siteNom">nom du site: </label>
@@ -24,11 +24,11 @@
         <br/>
         <label for="effectifs">effectifs: </label> <--calc auto--> <br/>
         <label for="securiteDeSurface">securite de surface: </label> <br/>
-        <select name="securiteDeSurface" >
+        <select name="securiteDeSurface">
             <?php $this->controller->selectSecuriteDeSurface() ?>
         </select><br/>
         <label for="embarcation">embarcation: </label>
-        <select name="embarcation" >
+        <select name="embarcation">
             <?php $this->controller->selectEmbarcation() ?>
         </select><br/>
 
@@ -39,35 +39,18 @@
         ><br/>
     </fieldset>
     <fieldset>
-        <legend><b>données prévu</b></legend>
-        <label for="hDepart">heure de départ: </label>
-        <input type="time" name="hDepart" value="<?php $this->controller->verifierRempli("hDepart"); ?>"
-        ><br/>
-        <label for="tpsPervu">temps prévu: </label>
-        <input type="time" name="tpsPervu" value="<?php $this->controller->verifierRempli("tpsPervu"); ?>"
-        ><br/>
-        <label for="profondeurPrevu">profondeur prévu </label>
-        <input type="number" name="profondeurPrevu"
-               value="<?php $this->controller->verifierRempli("profondeurPrevu"); ?>"
-        ><br/>
-    </fieldset>
-    <fieldset>
-        <legend><b>données realisé</b></legend>
-        <label for="hArrivee">heure d'arrivé: </label>
-        <input type="time" name="hArrivee"
-               value="<?php $this->controller->verifierRempli("hArrivee"); ?>"
-        ><br/>
-        <label for="tpsRealise">temps réalisé: </label>
-        <input type="time" name="tpsRealise"
-               value="<?php $this->controller->verifierRempli("tpsRealise"); ?>"
-        ><br/>
-        <label for="profondeurRealise">profondeur réalisé: </label>
-        <input type="number" name="profondeurRealise"
-               value="<?php $this->controller->verifierRempli("profondeurRealise"); ?>"
 
-        ><br/>
+        Palanquée
+        <table>
+            <?php
+                $this->controller->listePalanquees();
+            ?>
+        </table>
+        <br/><br/>
     </fieldset>
-    <-- liste des palanquées -->
+    <br/><br>
+
+    <input type="button" value="Ajouter Palanquee" onclick="window.location.href='NewPalanquee'"><br/>
     <fieldset>
         <legend><b>enregistrer:</b></legend>
         <input type="submit" alue="enregistrer"><br/>

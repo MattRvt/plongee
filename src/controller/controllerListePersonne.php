@@ -1,5 +1,6 @@
 <?php
 
+
 class controllerListePersonne  extends controller
 {
     private $_view;
@@ -30,21 +31,6 @@ class controllerListePersonne  extends controller
         $this->_view->generate(array(), $this);
     }
 
-    public function selectAllNonPlongeur()
-    {
-        require_once('model/modelPersonne.php');
-        $reader = new modelPersonne();
-        $nonPlongeur = $reader->getNonPlongeur();
-        return $nonPlongeur;
-    }
-
-    public function selectAllPlongeur()
-    {
-        require_once('model/modelPlongeur.php');
-        $reader = new modelPlongeur();
-        $Plongeur = $reader->selectPlongeurPersonne();
-        return $Plongeur;
-    }
 
     public function modifierPersonne($id, $nom, $prenom)
     {

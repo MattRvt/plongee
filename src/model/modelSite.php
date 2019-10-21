@@ -19,4 +19,19 @@ class modelSite extends model
         $res = $statement->execute();
         return $res;
     }
+
+    public function getSiteByNum($num)
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "SELECT * FROM PLO_SITE WHERE SIT_NUM = ".$num;
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
+    }
 }

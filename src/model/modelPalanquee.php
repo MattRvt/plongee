@@ -62,5 +62,16 @@ class modelPalanquee extends model
 
         $res = $statement->execute();
         return $res;
+    public function getDansPlongee($date,$moment){
+        $pdo = $this->getBdd();
+
+        $sql = "select * from plo_palanquee where (PLO_DATE = '".$date."') and (upper(PLO_MAT_MID_SOI) = upper('".$moment."'))";
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
     }
 }

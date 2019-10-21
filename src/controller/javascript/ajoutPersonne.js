@@ -43,7 +43,15 @@ function addPersonne() {
             }
 
             xhr.send(text);
-            alert("personne Ajouté  " +xhr.responseText);
+            alert("personne Ajouté ");
+            if(personne.plongeur)
+            {
+                updatePlongeur();
+            }
+            else
+            {
+                updateNonPlongeur();
+            }
 
             document.getElementById('nom').value = "";
             document.getElementById('prenom').value = "";
