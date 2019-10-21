@@ -15,6 +15,7 @@ class controllerModifierPalanquee  extends controller
 
     public function mentions()
     {
+        
         $this->_view = new View('ModifierPalanquee');
         $this->_view->generate(array(),$this);
     }
@@ -24,6 +25,12 @@ class controllerModifierPalanquee  extends controller
         $reader = new modelPalanquee();
         $palanquee = $reader->getPalanquee($numPalanquee);
         return $palanquee;
+    }
+
+    public function modifyPalanquee($numPalanquee, $datePalanquee, $seancePalanquee, $profondeurMaxPalanquee,  $dureeMaxPalanquee, $heureImmersionPalanquee, $heureSortieEauPalanquee, $profondeurReellePalanquee, $dureeFondPalanquee){
+        require_once('model/modelPalanquee.php');
+        $reader = new modelPalanquee();
+        $reader->modifyPalanquee($numPalanquee, $datePalanquee, $seancePalanquee, $profondeurMaxPalanquee,  $dureeMaxPalanquee, $heureImmersionPalanquee, $heureSortieEauPalanquee, $profondeurReellePalanquee, $dureeFondPalanquee);
     }
 
     /*public function selectSeance(){

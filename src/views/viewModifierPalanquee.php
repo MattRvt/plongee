@@ -2,7 +2,7 @@
 $numPalanquee = $_GET["param"]; // faire vérif en JS pour les champs
 require_once ('model/modelPalanquee.php');
 ?>
-<form id="send" action= "" onsubmit="return verifSubmit()" method="post" >
+<form id="send" action="ListePalanquee" onsubmit="return verifSubmit()" method="post" >
     Numero d'identification : <?php $palanquee = $this->controller->selectPalanquee($numPalanquee); //Apres recup $_POST['PAL_NUM'] et echo
                 $numPalanquee = $palanquee['PAL_NUM'];
                 echo $numPalanquee.'<br/>';
@@ -84,11 +84,5 @@ require_once ('model/modelPalanquee.php');
     echo "<span id = \"spanDureeFond\" class=\"red-text text-darken-2\"><script type=\"text/javascript\">afficheErreur(0)</script></span>";?>
 
     <input type="submit" value="Modifier" name="modifier"/>
-
-    <?php
-    if (){
-        header("http://plongee/ListePalanquee");
-    }
-    ?>
 
 </form>
