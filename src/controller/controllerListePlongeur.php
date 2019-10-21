@@ -28,7 +28,9 @@ class controllerListePlongeur
                 $text = $text.$key2 . ' => ' . $content2;
                 $text = $text.'</td>';
             }
-            $text = $text.'<td><input type="button" value="Modifier Plongeur" onclick="window.location.href=\'ModifierPlongeur&param=' . $content["PER_NUM"] . '\'"> </td>';
+            $text = $text.'<td><a class="waves-effect waves-light btn modal-trigger" onclick="launchModalModifPersonne('.$content["PER_NUM"].')">Modifier</a>
+
+<!--<input type="button" value="Modifier Plongeur" onclick="window.location.href=\'ModifierPlongeur&param=' . $content["PER_NUM"] . '\'">--> </td>';
 
             $text = $text.'</tr>';
         }
