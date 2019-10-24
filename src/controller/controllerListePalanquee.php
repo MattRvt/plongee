@@ -17,6 +17,7 @@ class controllerListePalanquee  extends controller
     {
         //TODO Melmel
         if (!empty($_POST['modifier'])){
+            print_r($_POST);
             $numPalanquee = $_POST['numPalanquee'];
             $datePalanquee = $_POST['datePalanquee'];
             $seancePalanquee = $_POST['seancePalanquee'];
@@ -26,10 +27,16 @@ class controllerListePalanquee  extends controller
             $heureSortieEauPalanquee = $_POST['heureSortieEauPalanquee'];
             $profondeurReellePalanquee = $_POST['profondeurReellePalanquee'];
             $dureeFondPalanquee = $_POST['dureeFondPalanquee'];
-            $this->controller->modifyPalanquee($numPalanquee, $datePalanquee, $seancePalanquee, $profondeurMaxPalanquee,  $dureeMaxPalanquee, $heureImmersionPalanquee, $heureSortieEauPalanquee, $profondeurReellePalanquee, $dureeFondPalanquee);
+            $this->modifyPalanquee($numPalanquee, $datePalanquee, $seancePalanquee, $profondeurMaxPalanquee,  $dureeMaxPalanquee, $heureImmersionPalanquee, $heureSortieEauPalanquee, $profondeurReellePalanquee, $dureeFondPalanquee);
         }
         $this->_view = new View('ListePalanquee');
         $this->_view->generate(array(), $this);
+    }
+
+    public function modifyPalanquee($numPalanquee, $datePalanquee, $seancePalanquee, $profondeurMaxPalanquee,  $dureeMaxPalanquee, $heureImmersionPalanquee, $heureSortieEauPalanquee, $profondeurReellePalanquee, $dureeFondPalanquee){
+        require_once('model/modelPalanquee.php');
+        $reader = new modelPalanquee();
+        $reader->modifyPalanquee($numPalanquee, $datePalanquee, $seancePalanquee, $profondeurMaxPalanquee,  $dureeMaxPalanquee, $heureImmersionPalanquee, $heureSortieEauPalanquee, $profondeurReellePalanquee, $dureeFondPalanquee);
     }
 
     public function selectAll(){

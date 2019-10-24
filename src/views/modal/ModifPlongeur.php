@@ -1,6 +1,6 @@
 <div class="modal" id="modifPersModal">
     <div class="modal-content">
-        <form id="send" onsubmit="return verifSubmit()" method="post" >
+        <form id="send" onsubmit="return verifSubmitPersonne()" method="post" >
             <div id="numIdentification"></div>
 
             <input type="hidden" id="numInput" name="num"/><br/>

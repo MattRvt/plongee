@@ -45,6 +45,7 @@ class modelPalanquee extends model
     {
         $statement = $this->getBdd()->prepare("UPDATE PLO_PALANQUEE SET PLO_DATE = :PLO_DATE, PLO_MAT_MID_SOI = :PLO_MAT_MID_SOI, PAL_PROFONDEUR_MAX = :PAL_PROFONDEUR_MAX, PAL_DUREE_MAX = :PAL_DUREE_MAX, PAL_HEURE_IMMERSION = :PAL_HEURE_IMMERSION, PAL_HEURE_SORTIE_EAU = :PAL_SORTIE_EAU, PAL_PROFONDEUR_REELLE = :PAL_PROFONDEUR_REELLE, PAL_DUREE_FOND = :PAL_DUREE_FOND  WHERE PAL_NUM = :PAL_NUM");
 
+        
         $statement->bindParam(':PLO_DATE', $PLO_DATE);
         $statement->bindParam(':PLO_MAT_MID_SOI', $PLO_MAT_MID_SOI);
         $statement->bindParam(':PAL_PROFONDEUR_MAX', $PAL_PROFONDEUR_MAX);
@@ -53,6 +54,7 @@ class modelPalanquee extends model
         $statement->bindParam(':PAL_HEURE_SORTIE_EAU', $PAL_HEURE_SORTIE_EAU);
         $statement->bindParam(':PAL_PROFONDEUR_REELLE', $PAL_PROFONDEUR_REELLE);
         $statement->bindParam(':PAL_DUREE_FOND', $PAL_DUREE_FOND);
+        $statement->bindParam(':PAL_NUM', $PAL_NUM);
 
         $res = $statement->execute();
         return $res;
