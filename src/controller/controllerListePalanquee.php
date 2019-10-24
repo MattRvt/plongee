@@ -16,19 +16,27 @@ class controllerListePalanquee  extends controller
     public function mentions()
     {
         //TODO Melmel
-        /*if (!empty($_POST['modifier'])){
-            $datePalanquee = $_POST['num'];
-            $seance = $_POST['nom'];
-            $ = $_POST['prenom'];
-            $this->modifierPalanquee($id, $nom, $prenom);
+        if (!empty($_POST['modifier'])){
+            print_r($_POST);
+            $numPalanquee = $_POST['numPalanquee'];
+            $datePalanquee = $_POST['datePalanquee'];
+            $seancePalanquee = $_POST['seancePalanquee'];
+            $profondeurMaxPalanquee = $_POST['profondeurMaxPalanquee'];
+            $dureeMaxPalanquee = $_POST['dureeMaxPalanquee'];
+            $heureImmersionPalanquee = $_POST['heureImmersionPalanquee'];
+            $heureSortieEauPalanquee = $_POST['heureSortieEauPalanquee'];
+            $profondeurReellePalanquee = $_POST['profondeurReellePalanquee'];
+            $dureeFondPalanquee = $_POST['dureeFondPalanquee'];
+            $this->modifyPalanquee($numPalanquee, $datePalanquee, $seancePalanquee, $profondeurMaxPalanquee,  $dureeMaxPalanquee, $heureImmersionPalanquee, $heureSortieEauPalanquee, $profondeurReellePalanquee, $dureeFondPalanquee);
         }
-        else if (!empty($_POST['etat'])){
-            $id = $_POST['num'];
-            $_POST['etat']=="Activer" ? $val = 1 : $val = 0;
-            $this->changeEtatPersonne($id, $val);
-        }*/
         $this->_view = new View('ListePalanquee');
         $this->_view->generate(array(), $this);
+    }
+
+    public function modifyPalanquee($numPalanquee, $datePalanquee, $seancePalanquee, $profondeurMaxPalanquee,  $dureeMaxPalanquee, $heureImmersionPalanquee, $heureSortieEauPalanquee, $profondeurReellePalanquee, $dureeFondPalanquee){
+        require_once('model/modelPalanquee.php');
+        $reader = new modelPalanquee();
+        $reader->modifyPalanquee($numPalanquee, $datePalanquee, $seancePalanquee, $profondeurMaxPalanquee,  $dureeMaxPalanquee, $heureImmersionPalanquee, $heureSortieEauPalanquee, $profondeurReellePalanquee, $dureeFondPalanquee);
     }
 
     public function selectAll(){

@@ -49,7 +49,7 @@ function unfocus(id) {
     document.getElementById(id).style.boxShadow = "0px 0px 0px 0px rgba(0,0,0,1)";
 }
 
-function verifSubmit()
+function verifSubmitPersonne()
 {
     var form = document.getElementById('send');
     if (verification(0,0)==1 && verification(1,0)==1){
