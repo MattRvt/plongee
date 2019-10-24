@@ -17,7 +17,6 @@ class controllerListePalanquee  extends controller
     {
         //TODO Melmel
         if (!empty($_POST['modifier'])){
-            print_r($_POST);
             $numPalanquee = $_POST['numPalanquee'];
             $datePalanquee = $_POST['datePalanquee'];
             $seancePalanquee = $_POST['seancePalanquee'];
