@@ -49,4 +49,42 @@ class modelPlongeur extends model
 
         return $data;
     }
+
+    public function deletePlongeur($num)
+    {
+        if(empty($this->plongeurIsConcerner($num)))
+        {
+            $pdo = $this->getBdd();
+
+            $sql = "DELETE FROM `plo_plongeur` WHERE PER_NUM =" . $num;
+
+            $req = $pdo->prepare($sql);
+            $req->execute();
+
+            $req->closeCursor();
+        }
+        else
+        {
+            echo "Impossible de supprimer le plongeur car il fait partie d'une ou plusieurs plongée";
+        }
+    }
+
+    public function plongeurIsConcerner($num)
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "SELECT * FROM `plo_plongeur` where per_num = ".$num." and per_num in 
+                ( 
+                    select per_num from plo_concerner
+                )";
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+
+        $req->closeCursor();
+
+        return $data;
+    }
 }

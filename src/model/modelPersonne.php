@@ -23,15 +23,16 @@ class modelPersonne extends model
     }
 
 
-    public function addPersonne($PER_NUM, $PER_NOM, $PER_PRENOM, $dateCertif)
+    public function addPersonne($PER_NUM, $PER_NOM, $PER_PRENOM, $dateCertif, $active)
     {
         echo $dateCertif;
-        $statement = $this->getBdd()->prepare("INSERT INTO `PLO_PERSONNE`(`PER_NUM`, `PER_NOM`, `PER_PRENOM`, `PER_ACTIVE`, `PER_DATE_CERTIF_MED` ) VALUES (:PER_NUM, :PER_NOM,:PER_PRENOM,1,:DATECERTIF)");
+        $statement = $this->getBdd()->prepare("INSERT INTO `PLO_PERSONNE`(`PER_NUM`, `PER_NOM`, `PER_PRENOM`, `PER_ACTIVE`, `PER_DATE_CERTIF_MED` ) VALUES (:PER_NUM, :PER_NOM,:PER_PRENOM,:ACTIVE,:DATECERTIF)");
 
         $statement->bindParam(':PER_NUM', $PER_NUM);
         $statement->bindParam(':PER_NOM', $PER_NOM);
         $statement->bindParam(':PER_PRENOM', $PER_PRENOM);
         $statement->bindParam(':DATECERTIF', $dateCertif);
+        $statement->bindParam(':ACTIVE', $active);
 
         $res = $statement->execute();
         return $res;
@@ -99,13 +100,51 @@ class modelPersonne extends model
         return $data;
     }
 
-    public function modifyPersonne($PER_NUM, $PER_NOM, $PER_PRENOM)
+    public function isDirecteur($PER_NUM)
     {
-        $statement = $this->getBdd()->prepare("UPDATE PLO_PERSONNE SET PER_NOM = :PER_NOM, PER_PRENOM = :PER_PRENOM WHERE PER_NUM = :PER_NUM");
+        $pdo = $this->getBdd();
+
+        $sql = "SELECT * from PLO_PERSONNE where :PER_NUM in
+                (
+                    SELECT PER_NUM from PLO_DIRECTEUR
+                )";
+
+        $req = $pdo->prepare($sql);
+        $req->bindParam(':PER_NUM', $PER_NUM);
+        $req->execute();
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
+    }
+
+    public function isSecuriteSurface($PER_NUM)
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "SELECT * from PLO_PERSONNE where :PER_NUM in
+                (
+                    SELECT PER_NUM from PLO_SECURITE_DE_SURFACE
+                )";
+
+        $req = $pdo->prepare($sql);
+        $req->bindParam(':PER_NUM', $PER_NUM);
+        $req->execute();
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
+    }
+
+    public function modifyPersonne($PER_NUM, $PER_NOM, $PER_PRENOM, $dateCertif, $active)
+    {
+        $statement = $this->getBdd()->prepare("UPDATE PLO_PERSONNE SET PER_NOM = :PER_NOM, PER_PRENOM = :PER_PRENOM, PER_DATE_CERTIF_MED = :DATECERTIF, PER_ACTIVE = :ACTIVE WHERE PER_NUM = :PER_NUM");
 
         $statement->bindParam(':PER_NUM', $PER_NUM);
         $statement->bindParam(':PER_NOM', $PER_NOM);
         $statement->bindParam(':PER_PRENOM', $PER_PRENOM);
+        $statement->bindParam(':DATECERTIF', $dateCertif);
+        $statement->bindParam(':ACTIVE', $active);
 
         $res = $statement->execute();
         return $res;
@@ -136,5 +175,65 @@ class modelPersonne extends model
 
         return $data;
     }
+
+    public function modifyPlongeur($num, $aptitude)
+    {
+        if(!$this->isPlongeur($num) && $aptitude != -1)
+        {
+            require_once ("modelPlongeur.php");
+            $reader = new modelPlongeur();
+            $reader->addPlongeur($num,$aptitude);
+        }
+        else if($this->isPlongeur($num) && $aptitude == -1)
+        {
+            require_once ("modelPlongeur.php");
+            $reader = new modelPlongeur();
+            $reader->deletePlongeur($num);
+        }
+        else if($aptitude != -1)
+        {
+            $pdo = $this->getBdd();
+
+            $sql = "UPDATE PLO_PLONGEUR SET APT_CODE = :APTCODE WHERE PER_NUM = ".$num;
+
+            $req = $pdo->prepare($sql);
+            $req->bindParam(":APTCODE",$aptitude);
+            $req->execute();
+
+            $req->closeCursor();
+        }
+    }
+
+    public function modifyDirecteur($num, $bool)
+    {
+        if(!$this->isDirecteur($num) && $bool != -1)
+        {
+            require_once ("modelDirecteur.php");
+            $reader = new modelDirecteur();
+            $reader->addDirecteur($num);
+        }
+        else if($this->isDirecteur($num) && $bool == -1)
+        {
+            require_once ("modelDirecteur.php");
+            $reader = new modelDirecteur();
+            $reader->deleteDirecteur($num);
+        }
+    }
+    public function modifySecuSurface($num, $bool)
+    {
+        if(!$this->isSecuriteSurface($num) && $bool != -1)
+        {
+            require_once ("modelSecuSurface.php");
+            $reader = new modelSecuSurface();
+            $reader->addSecuriteSurface($num);
+        }
+        else if($this->isSecuriteSurface($num) && $bool == -1)
+        {
+            require_once ("modelSecuSurface.php");
+            $reader = new modelSecuSurface();
+            $reader->deleteSecuSurface($num);
+        }
+    }
+
 
 }

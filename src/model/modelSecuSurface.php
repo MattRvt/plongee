@@ -16,4 +16,39 @@ class modelSecuSurface extends model
         $res = $statement->execute();
         return $res;
     }
+
+    public function deleteSecuSurface($num)
+    {
+        if (empty($this->SecuSurfaceInPlongee($num))) {
+            $pdo = $this->getBdd();
+
+            $sql = "DELETE FROM `plo_securite_de_surface` WHERE PER_NUM =" . $num;
+
+            $req = $pdo->prepare($sql);
+            $req->execute();
+
+            $req->closeCursor();
+        } else {
+            echo "Impossible de supprimer la securité de surface car il fait partie d'une ou plusieurs plongée";
+        }
+    }
+
+    public function SecuSurfaceInPlongee($num)
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "SELECT * FROM `plo_securite_de_surface` where per_num = ".$num." and per_num in 
+                ( 
+                    select per_num_secu from plo_plongee
+                )";
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+
+        $req->closeCursor();
+
+        return $data;
+    }
 }

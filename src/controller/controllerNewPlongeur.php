@@ -8,6 +8,7 @@ class controllerNewPlongeur extends controller
     private $prenom;
     private $dateCertif;
     private $aptitude;
+    private $active;
 
     public function __construct($url)
     {
@@ -18,6 +19,7 @@ class controllerNewPlongeur extends controller
             $this->nom = $_POST["nom"];
             $this->prenom = $_POST["prenom"];
             $this->dateCertif = $_POST["dateCertif"];
+            $this->active = $_POST["active"];
 
             if (!empty($_POST["personne"])) {
                 $this->addPersonne();
@@ -47,7 +49,7 @@ class controllerNewPlongeur extends controller
     {
         require_once('model/modelPersonne.php');
         $reader = new modelPersonne();
-        $reader->addPersonne($this->num, $this->nom, $this->prenom, $this->dateCertif);
+        $reader->addPersonne($this->num, $this->nom, $this->prenom, $this->dateCertif, $this->active);
     }
 
     public function addPlongeur()

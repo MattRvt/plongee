@@ -3,12 +3,35 @@
         <div >
             <a href="#" onclick="closeModal('newPlongeur')"><img src="views/image/icone_fermer.png" alt=""></a>
         </div>
-        <legend><b>Ajouter une personne</b></legend>
+        <legend><b id="modfiAjout"></b></legend>
         <br/>
 
-        <h6 for="nom">Nom: </h6><input type="text" id="nom" name="nom" size="30" maxlength="50" placeholder="Nom"><br/>
-        <h6 for="prenom">Prenom: </h6><input type="text" id="prenom" name="prenom" size="30" maxlength="50"
-                                             placeholder="Prénom"><br/>
+        <div class="row">
+            <div class="col s6">
+                <h6>Nom: </h6>
+                <label>
+                    <input type="text" id="nomPlongeur" name="nom" size="30" maxlength="50" placeholder="Nom">
+                </label>
+            </div>
+            <div class="col s6">
+                <h6>Prenom: </h6>
+                <label>
+                    <input type="text" id="prenomPlongeur" name="prenom" size="30" maxlength="50" placeholder="Prénom">
+                </label>
+            </div>
+        </div>
+
+
+        <h6>Est actif</h6>
+        <label>
+            <input type="radio" name="active" id="estActive" value="1">
+            <span>Oui</span>
+        </label>
+        <label>
+            <input type="radio" name="active" id="pasActive" value="0">
+            <span>Non</span>
+        </label>
+
         <h6>Date du certificat médicale :</h6><input type="date" id="date">
 
         <h6>Fonction </h6>

@@ -6,15 +6,18 @@ var personne = {
     secuSurface: "",
     aptitude: "",
     dateCertif: "",
+    active: "",
 };
 
+
 function addPersonne() {
-    personne.nom = document.getElementById('nom').value;
-    personne.prenom = document.getElementById('prenom').value;
+    personne.nom = document.getElementById('nomPlongeur').value;
+    personne.prenom = document.getElementById('prenomPlongeur').value;
     personne.dateCertif = document.getElementById('date').value;
     personne.plongeur = document.getElementById('Plongeur').checked;
     personne.directeur = document.getElementById('Directeur').checked;
     personne.secuSurface = document.getElementById('SecuriteSurface').checked;
+    personne.active = document.getElementById("estActive").checked;
 
     $("#erreur").html("");
 
@@ -26,11 +29,22 @@ function addPersonne() {
             $("#erreur").html("Un plongeur a obligatoirement une aptitude");
         }
         else {
+            var text = "personne=personne&nom=" + personne.nom + "&prenom=" + personne.prenom+"&dateCertif="+personne.dateCertif+"&active="+personne.active;
+
+            if(document.getElementById("modfiAjout").value != -1)
+            {
+                fichier = "ModifierPersonne";
+                text = text + "&num="+document.getElementById("modfiAjout").value;
+            }
+            else
+            {
+                fichier = "NewPlongeur";
+            }
+
             var xhr = initXHR();
-            xhr.open('POST', 'index.php?url=NewPlongeur', false);
+            xhr.open('POST', 'index.php?url='+fichier, false);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-            var text = "personne=personne&nom=" + personne.nom + "&prenom=" + personne.prenom+"&dateCertif="+personne.dateCertif;
             if (personne.plongeur) {
                 personne.aptitude = document.getElementById('aptitude').value;
                 text = text + "&plongeur=plongeur&aptitude=" + personne.aptitude;
@@ -43,24 +57,41 @@ function addPersonne() {
             }
 
             xhr.send(text);
-            alert("personne Ajouté ");
-            if(personne.plongeur)
+            if(xhr.responseText!="")
             {
-                updatePlongeur();
+                if(document.getElementById("modfiAjout").value != -1) {
+                    var num = document.getElementById("modfiAjout").value;
+                    if (isPlongeur(num)) {
+                        document.getElementById("Plongeur").checked = true;
+                        selectAptitude();
+                        document.getElementById('aptitude').value = getAptitude(num);
+                    }
+                    document.getElementById("Directeur").checked = isDirecteur(num);
+                    document.getElementById("SecuriteSurface").checked = isSecuriteSurface(num);
+                }
+                $("#erreur").html(xhr.responseText);
             }
             else
             {
-                updateNonPlongeur();
-            }
+                alert("succes");
+                if(personne.plongeur)
+                {
+                    updatePlongeur();
+                }
+                else
+                {
+                    updateNonPlongeur();
+                }
 
-            document.getElementById('nom').value = "";
-            document.getElementById('prenom').value = "";
-            document.getElementById('date').value = "";
-            document.getElementById('Plongeur').checked = false;
-            document.getElementById('Directeur').checked = false;
-            document.getElementById('SecuriteSurface').checked = false;
-            $("#selectAptitude").html("");
-            closeModal("newPlongeur");
+                document.getElementById('nomPlongeur').value = "";
+                document.getElementById('prenomPlongeur').value = "";
+                document.getElementById('date').value = "";
+                document.getElementById('Plongeur').checked = false;
+                document.getElementById('Directeur').checked = false;
+                document.getElementById('SecuriteSurface').checked = false;
+                $("#selectAptitude").html("");
+                closeModal("newPlongeur");
+            }
         }
     }
 }
@@ -81,14 +112,151 @@ function selectAptitude() {
     }
 }
 
-function initModalAjoutPers()
+function initModalAjoutPers(num)
 {
-    document.getElementById('nom').value = "";
-    document.getElementById('prenom').value = "";
+    $("#erreur").html("");
+    document.getElementById('nomPlongeur').value = "";
+    document.getElementById('prenomPlongeur').value = "";
     document.getElementById('date').value = "";
     document.getElementById('Plongeur').checked = false;
     document.getElementById('Directeur').checked = false;
     document.getElementById('SecuriteSurface').checked = false;
     $("#selectAptitude").html("");
-    $("#erreur").html("");
+
+    document.getElementById("modfiAjout").value = -1;
+    $("#modfiAjout").html("Ajouter une personne");
+
+    if(num != -1)
+    {
+        document.getElementById("modfiAjout").value = num;
+        $("#modfiAjout").html("Modifier une personne");
+
+        $("#numIdentification").html("Numero d'identification : " + num);
+
+        personne.nom = getNom(num);
+        personne.prenom = getPrenom(num);
+        personne.active = estActive(num);
+        personne.dateCertif = getDateCertif(num);
+        personne.plongeur = isPlongeur(num);
+        personne.directeur = isDirecteur(num);
+        personne.secuSurface = isSecuriteSurface(num);
+
+        document.getElementById('nomPlongeur').value = personne.nom;
+
+        document.getElementById("prenomPlongeur").value = personne.prenom;
+
+        if (personne.active)
+        {
+            document.getElementById("pasActive").checked = true;
+        }
+        else {
+            document.getElementById("estActive").checked = true;
+        }
+
+        document.getElementById("date").value = personne.dateCertif;
+
+        if(personne.plongeur)
+        {
+            document.getElementById("Plongeur").checked = true;
+            selectAptitude();
+            personne.aptitude = getAptitude(num);
+            document.getElementById('aptitude').value = personne.aptitude;
+        }
+
+        document.getElementById("Directeur").checked = personne.directeur;
+        document.getElementById("SecuriteSurface").checked = personne.secuSurface;
+    }
+
+
+    $(document).ready(function(){
+        $('#newPlongeurModal').modal('open');
+    });
+}
+
+function getNom(num)
+{
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=GetNom', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("num="+num);
+
+    return xhr.responseText;
+}
+
+function getPrenom(num)
+{
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=GetPrenom', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("num="+num);
+
+    return xhr.responseText;
+}
+
+function estActive(num)
+{
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=EstActive', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("num="+num);
+
+    return (xhr.responseText==0);
+}
+
+function getDateCertif(num)
+{
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=DateCertif', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("num="+num);
+
+    return (xhr.responseText);
+}
+
+function isPlongeur(num)
+{
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=IsPlongeur', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("num="+num);
+
+    return xhr.responseText;
+}
+
+function getAptitude(num)
+{
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=Aptitude', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("num="+num);
+
+    return xhr.responseText;
+}
+
+function isDirecteur(num)
+{
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=IsDirecteur', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("num="+num);
+
+    return (xhr.responseText==1);
+}
+
+function isSecuriteSurface(num)
+{
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=IsSecuriteSurface', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("num="+num);
+
+    return (xhr.responseText==1);
 }

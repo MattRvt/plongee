@@ -16,4 +16,40 @@ class modelDirecteur extends model
         $res = $statement->execute();
         return $res;
     }
+
+    public function deleteDirecteur($num)
+    {
+        if(empty($this->directeurInPlongee($num))) {
+            $pdo = $this->getBdd();
+
+            $sql = "DELETE FROM `plo_directeur` WHERE PER_NUM =" . $num;
+
+            $req = $pdo->prepare($sql);
+            $req->execute();
+
+            $req->closeCursor();
+        }
+        else {
+            echo "Impossible de supprimer le directeur de surface car il fait partie d'une ou plusieurs plongée";
+        }
+    }
+
+    public function directeurInPlongee($num)
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "SELECT * FROM `plo_directeur` where per_num = ".$num." and per_num in 
+                ( 
+                    select per_num_dir from plo_plongee
+                )";
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+
+        $req->closeCursor();
+
+        return $data;
+    }
 }
