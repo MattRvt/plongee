@@ -37,6 +37,7 @@ class controllerListePlongee
                 else if($key == "PER_NUM_SECU")$this->secuPlongee($content);
                 echo '</td>';
             }
+            echo '<td>Nombre de palanquée => '.$this->getNbPalanquee($contents['PLO_DATE'],$contents['PLO_MAT_MID_SOI'])["count(*)"].'</td>';
             echo '<td><input type="button" value="Detail" onclick="window.location.href=\'Plongee&date='.$contents['PLO_DATE'].'&matMidSoi='.$contents['PLO_MAT_MID_SOI'].'\'"> </td>';
 
             echo '</tr>';
@@ -93,5 +94,12 @@ class controllerListePlongee
         $modelPers = new modelPersonne();
         $emb = $modelPers->getPersonneByNum($num);
         echo "Securité de surface => ".$emb["PER_NOM"]." ".$emb["PER_PRENOM"];
+    }
+
+    public function getNbPalanquee($date,$matMidSoir)
+    {
+        $modelPlongee = new modelPlongee();
+        $count = $modelPlongee->getNbPalanquee($date,$matMidSoir);
+        return $count;
     }
 }
