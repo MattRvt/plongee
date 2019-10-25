@@ -23,9 +23,9 @@ class controllerListePlongeur
             $dir = $reader2->isDirecteur($content['PER_NUM']);
             $secu = $reader2->isSecuriteSurface($content['PER_NUM']);
 
-            if ($dir) $dir="<i class='material-icons' title='Directeur'>assignment</i>";
+            if ($dir) $dir="dir";
             else $dir = "";
-            if ($secu) $secu="<i class='material-icons' title='Sécurité de surface'>pan_tool</i>";
+            if ($secu) $secu="secu";
             else $secu = "";
 
             $return_arr[] = array("PER_NUM" => $content['PER_NUM'],

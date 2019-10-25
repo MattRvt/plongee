@@ -1,10 +1,8 @@
 <br/>
-
-
+<i class='tooltipped material-icons' data-position='left' data-tooltip='I am a tooltip'>assignment</i>
 <a class="waves-effect waves-light btn modal-trigger" onclick="initModalAjoutPers(-1)">Ajouter Personne</a>
 
 <fieldset>
-    Plongeur<br>
     <div class="row">
         <div class="input-field col s3">
             <i class="material-icons prefix">search</i>
@@ -12,6 +10,7 @@
             <label for="search">Rechercher un plongeur</label>
         </div>
     </div>
+    Plongeur<br>
     <div class="container">
         <table id="userTable" border="1" >
             <thead>

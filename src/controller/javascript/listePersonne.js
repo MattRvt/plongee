@@ -53,8 +53,11 @@ function affichePlongeur(db) {
         var dir = output[i].DIR;
         var secu = output[i].SECU;
 
+        dir = dir.replace("dir","<i class='tooltipped material-icons' data-position='left' data-tooltip='Directeur'>assignment</i>");
+        secu = secu.replace("secu","<i class='material-icons tooltipped' data-position='left' data-tooltip='Sécurité de surface'>pan_tool</i>");
+
         var tr_str = "<tr>" +
-            "<td align='center'>" + dir + secu +"</td>" +
+            "<td align='center'> " + dir + secu +"</td>" +
             "<td align='center'>" + num + "</td>" +
             "<td align='center'>" + nom + "</td>" +
             "<td align='center'>" + prenom + "</td>" +
@@ -65,6 +68,7 @@ function affichePlongeur(db) {
             "</tr>";
 
         $("#userTable tbody").append(tr_str);
+        $('.tooltipped').tooltip();
 
     }
 }
