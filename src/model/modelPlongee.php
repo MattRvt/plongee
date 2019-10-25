@@ -164,7 +164,7 @@ class modelPlongee extends model
 
         $pdo = $this->getBdd();
 
-        $sql = "select * from plo_plongee where (PLO_DATE = '".$PLO_DATE."') and (upper(PLO_MAT_MID_SOI) = upper('".$PLO_MAT_MID_SOI."'))";
+        $sql = "select * from PLO_PLONGEE where (PLO_DATE = '".$PLO_DATE."') and (upper(PLO_MAT_MID_SOI) = upper('".$PLO_MAT_MID_SOI."'))";
         $req = $pdo->prepare($sql);
         $req->execute();
 
@@ -179,7 +179,7 @@ class modelPlongee extends model
     {
         $pdo = $this->getBdd();
 
-        $sql = "SELECT count(*) FROM `plo_palanquee` WHERE plo_date = '".$date."' and plo_mat_mid_soi = '".$matMidSoir."'";
+        $sql = "SELECT count(*) FROM `PLO_PALANQUEE` WHERE plo_date = '".$date."' and plo_mat_mid_soi = '".$matMidSoir."'";
 
         $req = $pdo->prepare($sql);
         $req->execute();

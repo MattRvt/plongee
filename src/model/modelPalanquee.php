@@ -62,7 +62,7 @@ class modelPalanquee extends model
     public function getDansPlongee($date,$moment){
         $pdo = $this->getBdd();
 
-        $sql = "select * from plo_palanquee where (PLO_DATE = '".$date."') and (upper(PLO_MAT_MID_SOI) = upper('".$moment."'))";
+        $sql = "select * from PLO_PALANQUEE where (PLO_DATE = '".$date."') and (upper(PLO_MAT_MID_SOI) = upper('".$moment."'))";
         $req = $pdo->prepare($sql);
         $req->execute();
 
@@ -76,7 +76,7 @@ class modelPalanquee extends model
     {
         $pdo = $this->getBdd();
 
-        $sql = "SELECT count(*) FROM `plo_concerner` WHERE plo_date = '".$date."' and plo_mat_mid_soi = '".$matMidSoir."' and pal_num = ".$palNum;
+        $sql = "SELECT count(*) FROM `PLO_CONCERNER` WHERE plo_date = '".$date."' and plo_mat_mid_soi = '".$matMidSoir."' and pal_num = ".$palNum;
 
         $req = $pdo->prepare($sql);
         $req->execute();

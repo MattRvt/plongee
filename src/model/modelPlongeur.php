@@ -56,7 +56,7 @@ class modelPlongeur extends model
         {
             $pdo = $this->getBdd();
 
-            $sql = "DELETE FROM `plo_plongeur` WHERE PER_NUM =" . $num;
+            $sql = "DELETE FROM `PLO_PLONGEUR` WHERE PER_NUM =" . $num;
 
             $req = $pdo->prepare($sql);
             $req->execute();
@@ -73,7 +73,7 @@ class modelPlongeur extends model
     {
         $pdo = $this->getBdd();
 
-        $sql = "SELECT * FROM `plo_plongeur` where per_num = ".$num." and per_num in 
+        $sql = "SELECT * FROM `PLO_PLONGEUR` where per_num = ".$num." and per_num in 
                 ( 
                     select per_num from plo_concerner
                 )";

@@ -22,7 +22,7 @@ class modelSecuSurface extends model
         if (empty($this->SecuSurfaceInPlongee($num))) {
             $pdo = $this->getBdd();
 
-            $sql = "DELETE FROM `plo_securite_de_surface` WHERE PER_NUM =" . $num;
+            $sql = "DELETE FROM `PLO_SECURITE_DE_SURFACE` WHERE PER_NUM =" . $num;
 
             $req = $pdo->prepare($sql);
             $req->execute();
@@ -37,7 +37,7 @@ class modelSecuSurface extends model
     {
         $pdo = $this->getBdd();
 
-        $sql = "SELECT * FROM `plo_securite_de_surface` where per_num = ".$num." and per_num in 
+        $sql = "SELECT * FROM `PLO_SECURITE_DE_SURFACE` where per_num = ".$num." and per_num in 
                 ( 
                     select per_num_secu from plo_plongee
                 )";

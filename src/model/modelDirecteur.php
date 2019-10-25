@@ -22,7 +22,7 @@ class modelDirecteur extends model
         if(empty($this->directeurInPlongee($num))) {
             $pdo = $this->getBdd();
 
-            $sql = "DELETE FROM `plo_directeur` WHERE PER_NUM =" . $num;
+            $sql = "DELETE FROM `PLO_DIRECTEUR` WHERE PER_NUM =" . $num;
 
             $req = $pdo->prepare($sql);
             $req->execute();
@@ -38,7 +38,7 @@ class modelDirecteur extends model
     {
         $pdo = $this->getBdd();
 
-        $sql = "SELECT * FROM `plo_directeur` where per_num = ".$num." and per_num in 
+        $sql = "SELECT * FROM `PLO_DIRECTEUR` where per_num = ".$num." and per_num in 
                 ( 
                     select per_num_dir from plo_plongee
                 )";

@@ -58,7 +58,7 @@ class modelPersonne extends model
     public function getSecuriteDeSurface()
     {
         $pdo = $this->getBdd();
-        $sql = "select * from plo_personne where PER_NUM in (
+        $sql = "select * from PLO_PERSONNE where PER_NUM in (
                      select PER_NUM from plo_securite_de_surface
                 )";
         $req = $pdo->prepare($sql);
@@ -71,7 +71,7 @@ class modelPersonne extends model
     public function getDirecteurDePlongee()
     {
         $pdo = $this->getBdd();
-        $sql = "select * from plo_personne where PER_NUM in (
+        $sql = "select * from PLO_PERSONNE where PER_NUM in (
                      select PER_NUM from plo_directeur
                 )";
         $req = $pdo->prepare($sql);
