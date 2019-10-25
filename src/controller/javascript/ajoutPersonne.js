@@ -9,7 +9,6 @@ var personne = {
     active: "",
 };
 
-
 function addPersonne() {
     personne.nom = document.getElementById('nomPlongeur').value;
     personne.prenom = document.getElementById('prenomPlongeur').value;
@@ -19,11 +18,23 @@ function addPersonne() {
     personne.secuSurface = document.getElementById('SecuriteSurface').checked;
     personne.active = document.getElementById("estActive").checked;
 
+    var valid = true;
+
     $("#erreur").html("");
 
+    if (verification(0,0) == 0){
+        $("#erreurN").html("Le nom ne correspond pas à un format adapté.");
+        valid = false;
+    }
+    if (verification(1,0) == 0){
+        $("#erreurP").html("Le prénom ne correspond pas à un format adapté.");
+        valid = false;
+    }
     if (personne.nom == "" || personne.prenom == "" || personne.dateCertif == "") {
-        $("#erreur").html("Une personne a obligatoirement un nom, un prenom et une date de certificat");
-    } else {
+        $("#erreur").html("Une personne a obligatoirement un nom, un prenom et une date de certificat.");
+        valid = false;
+    }
+    else if (valid) {
         if(personne.plongeur && document.getElementById('aptitude').value == "rien")
         {
             $("#erreur").html("Un plongeur a obligatoirement une aptitude");
@@ -41,10 +52,14 @@ function addPersonne() {
                 fichier = "NewPlongeur";
             }
 
+            personne.nom = verification(0,1);
+            personne.prenom = verification(1,1);
+
             var xhr = initXHR();
             xhr.open('POST', 'index.php?url='+fichier, false);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
+            var text = "personne=personne&nom=" + personne.nom + "&prenom=" + personne.prenom+"&dateCertif="+personne.dateCertif;
             if (personne.plongeur) {
                 personne.aptitude = document.getElementById('aptitude').value;
                 text = text + "&plongeur=plongeur&aptitude=" + personne.aptitude;
@@ -55,6 +70,7 @@ function addPersonne() {
             if (personne.secuSurface) {
                 text = text + "&securiteSurface=securiteSurface";
             }
+
 
             xhr.send(text);
             if(xhr.responseText!="")

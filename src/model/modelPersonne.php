@@ -44,8 +44,8 @@ class modelPersonne extends model
 
         $sql = "SELECT * from PLO_PERSONNE where per_num not in
                 (
-                    SELECT per_num from PLO_PLONGEUR
-                )";
+                    SELECT per_num from PLO_PLONGEUR ORDER BY per_num
+                ) ";
 
         $req = $pdo->prepare($sql);
         $req->execute();

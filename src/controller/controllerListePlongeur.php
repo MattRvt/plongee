@@ -14,29 +14,23 @@ class controllerListePlongeur
 
     public function listPlongeur()
     {
-        $text = "<table>";
-
         $reader = new modelPlongeur();
         $plongeur = $reader->selectPlongeurPersonne();
-
+        $return_arr = array();
         foreach($plongeur as $key=>$content) {
 
-            $text = $text.'<tr>';
+            $return_arr[] = array("PER_NUM" => $content['PER_NUM'],
+                "PER_NOM" => $content['PER_NOM'],
+                "PER_PRENOM" => $content['PER_PRENOM'],
+                "PER_ACTIVE" => $content['PER_ACTIVE'],
+                "PER_DATE_CERTIF_MED" => $content['PER_DATE_CERTIF_MED'],
+                "APT_CODE" => $content['APT_CODE']);
 
-            foreach ($content as $key2 => $content2) {
-                $text = $text.'<td>';
-                $text = $text.$key2 . ' => ' . $content2;
-                $text = $text.'</td>';
-            }
-            $text = $text.'<td><a class="waves-effect waves-light btn modal-trigger" onclick="initModalAjoutPers('.$content["PER_NUM"].')">Modifier</a>
+            //$text = $text.'<td><a class="waves-effect waves-light btn modal-trigger" onclick="initModalAjoutPers('.$content["PER_NUM"].')">Modifier</a>
 
-<!--<input type="button" value="Modifier Plongeur" onclick="window.location.href=\'ModifierPlongeur&param=' . $content["PER_NUM"] . '\'">--> </td>';
+//<input type="button" value="Modifier Plongeur" onclick="window.location.href=\'ModifierPlongeur&param=' . $content["PER_NUM"] . '\'"> </td>';
 
-            $text = $text.'</tr>';
         }
-
-        $text = $text."</table>";
-
-        echo $text;
+        echo json_encode($return_arr,JSON_UNESCAPED_UNICODE);
     }
 }

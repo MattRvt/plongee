@@ -10,13 +10,13 @@
             <div class="col s6">
                 <h6>Nom: </h6>
                 <label>
-                    <input type="text" id="nomPlongeur" name="nom" size="30" maxlength="50" placeholder="Nom">
+                    <input type="text" id="nomPlongeur" name="nom" size="30" maxlength="50" placeholder="Nom" onkeyup="validation(0)" onfocusout="unfocus('nom')" autocomplete='off'>
                 </label>
             </div>
             <div class="col s6">
                 <h6>Prenom: </h6>
                 <label>
-                    <input type="text" id="prenomPlongeur" name="prenom" size="30" maxlength="50" placeholder="Prénom">
+                    <input type="text" id="prenomPlongeur" name="prenom" size="30" maxlength="50" placeholder="Prénom" onkeyup="validation(1)" onfocusout="unfocus('prenom')" autocomplete='off'>
                 </label>
             </div>
         </div>
@@ -56,6 +56,8 @@
         <div id="selectAptitude" class="input-field col s12"></div>
 
         <input type="submit" name="EN" onclick="addPersonne()">
-        <div id="erreur"></div>
+        <div class="erreur" id="erreurN"></div>
+        <div class="erreur" id="erreurP"></div>
+        <div class="erreur" id="erreur"></div>
     </div>
 </div>
