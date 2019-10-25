@@ -9,7 +9,7 @@
 <fieldset>
     Plongeur<br>
     <div class="row">
-        <div class="col s3">Rechercher un plongeur : <input type="text" id="search" placeholder="Nom ou prénom du plongeur..."></div>
+        <div class="col s3">Rechercher un plongeur : <input type="text" id="search" placeholder="Nom ou prénom du plongeur..." autocomplete="off"></div>
     </div>
     <div class="container">
         <table id="userTable" border="1" >
@@ -26,7 +26,6 @@
             <tbody></tbody>
         </table>
     </div>
-    <div id="listPlongeur"></div>
     <br/><br/>
     Non plongeur
     <div id="listNonPlongeur"></div>
