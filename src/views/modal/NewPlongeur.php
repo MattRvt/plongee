@@ -10,13 +10,13 @@
             <div class="col s6">
                 <h6>Nom: </h6>
                 <label>
-                    <input type="text" id="nomPlongeur" name="nom" size="30" maxlength="50" placeholder="Nom" onkeyup="validation(0)" onfocusout="unfocus('nom')" autocomplete='off'>
+                    <input type="text" id="nomPlongeur" name="nom" size="30" maxlength="50" placeholder="Nom" onkeyup="validation(0)" onfocusout="unfocus('nomPlongeur')" autocomplete='off'>
                 </label>
             </div>
             <div class="col s6">
                 <h6>Prenom: </h6>
                 <label>
-                    <input type="text" id="prenomPlongeur" name="prenom" size="30" maxlength="50" placeholder="Prénom" onkeyup="validation(1)" onfocusout="unfocus('prenom')" autocomplete='off'>
+                    <input type="text" id="prenomPlongeur" name="prenom" size="30" maxlength="50" placeholder="Prénom" onkeyup="validation(1)" onfocusout="unfocus('prenomPlongeur')" autocomplete='off'>
                 </label>
             </div>
         </div>

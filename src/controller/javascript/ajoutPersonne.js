@@ -34,7 +34,7 @@ function addPersonne() {
         $("#erreur").html("Une personne a obligatoirement un nom, un prenom et une date de certificat.");
         valid = false;
     }
-    else if (valid) {
+    if (valid) {
         if(personne.plongeur && document.getElementById('aptitude').value == "rien")
         {
             $("#erreur").html("Un plongeur a obligatoirement une aptitude");

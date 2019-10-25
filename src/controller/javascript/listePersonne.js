@@ -50,7 +50,11 @@ function affichePlongeur(db) {
         var certif = output[i].PER_DATE_CERTIF_MED;
         var aptcode = output[i].APT_CODE;
 
+        var dir = output[i].DIR;
+        var secu = output[i].SECU;
+
         var tr_str = "<tr>" +
+            "<td align='center'>" + dir + secu +"</td>" +
             "<td align='center'>" + num + "</td>" +
             "<td align='center'>" + nom + "</td>" +
             "<td align='center'>" + prenom + "</td>" +

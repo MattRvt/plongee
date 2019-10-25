@@ -37,9 +37,9 @@ function itemType(type)
 
 function getType(type){
     if (type == 0)
-        id = "nom";
+        id = "nomPlongeur";
     else
-        id = "prenom";
+        id = "prenomPlongeur";
     return id;
 }
 
