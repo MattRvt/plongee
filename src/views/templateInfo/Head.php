@@ -8,7 +8,6 @@
 
 <!-- Javascript Projet -->
 <script src="controller/javascript/ajax.js"></script>
-<script src="controller/javascript/modifPersonne.js"></script>
 <script src="controller/javascript/ajoutPersonne.js"></script>
 <script src="controller/javascript/verification.js"></script>
 <script src="controller/javascript/modal.js"></script>
@@ -35,5 +34,9 @@
 
     $(document).ready(function(){
         $('.sidenav').sidenav();
+    });
+
+    $(document).ready(function(){
+        $('.tooltipped').tooltip();
     });
 </script>
