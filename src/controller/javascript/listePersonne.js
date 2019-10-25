@@ -29,7 +29,7 @@ function updatePlongeur()
                         "<td align='center'>" + actif + "</td>" +
                         "<td align='center'>" + certif + "</td>" +
                         "<td align='center'>" + aptcode + "</td>" +
-                        "<td align='center'> <input type='button' value='Modifier Plongeur' onclick=\"window.location.href='ModifierPlongeur&param=" + num + "'\"> </td>" +
+                        "<td align='center'> <a class='waves-effect waves-light btn modal-trigger' onclick='initModalAjoutPers("+num+")'>Modifier</a> </td>" +
                         "</tr>";
 
                     $("#userTable tbody").append(tr_str);
