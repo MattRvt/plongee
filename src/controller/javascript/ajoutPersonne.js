@@ -59,7 +59,6 @@ function addPersonne() {
             xhr.open('POST', 'index.php?url='+fichier, false);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-            var text = "personne=personne&nom=" + personne.nom + "&prenom=" + personne.prenom+"&dateCertif="+personne.dateCertif;
             if (personne.plongeur) {
                 personne.aptitude = document.getElementById('aptitude').value;
                 text = text + "&plongeur=plongeur&aptitude=" + personne.aptitude;
@@ -90,14 +89,6 @@ function addPersonne() {
             else
             {
                 alert("succes");
-                if(personne.plongeur)
-                {
-                    updatePlongeur();
-                }
-                else
-                {
-                    updateNonPlongeur();
-                }
 
                 document.getElementById('nomPlongeur').value = "";
                 document.getElementById('prenomPlongeur').value = "";
