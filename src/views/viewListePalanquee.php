@@ -22,7 +22,8 @@
                         echo $key2.' => '.$content2;
                         echo '</td>';
                     }
-                    echo '<td><input type="button" value="Modifier Palanquee" onclick="window.location.href=\'ModifierPalanquee&param='.$content["PAL_NUM"].'\'"> </td>';
+            echo "<td>Nombre de plongeurs => ".$this->controller->getNbPlongeur($content["PLO_DATE"], $content["PLO_MAT_MID_SOI"], $content["PAL_NUM"])["count(*)"]."</td>";
+            echo '<td><input type="button" value="Modifier Palanquee" onclick="window.location.href=\'ModifierPalanquee&param='.$content["PAL_NUM"].'\'"> </td>';
                
             echo '</tr>';
         }

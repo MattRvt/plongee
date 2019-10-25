@@ -44,5 +44,13 @@ class controllerListePalanquee  extends controller
         $palanquee = $reader->getAll();
         return $palanquee;
     }
+
+    public function getNbPlongeur($date, $matMidSoir, $palNum)
+    {
+        require_once('model/modelPalanquee.php');
+        $reader = new modelPalanquee();
+        $count = $reader->getNbPlongeur($date, $matMidSoir, $palNum);
+        return $count;
+    }
 }
 ?>
