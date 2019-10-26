@@ -40,7 +40,7 @@ class modelDirecteur extends model
 
         $sql = "SELECT * FROM `PLO_DIRECTEUR` where per_num = ".$num." and per_num in 
                 ( 
-                    select per_num_dir from plo_plongee
+                    select per_num_dir from PLO_PLONGEE
                 )";
 
         $req = $pdo->prepare($sql);
