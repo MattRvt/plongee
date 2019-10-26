@@ -9,11 +9,10 @@
 <!-- Javascript Projet -->
 <script src="controller/javascript/ajax.js"></script>
 <script src="controller/javascript/ajoutPersonne.js"></script>
+<script src="controller/javascript/ajoutPalanquee.js"></script>
 <script src="controller/javascript/verification.js"></script>
 <script src="controller/javascript/modal.js"></script>
 <script src="controller/javascript/listePersonne.js"></script>
-<script src="controller/javascript/ajoutPalanquee.js"></script>
-
 
 <!-- Css projet -->
 <link rel="stylesheet" href="views/Css/modal.css">
