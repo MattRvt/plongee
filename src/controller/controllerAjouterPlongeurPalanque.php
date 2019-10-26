@@ -21,10 +21,11 @@ class controllerAjouterPlongeurPalanque
 
         $text = "";
 
-        $text = $text."<div class='col s6'>
+        $text = $text."<div>
                             <h6>Plongeur ".$nb.":</h6>
-                                <label>
-                                     <input type='text' id='plongeur".$nb."' name='plongeur".$nb."' size='30' maxlength='50' placeholder='Nom' required>
+                                <label class='row'>
+                                     <input class='col s11' type='text' id='plongeur".$nb."' name='plongeur".$nb."' placeholder='Nom' required>
+                                     <div class='col s1' id='supprPlongeurPal".$nb."'></div>
                                  </label>
                         </div>";
 

@@ -22,7 +22,6 @@
         <div id="plongeurPalanquee3"></div>
         <div id="plongeurPalanquee4"></div>
         <div id="plongeurPalanquee5"></div>
-        <div class="erreur" id="erreurPalPlong"></div>
         <div class="row">
             <div id="supprPlongeurPal" class="left col s3"></div>
             <div id="addPlongeurPal" class="right col s2"></div>

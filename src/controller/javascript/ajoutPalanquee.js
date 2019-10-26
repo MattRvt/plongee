@@ -69,23 +69,37 @@ function addCasePlongeur()
     {
         $('#addPlongeurPal').html("");
     }
-    if(nb == 3)
-    {
-        $('#supprPlongeurPal').html("<a class='waves-effect waves-light btn modal-trigger red' onclick='supprCasePlongeur()'>Supprimer Plongeur</a>");
-    }
     nbCasePlongeur(nb);
+    if(nb >= 3)
+    {
+        for(var i=1; i<=nb; i++)
+        {
+            $('#supprPlongeurPal'+i).html("<a class='center' onclick='supprCasePlongeur("+i+")'><i class='small material-icons red-text'>clear</i></a>");
+        }
+    }
 }
 
-function supprCasePlongeur()
+function supprCasePlongeur(nbSuppr)
 {
-    var nb = document.getElementById('addPlongeurPal').value;
-    $("#plongeurPalanquee"+nb).html("");
-    document.getElementById('addPlongeurPal').value = --nb;
-    if(nb == 2)
+    var nbTot = document.getElementById('addPlongeurPal').value;
+
+    var n = nbSuppr;
+    for(n; n<nbTot; n++)
     {
-        $('#supprPlongeurPal').html("");
+        document.getElementById("plongeur"+n).value = document.getElementById("plongeur"+(n+1)).value;
     }
-    if(nb == 4)
+
+    $("#plongeurPalanquee"+nbTot).html("");
+    document.getElementById('addPlongeurPal').value = --nbTot;
+
+    if(nbTot == 2)
+    {
+        for(var i=1; i<=2; i++)
+        {
+            $('#supprPlongeurPal'+i).html("");
+        }
+    }
+    if(nbTot == 4)
     {
         $('#addPlongeurPal').html("<a class='waves-effect waves-light btn modal-trigger green' onclick='addCasePlongeur()'>Ajouter Plongeur</a>");
     }
