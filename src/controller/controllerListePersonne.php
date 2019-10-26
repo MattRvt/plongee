@@ -18,5 +18,6 @@ class controllerListePersonne
     {
         $this->_view = new View('ListePersonne');
         $this->_view->generate(array(), $this);
+        echo "<script type='text/javascript'>update()</script>";
     }
 }

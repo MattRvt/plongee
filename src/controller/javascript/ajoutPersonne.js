@@ -90,8 +90,7 @@ function addPersonne() {
             else
             {
                 alert("succes");
-                affichePlongeur(db_returnP,0);
-                affichePlongeur(db_returnNP,1);
+                update();
                 document.getElementById('nomPlongeur').value = "";
                 document.getElementById('prenomPlongeur').value = "";
                 document.getElementById('date').value = "";
