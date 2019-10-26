@@ -2,7 +2,7 @@
 <fieldset>
 
     <div class="fixed-action-btn">
-        <a class="waves-effect waves-light btn-large btn-floating modal-trigger" onclick="initModalAjoutPers(-1)">
+        <a class="waves-effect waves-light btn-large btn-floating modal-trigger pulse" onclick="initModalAjoutPers(-1)">
             <i class="large material-icons">add</i>
         </a>
     </div>
@@ -17,7 +17,7 @@
     </div>
     Plongeur<br>
     <div class="container">
-        <table id="tablePlongeur" border="1" >
+        <table class ="centered" id="tablePlongeur" border="1" >
         </table>
     </div>
 
@@ -25,7 +25,7 @@
     <hr/>
     Non plongeur
     <div class="container">
-        <table id="tableNonPlongeur" border="1" >
+        <table class ="centered" id="tableNonPlongeur" border="1" >
         </table>
     </div>
     <br/><br/>
