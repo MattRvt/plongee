@@ -20,6 +20,14 @@ class controllerNewPlongeur extends controller
             $this->prenom = $_POST["prenom"];
             $this->dateCertif = $_POST["dateCertif"];
             $this->active = $_POST["active"];
+            if($this->active == "true")
+            {
+                $this->active = 1;
+            }
+            else
+            {
+                $this->active = 0;
+            }
 
             if (!empty($_POST["personne"])) {
                 $this->addPersonne();
