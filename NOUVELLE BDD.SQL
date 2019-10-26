@@ -173,28 +173,28 @@ ALTER TABLE PLO_CONCERNER
   ADD FOREIGN KEY FK_PLO_CONCERNER_PLO_PLONGEUR (PER_NUM)
       REFERENCES PLO_PLONGEUR (PER_NUM) ;
 
-/*INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('B', 'Baptéme');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PPB', 'préparation plongeur Bronze');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PPA', 'préparation plongeur Argent');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PN1', 'préparation plongeur Niveau1');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PN2', 'préparation plongeur Niveau 2');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PN3', 'préparation plongeur Niveau 3');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PN4', 'préparation plongeur Niveau 4');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PE-6', 'plongeur encadré jusquau 6 m.');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PE-12', 'plongeur encadré jusquau 12 m.');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PE-20', 'plongeur encadré jusquau 20 m.');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PE-40', 'plongeur encadré jusquau 40 m.');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PA-20', 'plongeur autonome jusquau 20 m.');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PA-40', 'plongeur autonome jusquau 40 m.');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PA-60', 'plongeur autonome jusquau 60 m.');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E1', 'encadrant jusqu''au 6 m.');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E2', 'encadrant jusqu''au 40 m.');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E3', 'encadrant moniteur fédéral 1');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E4', 'encadrant moniteur fédéral 2');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('B', 'BaptÃ¨me');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PPB', 'PrÃ©paration plongeur Bronze');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PPA', 'PrÃ©paration plongeur Argent');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PN1', 'PrÃ©paration plongeur Niveau 1');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PN2', 'PrÃ©paration plongeur Niveau 2');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PN3', 'PrÃ©paration plongeur Niveau 3');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PN4', 'PrÃ©paration plongeur Niveau 4');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PE-6', 'Plongeur encadrÃ© jusquau 6 m.');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PE-12', 'Plongeur encadrÃ© jusquau 12 m.');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PE-20', 'Plongeur encadrÃ© jusquau 20 m.');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PE-40', 'Plongeur encadrÃ© jusquau 40 m.');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PA-20', 'Plongeur autonome jusquau 20 m.');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PA-40', 'Plongeur autonome jusquau 40 m.');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PA-60', 'Plongeur autonome jusquau 60 m.');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E1', 'Encadrant jusqu''au 6 m.');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E2', 'Encadrant jusqu''au 40 m.');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E3', 'Encadrant moniteur fÃ©dÃ©ral 1');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E4', 'Encadrant moniteur fÃ©dÃ©ral 2');
 
 insert into `PLO_PERSONNE`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (0,'AUDABRAM','Luc',1,STR_TO_DATE('5/9/2019','%d/%m/%Y'));
 insert into `PLO_PERSONNE`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (1,'RIVAT','Matthis',0,STR_TO_DATE('6/9/2019','%d/%m/%Y'));
-insert into `PLO_PERSONNE`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (2,'SIMONIN','Mélissande',0,STR_TO_DATE('7/9/2019','%d/%m/%Y'));
+insert into `PLO_PERSONNE`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (2,'SIMONIN','MÃ©lissande',0,STR_TO_DATE('7/9/2019','%d/%m/%Y'));
 insert into `PLO_PERSONNE`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (3,'CHAVAS','Nathan',1,STR_TO_DATE('7/9/2019','%d/%m/%Y'));
 insert into `PLO_PERSONNE`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (4,'GRIMARD','Roslyn',1,STR_TO_DATE('8/9/2019','%d/%m/%Y'));
 insert into `PLO_PERSONNE`(`per_num`, `per_nom`, `per_prenom`, `per_active`, `per_date_certif_med`) values (5,'BRISEBOIS','Christian',0,STR_TO_DATE('9/9/2019','%d/%m/%Y'));
@@ -310,4 +310,4 @@ INSERT INTO `PLO_CONCERNER`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`)
 INSERT INTO `PLO_CONCERNER`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('29/10/2019','%d/%m/%Y'),"M",10,3);
 INSERT INTO `PLO_CONCERNER`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('29/10/2019','%d/%m/%Y'),"M",10,5);
 INSERT INTO `PLO_CONCERNER`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('29/10/2019','%d/%m/%Y'),"M",10,4);
-INSERT INTO `PLO_CONCERNER`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('29/10/2019','%d/%m/%Y'),"M",10,0);*/
+INSERT INTO `PLO_CONCERNER`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (STR_TO_DATE('29/10/2019','%d/%m/%Y'),"M",10,0);

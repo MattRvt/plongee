@@ -1,4 +1,4 @@
-<div class="modal" id="newPalanqueeModal">
+<div class="genModal modal" id="newPalanqueeModal">
     <div class="modal-content">
         <legend><b>Créer une palanquée</b></legend>
         <br />

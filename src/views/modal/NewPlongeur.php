@@ -1,4 +1,4 @@
-<div class="modal" id="newPlongeurModal">
+<div class="genModal modal" id="newPlongeurModal">
     <div class="modal-content">
         <div >
             <a href="#" onclick="closeModal('newPlongeur')"><img src="views/image/icone_fermer.png" alt=""></a>
@@ -32,7 +32,7 @@
             <span>Non</span>
         </label>
 
-        <h6>Date du certificat médicale :</h6><input type="text" class="datepicker" id="date" autoClose="true">
+        <h6>Date du certificat médicale :</h6><input type="date" id="date">
 
         <h6>Fonction </h6>
 

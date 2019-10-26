@@ -40,6 +40,8 @@ function addPersonne() {
             $("#erreur").html("Un plongeur a obligatoirement une aptitude");
         }
         else {
+            personne.nom = verification(0,1);
+            personne.prenom = verification(1,1);
             var text = "personne=personne&nom=" + personne.nom + "&prenom=" + personne.prenom+"&dateCertif="+personne.dateCertif+"&active="+personne.active;
 
             if(document.getElementById("modfiAjout").value != -1)
@@ -52,8 +54,7 @@ function addPersonne() {
                 fichier = "NewPlongeur";
             }
 
-            personne.nom = verification(0,1);
-            personne.prenom = verification(1,1);
+
 
             var xhr = initXHR();
             xhr.open('POST', 'index.php?url='+fichier, false);
@@ -89,7 +90,8 @@ function addPersonne() {
             else
             {
                 alert("succes");
-
+                affichePlongeur(db_returnP,0);
+                affichePlongeur(db_returnNP,1);
                 document.getElementById('nomPlongeur').value = "";
                 document.getElementById('prenomPlongeur').value = "";
                 document.getElementById('date').value = "";
@@ -98,6 +100,7 @@ function addPersonne() {
                 document.getElementById('SecuriteSurface').checked = false;
                 $("#selectAptitude").html("");
                 closeModal("newPlongeur");
+
             }
         }
     }

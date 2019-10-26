@@ -34,6 +34,7 @@ $(document).ready(function () {
 })
 
 function affichePlongeur(db,type) {
+    alert("oui");
     var output = [];
     var match = $("#search").val().trim();
 
