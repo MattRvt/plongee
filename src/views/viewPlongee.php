@@ -50,7 +50,7 @@
     </fieldset>
     <br/><br>
 
-    <input type="button" value="Ajouter Palanquee" onclick="window.location.href='NewPalanquee'"><br/>
+    <a class="waves-effect waves-light btn modal-trigger" onclick="initAjoutPalanquee()">Ajouter Palanquee</a>
     <fieldset>
         <legend><b>enregistrer:</b></legend>
         <input type="submit" alue="enregistrer"><br/>
