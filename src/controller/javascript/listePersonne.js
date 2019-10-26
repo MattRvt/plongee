@@ -1,9 +1,5 @@
-var db_return = null;
-
-function initListPers()
-{
-    updateNonPlongeur();
-}
+var db_returnP = null;
+var db_returnNP = null;
 
 
 $(document).ready(function(){
@@ -11,23 +7,39 @@ $(document).ready(function(){
         url: 'ListePlongeur',
         type: 'get',
         dataType: 'JSON',
-        success: function(response){
-            db_return = response;
-            affichePlongeur(response);
+        success: function(response1){
+            db_returnP = response1;
+            affichePlongeur(response1,0);
+        }
+    });
+});
+
+$(document).ready(function(){
+    $.ajax({
+        url: 'ListeNonPlongeur',
+        type: 'get',
+        dataType: 'JSON',
+        success: function(response2){
+            db_returnNP = response2;
+            affichePlongeur(response2,1);
         }
     });
 });
 
 $(document).ready(function () {
     $("#search").keyup(function() {
-        affichePlongeur(db_return);
+        affichePlongeur(db_returnP,0);
+        affichePlongeur(db_returnNP,1);
     });
 })
 
-function affichePlongeur(db) {
+function affichePlongeur(db,type) {
     var output = [];
     var match = $("#search").val().trim();
-    $("#userTable").empty();
+
+    if (!type)  $("#tablePlongeur").empty();
+    else  $("#tableNonPlongeur").empty();
+
     if (match == '') {
         output = db;
     } else {
@@ -42,7 +54,8 @@ function affichePlongeur(db) {
 
     var len = output.length;
     if (len == 0){
-        $("#userTable").html("Aucun résultat n'a été trouvé");
+        if (!type) $("#tablePlongeur").html("Aucun résultat n'a été trouvé");
+        else $("#tableNonPlongeur").html("Aucun résultat n'a été trouvé");
     }
     else {
         var tr_str = " <thead><tr> " +
@@ -51,12 +64,13 @@ function affichePlongeur(db) {
             "<th width='20%'>Nom</th> " +
             "<th width='20%'>Prenom</th> " +
             "<th width='5%'>Actif</th> " +
-            "<th width='20%'>Certif</th> " +
-            "<th width='20%'>Apt-code</th> " +
-            "</tr> </thead> " +
-            "<tbody></tbody>";
+            "<th width='20%'>Certif</th> ";
+        if (!type) tr_str+="<th width='20%'>Apt-code</th> ";
+             tr_str+="</tr> </thead> " +
+                 "<tbody></tbody>";
 
-        $("#userTable").append(tr_str);
+        if (!type)   $("#tablePlongeur").append(tr_str);
+        else   $("#tableNonPlongeur").append(tr_str);
 
         for (var i = 0; i < len; i++) {
             var num = output[i].PER_NUM;
@@ -65,7 +79,7 @@ function affichePlongeur(db) {
 
             var actif = output[i].PER_ACTIVE;
             var certif = output[i].PER_DATE_CERTIF_MED;
-            var aptcode = output[i].APT_CODE;
+            if (!type) var aptcode = output[i].APT_CODE;
 
             var dir = output[i].DIR;
             var secu = output[i].SECU;
@@ -79,58 +93,14 @@ function affichePlongeur(db) {
                 "<td align='center'>" + nom + "</td>" +
                 "<td align='center'>" + prenom + "</td>" +
                 "<td align='center'>" + actif + "</td>" +
-                "<td align='center'>" + certif + "</td>" +
-                "<td align='center'>" + aptcode + "</td>" +
-                "<td align='center'> <a class='waves-effect waves-light btn modal-trigger' onclick='initModalAjoutPers(" + num + ")'>Modifier</a> </td>" +
+                "<td align='center'>" + certif + "</td>";
+                if (!type) tr_str+="<td align='center'>" + aptcode + "</td>";
+                tr_str+= "<td align='center'> <a class='waves-effect waves-light btn modal-trigger' onclick='initModalAjoutPers(" + num + ")'>Modifier</a> </td>" +
                 "</tr>";
 
-            $("#userTable tbody").append(tr_str);
+            if (!type)   $("#tablePlongeur tbody").append(tr_str);
+            else   $("#tableNonPlongeur tbody").append(tr_str);
         }
         $('.tooltipped').tooltip();
     }
 }
-
-function updateNonPlongeur()
-{
-    var xhr = initXHR();
-
-    xhr.open('POST', 'index.php?url=ListeNonPlongeur', false);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send();
-
-    $("#listNonPlongeur").html(xhr.responseText);
-}
-
-$(document).ready(function(){
-    $('input.autocomplete').autocomplete({
-        data: {
-            "Apple": null,
-            "Microsoft": null,
-            "Micro": null,
-            "Masib": null,
-            "Mrig": null,
-            "Mobyl": null,
-            "Meryretyl": null,
-            "Muytk": null,
-            "Moutyl": null,"Mobyl": null,
-            "Msertl": null,
-            "Mobynbbnl": null,
-            "Mobytyjl": null,
-            "Mobzeryl": null,
-            "Mobvbnyl": null,
-            "Mobthyl": null,
-            "Mobjjjyl": null,
-            "Mobdfgrjjjyl": null,
-            "Mobjutyujjyl": null,
-            "Mobjzertjjyl": null,
-            "Mobjjryhjyl": null,
-            "Mobjfdfjjyl": null,
-            "Mobjjjuyjjyl": null,
-
-
-
-            "amor": null,
-            "Google": 'https://placehold.it/250x250'
-        },
-    });
-});

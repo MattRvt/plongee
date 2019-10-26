@@ -14,27 +14,29 @@ class controllerListeNonPlongeur
 
     public function listNonPlongeur()
     {
-        $text = "<table>";
-
         $reader = new modelPersonne();
-        $nonPlongeur = $reader->getNonPlongeur();
+        $plongeur = $reader->getNonPlongeur();
+        $reader2 = new modelPersonne();
 
-        foreach ($nonPlongeur as $key => $content) {
+        $return_arr = array();
+        foreach($plongeur as $key=>$content) {
+            $dir = $reader2->isDirecteur($content['PER_NUM']);
+            $secu = $reader2->isSecuriteSurface($content['PER_NUM']);
 
-            $text = $text.'<tr>';
+            if ($dir) $dir="dir";
+            else $dir = "";
+            if ($secu) $secu="secu";
+            else $secu = "";
 
-            foreach ($content as $key2 => $content2) {
-                $text = $text.'<td>';
-                $text = $text.$key2 . ' => ' . $content2;
-                $text = $text.'</td>';
-            }
-            $text = $text.'<td> <input type="button" value="Modifier non Plongeur" onclick="window.location.href=\'ModifierPlongeur&param=' . $content["PER_NUM"] . '\'"> </td>';
+            $return_arr[] = array("PER_NUM" => $content['PER_NUM'],
+                "PER_NOM" => $content['PER_NOM'],
+                "PER_PRENOM" => $content['PER_PRENOM'],
+                "PER_ACTIVE" => $content['PER_ACTIVE'],
+                "PER_DATE_CERTIF_MED" => $content['PER_DATE_CERTIF_MED'],
+                "DIR" => $dir,
+                "SECU" => $secu);
 
-            $text = $text.'</tr>';
         }
-
-        $text = $text."</table>";
-
-        echo $text;
+        echo json_encode($return_arr,JSON_UNESCAPED_UNICODE);
     }
 }

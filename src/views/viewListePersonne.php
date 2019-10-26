@@ -17,15 +17,18 @@
     </div>
     Plongeur<br>
     <div class="container">
-        <table id="userTable" border="1" >
+        <table id="tablePlongeur" border="1" >
+        </table>
+    </div>
 
+    <br/><br/>
+    <hr/>
+    Non plongeur
+    <div class="container">
+        <table id="tableNonPlongeur" border="1" >
         </table>
     </div>
     <br/><br/>
-    Non plongeur
-    <div id="listNonPlongeur"></div>
-    <br/><br/>
 </fieldset>
-<script type='text/javascript'>initListPers();</script>
 
 
