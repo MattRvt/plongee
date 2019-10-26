@@ -187,8 +187,8 @@ INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PE-40', 'plongeu
 INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PA-20', 'plongeur autonome jusquau 20 m.');
 INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PA-40', 'plongeur autonome jusquau 40 m.');
 INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('PA-60', 'plongeur autonome jusquau 60 m.');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E1', 'encadrant jusquau 6 m.');
-INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E2', 'encadrant jusquau 40 m.');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E1', 'encadrant jusqu''au 6 m.');
+INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E2', 'encadrant jusqu''au 40 m.');
 INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E3', 'encadrant moniteur fédéral 1');
 INSERT INTO `PLO_APTITUDE` (`APT_CODE`,`APT_LIBELLE`)  VALUES ('E4', 'encadrant moniteur fédéral 2');
 
