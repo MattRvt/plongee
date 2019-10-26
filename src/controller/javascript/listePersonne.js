@@ -63,9 +63,9 @@ function affichePlongeur(db,type) {
             "<th width='5%'>S.no</th> " +
             "<th width='20%'>Nom</th> " +
             "<th width='20%'>Prenom</th> " +
-            "<th width='5%'>Actif</th> " +
-            "<th width='20%'>Certif</th> ";
-        if (!type) tr_str+="<th width='20%'>Apt-code</th> ";
+            "<th width='5%'>Actif</th> " ;
+        if (!type) tr_str+="<th width='20%'>Certif</th> <th width='20%'>Apt-code</th> ";
+        else  tr_str+="<th width='40%'>Certif</th>";
              tr_str+="</tr> </thead> " +
                  "<tbody></tbody>";
 
