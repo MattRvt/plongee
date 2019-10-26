@@ -32,7 +32,7 @@
             <span>Non</span>
         </label>
 
-        <h6>Date du certificat médicale :</h6><input type="date" id="date">
+        <h6>Date du certificat médicale :</h6><input type="text" class="datepicker" id="date" autoClose="true">
 
         <h6>Fonction </h6>
 
