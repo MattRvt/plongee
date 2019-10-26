@@ -1,30 +1,31 @@
 var db_returnP = null;
 var db_returnNP = null;
 
-
-$(document).ready(function(){
-    $.ajax({
-        url: 'ListePlongeur',
-        type: 'get',
-        dataType: 'JSON',
-        success: function(response1){
-            db_returnP = response1;
-            affichePlongeur(response1,0);
-        }
+function update(){
+    $(document).ready(function(){
+        $.ajax({
+            url: 'ListePlongeur',
+            type: 'get',
+            dataType: 'JSON',
+            success: function(response1){
+                db_returnP = response1;
+                affichePlongeur(response1,0);
+            }
+        });
     });
-});
 
-$(document).ready(function(){
-    $.ajax({
-        url: 'ListeNonPlongeur',
-        type: 'get',
-        dataType: 'JSON',
-        success: function(response2){
-            db_returnNP = response2;
-            affichePlongeur(response2,1);
-        }
+    $(document).ready(function(){
+        $.ajax({
+            url: 'ListeNonPlongeur',
+            type: 'get',
+            dataType: 'JSON',
+            success: function(response2){
+                db_returnNP = response2;
+                affichePlongeur(response2,1);
+            }
+        });
     });
-});
+}
 
 $(document).ready(function () {
     $("#search").keyup(function() {
