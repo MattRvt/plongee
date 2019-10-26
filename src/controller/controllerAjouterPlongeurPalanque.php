@@ -14,14 +14,15 @@ class controllerAjouterPlongeurPalanque
 
     function ajouterPlongeurPalanque()
     {
+        $reader = new modelPlongeur();
+        $plongeur = $reader->selectPlongeurPersonne();
 
-        //à réfléchire
         $text = "";
 
         $text = $text."<div class='col s6'>
                             <h6>Plongeur 1:</h6>
                                 <label>
-                                     <input type='texte' required><br />
+                                     <input type='text' id='plongeur1' name='plongeur1' size='30' maxlength='50' placeholder='Nom' required>
                                  </label>
                         </div>";
 
