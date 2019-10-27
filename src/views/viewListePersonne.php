@@ -15,7 +15,9 @@
             <label for="search">Rechercher une personne</label>
         </div>
     </div>
-    Plongeur<br>
+    <div class="row">
+        <h3 class="col s2">Plongeur</h3>
+    </div>
     <div class="container">
         <table class ="centered" id="tablePlongeur" border="1" >
         </table>
@@ -23,7 +25,9 @@
 
     <br/><br/>
     <hr/>
-    Non plongeur
+    <div class="row">
+        <h3 class="col s2">Non plongeur</h3>
+    </div>
     <div class="container">
         <table class ="centered" id="tableNonPlongeur" border="1" >
         </table>

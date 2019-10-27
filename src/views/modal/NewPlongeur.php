@@ -1,10 +1,13 @@
 <div class="genModal modal" id="newPlongeurModal">
     <div class="modal-content">
-        <div >
-            <a href="#" onclick="closeModal('newPlongeur')"><img src="views/image/icone_fermer.png" alt=""></a>
+        <div class="row">
+            <div class="col s3">
+                <legend><b id="modfiAjout"></b></legend>
+            </div>
+                <a href="#" onclick="closeModal('newPlongeur')" style="float: right">
+                    <i class="material-icons">close</i>
+                </a>
         </div>
-        <legend><b id="modfiAjout"></b></legend>
-        <br/>
 
         <div class="row">
             <div class="col s6">
