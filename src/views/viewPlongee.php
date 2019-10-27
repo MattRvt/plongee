@@ -50,7 +50,7 @@
     <fieldset>
         <legend><b>enregistrer:</b></legend>
         <input type="submit" value="enregistrer"><br/>
-        <input type="button" value="annuler" onclick="window.location.href='Accueil'"><br/>
+        <input type="button" value="annuler" onclick="window.location.href='ListePlongee'"><br/>
     </fieldset>
 </form>
 
