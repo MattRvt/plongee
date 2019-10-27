@@ -38,12 +38,9 @@
                value="<?php $this->controller->verifierRempli("etat"); ?>"
         ><br/>
     </fieldset>
-    <fieldset>
 
-        <div id="listePalanque"></div>
+    <div id="listePalanque"></div>
 
-        <br/><br/>
-    </fieldset>
     <br/><br>
 
     <div id="btnAjout"></div>

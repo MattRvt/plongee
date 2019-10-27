@@ -17,7 +17,7 @@ function initListePalanquee(datePal, matMidSoi)
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("date="+datePal+"&moment="+matMidSoi);
 
-    $("#listePalanque").html(xhr.responseText);
+    $("#listePalanque").html("<fieldset>"+xhr.responseText+"</fieldset>");
 }
 
 function initCompleterPal(datePal, matMidSoi, num)

@@ -20,7 +20,7 @@ class modelSite extends model
 
         $sql = "INSERT INTO `PLO_SITE`(`SIT_NUM`, `SIT_NOM`, `SIT_LOCALISATION`) VALUES ($num,'$SIT_NOM','$SIT_LOCALISATION')";
         $statement = $bdd->prepare($sql);
-        
+
         $statement->execute();
         $statement->closeCursor();
 

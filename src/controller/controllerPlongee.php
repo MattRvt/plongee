@@ -15,7 +15,6 @@ class controllerPlongee extends controller
 
     public function mentions()
     {
-
         $this->traitementFormulaire();
         $plongeeDefinit = (!empty($_GET["date"]) and !empty($_GET["matMidSoi"]));
         $this->_view = new View('Plongee');
@@ -72,6 +71,7 @@ class controllerPlongee extends controller
                 try {
                     $model->addOrModifyPlongee($data);
                     echo '<strong>Donées correctement enregistré.</strong>';
+                    echo "<script type='text/javascript'> window.location.href='Plongee&date=".$data['date']."&matMidSoi=".$data["moment"]."'</script>";
                 } catch (Exception $e) {
                     echo '<strong>Erreur d\'ecriture dans la base. <br></strong> ', $e->getMessage();
                 }
