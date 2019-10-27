@@ -27,6 +27,7 @@
             <input type='number' id='inpProfondeurReel' name='inpProfondeurReel'><br />
         </label>
 
-        <input type="submit" name="EN" value="Envoyer">
+        <div id="validerModifPal"></div>
+        <div class="erreur" id="erreurModifPal"></div>
     </div>
 </div>

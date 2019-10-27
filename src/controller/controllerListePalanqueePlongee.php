@@ -25,7 +25,7 @@ class controllerListePalanqueePlongee
                 $AJour = $reader->getDansPlongeeAJour($_POST['date'],$_POST['moment']);
                 if(!empty($pasAJour))
                 {
-                    $text = "<div class='center'>Palanquee Passé à mettre à jour :</div>";
+                    $text = $text."<div class='center'><h6>Palanquee Passé à mettre à jour :</h6></div>";
 
                     $text = $text."<table>";
                     if (!empty($pasAJour)) {
@@ -45,7 +45,7 @@ class controllerListePalanqueePlongee
                 }
                 if(!empty($AJour))
                 {
-                    $text = "<div class='center'>Palanquee Passé :</div>";
+                    $text = $text."<div class='center'><h6>Palanquee Passé :</h6></div>";
 
                     $text = $text."<table>";
                     if (!empty($AJour)) {
@@ -68,7 +68,7 @@ class controllerListePalanqueePlongee
             {
                 $palanquee = $reader->getDansPlongee($_POST['date'],$_POST['moment']);
 
-                $text = "<div class='center'>Palanquee Non Passé :</div>";
+                $text = $text."<div class='center'><h6>Palanquee Non Passé :</h6></div>";
 
                 $text = $text."<table>";
                 if (!empty($palanquee)) {
@@ -98,12 +98,14 @@ class controllerListePalanqueePlongee
 
     public function listeConstruction($text, $data)
     {
-        foreach ($data as $key2 => $content2)
+        foreach ($data as $key2 => $content)
         {
             $text = $text.'<td>';
-            $text = $text.$key2 . ' => ' . $content2;
+            $text = $text.$key2 . ' => ' . $content;
             $text = $text.'</td>';
         }
+        $reader = new modelPalanquee();
+        $text = $text.'<td>Nombre de palanquée => '.$reader->getNbPlongeur($data['PLO_DATE'],$data['PLO_MAT_MID_SOI'],$data['PAL_NUM'])["count(*)"].'</td>';
         return $text;
     }
 }

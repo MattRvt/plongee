@@ -46,7 +46,7 @@
     </fieldset>
     <br/><br>
 
-    <a class="waves-effect waves-light btn modal-trigger" onclick="initAjoutPalanquee()">Ajouter Palanquee</a>
+    <div id="btnAjout"></div>
     <fieldset>
         <legend><b>enregistrer:</b></legend>
         <input type="submit" value="enregistrer"><br/>

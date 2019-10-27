@@ -2,41 +2,54 @@
 
 class controllerModifierPalanquee  extends controller
 {
-    private $_view;
-
     public function __construct($url)
     {
         if (isset($url) && count($url) > 1) {
             throw new Exception('Page introuvable');
         } else {
-            $this->mentions();
+            $this->modifierPalanquee();
         }
     }
 
-    public function mentions()
+    public function modifierPalanquee()
     {
-        
-        $this->_view = new View('ModifierPalanquee');
-        $this->_view->generate(array(),$this);
-    }
+        $writer = new modelPalanquee();
 
-    public function selectPalanquee($numPalanquee){
-        require_once('model/modelPalanquee.php');
-        $reader = new modelPalanquee();
-        $palanquee = $reader->getPalanquee($numPalanquee);
-        return $palanquee;
-    }
+        $num = $_POST["num"];
+        $date = $_POST["date"];
+        $moment = $_POST["moment"];
 
-    /*public function selectSeance(){
-        require_once('model/modelPalanquee.php');
-        $reader = new modelPalanquee();
-        $req = $reader->getAll();
-        if (isset($_POST['PLO_MAT_MID_SOI'])) {
-            $defaultCode = $_POST['PLO_MAT_MID_SOI'];
-        } else {
-            $defaultCode = null;
+        $data = $writer->getPalanqueeByDateMomentNum($date,$moment,$num);
+
+        $profMax = $data["PAL_PROFONDEUR_MAX"];
+        $durMax = $data["PAL_DUREE_MAX"];
+
+        $heureImm = $_POST["heureImm"];
+        echo $heureImm;
+        if($heureImm == "")
+        {
+            $heureImm = null;
         }
-        echo $this->listeDeroulante($req, "PLO_MAT_MID_SOI", $defaultCode);
-    }*/
+
+        $HeureSor = $_POST["HeureSor"];
+        if($HeureSor == "")
+        {
+            $HeureSor = null;
+        }
+
+        $ProfondeurReel = $_POST["ProfondeurReel"];
+        if($ProfondeurReel == 0)
+        {
+            $ProfondeurReel = null;
+        }
+
+        $dureeFond = $_POST["dureeFond"];
+        if($dureeFond == 0)
+        {
+            $dureeFond = null;
+        }
+
+        $writer->modifyPalanquee($num, $date,$moment,$profMax,$durMax,$heureImm,$HeureSor,$ProfondeurReel,$dureeFond);
+    }
 }
 ?>
