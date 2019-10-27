@@ -1,3 +1,28 @@
+var db_plongeur;
+
+$(document).ready(function(){
+    $.ajax({
+        url: 'ListePlongeur',
+        type: 'get',
+        dataType: 'JSON',
+        success: function(response){
+            db_plongeur = response;
+        }
+    });
+});
+
+function autocomplete(){
+    var str = {};
+    db_plongeur.forEach((item) => {
+        str[item.PER_NUM+" | "+item.PER_NOM+" "+item.PER_PRENOM]= null;
+    });
+    $(document).ready(function(){
+        $('input.autocomplete').autocomplete({
+            data: str,
+        });
+    });
+}
+
 function resetModalModifAjoutPal()
 {
     $("#erreurPalPlong").html("");
@@ -98,6 +123,7 @@ function nbCasePlongeur(nb)
 
         $("#plongeurPalanquee"+depart).html(xhr.responseText);
     }
+    autocomplete();
 }
 
 function addCasePlongeur()
