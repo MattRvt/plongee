@@ -17,11 +17,13 @@ class controllerPlongee extends controller
     {
         $this->traitementFormulaire();
         $plongeeDefinit = (!empty($_GET["date"]) and !empty($_GET["matMidSoi"]));
+        if ($plongeeDefinit) {
+            $this->chargerPlongee();
+        }
         $this->_view = new View('Plongee');
         $this->_view->generate(array(), $this);
         if ($plongeeDefinit) {
-            $this->chargerPlongee();
-            echo "<script type='text/javascript'>initListePalanquee('".$_GET['date']."','".$_GET['matMidSoi']."')</script>";
+            echo "<script type='text/javascript'>initListePalanquee('" . $_GET['date'] . "','" . $_GET['matMidSoi'] . "')</script>";
         }
     }
 
@@ -167,17 +169,28 @@ class controllerPlongee extends controller
     public
     function chargerPlongee()
     {
+
         $_POST['date'] = $_GET["date"];
         $_POST['moment'] = $_GET["matMidSoi"];
         $reader = new modelPlongee();
         $plongee = $reader->getMatch($_GET["date"], $_GET["matMidSoi"])[0];
-        if (isset($plongee)){
+        if (isset($plongee)) {
 
-        if (array_key_exists("PER_NUM_DIR", $plongee)){$_POST['directeurDePlongee'] = $plongee["PER_NUM_DIR"];}
-        if (isset($plongee["SIT_NUM"])){$_POST['site'] = $plongee["SIT_NUM"];}
-        if (isset($plongee["PER_NUM_SECU"])){$_POST['securiteDeSurface'] = $plongee["PER_NUM_SECU"];}
-        if (isset($plongee["EMB_NUM"])){$_POST['embarcation'] = $plongee["EMB_NUM"];}
-        if (isset($plongee["PLO_ETAT"])){$_POST['etat'] = $plongee["PLO_ETAT"];}
+            if (array_key_exists("PER_NUM_DIR", $plongee)) {
+                $_POST['directeurDePlongee'] = $plongee["PER_NUM_DIR"];
+            }
+            if (isset($plongee["SIT_NUM"])) {
+                $_POST['site'] = $plongee["SIT_NUM"];
+            }
+            if (isset($plongee["PER_NUM_SECU"])) {
+                $_POST['securiteDeSurface'] = $plongee["PER_NUM_SECU"];
+            }
+            if (isset($plongee["EMB_NUM"])) {
+                $_POST['embarcation'] = $plongee["EMB_NUM"];
+            }
+            if (isset($plongee["PLO_ETAT"])) {
+                $_POST['etat'] = $plongee["PLO_ETAT"];
+            }
         }
     }
 
