@@ -23,40 +23,38 @@ class modelPalanquee extends model
         return $palanquee[0];
     }
 
-    public function addPalanque($PLO_DATE,$PLO_MATIN_APRESMIDI,$PAL_NUM,$PAL_PROFONDEUR_MAX,$PAL_DUREE_MAX,$PAL_HEURE_IMMERSION,$PAL_HEURE_SORTIE_EAU,$PAL_PROFONDEUR_REELLE,$PAL_DUREE_FOND)
+    public function addPalanque($PLO_DATE,$PLO_MATIN_APRESMIDI,$PAL_PROFONDEUR_MAX,$PAL_DUREE_MAX)
     {
-        $statement = $this->getBdd()->prepare("INSERT INTO `PLO_PALANQUEE`(`PLO_DATE`, `PLO_MATIN_APRESMIDI`, `PAL_NUM`, `PAL_PROFONDEUR_MAX`, `PAL_DUREE_MAX`, `PAL_HEURE_IMMERSION`, `PAL_HEURE_SORTIE_EAU`, `PAL_PROFONDEUR_REELLE`, `PAL_DUREE_FOND`) VALUES (:PLO_DATE,:PLO_MATIN_APRESMIDI,:PAL_NUM,:PAL_PROFONDEUR_MAX,:PAL_DUREE_MAX,:PAL_HEURE_IMMERSION,:PAL_HEURE_SORTIE_EAU,:PAL_PROFONDEUR_REELLE,:PAL_DUREE_FOND)");
+        $Bdd = $this->getBdd();
 
-        $statement->bindParam(':PLO_DATE', $PLO_DATE);
-        $statement->bindParam(':PLO_MATIN_APRESMIDI', $PLO_MATIN_APRESMIDI);
-        $statement->bindParam(':PAL_NUM', $PAL_NUM);
-        $statement->bindParam(':PAL_PROFONDEUR_MAX', $PAL_PROFONDEUR_MAX);
-        $statement->bindParam(':PAL_DUREE_MAX', $PAL_DUREE_MAX);
-        $statement->bindParam(':PAL_HEURE_IMMERSION', $PAL_HEURE_IMMERSION);
-        $statement->bindParam(':PAL_HEURE_SORTIE_EAU', $PAL_HEURE_SORTIE_EAU);
-        $statement->bindParam(':PAL_PROFONDEUR_REELLE', $PAL_PROFONDEUR_REELLE);
-        $statement->bindParam(':PAL_DUREE_FOND', $PAL_DUREE_FOND);
+        $sql = "select max(PAL_NUM) FROM PLO_PALANQUEE where PLO_DATE=\"".$PLO_DATE."\" and PLO_MAT_MID_SOI=\"".$PLO_MATIN_APRESMIDI."\"";
+        $statement = $Bdd->prepare($sql);
+        $statement->execute();
+        $num = $statement->fetch(PDO::FETCH_ASSOC);
+        $PAL_NUM = $num["max(PAL_NUM)"]+1;
 
-        $res = $statement->execute();
-        return $res;
+        if($PAL_NUM == "NULL")
+        {
+            $PAL_NUM = 1;
+        }
+
+        echo $PAL_NUM;
+
+        $sql = "INSERT INTO `plo_palanquee`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PAL_PROFONDEUR_MAX`, `PAL_DUREE_MAX`) VALUES (\"".$PLO_DATE."\",\"".$PLO_MATIN_APRESMIDI."\",\"".$PAL_NUM."\",\"".$PAL_PROFONDEUR_MAX."\",\"".$PAL_DUREE_MAX."\")";
+
+        $statement = $Bdd->prepare($sql);
+
+        $statement->execute();
+
+
+        $statement->closeCursor();
     }
 
     public function modifyPalanquee($PAL_NUM, $PLO_DATE, $PLO_MAT_MID_SOI, $PAL_PROFONDEUR_MAX, $PAL_DUREE_MAX, $PAL_HEURE_IMMERSION, $PAL_HEURE_SORTIE_EAU, $PAL_PROFONDEUR_REELLE, $PAL_DUREE_FOND)
     {
-        $statement = $this->getBdd()->prepare("UPDATE PLO_PALANQUEE SET PLO_DATE = :PLO_DATE, PLO_MAT_MID_SOI = :PLO_MAT_MID_SOI, PAL_PROFONDEUR_MAX = :PAL_PROFONDEUR_MAX, PAL_DUREE_MAX = :PAL_DUREE_MAX, PAL_HEURE_IMMERSION = :PAL_HEURE_IMMERSION, PAL_HEURE_SORTIE_EAU = :PAL_HEURE_SORTIE_EAU, PAL_PROFONDEUR_REELLE = :PAL_PROFONDEUR_REELLE, PAL_DUREE_FOND = :PAL_DUREE_FOND  WHERE PAL_NUM = :PAL_NUM");
+        $statement = $this->getBdd()->prepare("UPDATE PLO_PALANQUEE SET PAL_PROFONDEUR_MAX = ".$PAL_PROFONDEUR_MAX.", PAL_DUREE_MAX = ".$PAL_DUREE_MAX.", PAL_HEURE_IMMERSION = \"".$PAL_HEURE_IMMERSION."\", PAL_HEURE_SORTIE_EAU = \"".$PAL_HEURE_SORTIE_EAU."\", PAL_PROFONDEUR_REELLE = \"".$PAL_PROFONDEUR_REELLE."\", PAL_DUREE_FOND = \"".$PAL_DUREE_FOND."\"  WHERE PLO_DATE = \"".$PLO_DATE."\" and PLO_MAT_MID_SOI = \"".$PLO_MAT_MID_SOI."\" and PAL_NUM = ".$PAL_NUM);
 
-        $statement->bindParam(':PLO_DATE', $PLO_DATE);
-        $statement->bindParam(':PLO_MAT_MID_SOI', $PLO_MAT_MID_SOI);
-        $statement->bindParam(':PAL_PROFONDEUR_MAX', $PAL_PROFONDEUR_MAX);
-        $statement->bindParam(':PAL_DUREE_MAX', $PAL_DUREE_MAX);
-        $statement->bindParam(':PAL_HEURE_IMMERSION', $PAL_HEURE_IMMERSION);
-        $statement->bindParam(':PAL_HEURE_SORTIE_EAU', $PAL_HEURE_SORTIE_EAU);
-        $statement->bindParam(':PAL_PROFONDEUR_REELLE', $PAL_PROFONDEUR_REELLE);
-        $statement->bindParam(':PAL_DUREE_FOND', $PAL_DUREE_FOND);
-        $statement->bindParam(':PAL_NUM', $PAL_NUM);
-
-        $res = $statement->execute();
-        return $res;
+        $statement->execute();
     }
 
     public function getDansPlongee($date,$moment){

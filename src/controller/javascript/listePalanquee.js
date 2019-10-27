@@ -5,7 +5,7 @@ function initListePalanquee(datePal, matMidSoi)
 
     if(dateMtn < datePal)
     {
-        $("#btnAjout").html("<a class='waves-effect waves-light btn modal-trigger' onclick='initAjoutPalanquee()'>Ajouter Palanquee</a>");
+        $("#btnAjout").html("<a class='waves-effect waves-light btn modal-trigger' onclick='initAjoutPalanquee(\""+datePal+"\",\""+matMidSoi+"\")'>Ajouter Palanquee</a>");
     }
     else
     {
@@ -92,4 +92,3 @@ function supprimerPal(datePal, matMidSoi, num)
 
     initListePalanquee(datePal, matMidSoi);
 }
-
