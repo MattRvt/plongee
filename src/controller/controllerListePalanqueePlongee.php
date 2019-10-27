@@ -35,7 +35,7 @@ class controllerListePalanqueePlongee
                             $text = $this->listeConstruction($text,$content);
 
                             $text = $text.'<td>';
-                            $text = $text."<a class='waves-effect waves-light btn modal-trigger' onclick='initCompleterPal(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'>Compléter</a>";
+                            $text = $text."<a class='waves-effect waves-light btn modal-trigger orange' onclick='initCompleterPal(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'>Compléter</a>";
                             $text = $text.'</td>';
 
                             $text = $text.'</tr>';
