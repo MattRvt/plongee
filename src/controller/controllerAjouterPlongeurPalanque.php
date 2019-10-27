@@ -22,11 +22,11 @@ class controllerAjouterPlongeurPalanque
         $text = "";
 
         $text = $text."<div>
-                            <h6>Plongeur ".$nb.":</h6>
-                                <label class='row'>
-                                     <input class='col s11' type='text' id='plongeur".$nb."' name='plongeur".$nb."' placeholder='Nom' required>
+                                <div class='input-field row'>
+                                     <input class='col s11 autocomplete' type='text' id='plongeur".$nb."' name='plongeur".$nb."' placeholder='Nom' required>
+                                      <label for='plongeur".$nb."'>Plongeur ".$nb."</label>
                                      <div class='col s1' id='supprPlongeurPal".$nb."'></div>
-                                 </label>
+                                 </div>
                         </div>";
 
         echo $text;
