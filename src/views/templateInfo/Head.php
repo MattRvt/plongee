@@ -14,7 +14,7 @@
 <script src="controller/javascript/verification.js"></script>
 <script src="controller/javascript/modal.js"></script>
 <script src="controller/javascript/listePalanquee.js"></script>
-<script src="controller/javascript/listeSite.js"></script>
+<script src="controller/javascript/Site.js"></script>
 
 <!-- Css projet -->
 <link rel="stylesheet" href="views/Css/modal.css">

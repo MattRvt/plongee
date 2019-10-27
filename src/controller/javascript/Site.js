@@ -1,5 +1,5 @@
 var db_returnP = null;
-var db_returnNP = null;
+var numSite = null;
 
 function updateSite(){
     $(document).ready(function(){
@@ -63,10 +63,76 @@ function afficheSite(db,type) {
                 "<td align='center'>" + num + "</td>" +
                 "<td align='center'>" + nom + "</td>" +
                 "<td align='center'>" + localisation + "</td>";
-            tr_str+= "<td align='center'><a class='waves-effect waves-light btn modal-trigger' onclick=''>Modifier</a></td>" + "</tr>";
+            tr_str+= "<td align='center'><a class='waves-effect waves-light btn modal-trigger' onclick='initModifSite("+num+")'>Modifier</a></td>" + "</tr>";
 
             $("#tableSite tbody").append(tr_str);
         }
         $('.tooltipped').tooltip();
     }
+}
+
+function initAjoutSite()
+{
+    $(document).ready(function(){
+        $('#siteModal').modal('open');
+    });
+
+    $("#titreAjoutModifSite").html("Ajouter Site");
+    $("#numSite").html("");
+    document.getElementById("nomSite").value = "";
+    document.getElementById("localisationSite").value = "";
+}
+
+function initModifSite(num)
+{
+    $(document).ready(function(){
+        $('#siteModal').modal('open');
+    });
+
+    numSite = num;
+
+    $("#titreAjoutModifSite").html("Modifier Site");
+    $("#numSite").html("Numero : "+numSite);
+
+    var data = getDataSite();
+    document.getElementById("nomSite").value = data[0];
+    document.getElementById("localisationSite").value = data[1];
+}
+
+function getDataSite()
+{
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=GetDataSite', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("num="+numSite);
+
+    return xhr.responseText.split('|');
+}
+
+function traitementSite()
+{
+    var nom = document.getElementById("nomSite").value;
+    var localisation = document.getElementById("localisationSite").value;
+
+    if(numSite != null)
+    {
+        var controller = "UpdateDataSite";
+        var send = "&num="+numSite;
+    }
+    else
+    {
+        var controller = "AjoutDataSite";
+        var send = "";
+    }
+    var xhr = initXHR();
+
+    alert("test");
+    xhr.open('POST', 'index.php?url='+controller, false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("nom="+nom+"&localisation="+localisation+send);
+
+    closeModal("site");
+
+    updateSite();
 }

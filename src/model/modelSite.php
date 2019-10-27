@@ -8,16 +8,22 @@ class modelSite extends model
         return $this->selectAll('plo_site');
     }
 
-    public function addPersonne($SIT_NUM,$SIT_NOM,$SIT_LOCALISATION)
+    public function addSite($SIT_NOM,$SIT_LOCALISATION)
     {
-        $statement = $this->getBdd()->prepare("INSERT INTO `PLO_SITE`(`SIT_NUM`, `SIT_NOM`, `SIT_LOCALISATION`) VALUES (:SIT_NUM,:SIT_NOM,:SIT_LOCALISATION)");
+        $bdd = $this->getBdd();
 
-        $statement->bindParam(':SIT_NUM', $SIT_NUM);
-        $statement->bindParam(':SIT_NOM', $SIT_NOM);
-        $statement->bindParam(':SIT_LOCALISATION', $SIT_LOCALISATION);
+        $sql = "select max(SIT_NUM) FROM PLO_SITE";
+        $statement = $bdd->prepare($sql);
+        $statement->execute();
+        $num = $statement->fetch(PDO::FETCH_ASSOC);
+        $num = $num["max(SIT_NUM)"]+1;
 
-        $res = $statement->execute();
-        return $res;
+        $sql = "INSERT INTO `PLO_SITE`(`SIT_NUM`, `SIT_NOM`, `SIT_LOCALISATION`) VALUES ($num,'$SIT_NOM','$SIT_LOCALISATION')";
+        $statement = $bdd->prepare($sql);
+        
+        $statement->execute();
+        $statement->closeCursor();
+
     }
 
     public function getSiteByNum($num)
@@ -33,5 +39,17 @@ class modelSite extends model
         $req->closeCursor();
 
         return $data;
+    }
+
+    public function updateSite($num,$nom,$localisation)
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "UPDATE `PLO_SITE` SET `SIT_NOM`=\"".$nom."\",`SIT_LOCALISATION`=\"".$localisation."\" WHERE SIT_NUM =".$num;
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $req->closeCursor();
     }
 }
