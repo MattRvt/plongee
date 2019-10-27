@@ -175,7 +175,7 @@ function getDataPalanquee(datePal, matMidSoi, num)
 function getPlongeurPal(datePal, matMidSoi, num)
 {
     var xhr = initXHR();
-    xhr.open('POST', 'index.php?url=getPlongeurPal', false);
+    xhr.open('POST', 'index.php?url=GetPlongeurPal', false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("date="+datePal+"&moment="+matMidSoi+"&num="+num);
 
