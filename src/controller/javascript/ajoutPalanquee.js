@@ -1,13 +1,21 @@
-function initAjoutPalanquee()
+function resetModalModifAjoutPal()
 {
-    $("#erreurPalPlong").html("");
     $("#erreurPalPlong").html("");
     $('#addPlongeurPal').html("");
     $('#supprPlongeurPal').html("");
+    document.getElementById("profMax").value = "";
+    document.getElementById("DurMax").value = "";
+
     for(var i=1; i<=5; i++)
     {
         $("#plongeurPalanquee"+i).html("");
     }
+}
+
+function initAjoutPalanquee()
+{
+    $("#titreAjoutModifPal").html("Créer une palanquée");
+    resetModalModifAjoutPal();
 
     $(document).ready(function(){
         $('#newPalanqueeModal').modal('open');
@@ -18,6 +26,45 @@ function initAjoutPalanquee()
     document.getElementById('addPlongeurPal').value = 2;
     $('#addPlongeurPal').html("<a class='waves-effect waves-light btn modal-trigger green' onclick='addCasePlongeur()'>Ajouter Plongeur</a>");
 }
+
+function initModifPalanquee(datePal, matMidSoi, num)
+{
+    $(document).ready(function(){
+        $('#newPalanqueeModal').modal('open');
+    });
+
+    $("#titreAjoutModifPal").html("Modifier une palanquée");
+    resetModalModifAjoutPal();
+
+    var data = getDataPalanquee(datePal, matMidSoi, num);
+    document.getElementById("profMax").value = data[4];
+    document.getElementById("DurMax").value = data[5];
+
+    var nb = getNbPlongeur(datePal, matMidSoi, num);
+
+    document.getElementById('addPlongeurPal').value = nb;
+
+    nbCasePlongeur(nb);
+
+    if(nb < 5)
+    {
+        $('#addPlongeurPal').html("<a class='waves-effect waves-light btn modal-trigger green' onclick='addCasePlongeur()'>Ajouter Plongeur</a>");
+    }
+    if(nb > 2)
+    {
+        for(var i=1; i<=nb; i++)
+        {
+            $('#supprPlongeurPal'+i).html("<a class='center' onclick='supprCasePlongeur("+i+")'><i class='small material-icons red-text'>clear</i></a>");
+        }
+    }
+
+    var Plongeur = getPlongeurPal(datePal, matMidSoi, num);
+    for(var k = 1; k<=nb; k++)
+    {
+        document.getElementById('plongeur'+k).value = Plongeur[k];
+    }
+}
+
 
 function nbCasePlongeur(nb)
 {
@@ -103,4 +150,34 @@ function supprCasePlongeur(nbSuppr)
     {
         $('#addPlongeurPal').html("<a class='waves-effect waves-light btn modal-trigger green' onclick='addCasePlongeur()'>Ajouter Plongeur</a>");
     }
+}
+
+function getNbPlongeur(datePal, matMidSoi, num)
+{
+    var xhr = initXHR();
+    xhr.open('POST', 'index.php?url=GetNbPlongeur', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("date="+datePal+"&moment="+matMidSoi+"&num="+num);
+
+    return xhr.responseText;
+}
+
+function getDataPalanquee(datePal, matMidSoi, num)
+{
+    var xhr = initXHR();
+    xhr.open('POST', 'index.php?url=GetUnePalanquee', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("date="+datePal+"&moment="+matMidSoi+"&num="+num);
+
+    return xhr.responseText.split('|');
+}
+
+function getPlongeurPal(datePal, matMidSoi, num)
+{
+    var xhr = initXHR();
+    xhr.open('POST', 'index.php?url=getPlongeurPal', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("date="+datePal+"&moment="+matMidSoi+"&num="+num);
+
+    return xhr.responseText.split('|');
 }

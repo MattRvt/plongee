@@ -18,36 +18,11 @@ class controllerPlongee extends controller
 
         $this->traitementFormulaire();
         $plongeeDefinit = (!empty($_GET["date"]) and !empty($_GET["matMidSoi"]));
+        $this->_view = new View('Plongee');
+        $this->_view->generate(array(), $this);
         if ($plongeeDefinit) {
             $this->chargerPlongee();
-        }
-        $this->_view = new View('Plongee');
-
-        $this->_view->generate(array(), $this);
-
-
-    }
-
-    public function listePalanquees()
-    {
-        if (isset($_POST['moment']) && isset($_POST['date'])) {
-            $palanquee = $this->selectAll();
-        }else{
-            $palanquee=null;
-        }
-        if (!is_null($palanquee)) {
-
-            foreach ($palanquee as $key => $content) {
-                echo '<tr>';
-                foreach ($content as $key2 => $content2) {
-                    echo '<td>';
-                    echo $key2 . ' => ' . $content2;
-                    echo '</td>';
-                }
-                echo '</tr>';
-            }
-        }else{
-            echo 'la plongée selectionné est vide';
+            echo "<script type='text/javascript'>initListePalanquee('".$_GET['date']."','".$_GET['matMidSoi']."')</script>";
         }
     }
 

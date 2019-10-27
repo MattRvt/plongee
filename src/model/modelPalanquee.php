@@ -86,4 +86,79 @@ class modelPalanquee extends model
 
         return $data;
     }
+
+    public function getPlongeur($date, $matMidSoir, $palNum)
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "SELECT * FROM `PLO_CONCERNER` join `PLO_PLONGEUR` using(PER_NUM) join `PLO_PERSONNE` using(PER_NUM) WHERE plo_date = '".$date."' and plo_mat_mid_soi = '".$matMidSoir."' and pal_num = ".$palNum;
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
+    }
+
+    public function getDansPlongeePasAJour($date,$moment)
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "select * from PLO_PALANQUEE where (PLO_DATE = '".$date."') and (upper(PLO_MAT_MID_SOI) = upper('".$moment."'))
+                and (isnull(PAL_HEURE_IMMERSION) or isnull(PAL_HEURE_SORTIE_EAU) or isnull(PAL_PROFONDEUR_REELLE) or isnull(PAL_DUREE_FOND))";
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
+    }
+
+    public function getDansPlongeeAJour($date,$moment)
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "select * from PLO_PALANQUEE where (PLO_DATE = '".$date."') and (upper(PLO_MAT_MID_SOI) = upper('".$moment."'))
+                and !isnull(PAL_HEURE_IMMERSION) and !isnull(PAL_HEURE_SORTIE_EAU) and !isnull(PAL_PROFONDEUR_REELLE) and !isnull(PAL_DUREE_FOND)";
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
+    }
+
+    public function getPalanqueeByDateMomentNum($date,$moment,$num)
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "select * from PLO_PALANQUEE where (PLO_DATE = '".$date."') and (upper(PLO_MAT_MID_SOI) = upper('".$moment."')) and PAL_NUM = ".$num;
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
+    }
+
+    public function deletePalanquee($date,$moment,$num)
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "DELETE FROM `PLO_CONCERNER` WHERE (PLO_DATE = '".$date."') and (upper(PLO_MAT_MID_SOI) = upper('".$moment."')) and PAL_NUM = ".$num;
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $sql = "DELETE FROM `PLO_PALANQUEE` WHERE (PLO_DATE = '".$date."') and (upper(PLO_MAT_MID_SOI) = upper('".$moment."')) and PAL_NUM = ".$num;
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $req->closeCursor();
+    }
 }

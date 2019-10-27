@@ -40,12 +40,8 @@
     </fieldset>
     <fieldset>
 
-        Palanquée
-        <table>
-            <?php
-                $this->controller->listePalanquees();
-            ?>
-        </table>
+        <div id="listePalanque"></div>
+
         <br/><br/>
     </fieldset>
     <br/><br>
@@ -53,7 +49,7 @@
     <a class="waves-effect waves-light btn modal-trigger" onclick="initAjoutPalanquee()">Ajouter Palanquee</a>
     <fieldset>
         <legend><b>enregistrer:</b></legend>
-        <input type="submit" alue="enregistrer"><br/>
+        <input type="submit" value="enregistrer"><br/>
         <input type="button" value="annuler" onclick="window.location.href='Acceuil'"><br/>
     </fieldset>
 </form>
