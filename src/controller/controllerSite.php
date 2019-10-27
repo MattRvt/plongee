@@ -18,5 +18,6 @@ class controllerSite
     {
         $this->_view = new View('Site');
         $this->_view->generate(array(), $this);
+        echo "<script type='text/javascript'>updateSite()</script>";
     }
 }
