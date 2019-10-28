@@ -132,7 +132,7 @@ function traitementAptitude()
         xhr.open('POST', 'index.php?url=' + controller, false);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send("newCode=" + code + "&libelle=" + libelle);
-        
+
         closeModal("aptitude");
     } else {
         alert("l'aptitude ne peut pas etre enregistré");
