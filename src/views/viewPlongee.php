@@ -22,7 +22,7 @@
         </select>
 
         <br/>
-        <label for="effectifs">effectifs: </label> <--calc auto--> <br/>
+        <div id="effectifs"></div><br/>
         <label for="securiteDeSurface">securite de surface: </label> <br/>
         <select name="securiteDeSurface">
             <?php $this->controller->selectSecuriteDeSurface() ?>
