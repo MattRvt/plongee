@@ -1,5 +1,4 @@
-<br/>
-
+<?php $this->_title = "Liste des plongées" ?>
 <fieldset>
     <p>Date  ----- Matin/Aprés-Midi ----- Site ----- Embarcation  ----- Directeur ----- Securité De Surface</p>
 </fieldset><br/><br/>
