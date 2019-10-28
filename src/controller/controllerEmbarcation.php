@@ -1,6 +1,6 @@
 <?php
 
-class controllerEmbarcation extends controller
+class controllerEmbarcation
 {
     private $_view;
 
@@ -9,15 +9,14 @@ class controllerEmbarcation extends controller
         if (isset($url) && count($url) > 1) {
             throw new Exception('Page introuvable');
         } else {
-            $this->mentions();
+            $this->Embarcation();
         }
     }
 
-    public function mentions()
+    public function Embarcation()
     {
         $this->_view = new View('Embarcation');
         $this->_view->generate(array(), $this);
+        echo "<script type='text/javascript'>updateEmbarcation()</script>";
     }
 }
-
-?>

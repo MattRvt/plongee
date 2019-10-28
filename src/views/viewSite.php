@@ -1,3 +1,4 @@
+<?php $this->_title = "Site" ?>
 <fieldset>
 
     <div class="fixed-action-btn">
