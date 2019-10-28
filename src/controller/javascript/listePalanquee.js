@@ -9,7 +9,7 @@ function initListePalanquee(datePal, matMidSoi)
     {
         momentActuel = "M";
 
-        if(dateMtn <= datePal && momentActuel == matMidSoi)
+        if(dateMtn >= datePal && momentActuel == matMidSoi)
         {
             passerOuPas = false;
         }
@@ -26,11 +26,11 @@ function initListePalanquee(datePal, matMidSoi)
     {
         momentActuel = "A";
 
-        if(dateMtn <= datePal && momentActuel == matMidSoi)
+        if(dateMtn >= datePal && momentActuel == matMidSoi)
         {
             passerOuPas = false;
         }
-        else if(dateMtn <= datePal && matMidSoi == "M")
+        else if(dateMtn >= datePal && matMidSoi == "M")
         {
             passerOuPas = false;
         }
