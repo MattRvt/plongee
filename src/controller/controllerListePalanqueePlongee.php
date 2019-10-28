@@ -13,13 +13,14 @@ class controllerListePalanqueePlongee
 
     public function listePalanqueePlongee()
     {
-        if (isset($_POST['moment']) && isset($_POST['date']))
+        if (isset($_POST['moment']) && isset($_POST['date']) && isset($_POST['passerOuPas']))
         {
             $reader = new modelPalanquee();
             $text = "";
 
-            date_default_timezone_set('UTC');
-            if(date("Y-m-j")>$_POST['date'])
+            $passerOuPas = $_POST['passerOuPas'];
+
+            if($passerOuPas == "false")
             {
                 $pasAJour = $reader->getDansPlongeePasAJour($_POST['date'],$_POST['moment']);
                 $AJour = $reader->getDansPlongeeAJour($_POST['date'],$_POST['moment']);
