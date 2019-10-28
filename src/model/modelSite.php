@@ -57,7 +57,7 @@ class modelSite extends model
     public function nbUseSite($num)
     {
         $pdo = $this->getBdd();
-        $sql = "SELECT count(*) FROM `plo_site` join plo_plongee using(`SIT_NUM`) WHERE `SIT_NUM` = ".$num;
+        $sql = "SELECT count(*) FROM `PLO_SITE` join PLO_PLONGEE using(`SIT_NUM`) WHERE `SIT_NUM` = ".$num;
 
         $req = $pdo->prepare($sql);
         $req->execute();

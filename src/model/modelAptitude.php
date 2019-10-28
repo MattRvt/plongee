@@ -46,4 +46,18 @@ class modelAptitude extends model
 
         $req->closeCursor();
     }
+
+    public function nbUseAptitude($code)
+    {
+        $pdo = $this->getBdd();
+        $sql = "SELECT count(*) FROM `PLO_APTITUDE` join PLO_PLONGEUR using(`APT_CODE`) WHERE `APT_CODE` = \"".$code."\"";
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data["count(*)"];
+    }
 }

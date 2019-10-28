@@ -1,5 +1,6 @@
-var db_returnP = null;
+var db_returnSite = null;
 var numSite = null;
+var mapProxySite = new Map();
 
 function updateSite(){
     $(document).ready(function(){
@@ -8,8 +9,8 @@ function updateSite(){
             type: 'get',
             dataType: 'JSON',
             success: function(response1){
-                db_returnP = response1;
-                afficheSite(response1,0);
+                db_returnSite = response1;
+                afficheSite(response1);
             },
             error: function (response1) {
                 alert("erreur de chargement des données");
@@ -21,11 +22,11 @@ function updateSite(){
 
 $(document).ready(function () {
     $("#searchSite").keyup(function() {
-        afficheSite(db_returnP,0);
+        afficheSite(db_returnSite);
     });
 })
 
-function afficheSite(db,type) {
+function afficheSite(db) {
     var output = [];
     var match = $("#searchSite").val().trim();
 
@@ -69,7 +70,7 @@ function afficheSite(db,type) {
                 "<td align='center'>" + localisation + "</td>";
             tr_str+= "<td align='center'><a class='waves-effect waves-light btn modal-trigger' onclick='initModifSite("+num+")'>Modifier</a></td>";
 
-            if(!isUseSite(num))
+            if(!isUseSiteProxy(num))
             {
                 tr_str+= "<td align='center'><a onclick=''><i class='small material-icons red-text'>clear</i></a></td>"
             }
@@ -154,13 +155,22 @@ function traitementSite()
     updateSite();
 }
 
+function isUseSiteProxy(num)
+{
+    if(mapProxySite.get(num) == undefined)
+    {
+        mapProxySite.set(num, isUseSite(num));
+    }
+    return mapProxySite.get(num);
+}
+
 function isUseSite(num)
 {
     var xhr = initXHR();
 
-    xhr.open('POST', 'index.php?url=isUseSite', false);
+    xhr.open('POST', 'index.php?url=isUse', false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("num="+num);
+    xhr.send("num="+num+"&name=Site");
 
     return xhr.responseText;
 }

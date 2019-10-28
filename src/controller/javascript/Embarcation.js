@@ -1,5 +1,6 @@
-
+var mapProxyEmbarcation = new Map();
 var numEmbarcation = null;
+var db_returnEmbarcation  = null;
 
 function updateEmbarcation() {
 
@@ -9,8 +10,8 @@ function updateEmbarcation() {
             type: 'get',
             dataType: 'JSON',
             success: function (response1) {
-                //  db_returnP = response1;
-                afficheEmbarcation(response1, 0);
+                db_returnEmbarcation  = response1;
+                afficheEmbarcation(response1);
             },
             error: function (response1) {
                 alert("erreur de chargement des données");
@@ -20,8 +21,13 @@ function updateEmbarcation() {
     });
 }
 
+$(document).ready(function () {
+    $("#searchEmbarcation").keyup(function() {
+        afficheEmbarcation(db_returnEmbarcation );
+    });
+})
 
-function afficheEmbarcation(db, type) {
+function afficheEmbarcation(db) {
     var output = [];
     var match = $("#searchEmbarcation").val().trim();
 
@@ -61,7 +67,14 @@ function afficheEmbarcation(db, type) {
             tr_str = "<tr>" +
                 "<td align='center'>" + num + "</td>" +
                 "<td align='center'>" + nom + "</td>";
-            tr_str += "<td align='center'><a class='waves-effect waves-light btn modal-trigger' onclick='initModifEmbarcation(" + num + ")'>Modifier</a></td>" + "</tr>";
+            tr_str += "<td align='center'><a class='waves-effect waves-light btn modal-trigger' onclick='initModifEmbarcation(" + num + ")'>Modifier</a></td>";
+
+            if(!isUseEmbarcationProxy(num))
+            {
+                tr_str+= "<td align='center'><a onclick=''><i class='small material-icons red-text'>clear</i></a></td>"
+            }
+
+            tr_str += "</tr>";
 
             $("#tableEmbarcation tbody").append(tr_str);
         }
@@ -132,4 +145,24 @@ function traitementEmbarcation() {
     }
 
     updateEmbarcation();
+}
+
+function isUseEmbarcationProxy(num)
+{
+    if(mapProxyEmbarcation.get(num) == undefined)
+    {
+        mapProxyEmbarcation.set(num, isUseEmbarcation(num));
+    }
+    return mapProxyEmbarcation.get(num);
+}
+
+function isUseEmbarcation(num)
+{
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=isUse', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("num="+num+"&name=Embarcation");
+
+    return xhr.responseText;
 }

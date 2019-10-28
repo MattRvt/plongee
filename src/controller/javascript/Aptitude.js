@@ -1,5 +1,6 @@
-var db_returnP = null;
+var db_returnAptitude = null;
 var codeApt = null;
+var mapProxyAptitude = new Map();
 
 function updateAptitude(){
     $(document).ready(function(){
@@ -8,7 +9,7 @@ function updateAptitude(){
             type: 'get',
             dataType: 'JSON',
             success: function(response1){
-                db_returnP = response1;
+                db_returnAptitude = response1;
                 afficheAptitude(response1);
             }
         });
@@ -17,7 +18,7 @@ function updateAptitude(){
 
 $(document).ready(function () {
     $("#searchAptitude").keyup(function() {
-        afficheAptitude(db_returnP);
+        afficheAptitude(db_returnAptitude);
     });
 })
 
@@ -61,7 +62,15 @@ function afficheAptitude(db) {
                 "<td align='center'>" + code + "</td>" +
                 "<td align='center'>" + libelle + "</td>";
 
-            tr_str+= "<td align='center'><a class='waves-effect waves-light btn modal-trigger' onclick='initModifAptitude(\""+code+"\")'>Modifier</a></td>" + "</tr>";
+            tr_str+= "<td align='center'><a class='waves-effect waves-light btn modal-trigger' onclick='initModifAptitude(\""+code+"\")'>Modifier</a></td>";
+
+            if(!isUseAptitudeProxy(code))
+            {
+                tr_str+= "<td align='center'><a onclick=''><i class='small material-icons red-text'>clear</i></a></td>"
+            }
+
+            tr_str += "</tr>";
+
             $("#tableAptitude tbody").append(tr_str);
         }
         $('.tooltipped').tooltip();
@@ -139,4 +148,24 @@ function traitementAptitude()
     }
 
     updateAptitude();
+}
+
+function isUseAptitudeProxy(code)
+{
+    if(mapProxyAptitude.get(code) == undefined)
+    {
+        mapProxyAptitude.set(code, isUseAptitude(code));
+    }
+    return mapProxyAptitude.get(code);
+}
+
+function isUseAptitude(code)
+{
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=isUse', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("num="+code+"&name=Aptitude");
+
+    return xhr.responseText;
 }

@@ -52,4 +52,19 @@ class modelEmbarcation extends model
 
         $req->closeCursor();
     }
+
+    public function nbUseEmbarcation($num)
+    {
+        $pdo = $this->getBdd();
+        $sql = "SELECT count(*) FROM `PLO_EMBARCATION` join PLO_PLONGEE using(`EMB_NUM`) WHERE `EMB_NUM` = ".$num;
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+
+        return $data["count(*)"];
+    }
 }
