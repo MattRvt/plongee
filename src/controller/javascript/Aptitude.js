@@ -3,6 +3,10 @@ var codeApt = null;
 var mapProxyAptitude = new Map();
 
 function updateAptitude(){
+    if(mapProxyAptitude.size == 0)
+    {
+        isAllUseAptitude();
+    }
     $(document).ready(function(){
         $.ajax({
             url: 'ListeAptitude',
@@ -163,7 +167,7 @@ function isUseAptitude(code)
 {
     var xhr = initXHR();
 
-    xhr.open('POST', 'index.php?url=isUse', false);
+    xhr.open('POST', 'index.php?url=IsUse', false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("num="+code+"&name=Aptitude");
 
@@ -179,4 +183,26 @@ function supprimerAptitude(code)
     xhr.send("num="+code+"&name=Aptitude");
 
     updateAptitude();
+}
+
+function isAllUseAptitude()
+{
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=IsAllUse', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("name=Aptitude&param=APT_CODE");
+
+    var res = xhr.responseText.split('|');
+    var use = res[0].split(" ");
+    var nonUse = res[1].split(" ");
+
+    for (var i = 0; i < use.length; i++)
+    {
+        mapProxyAptitude.set(use[i], true);
+    }
+    for (var i = 0; i < nonUse.length; i++)
+    {
+        mapProxyAptitude.set(nonUse[i], false);
+    }
 }

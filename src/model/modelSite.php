@@ -76,4 +76,32 @@ class modelSite extends model
         $req->execute();
         $req->closeCursor();
     }
+
+    public function allUseSite()
+    {
+        $pdo = $this->getBdd();
+        $sql = "SELECT DISTINCT SIT_NUM FROM PLO_PLONGEE";
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
+    }
+
+    public function allNonUseSite()
+    {
+        $pdo = $this->getBdd();
+        $sql = "SELECT SIT_NUM FROM PLO_SITE where SIT_NUM not in ( SELECT SIT_NUM FROM PLO_PLONGEE)";
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
+    }
 }

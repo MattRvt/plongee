@@ -3,7 +3,10 @@ var numEmbarcation = null;
 var db_returnEmbarcation  = null;
 
 function updateEmbarcation() {
-
+    if(mapProxyEmbarcation.size == 0)
+    {
+        isAllUseEmbarcation();
+    }
     $(document).ready(function () {
         $.ajax({
             url: 'ListeEmbarcation',
@@ -160,7 +163,7 @@ function isUseEmbarcation(num)
 {
     var xhr = initXHR();
 
-    xhr.open('POST', 'index.php?url=isUse', false);
+    xhr.open('POST', 'index.php?url=IsUse', false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("num="+num+"&name=Embarcation");
 
@@ -176,4 +179,26 @@ function supprimerEmbarcation(num)
     xhr.send("num="+num+"&name=Embarcation");
 
     updateEmbarcation();
+}
+
+function isAllUseEmbarcation()
+{
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=IsAllUse', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("name=Embarcation&param=EMB_NUM");
+
+    var res = xhr.responseText.split('|');
+    var use = res[0].split(" ");
+    var nonUse = res[1].split(" ");
+
+    for (var i = 0; i < use.length; i++)
+    {
+        mapProxyEmbarcation.set(use[i], true);
+    }
+    for (var i = 0; i < nonUse.length; i++)
+    {
+        mapProxyEmbarcation.set(nonUse[i], false);
+    }
 }

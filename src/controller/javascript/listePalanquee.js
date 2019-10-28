@@ -1,5 +1,7 @@
 function initListePalanquee(datePal, matMidSoi)
 {
+    setNbPlongeur(datePal, matMidSoi);
+
     var date = new Date();
     var dateMtn = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
     var momentActuel;
@@ -142,4 +144,14 @@ function supprimerPal(datePal, matMidSoi, num)
     xhr.send("date="+datePal+"&moment="+matMidSoi+"&num="+num);
 
     initListePalanquee(datePal, matMidSoi);
+}
+
+function setNbPlongeur(datePal, matMidSoi)
+{
+    var xhr = initXHR();
+    xhr.open('POST', 'index.php?url=GetNbPlongeurPlongee', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("date="+datePal+"&moment="+matMidSoi);
+
+    $("#effectifs").html("effectifs: "+xhr.responseText);
 }
