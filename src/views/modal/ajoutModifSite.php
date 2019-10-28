@@ -7,14 +7,14 @@
         <div>
             <h6>Nom : </h6>
             <label>
-                <input type="text" id="nomSite" name="nomSite" min="0" required><br />
+                <input type="text" id="nomSite" name="nomSite" required><br />
             </label>
         </div>
 
         <div>
             <h6>Localisation : </h6>
             <label>
-                <input type="text" id="localisationSite" name="localisationSite" min="0" required><br />
+                <input type="text" id="localisationSite" name="localisationSite" required><br />
             </label>
         </div>
 

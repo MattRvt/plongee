@@ -1,5 +1,5 @@
 var db_returnP = null;
-var numSite = null;
+var codeApt = null;
 
 function updateAptitude(){
     $(document).ready(function(){
@@ -9,7 +9,7 @@ function updateAptitude(){
             dataType: 'JSON',
             success: function(response1){
                 db_returnP = response1;
-                afficheSite(response1);
+                afficheAptitude(response1);
             }
         });
     });
@@ -17,11 +17,11 @@ function updateAptitude(){
 
 $(document).ready(function () {
     $("#searchAptitude").keyup(function() {
-        afficheSite(db_returnP);
+        afficheAptitude(db_returnP);
     });
 })
 
-function afficheSite(db) {
+function afficheAptitude(db) {
     var output = [];
     var match = $("#searchAptitude").val().trim();
 
@@ -60,10 +60,83 @@ function afficheSite(db) {
             tr_str = "<tr>" +
                 "<td align='center'>" + code + "</td>" +
                 "<td align='center'>" + libelle + "</td>";
-            tr_str+= "<td align='center'><a class='waves-effect waves-light btn modal-trigger' onclick=''>Modifier</a></td>" + "</tr>";
 
+            tr_str+= "<td align='center'><a class='waves-effect waves-light btn modal-trigger' onclick='initModifAptitude(\""+code+"\")'>Modifier</a></td>" + "</tr>";
             $("#tableAptitude tbody").append(tr_str);
         }
         $('.tooltipped').tooltip();
     }
+}
+
+function initAjoutAptitude()
+{
+    $(document).ready(function(){
+        $('#aptitudeModal').modal('open');
+    });
+
+    codeApt = null;
+
+    $("#titreAjoutModifAptitude").html("Ajouter Aptitude");
+    $("#aptCode").html("<input type='text' id='codeAptitude' name='codeAptitude' required><br />");
+    document.getElementById("codeAptitude").value = "";
+    document.getElementById("libelleAptitude").value = "";
+}
+
+function initModifAptitude(code)
+{
+
+    $(document).ready(function(){
+        $('#aptitudeModal').modal('open');
+    });
+
+    codeApt = code;
+
+    $("#titreAjoutModifAptitude").html("modifier Aptitude");
+
+    var data = getDataAptitude();
+    $("#aptCode").html("Code : "+codeApt);
+    document.getElementById("libelleAptitude").value = data[1];
+}
+
+function getDataAptitude()
+{
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=GetDataAptitude', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("code="+codeApt);
+
+    return xhr.responseText.split('|');
+}
+
+function traitementAptitude()
+{
+    var libelle = document.getElementById("libelleAptitude").value;
+    var code = "";
+
+    if(codeApt != null)
+    {
+        var controller = "UpdateDataAptitude";
+        code = codeApt;
+    }
+    else
+    {
+        var controller = "AjoutDataAptitude";
+        code = document.getElementById("codeAptitude").value;
+    }
+
+    var xhr = initXHR();
+    var aptitudeValide = (code.length>0) && (libelle.length>0);
+    if (aptitudeValide) {
+        alert("Aptitude enregistré");
+        xhr.open('POST', 'index.php?url=' + controller, false);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("newCode=" + code + "&libelle=" + libelle);
+        
+        closeModal("aptitude");
+    } else {
+        alert("l'aptitude ne peut pas etre enregistré");
+    }
+
+    updateAptitude();
 }

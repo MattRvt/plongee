@@ -7,7 +7,7 @@
         <div>
             <h6>Nom : </h6>
             <label>
-                <input type="text" id="nomEmbarcation" name="nomEmbarcation" min="0" required><br />
+                <input type="text" id="nomEmbarcation" name="nomEmbarcation" required><br />
             </label>
         </div>
 

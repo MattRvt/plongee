@@ -18,4 +18,32 @@ class modelAptitude extends model
         $res = $statement->execute();
         return $res;
     }
+
+    public function getDataByCode($APT_CODE)
+    {
+        $bdd = $this->getBdd();
+
+        $sql = "SELECT * FROM `PLO_APTITUDE` WHERE APT_CODE=\"".$APT_CODE."\"";
+
+        $statement = $bdd->prepare($sql);
+
+        $statement->execute();
+
+        $data = $statement->fetch(PDO::FETCH_ASSOC);
+        $statement->closeCursor();
+
+        return $data;
+    }
+
+    public function updateAptitude($APT_CODE,$APT_LIBELLE)
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "UPDATE `PLO_APTITUDE` SET `APT_LIBELLE`=\"".$APT_LIBELLE."\" WHERE APT_CODE = \"".$APT_CODE."\"";
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $req->closeCursor();
+    }
 }
