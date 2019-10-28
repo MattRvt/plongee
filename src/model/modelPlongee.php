@@ -194,7 +194,7 @@ class modelPlongee extends model
     {
         $pdo = $this->getBdd();
 
-        $sql = "SELECT count(*) FROM `plo_concerner` WHERE plo_date = '".$date."' and plo_mat_mid_soi = '".$matMidSoir."'";
+        $sql = "SELECT count(*) FROM `PLO_CONCERNER` WHERE plo_date = '".$date."' and plo_mat_mid_soi = '".$matMidSoir."'";
 
         $req = $pdo->prepare($sql);
         $req->execute();
