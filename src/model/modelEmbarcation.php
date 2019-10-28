@@ -13,7 +13,7 @@ class modelEmbarcation extends model
     {
         $bdd = $this->getBdd();
 
-        $sql = "select max(EMB_NUM) FROM plo_embarcation";
+        $sql = "select max(EMB_NUM) FROM PLO_EMBARCATION";
         $statement = $bdd->prepare($sql);
         $statement->execute();
         $num = $statement->fetch(PDO::FETCH_ASSOC);
