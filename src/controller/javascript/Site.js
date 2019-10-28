@@ -67,7 +67,14 @@ function afficheSite(db,type) {
                 "<td align='center'>" + num + "</td>" +
                 "<td align='center'>" + nom + "</td>" +
                 "<td align='center'>" + localisation + "</td>";
-            tr_str+= "<td align='center'><a class='waves-effect waves-light btn modal-trigger' onclick='initModifSite("+num+")'>Modifier</a></td>" + "</tr>";
+            tr_str+= "<td align='center'><a class='waves-effect waves-light btn modal-trigger' onclick='initModifSite("+num+")'>Modifier</a></td>";
+
+            if(!isUseSite(num))
+            {
+                tr_str+= "<td align='center'><a onclick=''><i class='small material-icons red-text'>clear</i></a></td>"
+            }
+
+            tr_str+= "</tr>";
 
             $("#tableSite tbody").append(tr_str);
         }
@@ -145,4 +152,15 @@ function traitementSite()
     }
 
     updateSite();
+}
+
+function isUseSite(num)
+{
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=isUseSite', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("num="+num);
+
+    return xhr.responseText;
 }

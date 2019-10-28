@@ -53,4 +53,19 @@ class modelSite extends model
 
         $req->closeCursor();
     }
+
+    public function nbUseSite($num)
+    {
+        $pdo = $this->getBdd();
+        $sql = "SELECT count(*) FROM `plo_site` join plo_plongee using(`SIT_NUM`) WHERE `SIT_NUM` = ".$num;
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+
+        return $data["count(*)"];
+    }
 }
