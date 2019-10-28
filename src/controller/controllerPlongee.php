@@ -16,6 +16,7 @@ class controllerPlongee extends controller
     public function mentions()
     {
         $this->traitementFormulaire();
+
         $plongeeDefinit = (!empty($_GET["date"]) and !empty($_GET["matMidSoi"]));
         if ($plongeeDefinit) {
             $this->chargerPlongee();
@@ -57,9 +58,26 @@ class controllerPlongee extends controller
     public
     function traitementFormulaire()
     {
+        //verification de la validité des données
         if (!empty($_POST)) {
+
+            //verification de la date
+            $dateValide = !empty($_POST['date']);
+            if ($dateValide) {
+                $dateTestee = explode("-", $_POST['date']);
+                $dateActuelle = explode("-", $_GET['date']);
+                $dateValide = $dateTestee[0] >= $dateActuelle[0];
+                if ($dateValide) {
+                    $dateValide = $dateTestee[1] >= $dateActuelle[1];
+                    if ($dateValide) {
+                        $dateValide = $dateTestee[2] >= $dateActuelle[2];
+                    }
+                }
+
+            }
+
             $valide =
-                (!empty($_POST['date'])) &&
+                ($dateValide) &&
                 (!empty($_POST['moment'])) &&
                 (!empty($_POST['directeurDePlongee'])) &&
                 (!empty($_POST['site'])) &&
@@ -73,7 +91,7 @@ class controllerPlongee extends controller
                 try {
                     $model->addOrModifyPlongee($data);
                     echo '<strong>Donées correctement enregistré.</strong>';
-                    echo "<script type='text/javascript'> window.location.href='Plongee&date=".$data['date']."&matMidSoi=".$data["moment"]."'</script>";
+                    echo "<script type='text/javascript'> window.location.href='Plongee&date=" . $data['date'] . "&matMidSoi=" . $data["moment"] . "'</script>";
                 } catch (Exception $e) {
                     echo '<strong>Erreur d\'ecriture dans la base. <br></strong> ', $e->getMessage();
                 }
@@ -81,6 +99,7 @@ class controllerPlongee extends controller
                 echo '<strong>erreur, formulaire invalide</strong>';
             }
 
+        } else {
         }
     }
 
