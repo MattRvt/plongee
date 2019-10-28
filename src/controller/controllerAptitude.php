@@ -3,23 +3,21 @@
 
 class controllerAptitude
 {
+    private $_view;
+
     public function __construct($url)
     {
         if (isset($url) && count($url) > 1) {
             throw new Exception('Page introuvable');
         } else {
-            $this->aptitude();
+            $this->site();
         }
     }
 
-    function aptitude()
+    public function site()
     {
-        $num = $_POST["num"];
-
-        require_once('model/modelPlongeur.php');
-        $reader = new modelPlongeur();
-        $plongeur = $reader->get($num);
-
-        echo $plongeur["APT_CODE"];
+        $this->_view = new View('Aptitude');
+        $this->_view->generate(array(), $this);
+        echo "<script type='text/javascript'>updateAptitude()</script>";
     }
 }
