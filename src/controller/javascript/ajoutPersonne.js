@@ -241,7 +241,7 @@ function getAptitude(num)
 {
     var xhr = initXHR();
 
-    xhr.open('POST', 'index.php?url=Aptitude', false);
+    xhr.open('POST', 'index.php?url=GetAptitude', false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("num="+num);
 

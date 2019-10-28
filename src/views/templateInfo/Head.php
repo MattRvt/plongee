@@ -16,6 +16,7 @@
 <script src="controller/javascript/listePalanquee.js"></script>
 <script src="controller/javascript/Site.js"></script>
 <script src="controller/javascript/Embarcation.js"></script>
+<script src="controller/javascript/Aptitude.js"></script>
 
 <!-- Css projet -->
 <link rel="stylesheet" href="views/Css/modal.css">

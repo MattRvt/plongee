@@ -2,8 +2,59 @@ function initListePalanquee(datePal, matMidSoi)
 {
     var date = new Date();
     var dateMtn = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+    var momentActuel;
+    var passerOuPas;
 
-    if(dateMtn < datePal)
+    if(date.getHours()<12)
+    {
+        momentActuel = "M";
+
+        if(dateMtn <= datePal && momentActuel == matMidSoi)
+        {
+            passerOuPas = false;
+        }
+        else if(dateMtn <= datePal)
+        {
+            passerOuPas = true;
+        }
+        else
+        {
+            passerOuPas = false;
+        }
+    }
+    else if(date.getHours()<18)
+    {
+        momentActuel = "A";
+
+        if(dateMtn <= datePal && momentActuel == matMidSoi)
+        {
+            passerOuPas = false;
+        }
+        else if(dateMtn <= datePal && matMidSoi == "M")
+        {
+            passerOuPas = false;
+        }
+        else if(dateMtn <= datePal)
+        {
+            passerOuPas = true;
+        }
+        else
+        {
+            passerOuPas = false;
+        }
+    }
+    else
+    {
+        if(dateMtn <= datePal)
+        {
+            passerOuPas = true;
+        }
+        else
+        {
+            passerOuPas = false;
+        }
+    }
+    if(passerOuPas)
     {
         $("#btnAjout").html("<a class='waves-effect waves-light btn modal-trigger' onclick='initAjoutPalanquee(\""+datePal+"\",\""+matMidSoi+"\")'>Ajouter Palanquee</a>");
     }
@@ -15,7 +66,7 @@ function initListePalanquee(datePal, matMidSoi)
     var xhr = initXHR();
     xhr.open('POST', 'index.php?url=ListePalanqueePlongee', false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("date="+datePal+"&moment="+matMidSoi);
+    xhr.send("date="+datePal+"&moment="+matMidSoi+"&passerOuPas="+passerOuPas);
 
     $("#listePalanque").html("<fieldset>"+xhr.responseText+"</fieldset>");
 }

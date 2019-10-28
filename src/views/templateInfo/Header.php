@@ -12,6 +12,7 @@
             <li><a href="ListePlongee">Plongée</a></li>
             <li><a href="Site">Site</a></li>
             <li><a href="Embarcation">Embarcation</a></li>
+            <li><a href="Aptitude">Aptitude</a></li>
         </ul>
     </div>
 </nav>
@@ -19,4 +20,7 @@
 <ul class="sidenav" id="mobile-nav">
     <li><a href="ListePersonne">ListePersonne</a></li>
     <li><a href="ListePlongee">Liste plongee</a></li>
+    <li><a href="Site">Site</a></li>
+    <li><a href="Embarcation">Embarcation</a></li>
+    <li><a href="Aptitude">Aptitude</a></li>
 </ul>
