@@ -67,4 +67,13 @@ class modelEmbarcation extends model
 
         return $data["count(*)"];
     }
+
+    public function deleteEmbarcation($num)
+    {
+        $pdo = $this->getBdd();
+        $sql = "DELETE FROM `PLO_EMBARCATION` WHERE `EMB_NUM` = ".$num;
+        $req = $pdo->prepare($sql);
+        $req->execute();
+        $req->closeCursor();
+    }
 }

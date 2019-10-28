@@ -65,7 +65,15 @@ class modelSite extends model
         $data = $req->fetch(PDO::FETCH_ASSOC);
         $req->closeCursor();
 
-
         return $data["count(*)"];
+    }
+
+    public function deleteSite($num)
+    {
+        $pdo = $this->getBdd();
+        $sql = "DELETE FROM `PLO_SITE` WHERE `SIT_NUM` = ".$num;
+        $req = $pdo->prepare($sql);
+        $req->execute();
+        $req->closeCursor();
     }
 }

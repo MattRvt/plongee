@@ -71,7 +71,7 @@ function afficheEmbarcation(db) {
 
             if(!isUseEmbarcationProxy(num))
             {
-                tr_str+= "<td align='center'><a onclick=''><i class='small material-icons red-text'>clear</i></a></td>"
+                tr_str+= "<td align='center'><a onclick='supprimerEmbarcation("+num+")'><i class='small material-icons red-text'>clear</i></a></td>"
             }
 
             tr_str += "</tr>";
@@ -165,4 +165,15 @@ function isUseEmbarcation(num)
     xhr.send("num="+num+"&name=Embarcation");
 
     return xhr.responseText;
+}
+
+function supprimerEmbarcation(num)
+{
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=Supprimer', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("num="+num+"&name=Embarcation");
+
+    updateEmbarcation();
 }

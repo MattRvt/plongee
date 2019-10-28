@@ -60,4 +60,13 @@ class modelAptitude extends model
 
         return $data["count(*)"];
     }
+
+    public function deleteAptitude($code)
+    {
+        $pdo = $this->getBdd();
+        $sql = "DELETE FROM `PLO_APTITUDE` WHERE `APT_CODE` = \"".$code."\"";
+        $req = $pdo->prepare($sql);
+        $req->execute();
+        $req->closeCursor();
+    }
 }

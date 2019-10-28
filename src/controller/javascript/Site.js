@@ -72,7 +72,7 @@ function afficheSite(db) {
 
             if(!isUseSiteProxy(num))
             {
-                tr_str+= "<td align='center'><a onclick=''><i class='small material-icons red-text'>clear</i></a></td>"
+                tr_str+= "<td align='center'><a onclick='supprimerSite("+num+")'><i class='small material-icons red-text'>clear</i></a></td>"
             }
 
             tr_str+= "</tr>";
@@ -173,4 +173,15 @@ function isUseSite(num)
     xhr.send("num="+num+"&name=Site");
 
     return xhr.responseText;
+}
+
+function supprimerSite(num)
+{
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=Supprimer', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("num="+num+"&name=Site");
+
+    updateSite();
 }

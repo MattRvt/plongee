@@ -66,7 +66,7 @@ function afficheAptitude(db) {
 
             if(!isUseAptitudeProxy(code))
             {
-                tr_str+= "<td align='center'><a onclick=''><i class='small material-icons red-text'>clear</i></a></td>"
+                tr_str+= "<td align='center'><a onclick='supprimerAptitude(\""+code+"\")'><i class='small material-icons red-text'>clear</i></a></td>"
             }
 
             tr_str += "</tr>";
@@ -168,4 +168,15 @@ function isUseAptitude(code)
     xhr.send("num="+code+"&name=Aptitude");
 
     return xhr.responseText;
+}
+
+function supprimerAptitude(code)
+{
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=Supprimer', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("num="+code+"&name=Aptitude");
+
+    updateAptitude();
 }
