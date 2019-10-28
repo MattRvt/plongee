@@ -10,6 +10,10 @@ function updateSite(){
             success: function(response1){
                 db_returnP = response1;
                 afficheSite(response1,0);
+            },
+            error: function (response1) {
+                alert("erreur de chargement des données");
+                console.log(response1);
             }
         });
     });
@@ -19,7 +23,7 @@ $(document).ready(function () {
     $("#searchSite").keyup(function() {
         afficheSite(db_returnP,0);
     });
-});
+})
 
 function afficheSite(db,type) {
     var output = [];
@@ -135,7 +139,7 @@ function traitementSite()
 
         closeModal("site");
     } else {
-        alert("la site   ne peut pas etre enregistré");
+        alert("la site ne peut pas etre enregistré");
     }
 
     updateSite();

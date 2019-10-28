@@ -1,4 +1,4 @@
-
+<?php $this->_title = "Liste des persones" ?>
 <fieldset>
 
     <div class="fixed-action-btn">
