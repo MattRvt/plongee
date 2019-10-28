@@ -135,7 +135,7 @@ function traitementSite()
 
         closeModal("site");
     } else {
-        alert("la site ne peut pas etre enregistré");
+        alert("la site   ne peut pas etre enregistré");
     }
 
     updateSite();

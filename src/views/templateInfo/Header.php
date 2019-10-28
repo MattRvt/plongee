@@ -11,6 +11,7 @@
             <li><a href="ListePersonne">Personne</a></li>
             <li><a href="ListePlongee">Plongée</a></li>
             <li><a href="Site">Site</a></li>
+            <li><a href="Embarcation">Embarcation</a></li>
         </ul>
     </div>
 </nav>
