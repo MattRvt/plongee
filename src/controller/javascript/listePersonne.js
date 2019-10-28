@@ -85,6 +85,15 @@ function affichePlongeur(db,type) {
             var dir = output[i].DIR;
             var secu = output[i].SECU;
 
+            if(actif == 1)
+            {
+                actif = "<i class='tooltipped material-icons green-text'>check</i>";
+            }
+            else
+            {
+                actif = "<i class='small material-icons red-text'>clear</i>"
+            }
+
             dir = dir.replace("dir","<i class='tooltipped material-icons' data-position='left' data-tooltip='Directeur'>assignment</i>");
             secu = secu.replace("secu","<i class='material-icons tooltipped' data-position='left' data-tooltip='Sécurité de surface'>pan_tool</i>");
 
