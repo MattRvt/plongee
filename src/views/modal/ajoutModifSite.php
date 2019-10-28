@@ -1,4 +1,4 @@
-<div class="genModal modal" id="siteModal">
+<div class="aesModal modal" id="siteModal">
     <div class="modal-content">
         <legend><b id="titreAjoutModifSite"></b></legend>
 

@@ -1,4 +1,4 @@
-<div class="genModal modal" id="embarcationModal">
+<div class="aesModal modal" id="embarcationModal">
     <div class="modal-content">
         <legend><b id="titreAjoutModifEmbarcation"></b></legend>
 

@@ -4,6 +4,12 @@
     max-height:80%;
 }
 
+.aesModal{
+    width: 40%;
+    min-height: 45%;
+    max-height:40%;
+}
+
 .erreur {
     color: red;
 }

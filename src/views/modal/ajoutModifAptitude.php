@@ -1,4 +1,4 @@
-<div class="genModal modal" id="aptitudeModal">
+<div class="aesModal modal" id="aptitudeModal">
     <div class="modal-content">
         <legend><b id="titreAjoutModifAptitude"></b></legend>
 
