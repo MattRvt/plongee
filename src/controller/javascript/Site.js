@@ -3,6 +3,10 @@ var numSite = null;
 var mapProxySite = new Map();
 
 function updateSite(){
+    if(mapProxySite.size == 0)
+    {
+        isAllUseSite();
+    }
     $(document).ready(function(){
         $.ajax({
             url: 'ListeSite',
@@ -168,7 +172,7 @@ function isUseSite(num)
 {
     var xhr = initXHR();
 
-    xhr.open('POST', 'index.php?url=isUse', false);
+    xhr.open('POST', 'index.php?url=IsUse', false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("num="+num+"&name=Site");
 
@@ -184,4 +188,26 @@ function supprimerSite(num)
     xhr.send("num="+num+"&name=Site");
 
     updateSite();
+}
+
+function isAllUseSite()
+{
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=IsAllUse', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("name=Site&param=SIT_NUM");
+
+    var res = xhr.responseText.split('|');
+    var use = res[0].split(" ");
+    var nonUse = res[1].split(" ");
+
+    for (var i = 0; i < use.length; i++)
+    {
+        mapProxySite.set(use[i], true);
+    }
+    for (var i = 0; i < nonUse.length; i++)
+    {
+        mapProxySite.set(nonUse[i], false);
+    }
 }

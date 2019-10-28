@@ -76,4 +76,32 @@ class modelEmbarcation extends model
         $req->execute();
         $req->closeCursor();
     }
+
+    public function allUseEmbarcation()
+    {
+        $pdo = $this->getBdd();
+        $sql = "SELECT DISTINCT EMB_NUM FROM PLO_PLONGEE";
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
+    }
+
+    public function allNonUseEmbarcation()
+    {
+        $pdo = $this->getBdd();
+        $sql = "SELECT EMB_NUM FROM PLO_EMBARCATION where EMB_NUM not in ( SELECT EMB_NUM FROM PLO_PLONGEE)";
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
+    }
 }

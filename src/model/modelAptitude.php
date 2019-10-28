@@ -69,4 +69,32 @@ class modelAptitude extends model
         $req->execute();
         $req->closeCursor();
     }
+
+    public function allUseAptitude()
+    {
+        $pdo = $this->getBdd();
+        $sql = "SELECT DISTINCT APT_CODE FROM PLO_PLONGEUR";
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
+    }
+
+    public function allNonUseAptitude()
+    {
+        $pdo = $this->getBdd();
+        $sql = "SELECT APT_CODE FROM PLO_APTITUDE where APT_CODE not in ( SELECT APT_CODE FROM PLO_PLONGEUR)";
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
+    }
 }
