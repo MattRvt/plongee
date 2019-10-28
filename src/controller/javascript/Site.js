@@ -81,6 +81,8 @@ function initAjoutSite()
         $('#siteModal').modal('open');
     });
 
+    numSite = null;
+
     $("#titreAjoutModifSite").html("Ajouter Site");
     $("#numSite").html("");
     document.getElementById("nomSite").value = "";

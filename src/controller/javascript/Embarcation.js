@@ -74,6 +74,8 @@ function initAjoutEmbarcation() {
         $('#embarcationModal').modal('open');
     });
 
+    numEmbarcation = null;
+
     $("#titreAjoutModifEmbarcation").html("Ajouter Embarcation");
     $("#numEmbarcation").html("");
     document.getElementById("nomEmbarcation").value = "";
