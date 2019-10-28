@@ -26,7 +26,7 @@
         <div id="addPlongeurPal" class="right"></div>
 
         <br />
-        <input type="submit" name="EN" value="Envoyer">
+        <input type="submit" name="EN" value="Envoyer" onclick="traitementAjoutPal()">
         <div class="erreur" id="erreurPal"></div>
     </div>
 </div>

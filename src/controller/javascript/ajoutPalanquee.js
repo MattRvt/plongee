@@ -1,5 +1,11 @@
 var db_plongeur;
 
+var palanquee = {
+    datePal: null,
+    matMidSoi: null,
+    num: null,
+};
+
 $(document).ready(function(){
     $.ajax({
         url: 'ListePlongeur',
@@ -37,8 +43,12 @@ function resetModalModifAjoutPal()
     }
 }
 
-function initAjoutPalanquee()
+function initAjoutPalanquee(datePal, matMidSoi)
 {
+    palanquee.datePal = datePal;
+    palanquee.matMidSoi = matMidSoi;
+    palanquee.num = null;
+
     $("#titreAjoutModifPal").html("Créer une palanquée");
     resetModalModifAjoutPal();
 
@@ -54,6 +64,10 @@ function initAjoutPalanquee()
 
 function initModifPalanquee(datePal, matMidSoi, num)
 {
+    palanquee.datePal = datePal;
+    palanquee.matMidSoi = matMidSoi;
+    palanquee.num = num;
+
     $(document).ready(function(){
         $('#newPalanqueeModal').modal('open');
     });
@@ -61,11 +75,11 @@ function initModifPalanquee(datePal, matMidSoi, num)
     $("#titreAjoutModifPal").html("Modifier une palanquée");
     resetModalModifAjoutPal();
 
-    var data = getDataPalanquee(datePal, matMidSoi, num);
+    var data = getDataPalanquee();
     document.getElementById("profMax").value = data[4];
     document.getElementById("DurMax").value = data[5];
 
-    var nb = getNbPlongeur(datePal, matMidSoi, num);
+    var nb = getNbPlongeur();
 
     document.getElementById('addPlongeurPal').value = nb;
 
@@ -83,7 +97,7 @@ function initModifPalanquee(datePal, matMidSoi, num)
         }
     }
 
-    var Plongeur = getPlongeurPal(datePal, matMidSoi, num);
+    var Plongeur = getPlongeurPal();
     for(var k = 1; k<=nb; k++)
     {
         document.getElementById('plongeur'+k).value = Plongeur[k];
@@ -178,32 +192,74 @@ function supprCasePlongeur(nbSuppr)
     }
 }
 
-function getNbPlongeur(datePal, matMidSoi, num)
+function getNbPlongeur()
 {
     var xhr = initXHR();
     xhr.open('POST', 'index.php?url=GetNbPlongeur', false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("date="+datePal+"&moment="+matMidSoi+"&num="+num);
+    xhr.send("date="+palanquee.datePal+"&moment="+palanquee.matMidSoi+"&num="+palanquee.num);
 
     return xhr.responseText;
 }
 
-function getDataPalanquee(datePal, matMidSoi, num)
+function getDataPalanquee()
 {
     var xhr = initXHR();
     xhr.open('POST', 'index.php?url=GetUnePalanquee', false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("date="+datePal+"&moment="+matMidSoi+"&num="+num);
+    xhr.send("date="+palanquee.datePal+"&moment="+palanquee.matMidSoi+"&num="+palanquee.num);
 
     return xhr.responseText.split('|');
 }
 
-function getPlongeurPal(datePal, matMidSoi, num)
+function getPlongeurPal()
 {
     var xhr = initXHR();
     xhr.open('POST', 'index.php?url=GetPlongeurPal', false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("date="+datePal+"&moment="+matMidSoi+"&num="+num);
+    xhr.send("date="+palanquee.datePal+"&moment="+palanquee.matMidSoi+"&num="+palanquee.num);
 
     return xhr.responseText.split('|');
+}
+
+function traitementAjoutPal() {
+    if (palanquee.num != null) {
+        var fichier1 = "UpdatePalanquee";
+        var send1 = "&num="+palanquee.num;
+    } else{
+        var fichier1 = "AjoutPalanquee";
+        var send1 = "";
+    }
+
+    var profMax = document.getElementById("profMax").value;
+    var DurMax = document.getElementById("DurMax").value;
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url='+fichier1, false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("date="+palanquee.datePal+"&moment="+palanquee.matMidSoi+"&profMax="+profMax+"&durMax="+DurMax+send1);
+
+    palanquee.num = xhr.responseText;
+
+    initListePalanquee(palanquee.datePal, palanquee.matMidSoi);
+
+    var nbPlong = document.getElementById('addPlongeurPal').value;
+    var plong = "";
+
+    xhr.open('POST', 'index.php?url=DeletePlongeurPalanquee', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("date="+palanquee.datePal+"&moment="+palanquee.matMidSoi+"&palnum="+palanquee.num);
+
+    $("#erreurPal").html(xhr.responseText);
+
+    for(var k = 1; k<=nbPlong; k++)
+    {
+        plong = document.getElementById('plongeur'+k).value.split('|')[0];
+
+        xhr.open('POST', 'index.php?url=AjoutPlongeurPalanquee', false);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("date="+palanquee.datePal+"&moment="+palanquee.matMidSoi+"&palnum="+palanquee.num+"&pernum="+plong);
+    }
+
+    closeModal("newPalanquee");
 }
