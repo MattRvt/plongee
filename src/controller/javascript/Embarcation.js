@@ -111,12 +111,12 @@ function initModifEmbarcation(num) {
     document.getElementById("nomEmbarcation").value = data[0];
 }
 
-function getDataEmbarcation() {
+function getDataEmbarcation(num = numEmbarcation) {
     var xhr = initXHR();
 
     xhr.open('POST', 'index.php?url=GetDataEmbarcation', false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("num=" + numEmbarcation);
+    xhr.send("num=" + num);
 
     return xhr.responseText.split('|');
 }

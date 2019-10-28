@@ -117,13 +117,13 @@ function initModifSite(num)
     document.getElementById("localisationSite").value = data[1];
 }
 
-function getDataSite()
+function getDataSite(num = numSite)
 {
     var xhr = initXHR();
 
     xhr.open('POST', 'index.php?url=GetDataSite', false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("num="+numSite);
+    xhr.send("num="+num);
 
     return xhr.responseText.split('|');
 }
