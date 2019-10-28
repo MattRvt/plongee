@@ -19,6 +19,7 @@ class modelSite extends model
         $num = $num["max(SIT_NUM)"]+1;
 
         $sql = "INSERT INTO `PLO_SITE`(`SIT_NUM`, `SIT_NOM`, `SIT_LOCALISATION`) VALUES ($num,'$SIT_NOM','$SIT_LOCALISATION')";
+
         $statement = $bdd->prepare($sql);
 
         $statement->execute();

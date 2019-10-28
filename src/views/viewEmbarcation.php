@@ -19,6 +19,7 @@
     <br/>
     <div class="container">
         <table class ="centered" id="tableEmbarcation" border="1" >
+
         </table>
     </div>
 </fieldset>

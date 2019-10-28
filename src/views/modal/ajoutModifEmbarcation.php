@@ -11,13 +11,6 @@
             </label>
         </div>
 
-        <div>
-            <h6>Localisation : </h6>
-            <label>
-                <input type="text" id="localisationEmbarcation" name="localisationEmbarcation" min="0" required><br />
-            </label>
-        </div>
-
         <a class="waves-effect waves-light btn-large modal-trigger" onclick="traitementEmbarcation()">Valider</a>
 
         <div class="erreur" id="erreurEmbarcation"></div>

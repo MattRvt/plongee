@@ -19,7 +19,7 @@ $(document).ready(function () {
     $("#searchSite").keyup(function() {
         afficheSite(db_returnP,0);
     });
-})
+});
 
 function afficheSite(db,type) {
     var output = [];

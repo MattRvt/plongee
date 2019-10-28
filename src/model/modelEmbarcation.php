@@ -8,15 +8,22 @@ class modelEmbarcation extends model
         return $this->selectAll('plo_embarcation');
     }
 
-    public function addPersonne($EMB_NUM,$EMB_NOM)
+
+    public function addEmbarcation($EMB_NOM)
     {
-        $statement = $this->getBdd()->prepare("INSERT INTO `PLO_EMBARCATION`(`EMB_NUM`, `EMB_NOM`) VALUES (:EMB_NUM,:EMB_NOM)");
+        $bdd = $this->getBdd();
 
-        $statement->bindParam(':EMB_NUM', $EMB_NUM);
-        $statement->bindParam(':EMB_NOM', $EMB_NOM);
+        $sql = "select max(EMB_NUM) FROM plo_embarcation";
+        $statement = $bdd->prepare($sql);
+        $statement->execute();
+        $num = $statement->fetch(PDO::FETCH_ASSOC);
+        $num = $num["max(EMB_NUM)"]+1;
 
-        $res = $statement->execStatement();
-        return $res;
+        $sql = "INSERT INTO `PLO_EMBARCATION`(`EMB_NUM`, `EMB_NOM`) VALUES ($num,'$EMB_NOM')";
+        $statement = $bdd->prepare($sql);
+
+        $statement->execute();
+        $statement->closeCursor();
     }
 
     public function getEmbarcationByNum($num)
@@ -32,5 +39,17 @@ class modelEmbarcation extends model
         $req->closeCursor();
 
         return $data;
+    }
+
+    public function updateEmbarcation($num,$nom)
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "UPDATE `PLO_EMBARCATION` SET `EMB_NOM`=\"".$nom."\" WHERE EMB_NUM =".$num;
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $req->closeCursor();
     }
 }
