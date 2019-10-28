@@ -190,4 +190,19 @@ class modelPlongee extends model
         return $data;
     }
 
+    public function getNbPersonne($date,$matMidSoir)
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "SELECT count(*) FROM `plo_concerner` WHERE plo_date = '".$date."' and plo_mat_mid_soi = '".$matMidSoir."'";
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
+    }
+
 }
