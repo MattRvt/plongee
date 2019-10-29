@@ -1,7 +1,5 @@
 <?php $this->_title = "Embarcation" ?>
 
-<fieldset>
-
     <div class="fixed-action-btn">
         <a class="waves-effect waves-light btn-large btn-floating modal-trigger pulse" onclick="initAjoutEmbarcation()">
             <i class="large material-icons">add</i>
@@ -22,5 +20,3 @@
 
         </table>
     </div>
-</fieldset>
-

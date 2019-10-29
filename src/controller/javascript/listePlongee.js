@@ -15,7 +15,8 @@ function updatePlongee()
     $(document).ready(function(){
         $.ajax({
             url: 'ListPlongee',
-            type: 'get',
+            type: 'post',
+            data: 'archive='+$("#archive").is(':checked'),
             dataType: 'JSON',
             success: function(response1){
                 db_returnSite = response1;

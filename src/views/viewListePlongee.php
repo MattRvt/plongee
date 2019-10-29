@@ -1,5 +1,4 @@
 <?php $this->_title = "Liste des plongées" ?>
-<fieldset>
     <div class="fixed-action-btn">
         <a class="waves-effect waves-light btn-large btn-floating modal-trigger pulse" onclick="window.location.href='Plongee'">
             <i class="large material-icons">add</i>
@@ -13,10 +12,15 @@
             <input type="text" id="searchPlongee" autocomplete="off">
             <label for="searchPlongee">Rechercher un site</label>
         </div>
+        <div class="input-field col s3">
+            <label>
+                <input type="checkbox" id="archive" onclick="updatePlongee()"/>
+                <span>Archive</span>
+            </label>
+        </div>
     </div>
     <br/>
     <div class="container">
         <table class ="centered" id="tablePlongee" border="1" >
         </table>
     </div>
-</fieldset>

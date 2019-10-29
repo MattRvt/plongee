@@ -3,8 +3,7 @@
 
 <!-- materialize -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+<link type="text/css" rel="stylesheet" href="views/Css/materialize.min.css"  media="screen,projection"/>
 
 <!-- Javascript Projet -->
 <script src="controller/javascript/listePersonne.js"></script>

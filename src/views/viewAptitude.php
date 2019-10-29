@@ -1,6 +1,4 @@
 <?php $this->_title = "Aptitude" ?>
-<fieldset>
-
     <div class="fixed-action-btn">
         <a class="waves-effect waves-light btn-large btn-floating modal-trigger pulse" onclick="initAjoutAptitude()">
             <i class="large material-icons">add</i>
@@ -21,4 +19,3 @@
         <table class ="centered" id="tableAptitude" border="1" >
         </table>
     </div>
-</fieldset>

@@ -6,11 +6,16 @@
         <?php require_once 'views/templateInfo/Head.php'; ?>
     </head>
     <body>
-        <div id="header">
+        <header id="header">
             <?php require_once 'views/templateInfo/Header.php'; ?>
-        </div>
-        <?php echo $content ?>
-        <?php require_once 'views/templateInfo/Footer.php'; ?>
-        <?php require_once 'views/templateInfo/Modal.php'; ?>
+        </header>
+        <main>
+            <?php echo $content ?>
+            <?php require_once 'views/templateInfo/Modal.php'; ?>
+        </main>
+        <footer>
+            <?php require_once 'views/templateInfo/Footer.php'; ?>
+        </footer>
+        <script type="text/javascript" src="controller/javascript/materialize.min.js"></script>
     </body>
 </html>
