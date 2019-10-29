@@ -32,11 +32,7 @@
             <?php $this->controller->selectEmbarcation() ?>
         </select><br/>
 
-        <label for="etat">etat; </label>
-        <input type="text" name="etat" size="30"
-               maxlength="50"
-               value="<?php $this->controller->verifierRempli("etat"); ?>"
-        ><br/>
+        <h6>etat : <?php $this->controller->etat() ?></h6><br/>
     </fieldset>
 
     <div id="listePalanque"></div>
