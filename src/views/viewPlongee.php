@@ -37,7 +37,7 @@
         <h6>etat : <?php $this->controller->etat() ?></h6><br/>
     </fieldset>
 
-    <div id="listePalanque"></div>
+    <table class ="centered" id="listePalanque" border="1"></table>
 
     <br/><br>
 

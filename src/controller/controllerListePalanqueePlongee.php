@@ -15,8 +15,9 @@ class controllerListePalanqueePlongee
     {
         if (isset($_POST['moment']) && isset($_POST['date']) && isset($_POST['passerOuPas']))
         {
+            $return_arr = array();
+
             $reader = new modelPalanquee();
-            $text = "";
 
             $passerOuPas = $_POST['passerOuPas'];
 
@@ -24,104 +25,54 @@ class controllerListePalanqueePlongee
             {
                 $reader2 = new modelPlongee();
                 $etat = $reader2->getEtat($_POST['date'],$_POST['moment']);
-                $pasAJour = $reader->getDansPlongeePasAJour($_POST['date'],$_POST['moment']);
-                $AJour = $reader->getDansPlongeeAJour($_POST['date'],$_POST['moment']);
-                if(!empty($pasAJour))
+                $palanquee = $reader->getDansPlongee($_POST['date'],$_POST['moment']);
+
+                foreach($palanquee as $key=>$content)
                 {
-                    $text = $text."<div class='center'><h6>Palanquee Passé à mettre à jour :</h6></div>";
-
-                    $text = $text."<table>";
-                    if (!empty($pasAJour)) {
-                        foreach ($pasAJour as $key => $content)
+                    if($etat != "Dépassée") {
+                        if($content["PAL_HEURE_IMMERSION"] == "" || $content["PAL_HEURE_SORTIE_EAU"] == "" || $content["PAL_PROFONDEUR_REELLE"] == "" || $content["PAL_DUREE_FOND"] == "")
                         {
-                            $text = $text.'<tr>';
-                            $text = $this->listeConstruction($text,$content);
-
-                            $text = $text.'<td>';
-                            if($etat != "Dépassée")
-                            {
-                                $text = $text."<a class='waves-effect waves-light btn modal-trigger orange' onclick='initCompleterPal(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'>Compléter</a>";
-                            }
-                            else
-                            {
-                                $text = $text."<a class='waves-effect waves-light modal-trigger' onclick='initInfoPal(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'><i class='material-icons black-text' >remove_red_eye</i></a>";
-                            }
-                            $text = $text.'</td>';
-
-                            $text = $text.'</tr>';
+                            $btn = "<a class='waves-effect waves-light btn modal-trigger orange' onclick='initCompleterPal(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'>Compléter</a>";
+                        }
+                        else {
+                            $btn = "<a class='waves-effect waves-light btn modal-trigger' onclick='initCompleterPal(\"" . $content['PLO_DATE'] . "\",\"" . $content['PLO_MAT_MID_SOI'] . "\"," . $content['PAL_NUM'] . ")'>Modifier</a>";
                         }
                     }
-                    $text = $text."</table>";
-                }
-                if(!empty($AJour))
-                {
-                    $text = $text."<div class='center'><h6>Palanquee Passé :</h6></div>";
-
-                    $text = $text."<table>";
-                    if (!empty($AJour)) {
-                        foreach ($AJour as $key => $content)
-                        {
-                            $text = $text.'<tr>';
-                            $text = $this->listeConstruction($text,$content);
-
-                            $text = $text.'<td>';
-                            if($etat != "Dépassée") {
-                                $text = $text . "<a class='waves-effect waves-light btn modal-trigger' onclick='initCompleterPal(\"" . $content['PLO_DATE'] . "\",\"" . $content['PLO_MAT_MID_SOI'] . "\"," . $content['PAL_NUM'] . ")'>Modifier</a>";
-                            }
-                            else
-                            {
-                                $text = $text."<a class='waves-effect waves-light modal-trigger' onclick='initInfoPal(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'><i class='material-icons black-text' >remove_red_eye</i></a>";
-                            }
-                            $text = $text.'</td>';
-
-                            $text = $text.'</tr>';
-                        }
+                    else {
+                        $btn = "<a class='waves-effect waves-light modal-trigger' onclick='initInfoPal(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'><i class='material-icons black-text' >remove_red_eye</i></a>";
                     }
-                    $text = $text."</table>";
+
+                    $return_arr[] = array(
+                        "PAL_NUM" => $content['PAL_NUM'],
+                        "PAL_PROFONDEUR_MAX" => $content['PAL_PROFONDEUR_MAX'],
+                        "PAL_DUREE_MAX" => $content['PAL_DUREE_MAX'],
+                        "PAL_HEURE_IMMERSION" => $content['PAL_HEURE_IMMERSION'],
+                        "PAL_HEURE_SORTIE_EAU" => $content['PAL_HEURE_SORTIE_EAU'],
+                        "PAL_PROFONDEUR_REELLE" => $content['PAL_PROFONDEUR_REELLE'],
+                        "PAL_DUREE_FOND" => $content['PAL_DUREE_FOND'],
+                        "nbPlongeur" => $reader->getNbPlongeur($content['PLO_DATE'],$content['PLO_MAT_MID_SOI'],$content['PAL_NUM'])["count(*)"],
+                        "btn" => "<td>".$btn."</td>");
                 }
             }
             else
             {
                 $palanquee = $reader->getDansPlongee($_POST['date'],$_POST['moment']);
 
-                $text = $text."<div class='center'><h6>Palanquee Non Passé :</h6></div>";
+                foreach($palanquee as $key=>$content)
+                {
+                    $btn1 = "<a class='waves-effect waves-light btn modal-trigger' onclick='initModifPalanquee(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'>Modifier</a>";
+                    $btn2 = "<a class='center' onclick='supprimerPal(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'><i class='small material-icons red-text'>clear</i></a>";
 
-                $text = $text."<table>";
-                if (!empty($palanquee)) {
-                    foreach ($palanquee as $key => $content)
-                    {
-                        $text = $text.'<tr>';
-
-                        $text = $this->listeConstruction($text,$content);
-
-                        $text = $text.'<td>';
-                        $text = $text."<a class='waves-effect waves-light btn modal-trigger' onclick='initModifPalanquee(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'>Modifier</a>";
-                        $text = $text.'</td>';
-
-                        $text = $text.'<td>';
-                        $text = $text."<a class='center' onclick='supprimerPal(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'><i class='small material-icons red-text'>clear</i></a>";
-                        $text = $text.'</td>';
-
-                        $text = $text.'</tr>';
-
-                    }
+                    $return_arr[] = array(
+                        "PAL_NUM" => $content['PAL_NUM'],
+                        "PAL_PROFONDEUR_MAX" => $content['PAL_PROFONDEUR_MAX'],
+                        "PAL_DUREE_MAX" => $content['PAL_DUREE_MAX'],
+                        "nbPlongeur" => $reader->getNbPlongeur($content['PLO_DATE'],$content['PLO_MAT_MID_SOI'],$content['PAL_NUM'])["count(*)"],
+                        "btn" => "<td>".$btn1."</td>".
+                                "<td>".$btn2."</td>");
                 }
-                $text = $text."</table>";
             }
+            echo json_encode($return_arr,JSON_UNESCAPED_UNICODE);
         }
-        echo $text;
-    }
-
-    public function listeConstruction($text, $data)
-    {
-        foreach ($data as $key2 => $content)
-        {
-            $text = $text.'<td>';
-            $text = $text.$key2 . ' => ' . $content;
-            $text = $text.'</td>';
-        }
-        $reader = new modelPalanquee();
-        $text = $text.'<td>Nombre de plongeur => '.$reader->getNbPlongeur($data['PLO_DATE'],$data['PLO_MAT_MID_SOI'],$data['PAL_NUM'])["count(*)"].'</td>';
-        return $text;
     }
 }
