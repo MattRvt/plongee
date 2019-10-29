@@ -35,7 +35,7 @@ function affichePlongee(db) {
     } else {
         var i = 0;
         db.forEach((item) => {
-            if ((item.SIT_NOM.toLowerCase().indexOf(match.toLowerCase()) >= 0) || (item.SIT_LOCALISATION.toLowerCase().indexOf(match.toLowerCase()) >= 0)) {
+            if ((item.PLO_DATE.toLowerCase().indexOf(match.toLowerCase()) >= 0)) {
                 output[i] = item;
                 i++;
             }
