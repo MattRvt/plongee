@@ -261,5 +261,6 @@ function traitementAjoutPal() {
         xhr.send("date="+palanquee.datePal+"&moment="+palanquee.matMidSoi+"&palnum="+palanquee.num+"&pernum="+plong);
     }
 
+    initListePalanquee(palanquee.datePal,palanquee.matMidSoi);
     closeModal("newPalanquee");
 }

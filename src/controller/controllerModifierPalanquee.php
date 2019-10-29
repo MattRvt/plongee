@@ -25,7 +25,6 @@ class controllerModifierPalanquee  extends controller
         $durMax = $data["PAL_DUREE_MAX"];
 
         $heureImm = $_POST["heureImm"];
-        echo $heureImm;
         if($heureImm == "")
         {
             $heureImm = null;
