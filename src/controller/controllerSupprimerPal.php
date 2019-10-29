@@ -20,5 +20,11 @@ class controllerSupprimerPal
 
         $reader = new modelPalanquee();
         $reader->deletePalanquee($date,$moment,$num);
+
+        $writer = new modelPlongee();
+        if($writer->getNbPalanquee($date,$moment)["count(*)"]==0)
+        {
+            $writer->setEtat("Créée", $moment,$date);
+        }
     }
 }

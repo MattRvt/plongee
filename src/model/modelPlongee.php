@@ -153,6 +153,23 @@ class modelPlongee extends model
         }
     }
 
+    public function setEtat($etat, $moment, $date)
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "
+            UPDATE `PLO_PLONGEE`
+            SET `PLO_ETAT` = \"".$etat."\"
+            WHERE`PLO_DATE`= \"".$date."\" 
+            and`PLO_MAT_MID_SOI` = \"".$moment."\"
+           ";
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $req->closeCursor();
+    }
+
     /**
      * renvoie les plongée ayant eu lieux a une date et un moment données
      * @param $PLO_DATE

@@ -21,5 +21,9 @@ class controllerAjoutPalanquee
         $writer = new modelPalanquee();
 
         $writer->addPalanque($date,$moment,$profMax,$durMax);
+
+        $writer = new modelPlongee();
+
+        $writer->setEtat("Paramétrée", $moment,$date);
     }
 }
