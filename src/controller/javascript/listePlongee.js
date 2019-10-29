@@ -37,7 +37,7 @@ $(document).ready(function () {
 })
 
 function affichePlongee(db) {
-    var separation = true;
+    var separation = !$("#archive").is(':checked');
     var output = [];
     var match = $("#searchPlongee").val().trim();
 
