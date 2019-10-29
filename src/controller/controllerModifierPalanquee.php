@@ -50,6 +50,17 @@ class controllerModifierPalanquee  extends controller
         }
 
         $writer->modifyPalanquee($num, $date,$moment,$profMax,$durMax,$heureImm,$HeureSor,$ProfondeurReel,$dureeFond);
+
+        $pasAJour = $writer->getDansPlongeePasAJour($_POST['date'],$_POST['moment']);
+        $writer = new modelPlongee();
+        if(empty($pasAJour))
+        {
+            $writer->setEtat("Complète", $moment,$date);
+        }
+        else
+        {
+            $writer->setEtat("Paramétrée", $moment,$date);
+        }
     }
 }
 ?>
