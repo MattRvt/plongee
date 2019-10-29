@@ -33,8 +33,6 @@ function initListePalanquee(datePal, matMidSoi)
 
 function afficherPalanquee(data)
 {
-    var separation = true;
-
     $("#listePalanque").html("");
     var len = data.length;
 
@@ -48,6 +46,14 @@ function afficherPalanquee(data)
 
     if(plus !== undefined)
     {
+        if(plus === null)
+        {
+            var separation = true;
+        }
+        else
+        {
+            var separation = false;
+        }
         tr_str+= "<th>Heure D'immersion</th> " +
             "<th>Heure de sortie</th> " +
             "<th>Profondeur reel</th> "+
