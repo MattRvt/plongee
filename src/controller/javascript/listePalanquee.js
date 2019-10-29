@@ -2,60 +2,8 @@ function initListePalanquee(datePal, matMidSoi)
 {
     setNbPlongeur(datePal, matMidSoi);
 
-    var date = new Date();
-    var dateMtn = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-    var momentActuel;
-    var passerOuPas;
+    var passerOuPas = estPasserOuPas(datePal, matMidSoi);
 
-    if(date.getHours()<12)
-    {
-        momentActuel = "M";
-
-        if(dateMtn >= datePal && momentActuel == matMidSoi)
-        {
-            passerOuPas = false;
-        }
-        else if(dateMtn <= datePal)
-        {
-            passerOuPas = true;
-        }
-        else
-        {
-            passerOuPas = false;
-        }
-    }
-    else if(date.getHours()<18)
-    {
-        momentActuel = "A";
-
-        if(dateMtn >= datePal && momentActuel == matMidSoi)
-        {
-            passerOuPas = false;
-        }
-        else if(dateMtn >= datePal && matMidSoi == "M")
-        {
-            passerOuPas = false;
-        }
-        else if(dateMtn <= datePal)
-        {
-            passerOuPas = true;
-        }
-        else
-        {
-            passerOuPas = false;
-        }
-    }
-    else
-    {
-        if(dateMtn <= datePal)
-        {
-            passerOuPas = true;
-        }
-        else
-        {
-            passerOuPas = false;
-        }
-    }
     if(passerOuPas)
     {
         $("#btnAjout").html("<a class='waves-effect waves-light btn modal-trigger' onclick='initAjoutPalanquee(\""+datePal+"\",\""+matMidSoi+"\")'>Ajouter Palanquee</a>");
@@ -197,4 +145,64 @@ function initInfoPal(datePal, matMidSoi, num)
     $(document).ready(function(){
         $('#infoPalModal').modal('open');
     });
+}
+
+function estPasserOuPas(datePal, matMidSoi)
+{
+    var date = new Date();
+    var dateMtn = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+    var momentActuel;
+    var passerOuPas;
+
+    if(date.getHours()<12)
+    {
+        momentActuel = "M";
+
+        if(dateMtn >= datePal && momentActuel == matMidSoi)
+        {
+            passerOuPas = false;
+        }
+        else if(dateMtn <= datePal)
+        {
+            passerOuPas = true;
+        }
+        else
+        {
+            passerOuPas = false;
+        }
+    }
+    else if(date.getHours()<18)
+    {
+        momentActuel = "A";
+
+        if(dateMtn >= datePal && momentActuel == matMidSoi)
+        {
+            passerOuPas = false;
+        }
+        else if(dateMtn >= datePal && matMidSoi == "M")
+        {
+            passerOuPas = false;
+        }
+        else if(dateMtn <= datePal)
+        {
+            passerOuPas = true;
+        }
+        else
+        {
+            passerOuPas = false;
+        }
+    }
+    else
+    {
+        if(dateMtn <= datePal)
+        {
+            passerOuPas = true;
+        }
+        else
+        {
+            passerOuPas = false;
+        }
+    }
+
+    return passerOuPas;
 }

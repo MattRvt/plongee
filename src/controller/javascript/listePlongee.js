@@ -37,6 +37,7 @@ $(document).ready(function () {
 })
 
 function affichePlongee(db) {
+    var separation = true;
     var output = [];
     var match = $("#searchPlongee").val().trim();
 
@@ -82,7 +83,15 @@ function affichePlongee(db) {
             Lieu = getDataSiteProxy(Lieu);
             embarcation = getDataEmbarcationProxy(embarcation);
 
-            tr_str = "<tr>" +
+            tr_str = "";
+
+            if(separation && !estPasserOuPas(Date,moment))
+            {
+                tr_str += "<tr><td><td></tr>";
+                separation = false;
+            }
+
+            tr_str += "<tr>" +
                 "<td align='center'>" + momentModif + "</td>"+
                 "<td align='center'>" + Date  + "</td>" +
                 "<td align='center'>" + Lieu + "</td>" +
