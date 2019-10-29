@@ -1,5 +1,4 @@
 <?php $this->_title = "Liste des plongées" ?>
-<fieldset>
     <div class="fixed-action-btn">
         <a class="waves-effect waves-light btn-large btn-floating modal-trigger pulse" onclick="window.location.href='Plongee'">
             <i class="large material-icons">add</i>
@@ -25,4 +24,3 @@
         <table class ="centered" id="tablePlongee" border="1" >
         </table>
     </div>
-</fieldset>

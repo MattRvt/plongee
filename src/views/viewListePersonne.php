@@ -1,6 +1,4 @@
 <?php $this->_title = "Liste des persones" ?>
-<fieldset>
-
     <div class="fixed-action-btn">
         <a class="waves-effect waves-light btn-large btn-floating modal-trigger pulse" onclick="initModalAjoutPers(-1)">
             <i class="large material-icons">add</i>
@@ -33,6 +31,5 @@
         </table>
     </div>
     <br/><br/>
-</fieldset>
 
 

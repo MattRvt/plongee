@@ -1,5 +1,4 @@
 <?php $this->_title = "Site" ?>
-<fieldset>
 
     <div class="fixed-action-btn">
         <a class="waves-effect waves-light btn-large btn-floating modal-trigger pulse" onclick="initAjoutSite()">
@@ -20,4 +19,3 @@
         <table class ="centered" id="tableSite" border="1" >
         </table>
     </div>
-</fieldset>
