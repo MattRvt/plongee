@@ -1,12 +1,12 @@
 <?php $this->_title = "Liste des persones" ?>
     <div class="fixed-action-btn">
-        <a class="waves-effect waves-light btn-large btn-floating modal-trigger pulse" onclick="initModalAjoutPers(-1)">
+        <a class="waves-effect waves-light btn-large btn-floating pulse" onclick="initModalAjoutPers(-1)">
             <i class="large material-icons">add</i>
         </a>
     </div>
 
     <div class="row">
-        <a class="waves-effect waves-light btn-large modal-trigger col s2" onclick="initModalAjoutPers(-1)">Ajouter Personne</a>
+        <a class="waves-effect waves-light btn-large col s2" onclick="initModalAjoutPers(-1)">Ajouter Personne</a>
         <div class="input-field col s3">
             <i class="material-icons prefix">search</i>
             <input type="text" id="search" autocomplete="off">

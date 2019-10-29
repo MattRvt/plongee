@@ -59,7 +59,7 @@ function initAjoutPalanquee(datePal, matMidSoi)
     nbCasePlongeur(2);
 
     document.getElementById('addPlongeurPal').value = 2;
-    $('#addPlongeurPal').html("<a class='waves-effect waves-light btn modal-trigger green' onclick='addCasePlongeur()'>Ajouter Plongeur</a>");
+    $('#addPlongeurPal').html("<a class='waves-effect waves-light btn green' onclick='addCasePlongeur()'>Ajouter Plongeur</a>");
 }
 
 function initModifPalanquee(datePal, matMidSoi, num)
