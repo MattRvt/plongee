@@ -72,7 +72,7 @@ function afficheSite(db) {
                 "<td align='center'>" + num + "</td>" +
                 "<td align='center'>" + nom + "</td>" +
                 "<td align='center'>" + localisation + "</td>";
-            tr_str+= "<td align='center'><a class='waves-effect waves-light btn modal-trigger' onclick='initModifSite("+num+")'>Modifier</a></td>";
+            tr_str+= "<td align='center'><a class='waves-effect waves-light btn' onclick='initModifSite("+num+")'>Modifier</a></td>";
 
             if(!isUseSiteProxy(num))
             {

@@ -33,10 +33,10 @@ class controllerListePalanqueePlongee
                     if($content["PAL_HEURE_IMMERSION"] == "" || $content["PAL_HEURE_SORTIE_EAU"] == "" || $content["PAL_PROFONDEUR_REELLE"] == "" || $content["PAL_DUREE_FOND"] == "")
                     {
                         if($etat != "Dépassée") {
-                                $btn = "<a class='waves-effect waves-light btn modal-trigger orange' onclick='initCompleterPal(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'>à compléter</a>";
+                                $btn = "<a class='waves-effect waves-light btn orange' onclick='initCompleterPal(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'>à compléter</a>";
                             }
                         else {
-                            $btn = "<a class='waves-effect waves-light modal-trigger' onclick='initInfoPal(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'><i class='material-icons black-text' >remove_red_eye</i></a>";
+                            $btn = "<a class='waves-effect waves-light' onclick='initInfoPal(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'><i class='material-icons black-text' >remove_red_eye</i></a>";
                         }
 
                         $return_arr[] = array(
@@ -55,10 +55,10 @@ class controllerListePalanqueePlongee
                     {
                         if($etat != "Dépassée")
                         {
-                            $btn = "<a class='waves-effect waves-light btn modal-trigger' onclick='initCompleterPal(\"" . $content['PLO_DATE'] . "\",\"" . $content['PLO_MAT_MID_SOI'] . "\"," . $content['PAL_NUM'] . ")'>complète</a>";
+                            $btn = "<a class='waves-effect waves-light btn' onclick='initCompleterPal(\"" . $content['PLO_DATE'] . "\",\"" . $content['PLO_MAT_MID_SOI'] . "\"," . $content['PAL_NUM'] . ")'>complète</a>";
                         }
                         else {
-                            $btn = "<a class='waves-effect waves-light modal-trigger' onclick='initInfoPal(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'><i class='material-icons black-text' >remove_red_eye</i></a>";
+                            $btn = "<a class='waves-effect waves-light' onclick='initInfoPal(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'><i class='material-icons black-text' >remove_red_eye</i></a>";
                         }
 
                         $return_arr2[] = array(
@@ -81,7 +81,7 @@ class controllerListePalanqueePlongee
 
                 foreach($palanquee as $key=>$content)
                 {
-                    $btn1 = "<a class='waves-effect waves-light btn modal-trigger' onclick='initModifPalanquee(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'>Modifier</a>";
+                    $btn1 = "<a class='waves-effect waves-light btn' onclick='initModifPalanquee(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'>Modifier</a>";
                     $btn2 = "<a class='center' onclick='supprimerPal(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'><i class='small material-icons red-text'>clear</i></a>";
 
                     $return_arr[] = array(

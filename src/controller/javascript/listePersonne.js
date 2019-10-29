@@ -105,7 +105,7 @@ function affichePlongeur(db,type) {
                 "<td align='center'>" + actif + "</td>" +
                 "<td align='center'>" + certif + "</td>";
                 if (!type) tr_str+="<td align='center'>" + aptcode + "</td>";
-                tr_str+= "<td align='center'> <a class='waves-effect waves-light btn modal-trigger' onclick='initModalAjoutPers(" + num + ")'>Modifier</a> </td>" +
+                tr_str+= "<td align='center'> <a class='waves-effect waves-light btn' onclick='initModalAjoutPers(" + num + ")'>Modifier</a> </td>" +
                 "</tr>";
 
             if (!type)   $("#tablePlongeur tbody").append(tr_str);

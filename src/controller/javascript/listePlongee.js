@@ -100,11 +100,11 @@ function affichePlongee(db) {
                 "<td align='center'>" + etat + "</td>";
             if(!$("#archive").is(':checked'))
             {
-                tr_str+= "<td align='center'><a class='waves-effect waves-light btn modal-trigger' href='Plongee&date="+Date+"&matMidSoi="+moment+"'>Modifier</a></td>";
+                tr_str+= "<td align='center'><a class='waves-effect waves-light btn' href='Plongee&date="+Date+"&matMidSoi="+moment+"'>Modifier</a></td>";
             }
             else
             {
-                tr_str+= "<td align='center'><a class='waves-effect waves-light modal-trigger' href='Plongee&date="+Date+"&matMidSoi="+moment+"'><i class='material-icons black-text' >remove_red_eye</i></a></td>";
+                tr_str+= "<td align='center'><a class='waves-effect waves-light' href='Plongee&date="+Date+"&matMidSoi="+moment+"'><i class='material-icons black-text' >remove_red_eye</i></a></td>";
             }
             tr_str+= "</tr>";
 

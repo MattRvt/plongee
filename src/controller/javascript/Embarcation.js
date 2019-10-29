@@ -70,7 +70,7 @@ function afficheEmbarcation(db) {
             tr_str = "<tr>" +
                 "<td align='center'>" + num + "</td>" +
                 "<td align='center'>" + nom + "</td>";
-            tr_str += "<td align='center'><a class='waves-effect waves-light btn modal-trigger' onclick='initModifEmbarcation(" + num + ")'>Modifier</a></td>";
+            tr_str += "<td align='center'><a class='waves-effect waves-light btn' onclick='initModifEmbarcation(" + num + ")'>Modifier</a></td>";
 
             if(!isUseEmbarcationProxy(num))
             {

@@ -11,7 +11,7 @@
             </label>
         </div>
 
-        <a class="waves-effect waves-light btn-large modal-trigger" onclick="traitementEmbarcation()">Valider</a>
+        <a class="waves-effect waves-light btn-large" onclick="traitementEmbarcation()">Valider</a>
 
         <div class="erreur" id="erreurEmbarcation"></div>
     </div>

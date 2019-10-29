@@ -18,7 +18,7 @@
             </label>
         </div>
 
-        <a class="waves-effect waves-light btn-large modal-trigger" onclick="traitementSite()">Valider</a>
+        <a class="waves-effect waves-light btn-large" onclick="traitementSite()">Valider</a>
 
         <div class="erreur" id="erreurSite"></div>
     </div>

@@ -66,7 +66,7 @@ function afficheAptitude(db) {
                 "<td align='center'>" + code + "</td>" +
                 "<td align='center'>" + libelle + "</td>";
 
-            tr_str+= "<td align='center'><a class='waves-effect waves-light btn modal-trigger' onclick='initModifAptitude(\""+code+"\")'>Modifier</a></td>";
+            tr_str+= "<td align='center'><a class='waves-effect waves-light btn' onclick='initModifAptitude(\""+code+"\")'>Modifier</a></td>";
 
             if(!isUseAptitudeProxy(code))
             {

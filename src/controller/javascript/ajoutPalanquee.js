@@ -87,7 +87,7 @@ function initModifPalanquee(datePal, matMidSoi, num)
 
     if(nb < 5)
     {
-        $('#addPlongeurPal').html("<a class='waves-effect waves-light btn modal-trigger green' onclick='addCasePlongeur()'>Ajouter Plongeur</a>");
+        $('#addPlongeurPal').html("<a class='waves-effect waves-light btn green' onclick='addCasePlongeur()'>Ajouter Plongeur</a>");
     }
     if(nb > 2)
     {
@@ -188,7 +188,7 @@ function supprCasePlongeur(nbSuppr)
     }
     if(nbTot == 4)
     {
-        $('#addPlongeurPal').html("<a class='waves-effect waves-light btn modal-trigger green' onclick='addCasePlongeur()'>Ajouter Plongeur</a>");
+        $('#addPlongeurPal').html("<a class='waves-effect waves-light btn green' onclick='addCasePlongeur()'>Ajouter Plongeur</a>");
     }
 }
 

@@ -6,7 +6,7 @@ function initListePalanquee(datePal, matMidSoi)
 
     if(passerOuPas)
     {
-        $("#btnAjout").html("<a class='waves-effect waves-light btn modal-trigger' onclick='initAjoutPalanquee(\""+datePal+"\",\""+matMidSoi+"\")'>Ajouter Palanquee</a>");
+        $("#btnAjout").html("<a class='waves-effect waves-light btn' onclick='initAjoutPalanquee(\""+datePal+"\",\""+matMidSoi+"\")'>Ajouter Palanquee</a>");
     }
     else
     {
