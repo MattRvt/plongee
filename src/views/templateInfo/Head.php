@@ -52,7 +52,58 @@
             defaultDate: today ,
             // setDefaultDate: new Date(2000,01,31),
             maxDate: today,
-            yearRange: today.getFullYear(),
-            format: "yyyy-mm-dd" });
+            yearRange: [2000,today.getFullYear()],
+            format: "yyyy-mm-dd",
+            firstDay: 1,
+            i18n: {
+                cancel: "Annuler",
+                months: [
+                    'Janvier',
+                    'Février',
+                    'Mars',
+                    'Avril',
+                    'Mai',
+                    'Juin',
+                    'Juillet',
+                    'Août',
+                    'Septembre',
+                    'Octobre',
+                    'Novembre',
+                    'Décembre'
+                ],
+                monthsShort: [
+                    'Janvier',
+                    'Février',
+                    'Mars',
+                    'Avril',
+                    'Mai',
+                    'Juin',
+                    'Juillet',
+                    'Août',
+                    'Septembre',
+                    'Octobre',
+                    'Novembre',
+                    'Décembre'
+                ],
+                weekdays: [
+                    'Dimanche',
+                    'Lundi',
+                    'Mardi',
+                    'Mercredi',
+                    'Jeudi',
+                    'Vendredi',
+                    'Samedi'
+                ],
+                weekdaysShort: [
+                    'Dimanche',
+                    'Lundi',
+                    'Mardi',
+                    'Mercredi',
+                    'Jeudi',
+                    'Vendredi',
+                    'Samedi'
+                ],
+                weekdaysAbbrev: ['D','L','M','M','J','V','S']
+            }});
     });
 </script>
