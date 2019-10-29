@@ -7,7 +7,7 @@ class modelPlongee extends model
     {
         $pdo = $this->getBdd();
 
-        $sql = "SELECT * FROM PLO_PLONGEE WHERE PLO_DATE > DATE_SUB(NOW(), INTERVAL 1 YEAR)";
+        $sql = "SELECT * FROM PLO_PLONGEE WHERE PLO_DATE > DATE_SUB(NOW(), INTERVAL 1 YEAR) order by PLO_DATE desc, case `PLO_MAT_MID_SOI` when 'M' then 1 when 'A' then 2 when 'S' then 3 else 4 end";
 
         $req = $pdo->prepare($sql);
         $req->execute();
@@ -22,7 +22,7 @@ class modelPlongee extends model
     {
         $pdo = $this->getBdd();
 
-        $sql = "UPDATE PLO_PLONGEE SET PLO_ETAT = 'Dépassée' WHERE PLO_DATE < DATE_SUB(NOW(), INTERVAL 1 YEAR) and PLO_ETAT != 'Dépassée'";
+        $sql = "UPDATE PLO_PLONGEE SET PLO_ETAT = 'Dépassée' WHERE PLO_DATE < DATE_SUB(NOW(), INTERVAL 1 YEAR) and PLO_ETAT != 'Dépassée' order by PLO_DATE desc, case `PLO_MAT_MID_SOI` when 'M' then 1 when 'A' then 2 when 'S' then 3 else 4 end";
 
         $req = $pdo->prepare($sql);
         $req->execute();
