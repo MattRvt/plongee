@@ -13,6 +13,12 @@
             <input type="text" id="searchPlongee" autocomplete="off">
             <label for="searchPlongee">Rechercher un site</label>
         </div>
+        <div class="input-field col s3">
+            <label>
+                <input type="checkbox" id="archive" onclick="updatePlongee()"/>
+                <span>Archive</span>
+            </label>
+        </div>
     </div>
     <br/>
     <div class="container">

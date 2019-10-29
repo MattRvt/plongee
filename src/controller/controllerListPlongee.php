@@ -15,7 +15,14 @@ class controllerListPlongee
     public function ListPlongee()
     {
         $reader = new modelPlongee();
-        $site= $reader->getAll();
+        if($_POST["archive"] == "true")
+        {
+            $site= $reader->getAllArchive();
+        }
+        else
+        {
+            $site= $reader->getAll();
+        }
 
         $return_arr = array();
         foreach($site as $key=>$content)

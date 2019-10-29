@@ -5,7 +5,37 @@ class modelPlongee extends model
 {
     public function getAll()
     {
-        return $this->selectAll('plo_plongee');
+        $pdo = $this->getBdd();
+
+        $sql = "SELECT * FROM PLO_PLONGEE WHERE PLO_DATE > DATE_SUB(NOW(), INTERVAL 1 YEAR)";
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
+    }
+
+    public function getAllArchive()
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "UPDATE PLO_PLONGEE SET PLO_ETAT = 'Dépassée' WHERE PLO_DATE < DATE_SUB(NOW(), INTERVAL 1 YEAR) and PLO_ETAT != 'Dépassée'";
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $sql = "SELECT * FROM PLO_PLONGEE WHERE PLO_ETAT = 'Dépassée'";
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
     }
 
     public function plongeeExiste($PLO_DATE, $PLO_MAT_MID_SOI)
