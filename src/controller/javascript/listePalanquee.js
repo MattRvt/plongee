@@ -33,8 +33,11 @@ function initListePalanquee(datePal, matMidSoi)
 
 function afficherPalanquee(data)
 {
+    var separation = true;
+
     $("#listePalanque").html("");
     var len = data.length;
+
     var plus = data[0].PAL_HEURE_IMMERSION;
 
     var tr_str = "<thead class='center'><tr> " +
@@ -43,7 +46,7 @@ function afficherPalanquee(data)
         "<th>Duree Max</th> "+
         "<th>Nombre de plongeur</th>";
 
-    if(plus != undefined)
+    if(plus !== undefined)
     {
         tr_str+= "<th>Heure D'immersion</th> " +
             "<th>Heure de sortie</th> " +
@@ -56,26 +59,37 @@ function afficherPalanquee(data)
 
     $("#listePalanque").append(tr_str);
 
-    for (var i = 0; i < len; i++) {
-        var num = data[i].PAL_NUM;
-        var profondeurMax = data[i].PAL_PROFONDEUR_MAX;
-        var dureeMax = data[i].PAL_DUREE_MAX;
-        var nbPlongeur = data[i].nbPlongeur;
-        var btn = data[i].btn;
+    for (var i = 0; i < len; i++)
+    {
+        tr_str = "";
 
-        tr_str = "<tr>" +
-            "<td align='center'>" + num + "</td>" +
-            "<td align='center'>" + profondeurMax + "</td>" +
-            "<td align='center'>" + dureeMax + "</td>"+
-            "<td align='center'>" + nbPlongeur + "</td>";
-
-        if(plus != undefined)
+        if(plus !== undefined)
         {
             var heureImm = data[i].PAL_HEURE_IMMERSION;
             var heureSort = data[i].PAL_HEURE_SORTIE_EAU;
             var profReel = data[i].PAL_PROFONDEUR_REELLE;
             var durreFond = data[i].PAL_DUREE_FOND;
 
+            if(separation && !((heureImm == null)||(heureSort == null)||(profReel == null)||(durreFond == null))) {
+                tr_str += "<tr><td><td></tr>";
+                separation = false;
+            }
+        }
+
+        var num = data[i].PAL_NUM;
+        var profondeurMax = data[i].PAL_PROFONDEUR_MAX;
+        var dureeMax = data[i].PAL_DUREE_MAX;
+        var nbPlongeur = data[i].nbPlongeur;
+        var btn = data[i].btn;
+
+        tr_str += "<tr>" +
+            "<td align='center'>" + num + "</td>" +
+            "<td align='center'>" + profondeurMax + "</td>" +
+            "<td align='center'>" + dureeMax + "</td>"+
+            "<td align='center'>" + nbPlongeur + "</td>";
+
+        if(plus !== undefined)
+        {
             tr_str +=
                 "<td align='center'>" + heureImm + "</td>" +
                 "<td align='center'>" + heureSort + "</td>" +
