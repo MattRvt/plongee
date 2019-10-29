@@ -89,7 +89,6 @@ function addPersonne() {
             }
             else
             {
-                alert("succes");
                 update();
                 document.getElementById('nomPlongeur').value = "";
                 document.getElementById('prenomPlongeur').value = "";
@@ -98,6 +97,14 @@ function addPersonne() {
                 document.getElementById('Directeur').checked = false;
                 document.getElementById('SecuriteSurface').checked = false;
                 $("#selectAptitude").html("");
+                if(document.getElementById("modfiAjout").value != -1)
+                {
+                    M.toast({html: 'Personne modifée'})
+                }
+                else
+                {
+                    M.toast({html: 'Personne enregistrée'})
+                }
                 closeModal("newPlongeur");
 
             }
