@@ -13,9 +13,7 @@
             <?php echo $content ?>
             <?php require_once 'views/templateInfo/Modal.php'; ?>
         </main>
-        <footer>
-            <?php require_once 'views/templateInfo/Footer.php'; ?>
-        </footer>
+        <?php require_once 'views/templateInfo/Footer.php'; ?>
         <script type="text/javascript" src="controller/javascript/materialize.min.js"></script>
     </body>
 </html>
