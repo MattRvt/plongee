@@ -44,7 +44,15 @@
         $('.tooltipped').tooltip();
     });
 
+    var date = new Date();
+    today = new Date(date.getFullYear(),(date.getMonth()+1),date.getDate())
+
     $(document).ready(function(){
-        $('.datepicker').datepicker();
+        $('.datepicker').datepicker({
+            defaultDate: today ,
+            // setDefaultDate: new Date(2000,01,31),
+            maxDate: today,
+            yearRange: today.getFullYear(),
+            format: "yyyy-mm-dd" });
     });
 </script>

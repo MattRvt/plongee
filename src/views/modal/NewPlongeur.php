@@ -35,7 +35,10 @@
             <span>Non</span>
         </label>
 
-        <h6>Date du certificat médicale :</h6><input type="date" id="date">
+        <div class="input-field">
+            <input name="certif" type="text" class="datepicker" id="date">
+            <label for="date">Date du certificat médical :</label>
+        </div>
 
         <h6>Fonction </h6>
 
