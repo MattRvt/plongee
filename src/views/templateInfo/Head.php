@@ -24,8 +24,15 @@
 
 <!-- Initialisation Materialize -->
 <script>
+
     $(document).ready(function(){
-        $('.modal').modal();
+        $('.modal').modal(
+            {
+                onCloseStart: function() { // Callback for Modal close
+                    $('.datepicker').datepicker('close');
+                }
+            }
+        );
     });
 
     $(document).ready(function(){
@@ -45,12 +52,11 @@
     });
 
     var date = new Date();
-    today = new Date(date.getFullYear(),(date.getMonth()+1),date.getDate())
+    today = new Date(date.getFullYear(),date.getMonth(),date.getDate())
 
     $(document).ready(function(){
         $('.datepicker').datepicker({
             defaultDate: today ,
-            // setDefaultDate: new Date(2000,01,31),
             maxDate: today,
             yearRange: [2000,today.getFullYear()],
             format: "yyyy-mm-dd",
