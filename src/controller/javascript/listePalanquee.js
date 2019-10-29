@@ -33,6 +33,7 @@ function initListePalanquee(datePal, matMidSoi)
 
 function afficherPalanquee(data)
 {
+    $("#listePalanque").html("");
     var len = data.length;
     var plus = data[0].PAL_HEURE_IMMERSION;
 
