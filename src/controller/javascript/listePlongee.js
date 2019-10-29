@@ -37,7 +37,7 @@ $(document).ready(function () {
 })
 
 function affichePlongee(db) {
-    var separation = true;
+    var separation = !$("#archive").is(':checked');
     var output = [];
     var match = $("#searchPlongee").val().trim();
 
@@ -65,7 +65,8 @@ function affichePlongee(db) {
             "<th width='13%'>Période</th> " +
             "<th width='20%'>Lieu</th> " +
             "<th width='20%'>Embarcation</th> "+
-            "<th width='20%'>Etats</th> ";
+            "<th width='20%'>Etats</th> "+
+            "<th width='20%'></th> ";
 
         tr_str+="</tr> </thead> " +
             "<tbody></tbody>";
