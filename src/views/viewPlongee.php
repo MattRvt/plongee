@@ -4,10 +4,12 @@
         <legend><b>plongee</b></legend>
         <label for="date">Date: </label>
         <input type="date" name="date"
+               min = "<?php echo date("Y-m-d"); ?>"
                value=<?php $this->controller->verifierRempliPrimaire("date"); ?>
+
         ><br/>
         <label for="date">moment: </label>
-        <select name="moment" <?php $this->controller->selectIsDisabledPrimaire("moment")?>>
+        <select name="moment" <?php $this->controller->selectIsDisabledPrimaire("moment")?> >
             <?php $this->controller->selectMoment() ?>
         </select>
         <br/>
