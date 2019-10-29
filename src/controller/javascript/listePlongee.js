@@ -46,7 +46,7 @@ function affichePlongee(db) {
     } else {
         var i = 0;
         db.forEach((item) => {
-            if ((item.PLO_DATE.toLowerCase().indexOf(match.toLowerCase()) >= 0)) {
+            if ((matMidSoi(item.PLO_MAT_MID_SOI).toLowerCase().indexOf(match.toLowerCase()) >= 0)||(item.PLO_ETAT.toLowerCase().indexOf(match.toLowerCase()) >= 0)||(item.PLO_DATE.toLowerCase().indexOf(match.toLowerCase()) >= 0)||(getDataSiteProxy(item.SIT_NUM).toLowerCase().indexOf(match.toLowerCase()) >= 0)||(getDataEmbarcationProxy(item.EMB_NUM).toLowerCase().indexOf(match.toLowerCase()) >= 0)) {
                 output[i] = item;
                 i++;
             }
