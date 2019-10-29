@@ -7,9 +7,9 @@
         <div id="durMaxPalPasse"></div>
         <div id="listPlongeurPalPasse"></div>
 
-        <h6>Duree au fond : </h6>
+        <h6>temps d'immersion  : </h6>
         <label>
-            <input type='number' id='inpDureeFond' name='inpDureeFond'><br />
+            <input type='time' id='inpDureeFond' name='inpDureeFond'><br />
         </label>
 
         <h6>Heure d'immersion : </h6>
