@@ -52,7 +52,27 @@ class modelPalanquee extends model
 
     public function modifyPalanquee($PAL_NUM, $PLO_DATE, $PLO_MAT_MID_SOI, $PAL_PROFONDEUR_MAX, $PAL_DUREE_MAX, $PAL_HEURE_IMMERSION, $PAL_HEURE_SORTIE_EAU, $PAL_PROFONDEUR_REELLE, $PAL_DUREE_FOND)
     {
-        $statement = $this->getBdd()->prepare("UPDATE PLO_PALANQUEE SET PAL_PROFONDEUR_MAX = ".$PAL_PROFONDEUR_MAX.", PAL_DUREE_MAX = ".$PAL_DUREE_MAX.", PAL_HEURE_IMMERSION = \"".$PAL_HEURE_IMMERSION."\", PAL_HEURE_SORTIE_EAU = \"".$PAL_HEURE_SORTIE_EAU."\", PAL_PROFONDEUR_REELLE = \"".$PAL_PROFONDEUR_REELLE."\", PAL_DUREE_FOND = \"".$PAL_DUREE_FOND."\"  WHERE PLO_DATE = \"".$PLO_DATE."\" and PLO_MAT_MID_SOI = \"".$PLO_MAT_MID_SOI."\" and PAL_NUM = ".$PAL_NUM);
+        if($PAL_HEURE_IMMERSION != null)
+        {
+            $PAL_HEURE_IMMERSION = ", PAL_HEURE_IMMERSION = \"$PAL_HEURE_IMMERSION\"";
+        }
+
+        if($PAL_HEURE_SORTIE_EAU != null)
+        {
+            $PAL_HEURE_SORTIE_EAU = ", PAL_HEURE_SORTIE_EAU = \"$PAL_HEURE_SORTIE_EAU\"";
+        }
+
+        if($PAL_PROFONDEUR_REELLE != null)
+        {
+            $PAL_PROFONDEUR_REELLE = ", PAL_PROFONDEUR_REELLE = \"$PAL_PROFONDEUR_REELLE\"";
+        }
+
+        if($PAL_DUREE_FOND != null)
+        {
+            $PAL_DUREE_FOND = ", PAL_DUREE_FOND = \"$PAL_DUREE_FOND\"";
+        }
+
+        $statement = $this->getBdd()->prepare("UPDATE PLO_PALANQUEE SET PAL_PROFONDEUR_MAX = ".$PAL_PROFONDEUR_MAX.", PAL_DUREE_MAX = ".$PAL_DUREE_MAX.$PAL_HEURE_IMMERSION.$PAL_HEURE_SORTIE_EAU.$PAL_PROFONDEUR_REELLE.$PAL_DUREE_FOND."  WHERE PLO_DATE = \"".$PLO_DATE."\" and PLO_MAT_MID_SOI = \"".$PLO_MAT_MID_SOI."\" and PAL_NUM = ".$PAL_NUM);
 
         $statement->execute();
     }
