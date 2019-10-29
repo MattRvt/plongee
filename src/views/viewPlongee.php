@@ -4,38 +4,38 @@
         <legend><b>plongee</b></legend>
         <label for="date">Date: </label>
         <input type="date" name="date"
-               value="<?php $this->controller->verifierRempli("date"); ?>"
+               value=<?php $this->controller->verifierRempliPrimaire("date"); ?>
         ><br/>
         <label for="date">moment: </label>
-        <select name="moment" value="<?php $this->controller->verifierRempli("moment"); ?>">
+        <select name="moment" <?php $this->controller->selectIsDisabledPrimaire("moment")?>>
             <?php $this->controller->selectMoment() ?>
         </select>
         <br/>
         <label for="directeurDePlongee">Directeur de plongée: </label>
-        <select name="directeurDePlongee">
+        <select name="directeurDePlongee" <?php $this->controller->selectIsDisabled("directeurDePlongee")?>>
             <?php $this->controller->selectDirecteurDePlongee() ?>
         </select><br/>
         <label for="siteNom">nom du site: </label>
 
-        <select name="site" value="<?php $this->controller->verifierRempli("site"); ?>">
+        <select name="site" <?php $this->controller->selectIsDisabled("site")?> >
             <?php $this->controller->selectSite() ?>
         </select>
 
         <br/>
         <div id="effectifs"></div><br/>
         <label for="securiteDeSurface">securite de surface: </label> <br/>
-        <select name="securiteDeSurface">
+        <select name="securiteDeSurface" <?php $this->controller->selectIsDisabled("securiteDeSurface")?>>
             <?php $this->controller->selectSecuriteDeSurface() ?>
         </select><br/>
         <label for="embarcation">embarcation: </label>
-        <select name="embarcation">
+        <select name="embarcation" <?php $this->controller->selectIsDisabled("embarcation")?>>
             <?php $this->controller->selectEmbarcation() ?>
         </select><br/>
 
         <label for="etat">etat; </label>
         <input type="text" name="etat" size="30"
                maxlength="50"
-               value="<?php $this->controller->verifierRempli("etat"); ?>"
+               value=<?php $this->controller->verifierRempli("etat"); ?>
         ><br/>
     </fieldset>
 

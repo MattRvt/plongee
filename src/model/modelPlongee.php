@@ -133,7 +133,6 @@ class modelPlongee extends model
      */
     public function addOrModifyPlongee($data)
     {
-
         $PLO_DATE = $data['date'];
         $PLO_MATIN_APRESMIDI = $data['moment'];
         $SIT_NUM = $data['site'];
@@ -159,12 +158,13 @@ class modelPlongee extends model
      * @param $PLO_MAT_MID_SOI
      * @return mixed
      */
-    public function getMatch($PLO_DATE, $PLO_MAT_MID_SOI)
+    public
+    function getMatch($PLO_DATE, $PLO_MAT_MID_SOI)
     {
 
         $pdo = $this->getBdd();
 
-        $sql = "select * from PLO_PLONGEE where (PLO_DATE = '".$PLO_DATE."') and (upper(PLO_MAT_MID_SOI) = upper('".$PLO_MAT_MID_SOI."'))";
+        $sql = "select * from PLO_PLONGEE where (PLO_DATE = '" . $PLO_DATE . "') and (upper(PLO_MAT_MID_SOI) = upper('" . $PLO_MAT_MID_SOI . "'))";
         $req = $pdo->prepare($sql);
         $req->execute();
 
@@ -175,11 +175,12 @@ class modelPlongee extends model
 
     }
 
-    public function getNbPalanquee($date,$matMidSoir)
+    public
+    function getNbPalanquee($date, $matMidSoir)
     {
         $pdo = $this->getBdd();
 
-        $sql = "SELECT count(*) FROM `PLO_PALANQUEE` WHERE plo_date = '".$date."' and plo_mat_mid_soi = '".$matMidSoir."'";
+        $sql = "SELECT count(*) FROM `PLO_PALANQUEE` WHERE plo_date = '" . $date . "' and plo_mat_mid_soi = '" . $matMidSoir . "'";
 
         $req = $pdo->prepare($sql);
         $req->execute();
@@ -190,11 +191,12 @@ class modelPlongee extends model
         return $data;
     }
 
-    public function getNbPersonne($date,$matMidSoir)
+    public
+    function getNbPersonne($date, $matMidSoir)
     {
         $pdo = $this->getBdd();
 
-        $sql = "SELECT count(*) FROM `PLO_CONCERNER` WHERE plo_date = '".$date."' and plo_mat_mid_soi = '".$matMidSoir."'";
+        $sql = "SELECT count(*) FROM `PLO_CONCERNER` WHERE plo_date = '" . $date . "' and plo_mat_mid_soi = '" . $matMidSoir . "'";
 
         $req = $pdo->prepare($sql);
         $req->execute();

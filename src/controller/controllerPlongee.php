@@ -3,6 +3,7 @@
 class controllerPlongee extends controller
 {
     private $_view;
+    private $plongeePassee;
 
     public function __construct($url)
     {
@@ -15,16 +16,34 @@ class controllerPlongee extends controller
 
     public function mentions()
     {
+        $this->plongeePassee = false;
         $this->traitementFormulaire();
 
         $plongeeDefinit = (!empty($_GET["date"]) and !empty($_GET["matMidSoi"]));
         if ($plongeeDefinit) {
+            $this->plongeePassee = $this->isPlongeePassee();
             $this->chargerPlongee();
         }
         $this->_view = new View('Plongee');
         $this->_view->generate(array(), $this);
         if ($plongeeDefinit) {
             echo "<script type='text/javascript'>initListePalanquee('" . $_GET['date'] . "','" . $_GET['matMidSoi'] . "')</script>";
+        }
+    }
+
+    public function isPlongeePassee()
+    {
+
+        $dateAujourdhui = explode("-", date("Y-m-d"));
+        $datePlongee = explode("-", $_GET['date']);
+        $dateValide = $dateAujourdhui[0] >= $datePlongee[0];
+
+        if ($dateValide) {
+            $dateValide = $dateAujourdhui[1] >= $datePlongee[1];
+            if ($dateValide) {
+                $dateValide = $dateAujourdhui[2] >= $datePlongee[2];
+                return $dateValide;
+            }
         }
     }
 
@@ -38,32 +57,61 @@ class controllerPlongee extends controller
         return $palanquee;
     }
 
-
-    public
-    function verifierRempli($n)
+    public function verifierRempliPrimaire($n)
     {
+        echo "\"";
+        if (isset($_POST[$n])) {
+            $var = $_POST[$n];
+            echo $var;
+            echo "\"";
+            echo "disabled";
+        } else {
+            echo "\"";
+        }
+    }
 
+    public function verifierRempli($n)
+    {
+        echo "\"";
         if (isset($_POST[$n])) {
             $var = $_POST[$n];
             //if ($var <> "")
             echo $var;
+            echo "\"";
+            if ($this->plongeePassee) {
+                echo "disabled";
+            }
         } else {
-            echo "";
+            echo "\"";
+        }
+    }
+
+    public function selectIsDisabledPrimaire($n)
+    {
+       if (isset($_POST["moment"])) {
+            echo "disabled";
+        }
+    }
+
+    public function selectIsDisabled($n)
+    {
+        if (isset($_POST[$n]) && $this->plongeePassee) {
+            echo "disabled";
+        } else {
         }
     }
 
     /**
      * method for saving data to the DB
      */
-    public
-    function traitementFormulaire()
+    public function traitementFormulaire()
     {
         //verification de la validité des données
         if (!empty($_POST)) {
 
             //verification de la date
             $dateValide = !empty($_POST['date']);
-            if ($dateValide) {
+            if ($dateValide && !empty($_GET['date'])) {
                 $dateTestee = explode("-", $_POST['date']);
                 $dateActuelle = explode("-", $_GET['date']);
                 $dateValide = $dateTestee[0] >= $dateActuelle[0];
@@ -103,8 +151,7 @@ class controllerPlongee extends controller
         }
     }
 
-    public
-    function selectMoment()
+    public function selectMoment()
     {
         $req = array(
             array(
@@ -129,8 +176,7 @@ class controllerPlongee extends controller
         echo $this->listeDeroulante($req, "LIBELLE", "CODE", $defaultCode);
     }
 
-    public
-    function selectSite()
+    public function selectSite()
     {
         require_once('model/modelSite.php');
         $reader = new modelSite();
@@ -143,8 +189,7 @@ class controllerPlongee extends controller
         echo $this->listeDeroulante($req, "SIT_NOM", "SIT_NUM", $defaultCode);
     }
 
-    public
-    function selectDirecteurDePlongee()
+    public function selectDirecteurDePlongee()
     {
         require_once('model/modelPersonne.php');
         $reader = new modelPersonne();
@@ -157,8 +202,7 @@ class controllerPlongee extends controller
         echo $this->listeDeroulante($req, "PER_NOM", "PER_NUM", $defaultCode);
     }
 
-    public
-    function selectSecuriteDeSurface()
+    public function selectSecuriteDeSurface()
     {
         require_once('model/modelPersonne.php');
         $reader = new modelPersonne();
@@ -171,8 +215,7 @@ class controllerPlongee extends controller
         echo $this->listeDeroulante($req, "PER_NOM", "PER_NUM", $defaultCode);
     }
 
-    public
-    function selectEmbarcation()
+    public function selectEmbarcation()
     {
         require_once('model/modelEmbarcation.php');
         $reader = new modelEmbarcation();
@@ -185,8 +228,10 @@ class controllerPlongee extends controller
         echo $this->listeDeroulante($req, "EMB_NOM", "EMB_NUM", $defaultCode);
     }
 
-    public
-    function chargerPlongee()
+    /**
+     * charge une plongé a partir des données get (tester s'il faut charger avant )
+     */
+    public function chargerPlongee()
     {
 
         $_POST['date'] = $_GET["date"];
@@ -212,13 +257,6 @@ class controllerPlongee extends controller
             }
         }
     }
-
-
-    /*
-requette ajout plongé
-
-*/
-
 }
 
 ?>
