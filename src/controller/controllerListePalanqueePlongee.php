@@ -106,7 +106,7 @@ class controllerListePalanqueePlongee
             $text = $text.'</td>';
         }
         $reader = new modelPalanquee();
-        $text = $text.'<td>Nombre de palanquée => '.$reader->getNbPlongeur($data['PLO_DATE'],$data['PLO_MAT_MID_SOI'],$data['PAL_NUM'])["count(*)"].'</td>';
+        $text = $text.'<td>Nombre de plongeur => '.$reader->getNbPlongeur($data['PLO_DATE'],$data['PLO_MAT_MID_SOI'],$data['PAL_NUM'])["count(*)"].'</td>';
         return $text;
     }
 }

@@ -87,7 +87,7 @@ function affichePlongeur(db,type) {
 
             if(actif == 1)
             {
-                actif = "<i class='tooltipped material-icons green-text'>check</i>";
+                actif = "<i class='small material-icons green-text'>check</i>";
             }
             else
             {

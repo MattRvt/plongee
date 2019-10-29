@@ -202,22 +202,22 @@ function getNbPlongeur()
     return xhr.responseText;
 }
 
-function getDataPalanquee()
+function getDataPalanquee(date = palanquee.datePal, moment = palanquee.matMidSoi, num = palanquee.num)
 {
     var xhr = initXHR();
     xhr.open('POST', 'index.php?url=GetUnePalanquee', false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("date="+palanquee.datePal+"&moment="+palanquee.matMidSoi+"&num="+palanquee.num);
+    xhr.send("date="+date+"&moment="+moment+"&num="+num);
 
     return xhr.responseText.split('|');
 }
 
-function getPlongeurPal()
+function getPlongeurPal(date = palanquee.datePal, moment = palanquee.matMidSoi, num = palanquee.num)
 {
     var xhr = initXHR();
     xhr.open('POST', 'index.php?url=GetPlongeurPal', false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("date="+palanquee.datePal+"&moment="+palanquee.matMidSoi+"&num="+palanquee.num);
+    xhr.send("date="+date+"&moment="+moment+"&num="+num);
 
     return xhr.responseText.split('|');
 }

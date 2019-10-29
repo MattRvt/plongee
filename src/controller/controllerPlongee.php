@@ -101,6 +101,18 @@ class controllerPlongee extends controller
         }
     }
 
+    public function etat()
+    {
+        if(!isset($_POST["etat"]))
+        {
+            echo "Créée";
+        }
+        else
+        {
+            echo $_POST["etat"];
+        }
+    }
+
     /**
      * method for saving data to the DB
      */
@@ -130,9 +142,17 @@ class controllerPlongee extends controller
                 (!empty($_POST['directeurDePlongee'])) &&
                 (!empty($_POST['site'])) &&
                 (!empty($_POST['securiteDeSurface'])) &&
-                (!empty($_POST['embarcation'])) &&
-                (!empty($_POST['etat']));
+                (!empty($_POST['embarcation']));
+
             $data = $_POST;
+
+            if(!isset($_POST["etat"]))
+            {
+                $data["etat"] = "Créée";
+            }
+
+            print_r($data);
+
             if ($valide) {
                 require_once('model/modelPlongee.php');
                 $model = new modelPlongee();

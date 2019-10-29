@@ -1,6 +1,17 @@
 var db_returnPlongee = null;
+var mapProxyPlongeeLieu = new Map();
+var mapProxyPlongeeEmbarcation = new Map();
 
-function updatePlongee(){
+function updatePlongee()
+{
+    if(mapProxyPlongeeLieu.size == 0)
+    {
+        getAllSite();
+    }
+    if(mapProxyPlongeeEmbarcation.size == 0)
+    {
+        getAllEmbarcation();
+    }
     $(document).ready(function(){
         $.ajax({
             url: 'ListPlongee',
@@ -35,7 +46,7 @@ function affichePlongee(db) {
     } else {
         var i = 0;
         db.forEach((item) => {
-            if ((item.SIT_NOM.toLowerCase().indexOf(match.toLowerCase()) >= 0) || (item.SIT_LOCALISATION.toLowerCase().indexOf(match.toLowerCase()) >= 0)) {
+            if ((matMidSoi(item.PLO_MAT_MID_SOI).toLowerCase().indexOf(match.toLowerCase()) >= 0)||(item.PLO_ETAT.toLowerCase().indexOf(match.toLowerCase()) >= 0)||(item.PLO_DATE.toLowerCase().indexOf(match.toLowerCase()) >= 0)||(getDataSiteProxy(item.SIT_NUM).toLowerCase().indexOf(match.toLowerCase()) >= 0)||(getDataEmbarcationProxy(item.EMB_NUM).toLowerCase().indexOf(match.toLowerCase()) >= 0)) {
                 output[i] = item;
                 i++;
             }
@@ -52,8 +63,7 @@ function affichePlongee(db) {
             "<th width='13%'>Période</th> " +
             "<th width='20%'>Lieu</th> " +
             "<th width='20%'>Embarcation</th> "+
-            "<th width='20%'>Directeur</th> "+
-            "<th width='20%'>Sécurité de surface</th> ";
+            "<th width='20%'>Etats</th> ";
 
         tr_str+="</tr> </thead> " +
             "<tbody></tbody>";
@@ -65,22 +75,18 @@ function affichePlongee(db) {
             var moment = output[i].PLO_MAT_MID_SOI;
             var Lieu = output[i].SIT_NUM;
             var embarcation = output[i].EMB_NUM;
-            var directeur = output[i].PER_NUM_DIR;
-            var securite = output[i].PER_NUM_SECU;
+            var etat = output[i].PLO_ETAT;
 
             var momentModif = matMidSoi(moment);
-            Lieu = getDataSite(Lieu)[0];
-            embarcation = getDataEmbarcation(embarcation)[0];
-            directeur = getPrenom(directeur);
-            securite = getPrenom(securite);
+            Lieu = getDataSiteProxy(Lieu);
+            embarcation = getDataEmbarcationProxy(embarcation);
 
             tr_str = "<tr>" +
                 "<td align='center'>" + momentModif + "</td>"+
                 "<td align='center'>" + Date  + "</td>" +
                 "<td align='center'>" + Lieu + "</td>" +
                 "<td align='center'>" + embarcation + "</td>"+
-                "<td align='center'>" + directeur + "</td>" +
-                "<td align='center'>" + securite + "</td>";
+                "<td align='center'>" + etat + "</td>";
             tr_str+= "<td align='center'><a class='waves-effect waves-light btn modal-trigger' href='Plongee&date="+Date+"&matMidSoi="+moment+"'>Modifier</a></td>";
             tr_str+= "</tr>";
 
@@ -103,5 +109,57 @@ function matMidSoi(moment)
     else if(moment == 'S')
     {
         return "<i class='tooltipped material-icons' data-position='left' data-tooltip='Soir'>brightness_3</i>";
+    }
+}
+
+function getDataSiteProxy(num)
+{
+    if(mapProxyPlongeeLieu.get(num) == undefined)
+    {
+        mapProxyPlongeeLieu.set(num, getDataSite(num)[0]);
+    }
+    return mapProxyPlongeeLieu.get(num);
+}
+
+function getDataEmbarcationProxy(num)
+{
+    if(mapProxyPlongeeEmbarcation.get(num) == undefined)
+    {
+        mapProxyPlongeeEmbarcation.set(num, getDataEmbarcation(num)[0]);
+    }
+    return mapProxyPlongeeEmbarcation.get(num);
+}
+
+function getAllSite()
+{
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=GetAllDataSite', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send();
+
+    var res = xhr.responseText.split('|');
+
+    for (var i = 0; i < res.length-1; i++)
+    {
+        var data = res[i].split(';');
+        mapProxyPlongeeLieu.set(data[0], data[1]);
+    }
+}
+
+function getAllEmbarcation()
+{
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=GetAllDataEmbarcation', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send();
+
+    var res = xhr.responseText.split('|');
+
+    for (var i = 0; i < res.length-1; i++)
+    {
+        var data = res[i].split(';');
+        mapProxyPlongeeEmbarcation.set(data[0], data[1]);
     }
 }

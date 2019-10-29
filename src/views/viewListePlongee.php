@@ -7,7 +7,7 @@
     </div>
 
     <div class="row">
-        <a class="waves-effect waves-light btn-large modal-trigger col s2" onclick="window.location.href='Plongee'">Ajouter Site</a>
+        <a class="waves-effect waves-light btn-large modal-trigger col s2" onclick="window.location.href='Plongee'">Ajouter Plongee</a>
         <div class="input-field col s3">
             <i class="material-icons prefix">search</i>
             <input type="text" id="searchPlongee" autocomplete="off">
