@@ -6,4 +6,5 @@ require_once ("views/modal/modifierCompléterPalanquee.php");
 require_once ("views/modal/ajoutModifEmbarcation.php");
 require_once ("views/modal/ajoutModifSite.php");
 require_once ("views/modal/ajoutModifAptitude.php");
+require_once ("views/modal/infoArchivePalanquee.php");
 

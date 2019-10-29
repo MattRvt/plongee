@@ -199,6 +199,24 @@ class modelPlongee extends model
         $req->closeCursor();
     }
 
+    public function getEtat($date, $moment)
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "
+            SELECT PLO_ETAT FROM `PLO_PLONGEE`
+            WHERE`PLO_DATE`= \"".$date."\" 
+            and`PLO_MAT_MID_SOI` = \"".$moment."\"";
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data["PLO_ETAT"];
+    }
+
     /**
      * renvoie les plongée ayant eu lieux a une date et un moment données
      * @param $PLO_DATE

@@ -155,3 +155,46 @@ function setNbPlongeur(datePal, matMidSoi)
 
     $("#effectifs").html("effectifs: "+xhr.responseText);
 }
+
+function initInfoPal(datePal, matMidSoi, num)
+{
+    if(matMidSoi == 'M')
+    {
+        var moment = "matin"
+    }
+    else if(matMidSoi == 'A')
+    {
+        var moment = "midi"
+    }
+    else
+    {
+        var moment = "soir"
+    }
+
+    var data = getDataPalanquee(datePal, matMidSoi, num);
+
+    $("#numPalDepasse").html("numero : "+num);
+    $("#datePalDepasse").html(datePal+" le "+moment);
+    $("#profMaxPalDepasse").html("Profondeur Maximum : "+data[4]);
+    $("#durMaxPalDepasse").html("Duree Maximum : "+data[5]);
+    $("#tempsImmersionDepasse").html("temps d'immersion :"+data[0]);
+    $("#heureImmersionDepasse").html("Heure d'immersion :" +data[1]);
+    $("#heureSortieDepasse").html("Heure de sortie de l'eau :"+data[2]);
+    $("#profondeurDepasse").html("Profondeur Reel :"+data[3]);
+
+    var Plongeur = getPlongeurPal(datePal, matMidSoi, num);
+    var Text = "Liste des plongeurs <br/>";
+    Plongeur.forEach(function (element)
+    {
+        if(element != "")
+        {
+            Text = Text+"• "+element+"<br/>";
+        }
+    });
+
+    $("#listPlongeurPalDepasse").html(Text);
+
+    $(document).ready(function(){
+        $('#infoPalModal').modal('open');
+    });
+}

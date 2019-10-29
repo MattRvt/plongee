@@ -22,6 +22,8 @@ class controllerListePalanqueePlongee
 
             if($passerOuPas == "false")
             {
+                $reader2 = new modelPlongee();
+                $etat = $reader2->getEtat($_POST['date'],$_POST['moment']);
                 $pasAJour = $reader->getDansPlongeePasAJour($_POST['date'],$_POST['moment']);
                 $AJour = $reader->getDansPlongeeAJour($_POST['date'],$_POST['moment']);
                 if(!empty($pasAJour))
@@ -36,7 +38,14 @@ class controllerListePalanqueePlongee
                             $text = $this->listeConstruction($text,$content);
 
                             $text = $text.'<td>';
-                            $text = $text."<a class='waves-effect waves-light btn modal-trigger orange' onclick='initCompleterPal(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'>Compléter</a>";
+                            if($etat != "Dépassée")
+                            {
+                                $text = $text."<a class='waves-effect waves-light btn modal-trigger orange' onclick='initCompleterPal(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'>Compléter</a>";
+                            }
+                            else
+                            {
+                                $text = $text."<a class='waves-effect waves-light modal-trigger' onclick='initInfoPal(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'><i class='material-icons black-text' >remove_red_eye</i></a>";
+                            }
                             $text = $text.'</td>';
 
                             $text = $text.'</tr>';
@@ -56,7 +65,13 @@ class controllerListePalanqueePlongee
                             $text = $this->listeConstruction($text,$content);
 
                             $text = $text.'<td>';
-                            $text = $text."<a class='waves-effect waves-light btn modal-trigger' onclick='initCompleterPal(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'>Modifier</a>";
+                            if($etat != "Dépassée") {
+                                $text = $text . "<a class='waves-effect waves-light btn modal-trigger' onclick='initCompleterPal(\"" . $content['PLO_DATE'] . "\",\"" . $content['PLO_MAT_MID_SOI'] . "\"," . $content['PAL_NUM'] . ")'>Modifier</a>";
+                            }
+                            else
+                            {
+                                $text = $text."<a class='waves-effect waves-light modal-trigger' onclick='initInfoPal(\"".$content['PLO_DATE']."\",\"".$content['PLO_MAT_MID_SOI']."\",".$content['PAL_NUM'].")'><i class='material-icons black-text' >remove_red_eye</i></a>";
+                            }
                             $text = $text.'</td>';
 
                             $text = $text.'</tr>';
