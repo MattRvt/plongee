@@ -188,7 +188,7 @@ function setNbPlongeur(datePal, matMidSoi)
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("date="+datePal+"&moment="+matMidSoi);
 
-    $("#effectifs").html("effectifs: "+xhr.responseText);
+    $("#effectifs").html("Effectif total: "+xhr.responseText);
 }
 
 function initInfoPal(datePal, matMidSoi, num)
