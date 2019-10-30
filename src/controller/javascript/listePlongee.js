@@ -118,7 +118,7 @@ function matMidSoi(moment)
 {
     if(moment == 'A')
     {
-        return "<i class='tooltipped material-icons' data-position='left' data-tooltip='Aprés-Midi'>brightness_5</i>";
+        return "<i class='tooltipped material-icons' data-position='left' data-tooltip='Après-midi'>brightness_5</i>";
     }
     else if(moment == 'M')
     {
