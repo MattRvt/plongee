@@ -59,7 +59,7 @@ class modelPersonne extends model
     {
         $pdo = $this->getBdd();
         $sql = "select * from PLO_PERSONNE where PER_NUM in (
-                     select PER_NUM from plo_securite_de_surface
+                     select PER_NUM from PLO_SECURITE_DE_SURFACE
                 )";
         $req = $pdo->prepare($sql);
         $req->execute();
@@ -72,7 +72,7 @@ class modelPersonne extends model
     {
         $pdo = $this->getBdd();
         $sql = "select * from PLO_PERSONNE where PER_NUM in (
-                     select PER_NUM from plo_directeur
+                     select PER_NUM from PLO_DIRECTEUR
                 )";
         $req = $pdo->prepare($sql);
         $req->execute();
