@@ -237,59 +237,20 @@ function initInfoPal(datePal, matMidSoi, num)
 function estPasserOuPas(datePal, matMidSoi)
 {
     var date = new Date();
-    var dateMtn = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-    var momentActuel;
-    var passerOuPas;
+    var dateP = new Date(datePal);
 
-    if(date.getHours()<12)
+    if(matMidSoi == "M")
     {
-        momentActuel = "M";
-
-        if(dateMtn >= datePal && momentActuel == matMidSoi)
-        {
-            passerOuPas = false;
-        }
-        else if(dateMtn <= datePal)
-        {
-            passerOuPas = true;
-        }
-        else
-        {
-            passerOuPas = false;
-        }
+        dateP.setHours(1);
     }
-    else if(date.getHours()<18)
+    else if(matMidSoi == "A")
     {
-        momentActuel = "A";
-
-        if(dateMtn >= datePal && momentActuel == matMidSoi)
-        {
-            passerOuPas = false;
-        }
-        else if(dateMtn >= datePal && matMidSoi == "M")
-        {
-            passerOuPas = false;
-        }
-        else if(dateMtn <= datePal)
-        {
-            passerOuPas = true;
-        }
-        else
-        {
-            passerOuPas = false;
-        }
+        dateP.setHours(12);
     }
     else
     {
-        if(dateMtn <= datePal)
-        {
-            passerOuPas = true;
-        }
-        else
-        {
-            passerOuPas = false;
-        }
+        dateP.setHours(18);
     }
 
-    return passerOuPas;
+    return dateP>date;
 }
