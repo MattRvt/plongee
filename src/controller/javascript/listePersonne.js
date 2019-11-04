@@ -1,77 +1,107 @@
 var db_returnP = null;
 var db_returnNP = null;
+var db_actifP = [];
+var db_actifNP = [];
 
-function update() {
-    $(document).ready(function () {
+function update(){
+    $(document).ready(function(){
         $.ajax({
             url: 'ListePlongeur',
             type: 'get',
             dataType: 'JSON',
-            success: function (response1) {
+            success: function(response1){
                 db_returnP = response1;
-                affichePlongeur(response1, 0);
+                affichePlongeur(response1,0);
             }
-
         });
     });
 
-    $(document).ready(function () {
+    $(document).ready(function(){
         $.ajax({
             url: 'ListeNonPlongeur',
             type: 'get',
             dataType: 'JSON',
-            success: function (response2) {
+            success: function(response2){
                 db_returnNP = response2;
-                affichePlongeur(response2, 1);
+                affichePlongeur(response2,1);
             }
         });
     });
 }
 
 $(document).ready(function () {
-    $("#search").keyup(function () {
-        affichePlongeur(db_returnP, 0);
-        affichePlongeur(db_returnNP, 1);
+    $("#search").keyup(function() {
+        if ($("#checkactif").is(':checked')){
+            affichePlongeur(db_returnP,0);
+            affichePlongeur(db_returnNP,1);
+        }
+        else {
+            affichePlongeur(db_actifP,0);
+            affichePlongeur(db_actifNP,1);
+        }
     });
-})
+});
 
-function affichePlongeur(db, type) {
+$(document).ready(function () {
+    $("#checkactif").change(function () {
+        if (!$("#checkactif").is(':checked')) {
+            if (db_actifP.length === 0) {
+                db_returnP.forEach((item) => {
+                    if (item.PER_ACTIVE == 1) {
+                        db_actifP.push(item);
+                    }
+                });
+                db_returnNP.forEach((item) => {
+                    if (item.PER_ACTIVE == 1) {
+                        db_actifNP.push(item);
+                    }
+                });
+            }
+            affichePlongeur(db_actifP, 0);
+            affichePlongeur(db_actifNP, 1);
+        } else {
+            affichePlongeur(db_returnP, 0);
+            affichePlongeur(db_returnNP, 1);
+        }
+    })
+});
+
+function affichePlongeur(db,type) {
     var output = [];
     var match = $("#search").val().trim();
 
-    if (!type) $("#tablePlongeur").empty();
-    else $("#tableNonPlongeur").empty();
+    if (!type)  $("#tablePlongeur").empty();
+    else  $("#tableNonPlongeur").empty();
 
     if (match == '') {
         output = db;
     } else {
-        var i = 0;
         db.forEach((item) => {
             if ((item.PER_NUM.toLowerCase().indexOf(match.toLowerCase()) >= 0) || (item.PER_NOM.toLowerCase().indexOf(match.toLowerCase()) >= 0) || (item.PER_PRENOM.toLowerCase().indexOf(match.toLowerCase()) >= 0)) {
-                output[i] = item;
-                i++;
+                output.push(item);
             }
         })
     }
 
     var len = output.length;
-    if (len == 0) {
+    if (len == 0){
         if (!type) $("#tablePlongeur").html("Aucun résultat n'a été trouvé");
         else $("#tableNonPlongeur").html("Aucun résultat n'a été trouvé");
-    } else {
+    }
+    else {
         var tr_str = " <thead><tr> " +
             "<th width='10%'>Rôle</th> " +
             "<th width='5%'>S.no</th> " +
             "<th width='20%'>Nom</th> " +
             "<th width='20%'>Prenom</th> " +
-            "<th width='5%'>Actif</th> ";
-        if (!type) tr_str += "<th width='20%'>Certif</th> <th width='20%'>Apt-code</th> ";
-        else tr_str += "<th width='40%'>Certif</th>";
-        tr_str += "</tr> </thead> " +
-            "<tbody></tbody>";
+            "<th width='5%'>Actif</th> " ;
+        if (!type) tr_str+="<th width='20%'>Certif</th> <th width='20%'>Apt-code</th> ";
+        else  tr_str+="<th width='40%'>Certif</th>";
+             tr_str+="</tr> </thead> " +
+                 "<tbody></tbody>";
 
-        if (!type) $("#tablePlongeur").append(tr_str);
-        else $("#tableNonPlongeur").append(tr_str);
+        if (!type)   $("#tablePlongeur").append(tr_str);
+        else   $("#tableNonPlongeur").append(tr_str);
 
         for (var i = 0; i < len; i++) {
             var num = output[i].PER_NUM;

@@ -19,7 +19,7 @@ function updatePlongee()
             data: 'archive='+$("#archive").is(':checked'),
             dataType: 'JSON',
             success: function(response1){
-                db_returnSite = response1;
+                db_returnPlongee = response1;
                 affichePlongee(response1);
             },
             error: function (response1) {
@@ -32,7 +32,7 @@ function updatePlongee()
 
 $(document).ready(function () {
     $("#searchPlongee").keyup(function() {
-        affichePlongee(db_returnSite);
+        affichePlongee(db_returnPlongee);
     });
 })
 
