@@ -275,7 +275,7 @@ class modelPlongee extends model
     public function get3LastPlongee(){
         $pdo = $this->getBdd();
 
-        $sql = "SELECT * FROM ( SELECT * FROM plo_plongee WHERE DATEDIFF(SYSDATE() , PLO_DATE) > 1 ORDER BY PLO_DATE DESC, case `PLO_MAT_MID_SOI` when 'M' then 1 when 'A' then 2 when 'S' then 3 else 4 end ) AS date LIMIT 3";
+        $sql = "SELECT * FROM ( SELECT * FROM PLO_PLONGEE WHERE DATEDIFF(SYSDATE() , PLO_DATE) > 1 ORDER BY PLO_DATE DESC, case `PLO_MAT_MID_SOI` when 'M' then 1 when 'A' then 2 when 'S' then 3 else 4 end ) AS date LIMIT 3";
 
         $req = $pdo->prepare($sql);
         $req->execute();
@@ -289,7 +289,7 @@ class modelPlongee extends model
     public function get3NextPlongee(){
         $pdo = $this->getBdd();
 
-        $sql = "SELECT * FROM ( SELECT * FROM plo_plongee WHERE DATEDIFF(SYSDATE() , PLO_DATE) < 1 ORDER BY PLO_DATE ASC, case `PLO_MAT_MID_SOI` when 'M' then 1 when 'A' then 2 when 'S' then 3 else 4 end ) AS date LIMIT 3";
+        $sql = "SELECT * FROM ( SELECT * FROM PLO_PLONGEE WHERE DATEDIFF(SYSDATE() , PLO_DATE) < 1 ORDER BY PLO_DATE ASC, case `PLO_MAT_MID_SOI` when 'M' then 1 when 'A' then 2 when 'S' then 3 else 4 end ) AS date LIMIT 3";
 
         $req = $pdo->prepare($sql);
         $req->execute();
