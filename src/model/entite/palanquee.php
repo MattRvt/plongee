@@ -121,6 +121,17 @@ class palanquee
         else
         {
             $model->modifyPalanquee($this->num,$this->date,$this->moment,$this->profMax,$this->durMax,$this->heureImm,$this->heureSor,$this->profReel,$this->durFond);
+
+            $pasAJour = $model->getDansPlongeePasAJour($_POST['date'],$_POST['moment']);
+            $writer = new modelPlongee();
+            if(empty($pasAJour))
+            {
+                $writer->setEtat("Complète", $this->moment,$this->date);
+            }
+            else
+            {
+                $writer->setEtat("Paramétrée",  $this->moment,$this->date);
+            }
         }
         $model->deletePlongeurConcernerPalanquee($this->date,$this->moment,$this->num);
         $model = new modelConcerner();
