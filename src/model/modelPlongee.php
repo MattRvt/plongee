@@ -272,4 +272,33 @@ class modelPlongee extends model
         return $data;
     }
 
+    public function get3LastPlongee(){
+        $pdo = $this->getBdd();
+
+        $sql = "SELECT * FROM ( SELECT * FROM plo_plongee WHERE DATEDIFF(SYSDATE() , PLO_DATE) > 1 ORDER BY PLO_DATE DESC ) AS date LIMIT 3";
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data[0];
+    }
+
+    public function get3NextPlongee(){
+        $pdo = $this->getBdd();
+
+        $sql = "SELECT * FROM ( SELECT * FROM plo_plongee WHERE DATEDIFF(SYSDATE() , PLO_DATE) < 1 ORDER BY PLO_DATE DESC ) AS date LIMIT 3";
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data[0];
+    }
+
+
 }
