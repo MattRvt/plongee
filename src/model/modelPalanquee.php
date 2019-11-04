@@ -29,8 +29,6 @@ class modelPalanquee extends model
 
         $PAL_NUM = $this->getNewNum($PLO_DATE,$PLO_MATIN_APRESMIDI);
 
-        echo $PAL_NUM;
-
         $sql = "INSERT INTO `plo_palanquee`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PAL_PROFONDEUR_MAX`, `PAL_DUREE_MAX`) VALUES (\"".$PLO_DATE."\",\"".$PLO_MATIN_APRESMIDI."\",\"".$PAL_NUM."\",\"".$PAL_PROFONDEUR_MAX."\",\"".$PAL_DUREE_MAX."\")";
 
         $statement = $Bdd->prepare($sql);
@@ -41,6 +39,20 @@ class modelPalanquee extends model
         $statement->closeCursor();
 
         return $PAL_NUM;
+    }
+
+    public function addPalanqueWithNum($PLO_DATE,$PLO_MATIN_APRESMIDI,$PAL_PROFONDEUR_MAX,$PAL_DUREE_MAX,$PAL_NUM)
+    {
+        $Bdd = $this->getBdd();
+
+
+        $sql = "INSERT INTO `plo_palanquee`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PAL_PROFONDEUR_MAX`, `PAL_DUREE_MAX`) VALUES (\"".$PLO_DATE."\",\"".$PLO_MATIN_APRESMIDI."\",\"".$PAL_NUM."\",\"".$PAL_PROFONDEUR_MAX."\",\"".$PAL_DUREE_MAX."\")";
+
+        $statement = $Bdd->prepare($sql);
+
+        $statement->execute();
+
+        $statement->closeCursor();
     }
 
     public function modifyPalanquee($PAL_NUM, $PLO_DATE, $PLO_MAT_MID_SOI, $PAL_PROFONDEUR_MAX, $PAL_DUREE_MAX, $PAL_HEURE_IMMERSION, $PAL_HEURE_SORTIE_EAU, $PAL_PROFONDEUR_REELLE, $PAL_DUREE_FOND)
@@ -157,14 +169,23 @@ class modelPalanquee extends model
 
         return $data;
     }
-
-    public function deletePalanquee($date,$moment,$num)
+    
+    public function deletePlongeurConcernerPalanquee($date,$moment,$num)
     {
         $pdo = $this->getBdd();
 
         $sql = "DELETE FROM `PLO_CONCERNER` WHERE (PLO_DATE = '".$date."') and (upper(PLO_MAT_MID_SOI) = upper('".$moment."')) and PAL_NUM = ".$num;
         $req = $pdo->prepare($sql);
         $req->execute();
+
+        $req->closeCursor();
+    }
+
+    public function deletePalanquee($date,$moment,$num)
+    {
+        $this->deletePlongeurConcernerPalanquee($date,$moment,$num);
+
+        $pdo = $this->getBdd();
 
         $sql = "DELETE FROM `PLO_PALANQUEE` WHERE (PLO_DATE = '".$date."') and (upper(PLO_MAT_MID_SOI) = upper('".$moment."')) and PAL_NUM = ".$num;
         $req = $pdo->prepare($sql);
@@ -189,5 +210,18 @@ class modelPalanquee extends model
         }
 
         return $PAL_NUM;
+    }
+
+    public function existe($num,$date,$moment)
+    {
+        $Bdd = $this->getBdd();
+
+        $sql = "select count(*) FROM PLO_PALANQUEE where PLO_DATE=\"".$date."\" and PLO_MAT_MID_SOI=\"".$moment."\" and PAL_NUM=".$num;
+        $statement = $Bdd->prepare($sql);
+        $statement->execute();
+        $data = $statement->fetch(PDO::FETCH_ASSOC);
+        $statement->closeCursor();
+
+        return $data["count(*)"];
     }
 }

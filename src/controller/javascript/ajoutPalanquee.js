@@ -208,7 +208,7 @@ function traitementAjoutPal()
     }
 
     if (palanquee.num != null) {
-        var send = "&num ="+palanquee.num;
+        var send = "&num="+palanquee.num;
     }
     else {
         var send = "";

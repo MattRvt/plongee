@@ -285,3 +285,15 @@ function printExternal(url) {
         //printWindow.close();
     }, true);
 }
+
+function enregistrerPalanqueeBase()
+{
+    $(document).ready(function(){
+        $.ajax({
+            url: "EnregistrerPalanquee",
+            dataType: 'json',
+            type: 'post',
+            data: "data="+JSON.stringify(palanquees),
+        });
+    });
+}

@@ -1,5 +1,11 @@
 <?php $this->_title = "Plongée" ?>
-<form name="plongee" method="post" enctype="multipart/form-data">
+<form name="plongee" method="post" enctype="multipart/form-data"
+      onsubmit="document.getElementById('moment').disabled = false;
+      /*document.getElementById('site').disabled = false;
+      document.getElementById('directeurDePlongee').disabled = false;
+      document.getElementById('securiteDeSurface').disabled = false;
+      document.getElementById('embarcation').disabled = false;*/">
+
     <h3 class="center-align">Plongée</h3><br>
     <div class="row">
         <div class="col offset-s1 s3">
@@ -11,14 +17,14 @@
         </div>
         <div class="col offset-s1 s2">
             <label for="moment">Moment: </label>
-            <select name="moment" <?php $this->controller->selectIsDisabledPrimaire("moment") ?> >
+            <select id="moment" name="moment" <?php $this->controller->selectIsDisabledPrimaire("moment") ?> >
                 <?php $this->controller->selectMoment() ?>
             </select>
             <br/>
         </div>
         <div class="col  offset-s1 s3">
             <label for="siteNom">Nom du site: </label>
-            <select name="site" <?php $this->controller->selectIsDisabled("site") ?> >
+            <select id="site" name="site" <?php $this->controller->selectIsDisabled("site") ?> >
                 <?php $this->controller->selectSite() ?>
             </select>
         </div>
@@ -27,7 +33,7 @@
     <div class="row">
         <div class="col s10 offset-s1">
             <label for="directeurDePlongee">Directeur de plongée: </label>
-            <select name="directeurDePlongee" <?php $this->controller->selectIsDisabled("directeurDePlongee") ?>>
+            <select id="directeurDePlongee" name="directeurDePlongee" <?php $this->controller->selectIsDisabled("directeurDePlongee") ?>>
                 <?php $this->controller->selectDirecteurDePlongee() ?>
             </select>
         </div>
@@ -36,7 +42,7 @@
     <div class="row">
         <div class="col s10 offset-s1">
             <label for="securiteDeSurface">Sécurite de surface: </label> <br/>
-            <select name="securiteDeSurface" <?php $this->controller->selectIsDisabled("securiteDeSurface") ?>>
+            <select id="securiteDeSurface" name="securiteDeSurface" <?php $this->controller->selectIsDisabled("securiteDeSurface") ?>>
                 <?php $this->controller->selectSecuriteDeSurface() ?>
             </select>
         </div>
@@ -45,7 +51,7 @@
     <div class="row">
         <div class="col s10 offset-s1">
             <label for="embarcation">Embarcation: </label>
-            <select name="embarcation" <?php $this->controller->selectIsDisabled("embarcation") ?>>
+            <select id="embarcation" name="embarcation" <?php $this->controller->selectIsDisabled("embarcation") ?>>
                 <?php $this->controller->selectEmbarcation() ?>
             </select>
         </div>
@@ -70,7 +76,7 @@
 
     <div class="row">
         <div class="col s1 offset-s4">
-            <input type="submit" class="btn green" value="Enregistrer plongée">
+            <input type="submit" class="btn green" value="Enregistrer plongée" onclick="enregistrerPalanqueeBase()">
         </div>
         <div class="col s1 offset-s1">
             <input type="button" class="btn red" value="Annuler" onclick="window.location.href='ListePlongee'"><br/>

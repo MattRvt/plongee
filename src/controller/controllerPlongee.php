@@ -17,7 +17,6 @@ class controllerPlongee extends controller
     public function mentions()
     {
         $this->plongeePassee = false;
-        $this->traitementFormulaire();
 
         $plongeeDefinit = (!empty($_GET["date"]) and !empty($_GET["matMidSoi"]));
         if ($plongeeDefinit) {
@@ -26,6 +25,7 @@ class controllerPlongee extends controller
         }
         $this->_view = new View('Plongee');
         $this->_view->generate(array(), $this);
+
         if ($plongeeDefinit) {
             echo "<script type='text/javascript'>initListePalanquee('" . $_GET['date'] . "','" . $_GET['matMidSoi'] . "')</script>";
         }
@@ -64,7 +64,7 @@ class controllerPlongee extends controller
             $var = $_POST[$n];
             echo $var;
             echo "\"";
-            echo "disabled";
+            echo "readOnly";
         } else {
             echo "\"";
         }
@@ -157,7 +157,7 @@ class controllerPlongee extends controller
                 try {
                     $model->addOrModifyPlongee($data);
                     echo '<strong>Donées correctement enregistré.</strong>';
-                    echo "<script type='text/javascript'> window.location.href='Plongee&date=" . $data['date'] . "&matMidSoi=" . $data["moment"] . "'</script>";
+                    echo "<script type='text/javascript'>window.location.href='Plongee&date=" . $data['date'] . "&matMidSoi=" . $data["moment"] . "'</script>";
                 } catch (Exception $e) {
                     echo '<strong>Erreur d\'ecriture dans la base. <br></strong> ', $e->getMessage();
                 }

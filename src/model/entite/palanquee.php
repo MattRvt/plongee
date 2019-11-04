@@ -30,6 +30,9 @@ class palanquee
             case 9:
                 $this->creeDepuisBdd($args[0],$args[1],$args[2],$args[3],$args[4],$args[5],$args[6],$args[7],$args[8]);
                 break;
+            case 11:
+                $this->creeDepuisJson($args[0],$args[1],$args[2],$args[3],$args[4],$args[5],$args[6],$args[7],$args[8],$args[9],$args[10]);
+                break;
             default:
                 break;
         }
@@ -44,7 +47,7 @@ class palanquee
     public function creeNouveaux($date, $moment, $profMax, $durMax, $nbPlongeur, $plongeur)
     {
         $model = new modelPalanquee();
-        if($this->num == null)
+        if($this->num === null)
         {
             $this->num = $model->getNewNum($date,$moment);
         }
@@ -72,10 +75,18 @@ class palanquee
         $this->heureSor = $heureSor;
         $this->profReel = $profReel;
         $this->durFond = $durFond;
-        $this->nbPlongeur = $model->getNbPlongeur($date,$moment,$num)["count(*)"];
-        $this->plongeur = $model->getPlongeur($date,$moment,$num);
-
+        if($this->nbPlongeur === null) {
+            $this->nbPlongeur = $model->getNbPlongeur($date, $moment, $num)["count(*)"];
+            $this->plongeur = $model->getPlongeur($date, $moment, $num);
+        }
         $this->modifier($date, $moment, $profMax, $durMax);
+    }
+
+    public function creeDepuisJson($date, $moment, $profMax, $durMax, $heureImm, $heureSor, $profReel, $durFond, $num, $nbPlongeur,$plongeur)
+    {
+        $this->nbPlongeur = $nbPlongeur;
+        $this->plongeur = $plongeur;
+        $this->creeDepuisBdd($date, $moment, $profMax, $durMax, $heureImm, $heureSor, $profReel, $durFond, $num);
     }
 
     public function modifier($date, $moment, $profMax, $durMax)
@@ -103,7 +114,21 @@ class palanquee
     public function completerBase()
     {
         $model = new modelPalanquee();
-        $model->modifyPalanquee($this->num,$this->date,$this->moment,$this->profMax,$this->durMax,$this->heureImm,$this->heureSor,$this->profReel,$this->durFond);
+        if(!$model->existe($this->num,$this->date,$this->moment))
+        {
+            $model->addPalanqueWithNum($this->date,$this->moment,$this->profMax,$this->durMax,$this->num);
+        }
+        else
+        {
+            $model->modifyPalanquee($this->num,$this->date,$this->moment,$this->profMax,$this->durMax,$this->heureImm,$this->heureSor,$this->profReel,$this->durFond);
+        }
+        $model->deletePlongeurConcernerPalanquee($this->date,$this->moment,$this->num);
+        $model = new modelConcerner();
+
+        foreach($this->plongeur as $key => $content)
+        {
+            $model->addPersonne($this->date,$this->moment,$this->num,$content["PER_NUM"]);
+        }
     }
 
     public function getArray()
