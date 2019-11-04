@@ -29,7 +29,7 @@ class modelPalanquee extends model
 
         $PAL_NUM = $this->getNewNum($PLO_DATE,$PLO_MATIN_APRESMIDI);
 
-        $sql = "INSERT INTO `plo_palanquee`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PAL_PROFONDEUR_MAX`, `PAL_DUREE_MAX`) VALUES (\"".$PLO_DATE."\",\"".$PLO_MATIN_APRESMIDI."\",\"".$PAL_NUM."\",\"".$PAL_PROFONDEUR_MAX."\",\"".$PAL_DUREE_MAX."\")";
+        $sql = "INSERT INTO `PLO_PALANQUEE`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PAL_PROFONDEUR_MAX`, `PAL_DUREE_MAX`) VALUES (\"".$PLO_DATE."\",\"".$PLO_MATIN_APRESMIDI."\",\"".$PAL_NUM."\",\"".$PAL_PROFONDEUR_MAX."\",\"".$PAL_DUREE_MAX."\")";
 
         $statement = $Bdd->prepare($sql);
 
@@ -46,7 +46,7 @@ class modelPalanquee extends model
         $Bdd = $this->getBdd();
 
 
-        $sql = "INSERT INTO `plo_palanquee`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PAL_PROFONDEUR_MAX`, `PAL_DUREE_MAX`) VALUES (\"".$PLO_DATE."\",\"".$PLO_MATIN_APRESMIDI."\",\"".$PAL_NUM."\",\"".$PAL_PROFONDEUR_MAX."\",\"".$PAL_DUREE_MAX."\")";
+        $sql = "INSERT INTO `PLO_PALANQUEE`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PAL_PROFONDEUR_MAX`, `PAL_DUREE_MAX`) VALUES (\"".$PLO_DATE."\",\"".$PLO_MATIN_APRESMIDI."\",\"".$PAL_NUM."\",\"".$PAL_PROFONDEUR_MAX."\",\"".$PAL_DUREE_MAX."\")";
 
         $statement = $Bdd->prepare($sql);
 

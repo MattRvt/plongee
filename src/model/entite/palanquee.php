@@ -37,7 +37,7 @@ class palanquee
                 break;
         }
     }
-    
+
     public function creeNouveauxNum($date, $moment, $profMax, $durMax, $nbPlongeur, $plongeur, $num)
     {
         $this->num = $num;
