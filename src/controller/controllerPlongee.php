@@ -151,8 +151,6 @@ class controllerPlongee extends controller
                 $data["etat"] = "Créée";
             }
 
-            print_r($data);
-
             if ($valide) {
                 require_once('model/modelPlongee.php');
                 $model = new modelPlongee();
