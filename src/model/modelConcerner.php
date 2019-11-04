@@ -17,7 +17,7 @@ class modelConcerner extends model
 
     public function deletePersonne($PLO_DATE,$PLO_MATIN_APRESMIDI, $PAL_NUM)
     {
-        $sql = "DELETE FROM `plo_concerner` WHERE PLO_DATE=\"".$PLO_DATE."\" and PLO_MAT_MID_SOI=\"".$PLO_MATIN_APRESMIDI."\" and PAL_NUM=".$PAL_NUM;
+        $sql = "DELETE FROM `PLO_CONCERNER` WHERE PLO_DATE=\"".$PLO_DATE."\" and PLO_MAT_MID_SOI=\"".$PLO_MATIN_APRESMIDI."\" and PAL_NUM=".$PAL_NUM;
         $statement = $this->getBdd()->prepare($sql);
         $statement->execute();
     }
