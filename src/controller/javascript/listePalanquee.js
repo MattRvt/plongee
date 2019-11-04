@@ -187,10 +187,10 @@ function initCompleterPal(datePal, matMidSoi, num)
 
 function modifierCompleterPalanquee(datePal, matMidSoi, num)
 {
-    palanquees[num].heureImm = document.getElementById("inpHeureImm").value;
-    palanquees[num].heureSor = document.getElementById("inpHeureSor").value;
-    palanquees[num].profReel = document.getElementById("inpProfondeurReel").value;
-    palanquees[num].durFond = document.getElementById("inpDureeFond").value;
+    palanquees[num-1].heureImm = document.getElementById("inpHeureImm").value;
+    palanquees[num-1].heureSor = document.getElementById("inpHeureSor").value;
+    palanquees[num-1].profReel = document.getElementById("inpProfondeurReel").value;
+    palanquees[num-1].durFond = document.getElementById("inpDureeFond").value;
 
     closeModal("modifierCompleter");
 
