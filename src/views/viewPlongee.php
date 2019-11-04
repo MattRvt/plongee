@@ -4,8 +4,7 @@
     <div class="row">
         <div class="col offset-s1 s3">
             <label for="date">Date: </label>
-            <input type="date" name="date"
-                   min="<?php echo date("Y-m-d"); ?>"
+            <input type="text" class="datepicker datepickerd" name="date"
                    value=<?php $this->controller->verifierRempliPrimaire("date"); ?>
             ><br/>
         </div>

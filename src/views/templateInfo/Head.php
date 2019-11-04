@@ -17,6 +17,7 @@
 <script src="controller/javascript/Embarcation.js"></script>
 <script src="controller/javascript/Aptitude.js"></script>
 <script src="controller/javascript/listePlongee.js"></script>
+<script src="controller/javascript/historique.js"></script>
 
 <!-- Css projet -->
 <link rel="stylesheet" href="views/Css/modal.css">
@@ -58,7 +59,7 @@
         $('.datepicker').datepicker({
             defaultDate: today ,
             maxDate: today,
-            yearRange: [2000,today.getFullYear()],
+            yearRange: [2012,today.getFullYear()],
             format: "yyyy-mm-dd",
             firstDay: 1,
             i18n: {
@@ -111,5 +112,11 @@
                 ],
                 weekdaysAbbrev: ['D','L','M','M','J','V','S']
             }});
+
+        $('.datepickerd').datepicker({
+            minDate: today,
+            format: "yyyy-mm-dd",
+            yearRange : [],
+            });
     });
 </script>

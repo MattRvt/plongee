@@ -15,6 +15,12 @@
     </div>
     <div class="row">
         <h3 class="col s2">Plongeur</h3>
+        <h3 class="col s5">
+            <label>
+                <input type="checkbox" id="checkactif" class="filled-in" checked="checked" />
+                <span>Afficher les personnes inactives</span>
+            </label>
+        </h3>
     </div>
     <div class="container">
         <table class ="centered" id="tablePlongeur" border="1" >
