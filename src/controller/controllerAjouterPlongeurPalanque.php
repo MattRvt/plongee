@@ -16,9 +16,6 @@ class controllerAjouterPlongeurPalanque
     {
         $nb = $_POST["nb"];
 
-        $reader = new modelPlongeur();
-        $plongeur = $reader->selectPlongeurPersonne();
-
         $text = "";
 
         $text = $text."<div>

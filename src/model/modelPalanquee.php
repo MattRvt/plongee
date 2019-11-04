@@ -27,16 +27,7 @@ class modelPalanquee extends model
     {
         $Bdd = $this->getBdd();
 
-        $sql = "select max(PAL_NUM) FROM PLO_PALANQUEE where PLO_DATE=\"".$PLO_DATE."\" and PLO_MAT_MID_SOI=\"".$PLO_MATIN_APRESMIDI."\"";
-        $statement = $Bdd->prepare($sql);
-        $statement->execute();
-        $num = $statement->fetch(PDO::FETCH_ASSOC);
-        $PAL_NUM = $num["max(PAL_NUM)"]+1;
-
-        if($PAL_NUM == "NULL")
-        {
-            $PAL_NUM = 1;
-        }
+        $PAL_NUM = $this->getNewNum($PLO_DATE,$PLO_MATIN_APRESMIDI);
 
         echo $PAL_NUM;
 
@@ -48,6 +39,8 @@ class modelPalanquee extends model
 
 
         $statement->closeCursor();
+
+        return $PAL_NUM;
     }
 
     public function modifyPalanquee($PAL_NUM, $PLO_DATE, $PLO_MAT_MID_SOI, $PAL_PROFONDEUR_MAX, $PAL_DUREE_MAX, $PAL_HEURE_IMMERSION, $PAL_HEURE_SORTIE_EAU, $PAL_PROFONDEUR_REELLE, $PAL_DUREE_FOND)
@@ -178,5 +171,23 @@ class modelPalanquee extends model
         $req->execute();
 
         $req->closeCursor();
+    }
+
+    public function getNewNum($PLO_DATE,$PLO_MATIN_APRESMIDI)
+    {
+        $Bdd = $this->getBdd();
+
+        $sql = "select max(PAL_NUM) FROM PLO_PALANQUEE where PLO_DATE=\"".$PLO_DATE."\" and PLO_MAT_MID_SOI=\"".$PLO_MATIN_APRESMIDI."\"";
+        $statement = $Bdd->prepare($sql);
+        $statement->execute();
+        $num = $statement->fetch(PDO::FETCH_ASSOC);
+        $PAL_NUM = $num["max(PAL_NUM)"]+1;
+
+        if($PAL_NUM == "NULL")
+        {
+            $PAL_NUM = 1;
+        }
+
+        return $PAL_NUM;
     }
 }

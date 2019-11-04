@@ -1,5 +1,7 @@
 function initListePalanquee(datePal, matMidSoi)
 {
+    palanquees = [];
+
     setNbPlongeur(datePal, matMidSoi);
 
     var passerOuPas = estPasserOuPas(datePal, matMidSoi);
@@ -21,7 +23,12 @@ function initListePalanquee(datePal, matMidSoi)
             dataType: 'JSON',
             success: function(response1)
             {
-                afficherPalanquee(response1);
+                var len = response1.length;
+                for (var i = 0; i < len; i++)
+                {
+                    palanquees[i] = response1[i];
+                }
+                afficherPalanquee(datePal, matMidSoi);
             },
             error: function (response1) {
                 alert("erreur de chargement des données");
@@ -31,12 +38,12 @@ function initListePalanquee(datePal, matMidSoi)
     });
 }
 
-function afficherPalanquee(data)
+function afficherPalanquee(datePal, matMidSoi)
 {
     $("#listePalanque").html("");
-    var len = data.length;
+    var len = palanquees.length;
 
-    var plus = data[0].PAL_HEURE_IMMERSION;
+    var plus = estPasserOuPas(datePal, matMidSoi);
 
     var tr_str = "<thead class='center'><tr> " +
         "<th>P.no</th> " +
@@ -44,7 +51,7 @@ function afficherPalanquee(data)
         "<th>Duree Max</th> "+
         "<th>Nombre de plongeur</th>";
 
-    if(plus !== undefined)
+    if(plus !== true)
     {
         if(plus === null)
         {
@@ -69,12 +76,14 @@ function afficherPalanquee(data)
     {
         tr_str = "";
 
-        if(plus !== undefined)
+        var data = palanquees[i];
+
+        if(plus !== true)
         {
-            var heureImm = data[i].PAL_HEURE_IMMERSION;
-            var heureSort = data[i].PAL_HEURE_SORTIE_EAU;
-            var profReel = data[i].PAL_PROFONDEUR_REELLE;
-            var durreFond = data[i].PAL_DUREE_FOND;
+            var heureImm = data.heureImm;
+            var heureSort = data.heureSor;
+            var profReel = data.profReel;
+            var durreFond = data.durFond;
 
             if(separation && !((heureImm == null)||(heureSort == null)||(profReel == null)||(durreFond == null))) {
                 tr_str += "<tr><td><td></tr>";
@@ -82,11 +91,11 @@ function afficherPalanquee(data)
             }
         }
 
-        var num = data[i].PAL_NUM;
-        var profondeurMax = data[i].PAL_PROFONDEUR_MAX;
-        var dureeMax = data[i].PAL_DUREE_MAX;
-        var nbPlongeur = data[i].nbPlongeur;
-        var btn = data[i].btn;
+        var num = data.num;
+        var profondeurMax = data.profMax;
+        var dureeMax = data.durMax;
+        var nbPlongeur = data.nbPlongeur;
+        //var btn = data[i].btn;
 
         tr_str += "<tr>" +
             "<td align='center'>" + num + "</td>" +
@@ -94,7 +103,7 @@ function afficherPalanquee(data)
             "<td align='center'>" + dureeMax + "</td>"+
             "<td align='center'>" + nbPlongeur + "</td>";
 
-        if(plus !== undefined)
+        if(plus !== true)
         {
             tr_str +=
                 "<td align='center'>" + heureImm + "</td>" +
@@ -103,49 +112,71 @@ function afficherPalanquee(data)
                 "<td align='center'>" + durreFond + "</td>";
         }
 
-        tr_str+= btn+"</tr>";
+        tr_str+= getBtn(datePal, matMidSoi, num, heureImm, heureSort, profReel, durreFond)+"</tr>";
         $("#listePalanque tbody").append(tr_str);
     }
 }
 
+function getBtn(datePal, matMidSoi, num, heureImm, heureSort, profReel, durreFond)
+{
+    var xhr = initXHR();
+    xhr.open('POST', 'index.php?url=GetEtatPlongee', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("date="+datePal+"&moment="+matMidSoi);
+
+    if(xhr.responseText == "Dépassée")
+    {
+        var btn = "<td><a class='waves-effect waves-light' onclick='initInfoPal(\""+datePal+"\",\""+matMidSoi+"\","+num+")'><i class='material-icons black-text' >remove_red_eye</i></a></td>";
+    }
+    else
+    {
+        if(estPasserOuPas(datePal, matMidSoi))
+        {
+            var btn = "<td><a class='waves-effect waves-light btn' onclick='initModifPalanquee("+num+")'>Modifier</a></td>" +
+                "<td><a class='center' onclick='supprimerPal(\""+datePal+"\",\""+matMidSoi+"\","+num+")'><i class='small material-icons red-text'>clear</i></a></td>";
+        }
+        else
+        {
+            if(heureImm == null || heureSort == null || profReel == null || durreFond == null)
+            {
+                var btn = "<td><a class='waves-effect waves-light btn orange' onclick='initCompleterPal(\""+datePal+"\",\""+matMidSoi+"\","+num+")'>à compléter</a></td>";
+            }
+            else
+            {
+                var btn = "<td><a class='waves-effect waves-light btn' onclick='initCompleterPal(\""+datePal+"\",\""+matMidSoi+"\","+num+")'>complète</a></td>";
+            }
+        }
+    }
+
+    return btn;
+}
+
 function initCompleterPal(datePal, matMidSoi, num)
 {
+    var pal = palanquees[num-1];
+
     if(matMidSoi == 'M')
     {
         var moment = "matin"
     }
     else if(matMidSoi == 'A')
     {
-        var moment = "midi"
+        var moment = "l'apres-midi"
     }
     else
     {
         var moment = "soir"
     }
 
-    var data = getDataPalanquee(datePal, matMidSoi, num);
-
     $("#numPalPasse").html("numero : "+num);
     $("#datePalPasse").html(datePal+" le "+moment);
-    $("#profMaxPalPasse").html("Profondeur Maximum : "+data[4]);
-    $("#durMaxPalPasse").html("Duree Maximum : "+data[5]);
+    $("#profMaxPalPasse").html("Profondeur Maximum : "+pal.profMax);
+    $("#durMaxPalPasse").html("Duree Maximum : "+pal.durMax);
 
-    var Plongeur = getPlongeurPal(datePal, matMidSoi, num);
-    var Text = "Liste des plongeurs <br/>";
-    Plongeur.forEach(function (element)
-    {
-        if(element != "")
-        {
-            Text = Text+"• "+element+"<br/>";
-        }
-    });
-
-    $("#listPlongeurPalPasse").html(Text);
-
-    document.getElementById("inpHeureImm").value = data[0];
-    document.getElementById("inpHeureSor").value = data[1];
-    document.getElementById("inpProfondeurReel").value = data[2];
-    document.getElementById("inpDureeFond").value = data[3];
+    document.getElementById("inpHeureImm").value = pal.heureImm;
+    document.getElementById("inpHeureSor").value = pal.heureSor;
+    document.getElementById("inpProfondeurReel").value = pal.profReel;
+    document.getElementById("inpDureeFond").value = pal.durFond;
 
     $("#validerModifPal").html("<input type='submit' name='EN' value='Envoyer' onclick='modifierCompleterPalanquee(\""+datePal+"\",\""+matMidSoi+"\","+num+")'>");
 
@@ -156,29 +187,32 @@ function initCompleterPal(datePal, matMidSoi, num)
 
 function modifierCompleterPalanquee(datePal, matMidSoi, num)
 {
-    var heureImm = document.getElementById("inpHeureImm").value;
-    var HeureSor = document.getElementById("inpHeureSor").value;
-    var ProfondeurReel = document.getElementById("inpProfondeurReel").value;
-    var dureeFond = document.getElementById("inpDureeFond").value;
-
-    var xhr = initXHR();
-    xhr.open('POST', 'index.php?url=ModifierPalanquee', false);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("date="+datePal+"&moment="+matMidSoi+"&num="+num+"&heureImm="+heureImm+"&HeureSor="+HeureSor+"&ProfondeurReel="+ProfondeurReel+"&dureeFond="+dureeFond);
+    palanquees[num].heureImm = document.getElementById("inpHeureImm").value;
+    palanquees[num].heureSor = document.getElementById("inpHeureSor").value;
+    palanquees[num].profReel = document.getElementById("inpProfondeurReel").value;
+    palanquees[num].durFond = document.getElementById("inpDureeFond").value;
 
     closeModal("modifierCompleter");
 
-    initListePalanquee(datePal, matMidSoi);
+    afficherPalanquee(datePal, matMidSoi);
 }
 
-function supprimerPal(datePal, matMidSoi, num)
+function supprimerPal(datePal,matMidSoi,num)
 {
-    var xhr = initXHR();
-    xhr.open('POST', 'index.php?url=SupprimerPal', false);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("date="+datePal+"&moment="+matMidSoi+"&num="+num);
-
-    initListePalanquee(datePal, matMidSoi);
+    var len = palanquees.length;
+    for(var i = num-1; i<len; i++)
+    {
+        if(i==len-1)
+        {
+            palanquees[i] = null;
+        }
+        else
+        {
+            palanquees[i] = palanquees[i+1];
+            palanquees[i].num = i+1;
+        }
+    }
+    afficherPalanquee(datePal,matMidSoi);
 }
 
 function setNbPlongeur(datePal, matMidSoi)
@@ -193,6 +227,8 @@ function setNbPlongeur(datePal, matMidSoi)
 
 function initInfoPal(datePal, matMidSoi, num)
 {
+    var pal = palanquees[num];
+
     if(matMidSoi == 'M')
     {
         var moment = "matin"
@@ -206,28 +242,15 @@ function initInfoPal(datePal, matMidSoi, num)
         var moment = "soir"
     }
 
-    var data = getDataPalanquee(datePal, matMidSoi, num);
 
     $("#numPalDepasse").html("numero : "+num);
     $("#datePalDepasse").html(datePal+" le "+moment);
-    $("#profMaxPalDepasse").html("Profondeur Maximum : "+data[4]);
-    $("#durMaxPalDepasse").html("Duree Maximum : "+data[5]);
-    $("#tempsImmersionDepasse").html("temps d'immersion :"+data[0]);
-    $("#heureImmersionDepasse").html("Heure d'immersion :" +data[1]);
-    $("#heureSortieDepasse").html("Heure de sortie de l'eau :"+data[2]);
-    $("#profondeurDepasse").html("Profondeur Reel :"+data[3]);
-
-    var Plongeur = getPlongeurPal(datePal, matMidSoi, num);
-    var Text = "Liste des plongeurs <br/>";
-    Plongeur.forEach(function (element)
-    {
-        if(element != "")
-        {
-            Text = Text+"• "+element+"<br/>";
-        }
-    });
-
-    $("#listPlongeurPalDepasse").html(Text);
+    $("#profMaxPalDepasse").html("Profondeur Maximum : "+pal.profMax);
+    $("#durMaxPalDepasse").html("Duree Maximum : "+pal.durMax);
+    $("#tempsImmersionDepasse").html("temps d'immersion :"+pal.durFond);
+    $("#heureImmersionDepasse").html("Heure d'immersion :" +pal.heureImm);
+    $("#heureSortieDepasse").html("Heure de sortie de l'eau :"+pal.heureSor);
+    $("#profondeurDepasse").html("Profondeur Reel :"+pal.profReel);
 
     $(document).ready(function(){
         $('#infoPalModal').modal('open');

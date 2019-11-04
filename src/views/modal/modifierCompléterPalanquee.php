@@ -9,7 +9,7 @@
 
         <h6>temps d'immersion  : </h6>
         <label>
-            <input type='time' id='inpDureeFond' name='inpDureeFond'><br />
+            <input type='number' id='inpDureeFond' name='inpDureeFond'><br />
         </label>
 
         <h6>Heure d'immersion : </h6>

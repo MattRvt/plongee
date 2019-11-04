@@ -7,23 +7,32 @@ class controllerAjoutPalanquee
         if (isset($url) && count($url) > 1) {
             throw new Exception('Page introuvable');
         } else {
-            $this->ajoutDataSite();
+            $this->ajoutPalanquee();
         }
     }
 
-    public function ajoutDataSite()
+    public function ajoutPalanquee()
     {
+        require_once("model/entite/palanquee.php");
+
         $date = $_POST["date"];
         $moment = $_POST["moment"];
         $profMax = $_POST["profMax"];
         $durMax = $_POST["durMax"];
 
-        $writer = new modelPalanquee();
+        $nbPlong = $_POST["nb"];
+        $plongeur = $_POST["plongeur"];
+        $plongeur = explode(",",$plongeur);
 
-        $writer->addPalanque($date,$moment,$profMax,$durMax);
+        if(isset($_POST["num"]))
+        {
+            $palanquee = new palanquee($date,$moment,$profMax,$durMax,$nbPlong,$plongeur,$_POST["num"]);
+        }
+        else
+        {
+            $palanquee = new palanquee($date,$moment,$profMax,$durMax,$nbPlong,$plongeur);
+        }
 
-        $writer = new modelPlongee();
-
-        $writer->setEtat("Paramétrée", $moment,$date);
+        echo json_encode($palanquee->getArray(),JSON_UNESCAPED_UNICODE);
     }
 }

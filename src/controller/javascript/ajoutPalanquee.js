@@ -6,6 +6,9 @@ var palanquee = {
     num: null,
 };
 
+var palanquees = [];
+
+
 $(document).ready(function(){
     $.ajax({
         url: 'ListePlongeur',
@@ -62,10 +65,11 @@ function initAjoutPalanquee(datePal, matMidSoi)
     $('#addPlongeurPal').html("<a class='waves-effect waves-light btn green' onclick='addCasePlongeur()'>Ajouter Plongeur</a>");
 }
 
-function initModifPalanquee(datePal, matMidSoi, num)
+function initModifPalanquee(num)
 {
-    palanquee.datePal = datePal;
-    palanquee.matMidSoi = matMidSoi;
+    var pal = palanquees[num-1];
+    palanquee.datePal = pal.date;
+    palanquee.matMidSoi = pal.moment;
     palanquee.num = num;
 
     $(document).ready(function(){
@@ -75,32 +79,29 @@ function initModifPalanquee(datePal, matMidSoi, num)
     $("#titreAjoutModifPal").html("Modifier une palanquée");
     resetModalModifAjoutPal();
 
-    var data = getDataPalanquee();
-    document.getElementById("profMax").value = data[4];
-    document.getElementById("DurMax").value = data[5];
+    document.getElementById("profMax").value = pal.profMax;
+    document.getElementById("DurMax").value = pal.durMax;
 
-    var nb = getNbPlongeur();
+    document.getElementById('addPlongeurPal').value = pal.nbPlongeur;
 
-    document.getElementById('addPlongeurPal').value = nb;
+    nbCasePlongeur(pal.nbPlongeur);
 
-    nbCasePlongeur(nb);
-
-    if(nb < 5)
+    if(pal.nbPlongeur < 5)
     {
         $('#addPlongeurPal').html("<a class='waves-effect waves-light btn green' onclick='addCasePlongeur()'>Ajouter Plongeur</a>");
     }
-    if(nb > 2)
+    if(pal.nbPlongeur > 2)
     {
-        for(var i=1; i<=nb; i++)
+        for(var i=1; i<=pal.nbPlongeur; i++)
         {
             $('#supprPlongeurPal'+i).html("<a class='center' onclick='supprCasePlongeur("+i+")'><i class='small material-icons red-text'>clear</i></a>");
         }
     }
 
-    var Plongeur = getPlongeurPal();
-    for(var k = 1; k<=nb; k++)
+    for(var k = 0; k<pal.nbPlongeur; k++)
     {
-        document.getElementById('plongeur'+k).value = Plongeur[k];
+        var text = pal.plongeur[k].PER_NUM+" | "+pal.plongeur[k].PER_NOM+" "+pal.plongeur[k].PER_PRENOM;
+        document.getElementById('plongeur'+(k+1)).value = text;
     }
 }
 
@@ -192,75 +193,47 @@ function supprCasePlongeur(nbSuppr)
     }
 }
 
-function getNbPlongeur()
+function traitementAjoutPal()
 {
-    var xhr = initXHR();
-    xhr.open('POST', 'index.php?url=GetNbPlongeur', false);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("date="+palanquee.datePal+"&moment="+palanquee.matMidSoi+"&num="+palanquee.num);
+    var plongeur = [];
+    var nb = document.getElementById('addPlongeurPal').value;
 
-    return xhr.responseText;
-}
-
-function getDataPalanquee(date = palanquee.datePal, moment = palanquee.matMidSoi, num = palanquee.num)
-{
-    var xhr = initXHR();
-    xhr.open('POST', 'index.php?url=GetUnePalanquee', false);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("date="+date+"&moment="+moment+"&num="+num);
-
-    return xhr.responseText.split('|');
-}
-
-function getPlongeurPal(date = palanquee.datePal, moment = palanquee.matMidSoi, num = palanquee.num)
-{
-    var xhr = initXHR();
-    xhr.open('POST', 'index.php?url=GetPlongeurPal', false);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("date="+date+"&moment="+moment+"&num="+num);
-
-    return xhr.responseText.split('|');
-}
-
-function traitementAjoutPal() {
-    if (palanquee.num != null) {
-        var fichier1 = "UpdatePalanquee";
-        var send1 = "&num="+palanquee.num;
-    } else{
-        var fichier1 = "AjoutPalanquee";
-        var send1 = "";
-    }
-
-    var profMax = document.getElementById("profMax").value;
-    var DurMax = document.getElementById("DurMax").value;
-    var xhr = initXHR();
-
-    xhr.open('POST', 'index.php?url='+fichier1, false);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("date="+palanquee.datePal+"&moment="+palanquee.matMidSoi+"&profMax="+profMax+"&durMax="+DurMax+send1);
-
-    palanquee.num = xhr.responseText;
-
-    initListePalanquee(palanquee.datePal, palanquee.matMidSoi);
-
-    var nbPlong = document.getElementById('addPlongeurPal').value;
-    var plong = "";
-
-    xhr.open('POST', 'index.php?url=DeletePlongeurPalanquee', false);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("date="+palanquee.datePal+"&moment="+palanquee.matMidSoi+"&palnum="+palanquee.num);
-
-    $("#erreurPal").html(xhr.responseText);
-
-    for(var k = 1; k<=nbPlong; k++)
+    for(var n=0; n<nb; n++)
     {
-        plong = document.getElementById('plongeur'+k).value.split('|')[0];
+        var plongNum = document.getElementById("plongeur"+(n+1)).value.split('|')[0];
+        var plongNom = document.getElementById("plongeur"+(n+1)).value.split('|')[1].split(" ")[1];
+        var plongPrenom = document.getElementById("plongeur"+(n+1)).value.split('|')[1].split(" ")[2];
 
-        xhr.open('POST', 'index.php?url=AjoutPlongeurPalanquee', false);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send("date="+palanquee.datePal+"&moment="+palanquee.matMidSoi+"&palnum="+palanquee.num+"&pernum="+plong);
+        plongeur[n] = Array(plongNum, plongNom, plongPrenom);
     }
 
-    initListePalanquee(palanquee.datePal,palanquee.matMidSoi);
+    if (palanquee.num != null) {
+        var send = "&num ="+palanquee.num;
+    }
+    else {
+        var send = "";
+    }
+        var profMax = document.getElementById("profMax").value;
+        var DurMax = document.getElementById("DurMax").value;
+
+        $(document).ready(function(){
+            $.ajax({
+                url: "AjoutPalanquee",
+                type: 'post',
+                data: "date="+palanquee.datePal+"&moment="+palanquee.matMidSoi+"&profMax="+profMax+"&durMax="+DurMax+"&nb="+nb+"&plongeur="+plongeur+send,
+                dataType: 'JSON',
+                success: function(response1){
+                    palanquees[response1.num-1] = response1;
+                    afficherPalanquee(palanquee.datePal,palanquee.matMidSoi);
+                },
+                error: function (response1) {
+                    document.write(response1.responseText);
+                    alert("erreur de création de la palanquee");
+                    console.log(response1);
+                }
+            });
+        });
+
+
     closeModal("newPalanquee");
 }
