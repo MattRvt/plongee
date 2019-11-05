@@ -17,7 +17,7 @@ function addPersonne() {
     personne.directeur = document.getElementById('Directeur').checked;
     personne.secuSurface = document.getElementById('SecuriteSurface').checked;
     personne.active = document.getElementById("estActive").checked;
-    var modif = document.getElementById('aptitude').value;
+    var modif = document.getElementById('modfiAjout').value;
 
     var valid = true;
 
@@ -52,6 +52,7 @@ function addPersonne() {
             if(modif != -1)
             {
                 fichier = "ModifierPersonne";
+                alert ("je suis la");
                 text = text + "&num="+document.getElementById("modfiAjout").value;
             }
             else
