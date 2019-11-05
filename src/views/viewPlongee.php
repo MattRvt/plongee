@@ -1,11 +1,5 @@
 <?php $this->_title = "Plongée" ?>
-<form name="plongee" method="post" enctype="multipart/form-data"
-      onsubmit="document.getElementById('moment').disabled = false;
-      enregistrerPalanqueeBase();
-      /*document.getElementById('site').disabled = false;
-      document.getElementById('directeurDePlongee').disabled = false;
-      document.getElementById('securiteDeSurface').disabled = false;
-      document.getElementById('embarcation').disabled = false;*/">
+<form name="plongee" id="formPlongee" method="post">
 
     <h3 class="center-align">Plongée</h3><br>
     <div class="row">
@@ -59,13 +53,14 @@
 
     <div class="row">
         <div class="col s3 offset-s3">
-            <p>État : <?php $this->controller->etat() ?></p>
+            <div id="etatPlong"><?php $this->controller->etat(0) ?></div>
         </div>
         <div class="col s3 offset-s1">
             <p id="effectifs">
             </p>
         </div>
     </div>
+    <input type="hidden" id="hidEtat" name="etat" value="<?php $this->controller->etat(1) ?>">
 
 
     <table class="centered" id="listePalanque" border="1"></table>
@@ -76,7 +71,7 @@
 
     <div class="row">
         <div class="col s1 offset-s4">
-            <input type="submit" class="btn green" value="Enregistrer plongée">
+            <input type="button" class="btn green" value="Enregistrer plongée" onclick="enregistrerPalanqueeBase()">
         </div>
         <div class="col s1 offset-s1">
             <input type="button" class="btn red" value="Annuler" onclick="window.location.href='ListePlongee'"><br/>

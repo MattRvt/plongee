@@ -43,16 +43,16 @@ class controllerEnregistrerPalanquee
         }
 
         $model = new modelPlongee();
-        $model->supprimerAllPalanqueSup($_POST["date"],$_POST["moment"],$numMax);
+        $model->supprimerAllPalanqueSup($_POST["dateAj"],$_POST["momentAj"],$numMax);
 
-        if(isset($palanquees[0]["date"]) && isset($palanquees[0]["moment"]))
+        if($numMax != 0)
         {
-             $model->verifierEtat($palanquees[0]["date"],$palanquees[0]["moment"]);
+            $model->verifierEtat($_POST["dateAj"],$_POST["momentAj"]);
         }
         else
         {
-             $model->setEtat("Créée", $_POST["moment"], $_POST["date"]);
+            $model->setEtat("Créée", $_POST["momentAj"], $_POST["dateAj"]);
         }
-
+        echo $model->getEtat($_POST["dateAj"],$_POST["momentAj"]);
     }
 }

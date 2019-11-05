@@ -120,7 +120,7 @@ class modelPlongee extends model
      * @param $PLO_NB_PALANQUEES
      * @param $PLO_ETAT
      */
-    public function updatePlongee($PLO_DATE, $PLO_MATIN_APRESMIDI, $SIT_NUM, $EMB_NUM, $PER_NUM_DIR, $PER_NUM_SECU, $PLO_EFFECTIF_PLONGEURS, $PLO_EFFECTIF_BATEAU, $PLO_NB_PALANQUEES, $PLO_ETAT)
+    public function updatePlongee($PLO_DATE, $PLO_MATIN_APRESMIDI, $SIT_NUM, $EMB_NUM, $PER_NUM_DIR, $PER_NUM_SECU, $PLO_EFFECTIF_PLONGEURS, $PLO_EFFECTIF_BATEAU, $PLO_NB_PALANQUEES)
     {
         $statement = $this->getBdd()->prepare("
             UPDATE `PLO_PLONGEE`
@@ -131,8 +131,7 @@ class modelPlongee extends model
                 `PER_NUM_SECU` = :PER_NUM_SECU,
                 `PLO_EFFECTIF_PLONGEURS` = :PLO_EFFECTIF_PLONGEURS,
                 `PLO_EFFECTIF_BATEAU` = :PLO_EFFECTIF_BATEAU,
-                `PLO_NB_PALANQUEES` = :PLO_NB_PALANQUEES,
-                `PLO_ETAT` = :PLO_ETAT
+                `PLO_NB_PALANQUEES` = :PLO_NB_PALANQUEES
             WHERE
                 `PLO_DATE`= :PLO_DATE 
             and
@@ -148,7 +147,6 @@ class modelPlongee extends model
         $statement->bindParam(':PLO_EFFECTIF_PLONGEURS', $PLO_EFFECTIF_PLONGEURS);
         $statement->bindParam(':PLO_EFFECTIF_BATEAU', $PLO_EFFECTIF_BATEAU);
         $statement->bindParam(':PLO_NB_PALANQUEES', $PLO_NB_PALANQUEES);
-        $statement->bindParam(':PLO_ETAT', $PLO_ETAT);
 
         set_error_handler(function ($severity, $message, $file, $line) {
             throw new ErrorException($message, $severity, $severity, $file, $line);
@@ -176,7 +174,7 @@ class modelPlongee extends model
 
         $plongeeExiste = $this->plongeeExiste($PLO_DATE, $PLO_MATIN_APRESMIDI);
         if ($plongeeExiste) {
-            $this->updatePlongee($PLO_DATE, $PLO_MATIN_APRESMIDI, $SIT_NUM, $EMB_NUM, $PER_NUM_DIR, $PER_NUM_SECU, $PLO_EFFECTIF_PLONGEURS, $PLO_EFFECTIF_BATEAU, $PLO_NB_PALANQUEES, $PLO_ETAT);
+            $this->updatePlongee($PLO_DATE, $PLO_MATIN_APRESMIDI, $SIT_NUM, $EMB_NUM, $PER_NUM_DIR, $PER_NUM_SECU, $PLO_EFFECTIF_PLONGEURS, $PLO_EFFECTIF_BATEAU, $PLO_NB_PALANQUEES);
         } else {
             $this->addPlongee($PLO_DATE, $PLO_MATIN_APRESMIDI, $SIT_NUM, $EMB_NUM, $PER_NUM_DIR, $PER_NUM_SECU, $PLO_EFFECTIF_PLONGEURS, $PLO_EFFECTIF_BATEAU, $PLO_NB_PALANQUEES, $PLO_ETAT);
         }
@@ -306,7 +304,7 @@ class modelPlongee extends model
         $model = new modelPalanquee();
 
         $nbPal = $writer->getNbPalanquee($date,$moment)["count(*)"];
-        $plongeePasAJour = $model->getDansPlongeePasAJour($_POST['date'],$_POST['moment']);
+        $plongeePasAJour = $model->getDansPlongeePasAJour($date,$moment);
 
         if($plongeePasAJour==0&&$nbPal >= 1)
         {

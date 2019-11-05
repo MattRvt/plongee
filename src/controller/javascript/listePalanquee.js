@@ -300,7 +300,17 @@ function enregistrerPalanqueeBase()
             url: "EnregistrerPalanquee",
             dataType: 'json',
             type: 'post',
-            data: "data="+JSON.stringify(palanquees)+"&date="+datePalanquee+"&moment="+momentPalanquee
+            data: "data="+JSON.stringify(palanquees)+"&dateAj="+datePalanquee+"&momentAj="+momentPalanquee,
+            success: function(response)
+            {
+                document.getElementById("hidEtat").value = response.responseText;
+                $("#formPlongee").submit();
+            },
+            error: function(response)
+            {
+                document.getElementById("hidEtat").value = response.responseText;
+                $("#formPlongee").submit();
+            }
         });
     });
 }

@@ -18,13 +18,19 @@ class controllerPlongee extends controller
     {
         $this->plongeePassee = false;
 
+        $test = !empty($_POST);
+
         $plongeeDefinit = (!empty($_GET["date"]) and !empty($_GET["matMidSoi"]));
         if ($plongeeDefinit) {
             $this->plongeePassee = $this->isPlongeePassee();
             $this->chargerPlongee();
         }
+
+        $this->traitementFormulaire();
+
         $this->_view = new View('Plongee');
         $this->_view->generate(array(), $this);
+
 
         if ($plongeeDefinit) {
             echo "<script type='text/javascript'>initListePalanquee('" . $_GET['date'] . "','" . $_GET['matMidSoi'] . "')</script>";
@@ -101,16 +107,19 @@ class controllerPlongee extends controller
         }
     }
 
-    public function etat()
+    public function etat($test)
     {
+        if($test==0)
+        {
+            echo "État : ";
+        }
         if(!isset($_POST["etat"]))
         {
             echo "Créée";
         }
         else
         {
-            $reader = new modelPlongee();
-            echo $reader->getEtat($_POST["date"],$_POST["moment"]);
+            echo $_POST["etat"];
         }
     }
 
@@ -119,9 +128,6 @@ class controllerPlongee extends controller
      */
     public function traitementFormulaire()
     {
-        //verification de la validité des données
-        if (!empty($_POST)) {
-
             //verification de la date
             $dateValide = !empty($_POST['date']);
             if ($dateValide && !empty($_GET['date'])) {
@@ -147,27 +153,18 @@ class controllerPlongee extends controller
 
             $data = $_POST;
 
-            if(!isset($_POST["etat"]))
-            {
-                $data["etat"] = "Créée";
-            }
-
             if ($valide) {
                 require_once('model/modelPlongee.php');
                 $model = new modelPlongee();
                 try {
                     $model->addOrModifyPlongee($data);
                     echo '<strong>Donées correctement enregistré.</strong>';
-                    echo "<script type='text/javascript'>window.location.href='Plongee&date=" . $data['date'] . "&matMidSoi=" . $data["moment"] . "'</script>";
                 } catch (Exception $e) {
                     echo '<strong>Erreur d\'ecriture dans la base. <br></strong> ', $e->getMessage();
                 }
             } else {
                 echo '<strong>erreur, formulaire invalide</strong>';
             }
-
-        } else {
-        }
     }
 
     public function selectMoment()
@@ -271,7 +268,7 @@ class controllerPlongee extends controller
             if (isset($plongee["EMB_NUM"])) {
                 $_POST['embarcation'] = $plongee["EMB_NUM"];
             }
-            if (isset($plongee["PLO_ETAT"])) {
+            if (isset($plongee["PLO_ETAT"])&&empty($_POST['etat'])) {
                 $_POST['etat'] = $plongee["PLO_ETAT"];
             }
         }
