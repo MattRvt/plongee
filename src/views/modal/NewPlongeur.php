@@ -62,6 +62,7 @@
         <div id="selectAptitude" class="input-field col s12"></div>
 
         <input type="submit" name="EN" onclick="addPersonne()">
+        <div id="supprime"></div>
         <div class="erreur" id="erreurN"></div>
         <div class="erreur" id="erreurP"></div>
         <div class="erreur" id="erreur"></div>

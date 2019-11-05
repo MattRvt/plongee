@@ -37,6 +37,18 @@ class modelPersonne extends model
         return $res;
     }
 
+    public function deletePersonne($num)
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "DELETE FROM `PLO_PERSONNE` WHERE PER_NUM =" . $num;
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $req->closeCursor();
+    }
+
     public function getNonPlongeur()
     {
         $pdo = $this->getBdd();

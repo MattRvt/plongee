@@ -93,8 +93,12 @@ function exist(nom, prenom) {
     xhr.send('nom='+t_nom+'&prenom='+t_prenom);
     var personne= xhr.responseText;
 
+    console.log(t_nom);
+    console.log(t_prenom);
+    console.log(personne);
 
-    if (personne.emp == 0){
+
+    if (personne.length == 0){
         return false;
     }
     else {

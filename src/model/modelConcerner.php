@@ -21,4 +21,19 @@ class modelConcerner extends model
         $statement = $this->getBdd()->prepare($sql);
         $statement->execute();
     }
+
+    public function isConcerned($num){
+            $pdo = $this->getBdd();
+
+            $sql = "SELECT * FROM PLO_CONCERNER WHERE PER_NUM = :PER_NUM";
+
+            $req = $pdo->prepare($sql);
+            $req->bindParam(':PER_NUM', $num);
+            $req->execute();
+
+            $data = $req->fetchAll(PDO::FETCH_ASSOC);
+            $req->closeCursor();
+
+            return $data;
+    }
 }

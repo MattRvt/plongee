@@ -17,6 +17,7 @@ function addPersonne() {
     personne.directeur = document.getElementById('Directeur').checked;
     personne.secuSurface = document.getElementById('SecuriteSurface').checked;
     personne.active = document.getElementById("estActive").checked;
+    var modif = document.getElementById('aptitude').value;
 
     var valid = true;
 
@@ -39,7 +40,7 @@ function addPersonne() {
         valid = false;
     }
     if (valid) {
-        if(personne.plongeur && document.getElementById('aptitude').value == "rien")
+        if(personne.plongeur && modif == "rien")
         {
             $("#erreur").html("Un plongeur a obligatoirement une aptitude");
         }
@@ -48,7 +49,7 @@ function addPersonne() {
             personne.prenom = verification(1,1);
             var text = "personne=personne&nom=" + personne.nom + "&prenom=" + personne.prenom+"&dateCertif="+personne.dateCertif+"&active="+personne.active;
 
-            if(document.getElementById("modfiAjout").value != -1)
+            if(modif != -1)
             {
                 fichier = "ModifierPersonne";
                 text = text + "&num="+document.getElementById("modfiAjout").value;
@@ -75,7 +76,7 @@ function addPersonne() {
             xhr.send(text);
             if(xhr.responseText!="")
             {
-                if(document.getElementById("modfiAjout").value != -1) {
+                if(modif != -1) {
                     var num = document.getElementById("modfiAjout").value;
                     if (isPlongeur(num)) {
                         document.getElementById("Plongeur").checked = true;
@@ -93,11 +94,11 @@ function addPersonne() {
                 document.getElementById('nomPlongeur').value = "";
                 document.getElementById('prenomPlongeur').value = "";
                 document.getElementById('date').value = "";
-                document.getElementById('Plongeur').checked = false;
+                document.getElementById('Plongeur').checked = true;
                 document.getElementById('Directeur').checked = false;
                 document.getElementById('SecuriteSurface').checked = false;
                 $("#selectAptitude").html("");
-                if(document.getElementById("modfiAjout").value != -1)
+                if(modif != -1)
                 {
                     M.toast({html: 'Personne modifée'})
                 }
@@ -134,10 +135,11 @@ function initModalAjoutPers(num)
     document.getElementById('nomPlongeur').value = "";
     document.getElementById('prenomPlongeur').value = "";
     document.getElementById('date').value = "";
-    document.getElementById('Plongeur').checked = false;
+    document.getElementById('Plongeur').checked = true;
     document.getElementById('Directeur').checked = false;
     document.getElementById('SecuriteSurface').checked = false;
-    $("#selectAptitude").html("");
+    $('#supprime').html("");
+    selectAptitude();
 
     document.getElementById("modfiAjout").value = -1;
     $("#modfiAjout").html("Ajouter une personne");
@@ -181,6 +183,9 @@ function initModalAjoutPers(num)
 
         document.getElementById("Directeur").checked = personne.directeur;
         document.getElementById("SecuriteSurface").checked = personne.secuSurface;
+
+        $('#supprime').append("<input type='button' id='delete' value='Supprimer' onclick='supprimer("+num+")'/>");
+        estConcerne();
     }
 
 
@@ -275,4 +280,42 @@ function isSecuriteSurface(num)
     xhr.send("num="+num);
 
     return (xhr.responseText==1);
+}
+
+function estConcerne(){
+    var btn = $('#delete');
+    var num = document.getElementById("modfiAjout").value;
+    console.log(num);
+
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=IsConcerne', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("num="+num);
+
+    var resp = xhr.responseText;
+
+    console.log(resp);
+
+    if(resp>0){
+        btn.prop("disabled",true);
+    }
+}
+
+function supprimer(num){
+    var plongeur;
+    var directeur;
+    var secusurf;
+    personne.plongeur ? plongeur = 1 : plongeur = 0;
+    personne.directeur ? directeur = 1 : directeur = 0;
+    personne.secuSurface ? secusurf = 1 : secusurf = 0;
+
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=SupprimerPersonne', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("num="+num+"&plongeur="+plongeur+"&directeur="+directeur+"&secusurf="+secusurf);
+    M.toast({html: 'Personne suprimée'});
+    update();
+    closeModal("newPlongeur");
 }
