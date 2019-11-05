@@ -1,6 +1,7 @@
 <?php $this->_title = "Plongée" ?>
 <form name="plongee" method="post" enctype="multipart/form-data"
       onsubmit="document.getElementById('moment').disabled = false;
+      enregistrerPalanqueeBase();
       /*document.getElementById('site').disabled = false;
       document.getElementById('directeurDePlongee').disabled = false;
       document.getElementById('securiteDeSurface').disabled = false;
@@ -75,7 +76,7 @@
 
     <div class="row">
         <div class="col s1 offset-s4">
-            <input type="submit" class="btn green" value="Enregistrer plongée" onclick="enregistrerPalanqueeBase()">
+            <input type="submit" class="btn green" value="Enregistrer plongée">
         </div>
         <div class="col s1 offset-s1">
             <input type="button" class="btn red" value="Annuler" onclick="window.location.href='ListePlongee'"><br/>

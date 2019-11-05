@@ -109,7 +109,8 @@ class controllerPlongee extends controller
         }
         else
         {
-            echo $_POST["etat"];
+            $reader = new modelPlongee();
+            echo $reader->getEtat($_POST["date"],$_POST["moment"]);
         }
     }
 
