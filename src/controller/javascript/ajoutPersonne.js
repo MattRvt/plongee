@@ -19,6 +19,10 @@ function addPersonne() {
     personne.active = document.getElementById("estActive").checked;
     var modif = document.getElementById('modfiAjout').value;
 
+    $("#erreurN").html("");
+    $("#erreurP").html("");
+    $("#erreur").html("");
+
     var valid = true;
 
     $("#erreur").html("");
@@ -286,19 +290,20 @@ function isSecuriteSurface(num)
 function estConcerne(){
     var btn = $('#delete');
     var num = document.getElementById("modfiAjout").value;
-    console.log(num);
+    var directeur;
+    var secusurf;
+    personne.directeur ? directeur = 1 : directeur = 0;
+    personne.secuSurface ? secusurf = 1 : secusurf = 0;
 
     var xhr = initXHR();
 
     xhr.open('POST', 'index.php?url=IsConcerne', false);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("num="+num);
+    xhr.send("num="+num+"&directeur="+directeur+"&secusurf="+secusurf);
 
     var resp = xhr.responseText;
 
-    console.log(resp);
-
-    if(resp>0){
+    if(resp!=1){
         btn.prop("disabled",true);
     }
 }

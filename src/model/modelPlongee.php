@@ -298,6 +298,21 @@ class modelPlongee extends model
         return $data;
     }
 
+    public function isConcerner($num){
+        $pdo = $this->getBdd();
+
+        $sql = "SELECT * FROM PLO_PLONGEE WHERE PER_NUM_DIR = :PER_NUM OR PER_NUM_SECU = :PER_NUM";
+
+        $req = $pdo->prepare($sql);
+        $req->bindParam(':PER_NUM',$num);
+        $req->execute();
+
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
+    }
+
     public function verifierEtat($date, $moment)
     {
         $writer = new modelPlongee();
@@ -332,4 +347,4 @@ class modelPlongee extends model
         $req->execute();
         $req->closeCursor();
     }
-}
+    }

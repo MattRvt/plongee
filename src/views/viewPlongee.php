@@ -67,7 +67,7 @@
 
     <br/>
     <div class="row" id="btnAjout"></div>
-    <a class='waves-effect waves-light btn' onclick="printExternal('FicheSecurite')">imprimer</a>
+    <a class='waves-effect waves-light btn' href="views/FicheSecurite.html">imprimer</a>
 
     <div class="row">
         <div class="col s1 offset-s4">
