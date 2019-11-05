@@ -25,6 +25,17 @@ function verification(actif,val)
     return resp;
 }
 
+function verification2(string, actif, val)
+{
+    var xhr = initXHR();
+    xhr.open('POST', 'index.php?url=Verification', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.send('type='+actif+'&string='+string+'&getstr='+val);
+    var resp = xhr.responseText;
+    return resp;
+}
+
 function itemType(type)
 {
     var id = getType(type);
@@ -68,6 +79,26 @@ function afficheErreur(id){
     if (res==0){
         var span = "span"+type;
         document.getElementById(span).innerHTML = "Erreur : le "+type+" contient des caractères non-autorisés. <br/><br/>";
+    }
+}
+
+function exist(nom, prenom) {
+    var t_nom = verification2(nom,0,1);
+    var t_prenom = verification2(prenom,1,1);
+
+    var xhr = initXHR();
+    xhr.open('POST', 'index.php?url=ExistePersonne', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.send('nom='+t_nom+'&prenom='+t_prenom);
+    var personne= xhr.responseText;
+
+
+    if (personne.emp == 0){
+        return false;
+    }
+    else {
+        return true;
     }
 }
 

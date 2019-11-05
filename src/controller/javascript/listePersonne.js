@@ -125,9 +125,7 @@ function affichePlongeur(db,type) {
             secu = secu.replace("secu", "<i class='material-icons tooltipped' data-position='left' data-tooltip='Sécurité de surface'>pan_tool</i>");
             var today = new Date();
             var dateDebutCertif = new Date(certif);
-            console.log(dateDebutCertif);
             var dateFinCertif = new Date(dateDebutCertif.getFullYear() + 1, dateDebutCertif.getMonth(), dateDebutCertif.getDate());
-            console.log(dateFinCertif);
             var certifValide = dateFinCertif > today;
             tr_str = "<tr>" +
                 "<td align='center'> " + dir + secu + "</td>" +
@@ -135,10 +133,13 @@ function affichePlongeur(db,type) {
                 "<td align='center'>" + nom + "</td>" +
                 "<td align='center'>" + prenom + "</td>" +
                 "<td align='center'>" + actif + "</td>";
-            //"<td align='center'>" + certif + "</td>";
             if (certifValide) {
                 tr_str = tr_str + "<td align='center'>" + certif + "</td>";
-            } else {
+            }
+            else if (certif == "0000-00-00"){
+                tr_str = tr_str + "<td align='center' class='red'> <strong>Aucun certificat</strong></td>";
+            }
+            else {
                 tr_str = tr_str +"<td align='center' class='red' > <strong>" + certif + "</strong></td>";
             }
 

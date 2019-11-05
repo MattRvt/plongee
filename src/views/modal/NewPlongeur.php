@@ -43,7 +43,7 @@
         <h6>Fonction </h6>
 
         <label>
-            <input type="checkbox" id="Plongeur" onclick="selectAptitude()"/>
+            <input type="checkbox" id="Plongeur" checked="checked" onclick="selectAptitude()" />
             <span>Plongeur</span>
         </label>
 

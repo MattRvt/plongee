@@ -30,8 +30,12 @@ function addPersonne() {
         $("#erreurP").html("Le prénom ne correspond pas à un format adapté.");
         valid = false;
     }
-    if (personne.nom == "" || personne.prenom == "" || personne.dateCertif == "") {
-        $("#erreur").html("Une personne a obligatoirement un nom, un prenom et une date de certificat.");
+    if (personne.nom == "" || personne.prenom == "") {
+        $("#erreur").html("Une personne a obligatoirement un nom, un prénom.");
+        valid = false;
+    }
+    if (exist(personne.nom, personne.prenom)){
+        $("#erreur").html("Cette personne existe déjà.");
         valid = false;
     }
     if (valid) {
@@ -54,8 +58,6 @@ function addPersonne() {
                 fichier = "NewPlongeur";
             }
 
-
-
             var xhr = initXHR();
             xhr.open('POST', 'index.php?url='+fichier, false);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -70,8 +72,6 @@ function addPersonne() {
             if (personne.secuSurface) {
                 text = text + "&securiteSurface=securiteSurface";
             }
-
-
             xhr.send(text);
             if(xhr.responseText!="")
             {

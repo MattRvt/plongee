@@ -175,6 +175,23 @@ class modelPersonne extends model
         return $data;
     }
 
+    public function existPersonne($nom, $prenom)
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "SELECT * FROM PLO_PERSONNE WHERE PER_NOM = :PER_NOM AND PER_PRENOM = :PER_PRENOM";
+
+        $req = $pdo->prepare($sql);
+        $req->bindParam(':PER_NOM', $nom);
+        $req->bindParam(':PER_PRENOM', $prenom);
+        $req->execute();
+
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+
+        return $data;
+    }
+
     public function modifyPlongeur($num, $aptitude)
     {
         if(!$this->isPlongeur($num) && $aptitude != -1)
