@@ -129,16 +129,16 @@ class modelPalanquee extends model
     {
         $pdo = $this->getBdd();
 
-        $sql = "select * from PLO_PALANQUEE where (PLO_DATE = '".$date."') and (upper(PLO_MAT_MID_SOI) = upper('".$moment."'))
+        $sql = "select count(*) from PLO_PALANQUEE where (PLO_DATE = '".$date."') and (upper(PLO_MAT_MID_SOI) = upper('".$moment."'))
                 and (isnull(PAL_HEURE_IMMERSION) or isnull(PAL_HEURE_SORTIE_EAU) or isnull(PAL_PROFONDEUR_REELLE) or isnull(PAL_DUREE_FOND))";
 
         $req = $pdo->prepare($sql);
         $req->execute();
 
-        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        $data = $req->fetch(PDO::FETCH_ASSOC);
         $req->closeCursor();
 
-        return $data;
+        return $data["count(*)"];
     }
 
     public function getDansPlongeeAJour($date,$moment)

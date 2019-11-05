@@ -75,10 +75,8 @@ class palanquee
         $this->heureSor = $heureSor;
         $this->profReel = $profReel;
         $this->durFond = $durFond;
-        if($this->nbPlongeur === null) {
-            $this->nbPlongeur = $model->getNbPlongeur($date, $moment, $num)["count(*)"];
-            $this->plongeur = $model->getPlongeur($date, $moment, $num);
-        }
+        $this->nbPlongeur = $model->getNbPlongeur($date, $moment, $num)["count(*)"];
+        $this->plongeur = $model->getPlongeur($date, $moment, $num);
         $this->modifier($date, $moment, $profMax, $durMax);
     }
 
@@ -86,7 +84,13 @@ class palanquee
     {
         $this->nbPlongeur = $nbPlongeur;
         $this->plongeur = $plongeur;
-        $this->creeDepuisBdd($date, $moment, $profMax, $durMax, $heureImm, $heureSor, $profReel, $durFond, $num);
+        $this->num = $num;
+        $this->heureImm = $heureImm;
+        $this->heureSor = $heureSor;
+        $this->profReel = $profReel;
+        $this->durFond = $durFond;
+        $this->modifier($date, $moment, $profMax, $durMax);
+
     }
 
     public function modifier($date, $moment, $profMax, $durMax)
@@ -121,18 +125,8 @@ class palanquee
         else
         {
             $model->modifyPalanquee($this->num,$this->date,$this->moment,$this->profMax,$this->durMax,$this->heureImm,$this->heureSor,$this->profReel,$this->durFond);
-
-            $pasAJour = $model->getDansPlongeePasAJour($_POST['date'],$_POST['moment']);
-            $writer = new modelPlongee();
-            if(empty($pasAJour))
-            {
-                $writer->setEtat("Complète", $this->moment,$this->date);
-            }
-            else
-            {
-                $writer->setEtat("Paramétrée",  $this->moment,$this->date);
-            }
         }
+
         $model->deletePlongeurConcernerPalanquee($this->date,$this->moment,$this->num);
         $model = new modelConcerner();
 

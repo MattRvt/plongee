@@ -1,5 +1,11 @@
+var datePalanquee = null;
+var momentPalanquee = null;
+
 function initListePalanquee(datePal, matMidSoi)
 {
+    datePalanquee = datePal;
+    momentPalanquee = matMidSoi;
+
     palanquees = [];
 
     setNbPlongeur(datePal, matMidSoi);
@@ -31,6 +37,7 @@ function initListePalanquee(datePal, matMidSoi)
                 afficherPalanquee(datePal, matMidSoi);
             },
             error: function (response1) {
+                document.write(response1.responseText);
                 alert("erreur de chargement des données");
                 console.log(response1);
             }
@@ -204,7 +211,7 @@ function supprimerPal(datePal,matMidSoi,num)
     {
         if(i==len-1)
         {
-            palanquees[i] = null;
+            palanquees.splice(palanquees.indexOf(i), 1);
         }
         else
         {
@@ -293,7 +300,7 @@ function enregistrerPalanqueeBase()
             url: "EnregistrerPalanquee",
             dataType: 'json',
             type: 'post',
-            data: "data="+JSON.stringify(palanquees),
+            data: "data="+JSON.stringify(palanquees)+"&date="+datePalanquee+"&moment="+momentPalanquee
         });
     });
 }

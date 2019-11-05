@@ -300,5 +300,38 @@ class modelPlongee extends model
         return $data;
     }
 
+    public function verifierEtat($date, $moment)
+    {
+        $writer = new modelPlongee();
+        $model = new modelPalanquee();
 
+        $nbPal = $writer->getNbPalanquee($date,$moment)["count(*)"];
+        $plongeePasAJour = $model->getDansPlongeePasAJour($_POST['date'],$_POST['moment']);
+
+        if($plongeePasAJour==0&&$nbPal >= 1)
+        {
+            $writer->setEtat("Complète", $moment,$date);
+        }
+        else
+        {
+            $writer->setEtat("Paramétrée",  $moment,$date);
+        }
+    }
+
+    public function supprimerAllPalanqueSup($date, $moment, $num)
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "DELETE FROM PLO_CONCERNER WHERE PLO_DATE=\"".$date."\" and PLO_MAT_MID_SOI=\"".$moment."\" and PAL_NUM>".$num;
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+        $req->closeCursor();
+
+        $sql = "DELETE FROM PLO_PALANQUEE WHERE PLO_DATE=\"".$date."\" and PLO_MAT_MID_SOI = \"".$moment."\" and PAL_NUM > ".$num;
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+        $req->closeCursor();
+    }
 }
