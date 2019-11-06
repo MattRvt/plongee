@@ -40,7 +40,14 @@ class modelPlongee extends model
 
     public function plongeeExiste($PLO_DATE, $PLO_MAT_MID_SOI)
     {
-        require_once('model/modelPlongee.php');
+        $reader = new modelPlongee();
+        $req = $reader->getMatch($PLO_DATE, $PLO_MAT_MID_SOI);
+        $exist = (sizeof($req) > 0);
+        return $exist;
+    }
+
+    public function getPlongee($PLO_DATE, $PLO_MAT_MID_SOI)
+    {
         $reader = new modelPlongee();
         $req = $reader->getMatch($PLO_DATE, $PLO_MAT_MID_SOI);
         $exist = (sizeof($req) > 0);

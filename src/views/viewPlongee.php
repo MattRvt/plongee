@@ -5,20 +5,20 @@
     <div class="row">
         <div class="col offset-s1 s3">
             <label for="date">Date: </label>
-            <input type="text" class="datepicker datepickerd" id="date" name="date"
+            <input type="text" class="datepicker datepickerd" name="date"
                    value=<?php $this->controller->verifierRempliPrimaire("date"); ?>
             ><br/>
         </div>
         <div class="col offset-s1 s2">
             <label for="moment">Moment: </label>
-            <select id="moment" name="moment" <?php $this->controller->selectIsDisabledPrimaire("moment") ?>>
+            <select id="moment" name="moment" <?php $this->controller->selectIsDisabledPrimaire("moment") ?> >
                 <?php $this->controller->selectMoment() ?>
             </select>
             <br/>
         </div>
         <div class="col  offset-s1 s3">
             <label for="siteNom">Nom du site: </label>
-            <select id="site" name="site" <?php $this->controller->selectIsDisabled("site") ?>>
+            <select id="site" name="site" <?php $this->controller->selectIsDisabled("site") ?> >
                 <?php $this->controller->selectSite() ?>
             </select>
         </div>
@@ -61,17 +61,18 @@
         </div>
     </div>
     <input type="hidden" id="hidEtat" name="etat" value="<?php $this->controller->etat(1) ?>">
-    <input type="hidden" id="Palanquee" name="Palanquee" value="false">
 
 
     <table class="centered" id="listePalanque" border="1"></table>
 
     <br/>
     <div class="row" id="btnAjout"></div>
-    <a class='waves-effect waves-light btn' href="views/FicheSecurite.html">imprimer</a>
+    <a class='waves-effect waves-light btn' href="FicheSecurite&date=<?php echo $_POST['date'] ?>&moment=<?php echo $_POST['moment']?>">Imprimer</a>
 
     <div class="row">
-        <div id = "enrPlongee" class="col s1 offset-s4"></div>
+        <div class="col s1 offset-s4">
+            <input type="button" class="btn green" value="Enregistrer plongée" onclick="enregistrerPalanqueeBase()">
+        </div>
         <div class="col s1 offset-s1">
             <input type="button" class="btn red" value="Annuler" onclick="window.location.href='ListePlongee'"><br/>
         </div>

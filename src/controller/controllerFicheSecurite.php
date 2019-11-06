@@ -14,9 +14,7 @@ class controllerFicheSecurite
 
     private function FicheSecurite()
     {
-        $this->_view = new View('FicheSecurite');
-        $this->_view->generate(array(), $this);
-
+        $this->_view = require_once("views/FicheSecurite.php");
     }
 
 }
