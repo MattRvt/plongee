@@ -354,4 +354,12 @@ class modelPlongee extends model
         $req->execute();
         $req->closeCursor();
     }
+
+    public function deletebyMomentDate($PLO_DATE,$PLO_MATIN_APRESMIDI)
+    {
+        $sql = "DELETE FROM `PLO_PLONGEE` WHERE PLO_DATE=\"".$PLO_DATE."\" and PLO_MAT_MID_SOI=\"".$PLO_MATIN_APRESMIDI."\"";
+        $statement = $this->getBdd()->prepare($sql);
+        $statement->execute();
     }
+
+}

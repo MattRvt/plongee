@@ -22,6 +22,13 @@ class modelConcerner extends model
         $statement->execute();
     }
 
+    public function deletebyMomentDate($PLO_DATE,$PLO_MATIN_APRESMIDI)
+    {
+        $sql = "DELETE FROM `PLO_CONCERNER` WHERE PLO_DATE=\"".$PLO_DATE."\" and PLO_MAT_MID_SOI=\"".$PLO_MATIN_APRESMIDI."\"";
+        $statement = $this->getBdd()->prepare($sql);
+        $statement->execute();
+    }
+
     public function isConcerned($num){
             $pdo = $this->getBdd();
 

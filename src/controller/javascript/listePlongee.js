@@ -107,12 +107,29 @@ function affichePlongee(db) {
             {
                 tr_str+= "<td align='center'><a class='waves-effect waves-light' onclick='redirectionPlongee(\""+Date+"\",\""+moment+"\")'><i class='material-icons black-text' >remove_red_eye</i></a></td>";
             }
+
+            if(etat!="Complète")
+            {
+                tr_str+= "<td align='center'><a onclick='supprimerPlong(\""+Date+"\",\""+moment+"\")'><i class='small material-icons red-text'>clear</i></a></td>"
+            }
+
             tr_str+= "</tr>";
 
             $("#tablePlongee tbody").append(tr_str);
         }
         $('.tooltipped').tooltip();
     }
+}
+
+function supprimerPlong(date, moment)
+{
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=SupprimerPlongee', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("date="+date+"&moment="+moment);
+
+    updatePlongee();
 }
 
 function redirectionPlongee(date, moment)

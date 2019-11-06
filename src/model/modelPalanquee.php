@@ -169,6 +169,17 @@ class modelPalanquee extends model
 
         return $data;
     }
+
+    public function deletePalanqueeByDateMoment($date,$moment)
+    {
+        $pdo = $this->getBdd();
+
+        $sql = "DELETE FROM `PLO_PALANQUEE` WHERE (PLO_DATE = '".$date."') and (upper(PLO_MAT_MID_SOI) = upper('".$moment."'))";
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $req->closeCursor();
+    }
     
     public function deletePlongeurConcernerPalanquee($date,$moment,$num)
     {
