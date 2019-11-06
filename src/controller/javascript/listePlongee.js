@@ -98,9 +98,10 @@ function affichePlongee(db) {
                 "<td align='center'>" + Lieu + "</td>" +
                 "<td align='center'>" + embarcation + "</td>"+
                 "<td align='center'>" + etat + "</td>";
+
             if(!$("#archive").is(':checked'))
             {
-                tr_str+= "<td align='center'><a class='waves-effect waves-light btn' href='Plongee&date="+Date+"&matMidSoi="+moment+"'>Modifier</a></td>";
+                tr_str+= "<td align='center'><a class='waves-effect waves-light btn' onclick='redirectionPlongee(\""+Date+"\",\""+moment+"\")'>Modifier</a></td>";
             }
             else
             {
@@ -112,6 +113,17 @@ function affichePlongee(db) {
         }
         $('.tooltipped').tooltip();
     }
+}
+
+function redirectionPlongee(date, moment)
+{
+    var form = $('<form action="Plongee" method="post">' +
+        '<input type="text" name="date" value="' + date + '" />' +
+        '<input type="text" name="moment" value="' + moment + '" />' +
+        '</form>');
+
+    $("body").append(form);
+    form.submit();
 }
 
 function matMidSoi(moment)

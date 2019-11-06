@@ -297,11 +297,13 @@ function enregistrerPalanqueeBase()
             success: function(response)
             {
                 document.getElementById("hidEtat").value = response.responseText;
+                $("#moment").prop('disabled', false);
                 $("#formPlongee").submit();
             },
             error: function(response)
             {
                 document.getElementById("hidEtat").value = response.responseText;
+                $("#moment").prop('disabled', false);
                 $("#formPlongee").submit();
             }
         });

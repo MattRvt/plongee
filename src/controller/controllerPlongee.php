@@ -18,19 +18,19 @@ class controllerPlongee extends controller
     {
         $this->plongeePassee = false;
 
-        $plongeeDefinit = (!empty($_GET["date"]) and !empty($_GET["matMidSoi"]));
+        $this->traitementFormulaire();
+
+        $plongeeDefinit = (!empty($_POST["date"]) and !empty($_POST["moment"]));
         if ($plongeeDefinit) {
             $this->plongeePassee = $this->isPlongeePassee();
             $this->chargerPlongee();
         }
 
-        $this->traitementFormulaire();
-
         $this->_view = new View('Plongee');
         $this->_view->generate(array(), $this);
 
         if ($plongeeDefinit) {
-            echo "<script type='text/javascript'>initListePalanquee('" . $_GET['date'] . "','" . $_GET['matMidSoi'] . "')</script>";
+            echo "<script type='text/javascript'>initListePalanquee('" . $_POST['date'] . "','" . $_POST['moment'] . "')</script>";
         }
     }
 
@@ -38,7 +38,7 @@ class controllerPlongee extends controller
     {
 
         $dateAujourdhui = explode("-", date("Y-m-d"));
-        $datePlongee = explode("-", $_GET['date']);
+        $datePlongee = explode("-", $_POST['date']);
         $dateValide = $dateAujourdhui[0] >= $datePlongee[0];
 
         if ($dateValide) {
@@ -125,23 +125,7 @@ class controllerPlongee extends controller
      */
     public function traitementFormulaire()
     {
-            //verification de la date
-            $dateValide = !empty($_POST['date']);
-            if ($dateValide && !empty($_GET['date'])) {
-                $dateTestee = explode("-", $_POST['date']);
-                $dateActuelle = explode("-", $_GET['date']);
-                $dateValide = $dateTestee[0] >= $dateActuelle[0];
-                if ($dateValide) {
-                    $dateValide = $dateTestee[1] >= $dateActuelle[1];
-                    if ($dateValide) {
-                        $dateValide = $dateTestee[2] >= $dateActuelle[2];
-                    }
-                }
-
-            }
-
             $valide =
-                ($dateValide) &&
                 (!empty($_POST['moment'])) &&
                 (!empty($_POST['directeurDePlongee'])) &&
                 (!empty($_POST['site'])) &&
@@ -246,11 +230,8 @@ class controllerPlongee extends controller
      */
     public function chargerPlongee()
     {
-
-        $_POST['date'] = $_GET["date"];
-        $_POST['moment'] = $_GET["matMidSoi"];
         $reader = new modelPlongee();
-        $plongee = $reader->getMatch($_GET["date"], $_GET["matMidSoi"])[0];
+        $plongee = $reader->getMatch($_POST["date"], $_POST["moment"])[0];
         if (isset($plongee)) {
 
             if (array_key_exists("PER_NUM_DIR", $plongee)) {
