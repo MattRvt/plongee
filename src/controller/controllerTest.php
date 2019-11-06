@@ -19,6 +19,11 @@ class controllerTest  extends controller
         $this->_view->generate(array(), $this);
     }
 
+    public function getDebug()
+    {
+        echo $_GET["test"];
+    }
+
 }
 
 ?>

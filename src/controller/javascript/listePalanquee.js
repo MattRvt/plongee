@@ -1,21 +1,14 @@
 var datePalanquee = null;
 var momentPalanquee = null;
 
-function initListePalanqueeVide(palanquee)
+function initListePalanqueeVide()
 {
     $("#enrPlongee").html("<input type=\"button\" class=\"btn green\" value=\"Enregistrer plongée\" onclick=\"enregistrerPalanqueeBaseVide()\">");
 
     datePalanquee = null;
     momentPalanquee = null;
 
-    if(palanquee && palanquee != "")
-    {
-        palanquees = palanquee;
-    }
-    else
-    {
-        palanquees = [];
-    }
+    palanquees = [];
 
     $("#btnAjout").html("<a class='waves-effect waves-light btn' onclick='initAjoutPalanqueeVide()'>Ajouter Palanquee</a>");
     afficherPalanquee(null,null);
@@ -325,20 +318,35 @@ function estPasserOuPas(datePal, matMidSoi)
 
 function enregistrerPalanqueeBaseVide()
 {
-    document.getElementById("Palanquee").value = JSON.stringify(palanquees);
-    $("#formPlongee").submit();
-
     datePalanquee = document.getElementById("date").value;
     momentPalanquee = document.getElementById("moment").value;
+    var site = document.getElementById("site").value;
+    var directeurDePlongee = document.getElementById("directeurDePlongee").value;
+    var securiteDeSurface = document.getElementById("securiteDeSurface").value;
+    var embarcation = document.getElementById("embarcation").value;
+    var etat = document.getElementById("hidEtat").value;
 
-    var len = palanquees.length;
-    for(var i = 0; i < len; i++)
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=UpdatePlongee', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("date="+datePalanquee+"&moment="+momentPalanquee+"&site="+site+"&directeurDePlongee="+directeurDePlongee+"&securiteDeSurface="+securiteDeSurface+"&embarcation="+embarcation+"&etat="+etat);
+
+
+    if(xhr.responseText == "")
     {
-        palanquees[i].date = datePalanquee;
-        palanquees[i].moment = momentPalanquee;
+        var len = palanquees.length;
+        for(var i = 0; i < len; i++)
+        {
+            palanquees[i].date = datePalanquee;
+            palanquees[i].moment = momentPalanquee;
+        }
+        enregistrerPalanqueeBase();
     }
-
-    enregistrerPalanqueeBase();
+    else
+    {
+        alert(xhr.responseText);
+    }
 }
 
 function enregistrerPalanqueeBase()
@@ -351,14 +359,12 @@ function enregistrerPalanqueeBase()
             data: "data="+JSON.stringify(palanquees)+"&dateAj="+datePalanquee+"&momentAj="+momentPalanquee,
             success: function(response)
             {
-                document.getElementById("Palanquee").value = false;
                 document.getElementById("hidEtat").value = response.responseText;
                 $("#moment").prop('disabled', false);
                 $("#formPlongee").submit();
             },
             error: function(response)
             {
-                document.getElementById("Palanquee").value = false;
                 document.getElementById("hidEtat").value = response.responseText;
                 $("#moment").prop('disabled', false);
                 $("#formPlongee").submit();

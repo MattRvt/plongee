@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col offset-s1 s3">
             <label for="date">Date: </label>
-            <input type="text" class="datepicker datepickerd" name="date"
+            <input type="text" class="datepicker datepickerd" id="date" name="date"
                    value=<?php $this->controller->verifierRempliPrimaire("date"); ?>
             ><br/>
         </div>
@@ -62,7 +62,6 @@
     </div>
     <input type="hidden" id="hidEtat" name="etat" value="<?php $this->controller->etat(1) ?>">
 
-
     <table class="centered" id="listePalanque" border="1"></table>
 
     <br/>
@@ -70,9 +69,7 @@
     <a class='waves-effect waves-light btn' href="FicheSecurite&date=<?php echo $_POST['date'] ?>&moment=<?php echo $_POST['moment']?>">Imprimer</a>
 
     <div class="row">
-        <div class="col s1 offset-s4">
-            <input type="button" class="btn green" value="Enregistrer plongée" onclick="enregistrerPalanqueeBase()">
-        </div>
+        <div id="enrPlongee" class="col s1 offset-s4"></div>
         <div class="col s1 offset-s1">
             <input type="button" class="btn red" value="Annuler" onclick="window.location.href='ListePlongee'"><br/>
         </div>

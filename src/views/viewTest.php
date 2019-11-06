@@ -1,0 +1,1 @@
+<div><?php $this->controller->getDebug() ?></div>

@@ -16,13 +16,11 @@ class controllerPlongee extends controller
 
     public function mentions()
     {
-        var_dump($_POST);
-
         $this->plongeePassee = false;
 
         $this->traitementFormulaire();
 
-        $plongeeDefinit = (!empty($_POST["date"]) and !empty($_POST["moment"]) and $_POST["Palanquee"]=="false");
+        $plongeeDefinit = (!empty($_POST["date"]) and !empty($_POST["moment"]));
         if ($plongeeDefinit) {
             $this->plongeePassee = $this->isPlongeePassee();
             $this->chargerPlongee();
@@ -36,15 +34,7 @@ class controllerPlongee extends controller
         }
         else
         {
-            if(!empty($_POST["Palanquee"]))
-            {
-                $var = $_POST["Palanquee"];
-            }
-            else
-            {
-                $var = "false";
-            }
-            echo "<script type='text/javascript'>initListePalanqueeVide(".$var.")</script>";
+            echo "<script type='text/javascript'>initListePalanqueeVide()</script>";
         }
     }
 
@@ -155,17 +145,17 @@ class controllerPlongee extends controller
             if(!$model->plongeeExiste($_POST['date'],$_POST['moment'])) {
                 try {
                     $model->addOrModifyPlongee($data);
-                    echo '<strong>Donées correctement enregistré.</strong>';
+                    //echo '<strong>Donées correctement enregistré.</strong>';
                 } catch (Exception $e) {
-                    echo '<strong>Erreur d\'ecriture dans la base. <br></strong> ', $e->getMessage();
+                    //echo '<strong>Erreur d\'ecriture dans la base. <br></strong> ', $e->getMessage();
                 }
             }
             else
             {
-                echo '<strong>erreur, Plongee existe déjà</strong>';
+                //echo '<strong>erreur, Plongee existe déjà</strong>';
             }
         } else {
-            echo '<strong>erreur, formulaire invalide</strong>';
+            //echo '<strong>erreur, formulaire invalide</strong>';
         }
     }
 

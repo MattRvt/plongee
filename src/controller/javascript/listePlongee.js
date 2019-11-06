@@ -120,7 +120,6 @@ function redirectionPlongee(date, moment)
     var form = $('<form action="Plongee" method="post">' +
         '<input type="text" name="date" value="' + date + '" />' +
         '<input type="text" name="moment" value="' + moment + '" />' +
-        '<input type="text" name="Palanquee" value="false" />' +
         '</form>');
 
     $("body").append(form);
