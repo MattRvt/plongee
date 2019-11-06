@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col s7">
-                <h5 class="white-text">Sub'Aligator</h5>
+                <h5 class="white-text">Plongée au pays des bretons</h5>
                 <p class="grey-text text-lighten-4">Projet réalisé dans le cadre du cours de PHP de 2ème année d'IUT informatique.<br><br>© 2019 Copyright SubAligator Bretagne, Inc. All rights reserved.</p>
             </div>
             <div class="col s5">
