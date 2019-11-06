@@ -46,12 +46,16 @@ function resetModalModifAjoutPal()
     }
 }
 
-function initAjoutPalanquee(datePal, matMidSoi)
+function initAjoutPalanqueeVide()
 {
-    palanquee.datePal = datePal;
-    palanquee.matMidSoi = matMidSoi;
+    palanquee.datePal = null;
+    palanquee.matMidSoi = null;
     palanquee.num = null;
+    initAjoutPalanqueeCommun();
+}
 
+function initAjoutPalanqueeCommun()
+{
     $("#titreAjoutModifPal").html("Créer une palanquée");
     resetModalModifAjoutPal();
 
@@ -63,6 +67,14 @@ function initAjoutPalanquee(datePal, matMidSoi)
 
     document.getElementById('addPlongeurPal').value = 2;
     $('#addPlongeurPal').html("<a class='waves-effect waves-light btn green' onclick='addCasePlongeur()'>Ajouter Plongeur</a>");
+}
+
+function initAjoutPalanquee(datePal, matMidSoi)
+{
+    palanquee.datePal = datePal;
+    palanquee.matMidSoi = matMidSoi;
+    palanquee.num = null;
+    initAjoutPalanqueeCommun();
 }
 
 function initModifPalanquee(num)
@@ -211,7 +223,8 @@ function traitementAjoutPal()
         var send = "&num="+palanquee.num;
     }
     else {
-        var send = "";
+        var len = palanquees.length;
+        var send = "&num="+(len+1);
     }
         var profMax = document.getElementById("profMax").value;
         var DurMax = document.getElementById("DurMax").value;
@@ -233,7 +246,6 @@ function traitementAjoutPal()
                 }
             });
         });
-
 
     closeModal("newPalanquee");
 }

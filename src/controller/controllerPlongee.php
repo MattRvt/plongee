@@ -16,11 +16,13 @@ class controllerPlongee extends controller
 
     public function mentions()
     {
+        var_dump($_POST);
+
         $this->plongeePassee = false;
 
         $this->traitementFormulaire();
 
-        $plongeeDefinit = (!empty($_POST["date"]) and !empty($_POST["moment"]));
+        $plongeeDefinit = (!empty($_POST["date"]) and !empty($_POST["moment"]) and $_POST["Palanquee"]=="false");
         if ($plongeeDefinit) {
             $this->plongeePassee = $this->isPlongeePassee();
             $this->chargerPlongee();
@@ -31,6 +33,18 @@ class controllerPlongee extends controller
 
         if ($plongeeDefinit) {
             echo "<script type='text/javascript'>initListePalanquee('" . $_POST['date'] . "','" . $_POST['moment'] . "')</script>";
+        }
+        else
+        {
+            if(!empty($_POST["Palanquee"]))
+            {
+                $var = $_POST["Palanquee"];
+            }
+            else
+            {
+                $var = "false";
+            }
+            echo "<script type='text/javascript'>initListePalanqueeVide(".$var.")</script>";
         }
     }
 
@@ -62,14 +76,13 @@ class controllerPlongee extends controller
 
     public function verifierRempliPrimaire($n)
     {
-        echo "\"";
+
         if (isset($_POST[$n])) {
+            echo "\"";
             $var = $_POST[$n];
             echo $var;
             echo "\"";
             echo "readOnly";
-        } else {
-            echo "\"";
         }
     }
 
@@ -91,7 +104,7 @@ class controllerPlongee extends controller
 
     public function selectIsDisabledPrimaire($n)
     {
-       if (isset($_POST["moment"])) {
+       if (isset($_POST["creee"])) {
             echo "disabled";
         }
     }
@@ -125,27 +138,35 @@ class controllerPlongee extends controller
      */
     public function traitementFormulaire()
     {
-            $valide =
-                (!empty($_POST['moment'])) &&
-                (!empty($_POST['directeurDePlongee'])) &&
-                (!empty($_POST['site'])) &&
-                (!empty($_POST['securiteDeSurface'])) &&
-                (!empty($_POST['embarcation']));
 
-            $data = $_POST;
+        $valide =
+            (!empty($_POST['date'])) &&
+            (!empty($_POST['moment'])) &&
+            (!empty($_POST['directeurDePlongee'])) &&
+            (!empty($_POST['site'])) &&
+            (!empty($_POST['securiteDeSurface'])) &&
+            (!empty($_POST['embarcation']));
 
-            if ($valide) {
-                require_once('model/modelPlongee.php');
-                $model = new modelPlongee();
+        $data = $_POST;
+
+        if ($valide) {
+            $model = new modelPlongee();
+
+            if(!$model->plongeeExiste($_POST['date'],$_POST['moment'])) {
                 try {
                     $model->addOrModifyPlongee($data);
                     echo '<strong>Donées correctement enregistré.</strong>';
                 } catch (Exception $e) {
                     echo '<strong>Erreur d\'ecriture dans la base. <br></strong> ', $e->getMessage();
                 }
-            } else {
-                echo '<strong>erreur, formulaire invalide</strong>';
             }
+            else
+            {
+                echo '<strong>erreur, Plongee existe déjà</strong>';
+            }
+        } else {
+            echo '<strong>erreur, formulaire invalide</strong>';
+        }
     }
 
     public function selectMoment()
@@ -230,6 +251,7 @@ class controllerPlongee extends controller
      */
     public function chargerPlongee()
     {
+        $_POST['creee'] = "true";
         $reader = new modelPlongee();
         $plongee = $reader->getMatch($_POST["date"], $_POST["moment"])[0];
         if (isset($plongee)) {

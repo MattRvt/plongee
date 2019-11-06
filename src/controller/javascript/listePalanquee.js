@@ -1,8 +1,30 @@
 var datePalanquee = null;
 var momentPalanquee = null;
 
+function initListePalanqueeVide(palanquee)
+{
+    $("#enrPlongee").html("<input type=\"button\" class=\"btn green\" value=\"Enregistrer plongée\" onclick=\"enregistrerPalanqueeBaseVide()\">");
+
+    datePalanquee = null;
+    momentPalanquee = null;
+
+    if(palanquee && palanquee != "")
+    {
+        palanquees = palanquee;
+    }
+    else
+    {
+        palanquees = [];
+    }
+
+    $("#btnAjout").html("<a class='waves-effect waves-light btn' onclick='initAjoutPalanqueeVide()'>Ajouter Palanquee</a>");
+    afficherPalanquee(null,null);
+}
+
 function initListePalanquee(datePal, matMidSoi)
 {
+    $("#enrPlongee").html("<input type=\"button\" class=\"btn green\" value=\"Enregistrer plongée\" onclick=\"enregistrerPalanqueeBase()\">");
+
     datePalanquee = datePal;
     momentPalanquee = matMidSoi;
 
@@ -50,7 +72,14 @@ function afficherPalanquee(datePal, matMidSoi)
     $("#listePalanque").html("");
     var len = palanquees.length;
 
-    var plus = estPasserOuPas(datePal, matMidSoi);
+    if(datePal != null && matMidSoi != null)
+    {
+        var plus = estPasserOuPas(datePal, matMidSoi);
+    }
+    else
+    {
+        var plus = true;
+    }
 
     var tr_str = "<thead class='center'><tr> " +
         "<th>P.no</th> " +
@@ -131,13 +160,22 @@ function getBtn(datePal, matMidSoi, num, heureImm, heureSort, profReel, durreFon
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("date="+datePal+"&moment="+matMidSoi);
 
+    if(datePal != null && matMidSoi != null)
+    {
+        var passerOuPas = estPasserOuPas(datePal, matMidSoi);
+    }
+    else
+    {
+        var passerOuPas = true;
+    }
+
     if(xhr.responseText == "Dépassée")
     {
         var btn = "<td><a class='waves-effect waves-light' onclick='initInfoPal(\""+datePal+"\",\""+matMidSoi+"\","+num+")'><i class='material-icons black-text' >remove_red_eye</i></a></td>";
     }
     else
     {
-        if(estPasserOuPas(datePal, matMidSoi))
+        if(passerOuPas)
         {
             var btn = "<td><a class='waves-effect waves-light btn' onclick='initModifPalanquee("+num+")'>Modifier</a></td>" +
                 "<td><a class='center' onclick='supprimerPal(\""+datePal+"\",\""+matMidSoi+"\","+num+")'><i class='small material-icons red-text'>clear</i></a></td>";
@@ -285,6 +323,23 @@ function estPasserOuPas(datePal, matMidSoi)
     return dateP>date;
 }
 
+function enregistrerPalanqueeBaseVide()
+{
+    document.getElementById("Palanquee").value = JSON.stringify(palanquees);
+    $("#formPlongee").submit();
+
+    datePalanquee = document.getElementById("date").value;
+    momentPalanquee = document.getElementById("moment").value;
+
+    var len = palanquees.length;
+    for(var i = 0; i < len; i++)
+    {
+        palanquees[i].date = datePalanquee;
+        palanquees[i].moment = momentPalanquee;
+    }
+
+    enregistrerPalanqueeBase();
+}
 
 function enregistrerPalanqueeBase()
 {
@@ -296,12 +351,14 @@ function enregistrerPalanqueeBase()
             data: "data="+JSON.stringify(palanquees)+"&dateAj="+datePalanquee+"&momentAj="+momentPalanquee,
             success: function(response)
             {
+                document.getElementById("Palanquee").value = false;
                 document.getElementById("hidEtat").value = response.responseText;
                 $("#moment").prop('disabled', false);
                 $("#formPlongee").submit();
             },
             error: function(response)
             {
+                document.getElementById("Palanquee").value = false;
                 document.getElementById("hidEtat").value = response.responseText;
                 $("#moment").prop('disabled', false);
                 $("#formPlongee").submit();

@@ -14,7 +14,15 @@ abstract class controller
 
     public function listeDeroulante($req, $label, $code, $defaultCode=null)
     {
-        $text = "<option value=\"rien\" hidden>--Please choose an option--</option>";
+        if($defaultCode == null)
+        {
+            $text = "<option value=\"rien\" hidden selected disabled>--Please choose an option--</option>";
+
+        }
+        else
+        {
+            $text = "<option value=\"rien\" hidden disabled>--Please choose an option--</option>";
+        }
         foreach ($req as $ligne) {
             $labelOption = $ligne[$label];
             $codeOption = $ligne[$code];

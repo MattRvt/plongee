@@ -105,7 +105,7 @@ function affichePlongee(db) {
             }
             else
             {
-                tr_str+= "<td align='center'><a class='waves-effect waves-light' href='Plongee&date="+Date+"&matMidSoi="+moment+"'><i class='material-icons black-text' >remove_red_eye</i></a></td>";
+                tr_str+= "<td align='center'><a class='waves-effect waves-light' onclick='redirectionPlongee(\""+Date+"\",\""+moment+"\")'><i class='material-icons black-text' >remove_red_eye</i></a></td>";
             }
             tr_str+= "</tr>";
 
@@ -120,6 +120,7 @@ function redirectionPlongee(date, moment)
     var form = $('<form action="Plongee" method="post">' +
         '<input type="text" name="date" value="' + date + '" />' +
         '<input type="text" name="moment" value="' + moment + '" />' +
+        '<input type="text" name="Palanquee" value="false" />' +
         '</form>');
 
     $("body").append(form);
