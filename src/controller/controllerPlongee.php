@@ -18,8 +18,6 @@ class controllerPlongee extends controller
     {
         $this->plongeePassee = false;
 
-        $test = !empty($_POST);
-
         $plongeeDefinit = (!empty($_GET["date"]) and !empty($_GET["matMidSoi"]));
         if ($plongeeDefinit) {
             $this->plongeePassee = $this->isPlongeePassee();
@@ -30,7 +28,6 @@ class controllerPlongee extends controller
 
         $this->_view = new View('Plongee');
         $this->_view->generate(array(), $this);
-
 
         if ($plongeeDefinit) {
             echo "<script type='text/javascript'>initListePalanquee('" . $_GET['date'] . "','" . $_GET['matMidSoi'] . "')</script>";
