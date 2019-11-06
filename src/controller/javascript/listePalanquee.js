@@ -177,7 +177,8 @@ function getBtn(datePal, matMidSoi, num, heureImm, heureSort, profReel, durreFon
         {
             if(heureImm == null || heureSort == null || profReel == null || durreFond == null)
             {
-                var btn = "<td><a class='waves-effect waves-light btn orange' onclick='initCompleterPal(\""+datePal+"\",\""+matMidSoi+"\","+num+")'>à compléter</a></td>";
+                var btn = "<td><a class='waves-effect waves-light btn orange' onclick='initCompleterPal(\""+datePal+"\",\""+matMidSoi+"\","+num+")'>à compléter</a></td>"+
+                "<td><a class='center' onclick='supprimerPal(\""+datePal+"\",\""+matMidSoi+"\","+num+")'><i class='small material-icons red-text'>clear</i></a></td>";
             }
             else
             {
