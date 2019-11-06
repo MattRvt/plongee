@@ -56,7 +56,7 @@
 
             <table border=5>
                 <tr>
-                    <td>Palanquée n°</td>
+                    <td colspan="4">Palanquée n°</td>
                 </tr>
                 <tr>
                     <td>Heure de départ</td>
@@ -77,39 +77,27 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td>Nom Prénom</td>
+                    <td colspan="3">Nom Prénom</td>
                     <td>Niveau</td>
-                    <td>Formation vers</td>
-                    <td>Fonction</td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td colspan="3"></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td colspan="3"></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td colspan="3"></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td colspan="3"></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td colspan="3"></td>
                     <td></td>
                 </tr>
             </table>
