@@ -72,7 +72,7 @@ class controllerPlongee extends controller
             $var = $_POST[$n];
             echo $var;
             echo "\"";
-            echo "readOnly";
+            echo "disabled";
         }
     }
 

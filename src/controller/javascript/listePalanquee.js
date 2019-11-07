@@ -409,12 +409,14 @@ function enregistrerPalanqueeBase()
             {
                 document.getElementById("hidEtat").value = response.responseText;
                 $("#moment").prop('disabled', false);
+                $("#date").prop('disabled', false);
                 $("#formPlongee").submit();
             },
             error: function(response)
             {
                 document.getElementById("hidEtat").value = response.responseText;
                 $("#moment").prop('disabled', false);
+                $("#date").prop('disabled', false);
                 $("#formPlongee").submit();
             }
         });
