@@ -149,14 +149,14 @@ function traitementSite()
     var xhr = initXHR();
     var siteValide = (nom.length>0) && (localisation.length>0);
     if (siteValide) {
-        alert("Site enregistré");
+        M.toast({html: 'Site enregistré'});
         xhr.open('POST', 'index.php?url=' + controller, false);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send("nom=" + nom + "&localisation=" + localisation + send);
 
         closeModal("site");
     } else {
-        alert("la site ne peut pas etre enregistré");
+        alert("Le site ne peut pas être enregistré");
     }
 
     updateSite();

@@ -141,14 +141,14 @@ function traitementAptitude()
     var xhr = initXHR();
     var aptitudeValide = (code.length>0) && (libelle.length>0);
     if (aptitudeValide) {
-        alert("Aptitude enregistré");
+        M.toast({html: 'Aptitude enregistré'});
         xhr.open('POST', 'index.php?url=' + controller, false);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send("newCode=" + code + "&libelle=" + libelle);
 
         closeModal("aptitude");
     } else {
-        alert("l'aptitude ne peut pas etre enregistré");
+        alert("L'aptitude ne peut pas être enregistré");
     }
 
     updateAptitude();
