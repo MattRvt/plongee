@@ -125,7 +125,7 @@ function affichePlongee(db) {
                 tr_str+= "<td align='center'><a class='waves-effect waves-light' onclick='redirectionPlongee(\""+Date+"\",\""+moment+"\")'><i class='material-icons black-text' >remove_red_eye</i></a></td>";
             }
 
-            if(etat!="Complète")
+            if(etat!="Complète" && etat!="Dépassée")
             {
                 tr_str+= "<td align='center'><a onclick='supprimerPlong(\""+Date+"\",\""+moment+"\")'><i class='small material-icons red-text'>clear</i></a></td>"
             }
