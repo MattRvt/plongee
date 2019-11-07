@@ -61,8 +61,13 @@
 
         <div id="selectAptitude" class="input-field col s12"></div>
 
-        <input type="submit" name="EN" onclick="addPersonne()">
-        <div id="supprime"></div>
+        <div class="row">
+            <div class="col s2">
+                <button class="green waves-effect waves-light btn" type="submit" name="EN" onclick="addPersonne()"><i class="material-icons right">send</i>Valider</button>
+            </div>
+
+            <div class="col" id="supprime"></div>
+        </div>
         <div class="erreur" id="erreurN"></div>
         <div class="erreur" id="erreurP"></div>
         <div class="erreur" id="erreur"></div>
