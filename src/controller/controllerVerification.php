@@ -8,6 +8,7 @@ class controllerVerification extends controller
     private $string;
     private $getstr;
     private $pattern;
+    private $pattern2;
     private $illegal;
 
 
@@ -16,14 +17,15 @@ class controllerVerification extends controller
       $this->type = $_POST['type'];
       $this->string = $_POST['string'];
       $this->getstr = $_POST['getstr'];
-      $this->pattern = "#^['A-Za-z]+([- ]?['A-Za-z]+)*-{0,2}([- ]?['A-Za-z]+)*$#i"; //Pour noms
+      $this->pattern = "#^['A-Za-z]+([- ]?['A-Za-z]+)*-{0,2}(['A-Za-z]+[- ]?[' A-Za-z]*)*$#i"; //Pour noms
+      $this->pattern2 = "#^['A-Za-z]+([- ]?['A-Za-z]+)*-{0,1}(['A-Za-z]+[- ]?[' A-Za-z]*)*$#i"; //Pour prenoms
       $this->illegal = "#€$%^&*()+=[];,./{}|:!<>?~";
       if ($this->getstr == 0){
           if ($this->type == 0){
               $res = $this->verifierNom($this->string,$this->pattern,$this->illegal);
           }
           else {
-              $res = $this->verifierPrenom($this->string, $this->pattern, $this->illegal);
+              $res = $this->verifierPrenom($this->string, $this->pattern2, $this->illegal);
           }
       } else {
           if ($this->type == 0){
@@ -51,9 +53,9 @@ class controllerVerification extends controller
     }
 
     public function convertChar($nom){
-        $nom=preg_replace("#^ *-* *#","",$nom);
-        $nom=preg_replace("# *-* *$#","",$nom);
-        $nom=preg_replace("# *- *#","-",$nom);
+        $nom=preg_replace("#^\s{1,}#","",$nom);
+        $nom=preg_replace("#\s{0,}--\s{0,}#","--",$nom);
+        $nom=preg_replace("#\s{0,}-\s{0,}#","-",$nom);
         $nom=preg_replace('#"#',"''",$nom);
         $nom=preg_replace("#' *#","'",$nom);
         $nom=preg_replace("#\b *'' *\b#","' '",$nom);
@@ -64,12 +66,17 @@ class controllerVerification extends controller
         $nom=preg_replace("#€#","!",$nom);
         $nom=preg_replace("#&#","!",$nom);
         $nom=preg_replace("#ñ#","n",$nom);
+        $nom=preg_replace("#^'$#","!",$nom);
         return $nom;
 
     }
 
     public function verif_illegal ($s, $illegal){
         return strpbrk($s, $illegal) == false;
+    }
+
+    function verificationEspace($nom){
+        return preg_replace('/\s{2,}/', ' ',$nom);
     }
 
     public function mb_ucfirst($s) {   //http://phpfunction.net/pl/php-function-mb_ucfirst
@@ -94,6 +101,7 @@ class controllerVerification extends controller
 
     public function convertNom($nom){
 
+        $nom = $this->verificationEspace($nom);
         $nom = $this->convertChar($nom);
         $nom = $this->skip_accents($nom,"[A-Za-z]");
         $nom = strtoupper($nom);
@@ -111,6 +119,7 @@ class controllerVerification extends controller
     }
 
     public function convertPrenom($prenom){
+        $prenom = $this->verificationEspace($prenom);
         $prenom = $this->convertChar($prenom);
         $prenom = mb_strtolower($prenom,"UTF-8");
 
