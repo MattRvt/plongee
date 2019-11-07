@@ -9,9 +9,7 @@ var personne = {
     active: "",
 };
 
-/**
- *
- */
+
 function addPersonne() {
     personne.nom = document.getElementById('nomPlongeur').value;
     personne.prenom = document.getElementById('prenomPlongeur').value;
@@ -120,9 +118,6 @@ function addPersonne() {
     }
 }
 
-/**
- *
- */
 function selectAptitude() {
     personne.plongeur = document.getElementById('Plongeur').checked;
 
@@ -139,10 +134,6 @@ function selectAptitude() {
     }
 }
 
-/**
- *
- * @param num
- */
 function initModalAjoutPers(num)
 {
     $("#erreur").html("");
@@ -208,11 +199,6 @@ function initModalAjoutPers(num)
     });
 }
 
-/**
- *
- * @param num
- * @returns {string}
- */
 function getNom(num)
 {
     var xhr = initXHR();
@@ -224,11 +210,6 @@ function getNom(num)
     return xhr.responseText;
 }
 
-/**
- *
- * @param num
- * @returns {string}
- */
 function getPrenom(num)
 {
     var xhr = initXHR();
@@ -240,11 +221,6 @@ function getPrenom(num)
     return xhr.responseText;
 }
 
-/**
- *
- * @param num
- * @returns {boolean}
- */
 function estActive(num)
 {
     var xhr = initXHR();
@@ -256,11 +232,6 @@ function estActive(num)
     return (xhr.responseText==0);
 }
 
-/**
- *
- * @param num
- * @returns {string}
- */
 function getDateCertif(num)
 {
     var xhr = initXHR();
@@ -272,11 +243,6 @@ function getDateCertif(num)
     return (xhr.responseText);
 }
 
-/**
- *
- * @param num
- * @returns {string}
- */
 function isPlongeur(num)
 {
     var xhr = initXHR();
@@ -288,11 +254,6 @@ function isPlongeur(num)
     return xhr.responseText;
 }
 
-/**
- *
- * @param num
- * @returns {string}
- */
 function getAptitude(num)
 {
     var xhr = initXHR();
@@ -304,11 +265,7 @@ function getAptitude(num)
     return xhr.responseText;
 }
 
-/**
- *
- * @param num
- * @returns {boolean}
- */
+
 function isDirecteur(num)
 {
     var xhr = initXHR();
@@ -320,11 +277,6 @@ function isDirecteur(num)
     return (xhr.responseText==1);
 }
 
-/**
- *
- * @param num
- * @returns {boolean}
- */
 function isSecuriteSurface(num)
 {
     var xhr = initXHR();
@@ -357,23 +309,24 @@ function estConcerne(){
     }
 }
 
-/**
- * @param num
- */
-function supprimer(num){
-    var plongeur;
-    var directeur;
-    var secusurf;
-    personne.plongeur ? plongeur = 1 : plongeur = 0;
-    personne.directeur ? directeur = 1 : directeur = 0;
-    personne.secuSurface ? secusurf = 1 : secusurf = 0;
+function supprimer(num)
+{
+    if(confirm("Êtes-vous sur de supprimer cette personne ?"))
+    {
+        var plongeur;
+        var directeur;
+        var secusurf;
+        personne.plongeur ? plongeur = 1 : plongeur = 0;
+        personne.directeur ? directeur = 1 : directeur = 0;
+        personne.secuSurface ? secusurf = 1 : secusurf = 0;
 
-    var xhr = initXHR();
+        var xhr = initXHR();
 
-    xhr.open('POST', 'index.php?url=SupprimerPersonne', false);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("num="+num+"&plongeur="+plongeur+"&directeur="+directeur+"&secusurf="+secusurf);
-    M.toast({html: 'Personne suprimée'});
-    update();
+        xhr.open('POST', 'index.php?url=SupprimerPersonne', false);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("num="+num+"&plongeur="+plongeur+"&directeur="+directeur+"&secusurf="+secusurf);
+        M.toast({html: 'Personne suprimée'});
+        update();
+    }
     closeModal("newPlongeur");
 }

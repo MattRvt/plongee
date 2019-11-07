@@ -3,9 +3,6 @@ var db_returnNP = null;
 var db_actifP = [];
 var db_actifNP = [];
 
-/**
- *
- */
 function update(){
     $(document).ready(function(){
         $.ajax({
@@ -69,11 +66,6 @@ $(document).ready(function () {
     })
 });
 
-/**
- *
- * @param db
- * @param type
- */
 function affichePlongeur(db,type) {
     var output = [];
     var match = $("#search").val().trim();

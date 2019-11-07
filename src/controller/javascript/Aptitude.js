@@ -176,13 +176,15 @@ function isUseAptitude(code)
 
 function supprimerAptitude(code)
 {
-    var xhr = initXHR();
+    if(confirm("Êtes-vous sur de supprimer cette aptitude ?")) {
+        var xhr = initXHR();
 
-    xhr.open('POST', 'index.php?url=Supprimer', false);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("num="+code+"&name=Aptitude");
+        xhr.open('POST', 'index.php?url=Supprimer', false);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("num=" + code + "&name=Aptitude");
 
-    updateAptitude();
+        updateAptitude();
+    }
 }
 
 function isAllUseAptitude()

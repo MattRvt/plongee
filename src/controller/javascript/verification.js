@@ -124,4 +124,3 @@ function exist(nom, prenom) {
         return true;
     }
 }
-

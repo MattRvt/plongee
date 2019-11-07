@@ -111,11 +111,6 @@ function initModifEmbarcation(num) {
     document.getElementById("nomEmbarcation").value = data[0];
 }
 
-/**
- *
- * @param num
- * @returns {string[]}
- */
 function getDataEmbarcation(num = numEmbarcation) {
     var xhr = initXHR();
 
@@ -177,13 +172,15 @@ function isUseEmbarcation(num)
 
 function supprimerEmbarcation(num)
 {
-    var xhr = initXHR();
+    if(confirm("Êtes-vous sur de supprimer cette embarcation ?")) {
+        var xhr = initXHR();
 
-    xhr.open('POST', 'index.php?url=Supprimer', false);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("num="+num+"&name=Embarcation");
+        xhr.open('POST', 'index.php?url=Supprimer', false);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("num=" + num + "&name=Embarcation");
 
-    updateEmbarcation();
+        updateEmbarcation();
+    }
 }
 
 function isAllUseEmbarcation()

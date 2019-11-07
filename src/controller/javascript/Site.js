@@ -117,9 +117,6 @@ function initModifSite(num)
     document.getElementById("localisationSite").value = data[1];
 }
 
-/**
- *
- */
 function getDataSite(num = numSite)
 {
     var xhr = initXHR();
@@ -184,13 +181,15 @@ function isUseSite(num)
 
 function supprimerSite(num)
 {
-    var xhr = initXHR();
+    if(confirm("Êtes-vous sur de supprimer ce site ?")) {
+        var xhr = initXHR();
 
-    xhr.open('POST', 'index.php?url=Supprimer', false);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("num="+num+"&name=Site");
+        xhr.open('POST', 'index.php?url=Supprimer', false);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("num=" + num + "&name=Site");
 
-    updateSite();
+        updateSite();
+    }
 }
 
 function isAllUseSite()

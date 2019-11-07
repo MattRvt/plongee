@@ -2,9 +2,6 @@ var db_returnPlongee = null;
 var mapProxyPlongeeLieu = new Map();
 var mapProxyPlongeeEmbarcation = new Map();
 
-/**
- *
- */
 function updatePlongee()
 {
     if(mapProxyPlongeeLieu.size == 0)
@@ -39,10 +36,6 @@ $(document).ready(function () {
     });
 });
 
-/**
- *
- * @param db
- */
 function affichePlongee(db) {
     var separation = !$("#archive").is(':checked');
     var output = [];
@@ -138,27 +131,19 @@ function affichePlongee(db) {
     }
 }
 
-/**
- *
- * @param date
- * @param moment
- */
 function supprimerPlong(date, moment)
 {
-    var xhr = initXHR();
+    if(confirm("Êtes-vous sur de supprimer cette plongee ?")) {
+        var xhr = initXHR();
 
-    xhr.open('POST', 'index.php?url=SupprimerPlongee', false);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("date="+date+"&moment="+moment);
+        xhr.open('POST', 'index.php?url=SupprimerPlongee', false);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("date=" + date + "&moment=" + moment);
 
-    updatePlongee();
+        updatePlongee();
+    }
 }
 
-/**
- *
- * @param date
- * @param moment
- */
 function redirectionPlongee(date, moment)
 {
     var form = $('<form action="Plongee" method="post">' +
@@ -186,11 +171,6 @@ function matMidSoi(moment)
     }
 }
 
-/**
- *
- * @param num
- * @returns {any}
- */
 function getDataSiteProxy(num)
 {
     if(mapProxyPlongeeLieu.get(num) == undefined)
@@ -200,12 +180,6 @@ function getDataSiteProxy(num)
     return mapProxyPlongeeLieu.get(num);
 }
 
-/**
- *
- *
- * @param num
- * @returns {any}
- */
 function getDataEmbarcationProxy(num)
 {
     if(mapProxyPlongeeEmbarcation.get(num) == undefined)
@@ -215,9 +189,6 @@ function getDataEmbarcationProxy(num)
     return mapProxyPlongeeEmbarcation.get(num);
 }
 
-/**
- *
- */
 function getAllSite()
 {
     var xhr = initXHR();
@@ -235,9 +206,6 @@ function getAllSite()
     }
 }
 
-/**
- *
- */
 function getAllEmbarcation()
 {
     var xhr = initXHR();

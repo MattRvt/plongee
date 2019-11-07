@@ -1,9 +1,6 @@
 var datePalanquee = null;
 var momentPalanquee = null;
 
-/**
- *
- */
 function initListePalanqueeVide()
 {
     $("#enrPlongee").html("<input type=\"button\" class=\"btn green\" value=\"Enregistrer plongée\" onclick=\"enregistrerPalanqueeBaseVide()\">");
@@ -17,11 +14,6 @@ function initListePalanqueeVide()
     afficherPalanquee(null,null);
 }
 
-/**
- *
- * @param datePal
- * @param matMidSoi
- */
 function initListePalanquee(datePal, matMidSoi)
 {
     $("#enrPlongee").html("<input type=\"button\" class=\"btn green\" value=\"Enregistrer plongée\" onclick=\"enregistrerPalanqueeBase()\">");
@@ -68,11 +60,6 @@ function initListePalanquee(datePal, matMidSoi)
     });
 }
 
-/**
- *
- * @param datePal
- * @param matMidSoi
- */
 function afficherPalanquee(datePal, matMidSoi)
 {
     $("#listePalanque").html("");
@@ -159,17 +146,6 @@ function afficherPalanquee(datePal, matMidSoi)
     }
 }
 
-/**
- *
- * @param datePal
- * @param matMidSoi
- * @param num
- * @param heureImm
- * @param heureSort
- * @param profReel
- * @param durreFond
- * @returns {string}
- */
 function getBtn(datePal, matMidSoi, num, heureImm, heureSort, profReel, durreFond)
 {
     var xhr = initXHR();
@@ -262,27 +238,20 @@ function modifierCompleterPalanquee(datePal, matMidSoi, num)
 
 function supprimerPal(datePal,matMidSoi,num)
 {
-    var len = palanquees.length;
-    for(var i = num-1; i<len; i++)
-    {
-        if(i==len-1)
-        {
-            palanquees.splice(palanquees.indexOf(i), 1);
+    if(confirm("Êtes-vous sur de supprimer cette palanquee ?")) {
+        var len = palanquees.length;
+        for (var i = num - 1; i < len; i++) {
+            if (i == len - 1) {
+                palanquees.splice(palanquees.indexOf(i), 1);
+            } else {
+                palanquees[i] = palanquees[i + 1];
+                palanquees[i].num = i + 1;
+            }
         }
-        else
-        {
-            palanquees[i] = palanquees[i+1];
-            palanquees[i].num = i+1;
-        }
+        afficherPalanquee(datePal, matMidSoi);
     }
-    afficherPalanquee(datePal,matMidSoi);
 }
 
-/**
- *
- * @param datePal
- * @param matMidSoi
- */
 function setNbPlongeur(datePal, matMidSoi)
 {
     var xhr = initXHR();
@@ -293,12 +262,7 @@ function setNbPlongeur(datePal, matMidSoi)
     $("#effectifs").html("Effectif total: "+xhr.responseText);
 }
 
-/**
- *
- * @param datePal
- * @param matMidSoi
- * @param num
- */
+
 function initInfoPal(datePal, matMidSoi, num)
 {
     var pal = palanquees[num];
@@ -331,12 +295,6 @@ function initInfoPal(datePal, matMidSoi, num)
     });
 }
 
-/**
- *
- * @param datePal
- * @param matMidSoi
- * @returns {boolean}
- */
 function estPasserOuPas(datePal, matMidSoi)
 {
     var date = new Date();
@@ -358,9 +316,7 @@ function estPasserOuPas(datePal, matMidSoi)
     return dateP>date;
 }
 
-/**
- *
- */
+
 function enregistrerPalanqueeBaseVide()
 {
     datePalanquee = document.getElementById("date").value;
@@ -394,9 +350,6 @@ function enregistrerPalanqueeBaseVide()
     }
 }
 
-/**
- *
- */
 function enregistrerPalanqueeBase()
 {
     $(document).ready(function(){
