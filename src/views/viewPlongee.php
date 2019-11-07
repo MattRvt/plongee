@@ -66,7 +66,6 @@
 
     <br/>
     <div class="row" id="btnAjout"></div>
-    <a class='waves-effect waves-light btn' href="FicheSecurite&date=<?php echo $_POST['date'] ?>&moment=<?php echo $_POST['moment']?>">Imprimer</a>
 
     <div class="row">
         <div id="enrPlongee" class="col s1 offset-s4"></div>

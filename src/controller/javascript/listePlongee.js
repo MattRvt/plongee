@@ -68,12 +68,13 @@ function affichePlongee(db) {
     }
     else {
         var tr_str = " <thead><tr> " +
-            "<th width='0%'></th> "+
+            "<th width='5%'></th> "+
             "<th width='13%'>Période</th> " +
             "<th width='20%'>Lieu</th> " +
             "<th width='20%'>Embarcation</th> "+
             "<th width='20%'>Etats</th> "+
-            "<th width='20%'></th> ";
+            "<th width='10%'></th> "+
+            "<th width='15%'></th> ";
 
         tr_str+="</tr> </thead> " +
             "<tbody></tbody>";
@@ -105,6 +106,15 @@ function affichePlongee(db) {
                 "<td align='center'>" + Lieu + "</td>" +
                 "<td align='center'>" + embarcation + "</td>"+
                 "<td align='center'>" + etat + "</td>";
+
+
+
+            if (etat != 'Créée'){
+                tr_str+= "<td align='center'><a class='waves-effect tooltipped waves-light btn' data-position='top' data-tooltip='Télécharger' href=\"FicheSecurite&date="+Date+"&moment="+moment+"\"><i class=\"material-icons\">file_download</i></a></td>";
+            }
+            else {
+                tr_str+="<td></td>";
+            }
 
             if(!$("#archive").is(':checked'))
             {
