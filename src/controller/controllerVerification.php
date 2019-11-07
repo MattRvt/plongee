@@ -16,7 +16,7 @@ class controllerVerification extends controller
       $this->type = $_POST['type'];
       $this->string = $_POST['string'];
       $this->getstr = $_POST['getstr'];
-      $this->pattern = "#^(['A-Za-z]+([- ]?['A-Za-z]+)*-{0,2}([- ]?['A-Za-z]+)*){1,2}$#i"; //Pour noms
+      $this->pattern = "#^['A-Za-z]+([- ]?['A-Za-z]+)*-{0,2}([- ]?['A-Za-z]+)*$#i"; //Pour noms
       $this->illegal = "#€$%^&*()+=[];,./{}|:!<>?~";
       if ($this->getstr == 0){
           if ($this->type == 0){
