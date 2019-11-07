@@ -39,7 +39,7 @@ class modelPlongeur extends model
     {
         $pdo = $this->getBdd();
 
-        $sql = "select * from PLO_PERSONNE join PLO_PLONGEUR using(per_num) ORDER BY per_num;";
+        $sql = "select * from PLO_PERSONNE join PLO_PLONGEUR using(per_num) ORDER BY per_nom;";
 
         $req = $pdo->prepare($sql);
         $req->execute();

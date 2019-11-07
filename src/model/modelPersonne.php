@@ -56,7 +56,7 @@ class modelPersonne extends model
         $sql = "SELECT * from PLO_PERSONNE where per_num not in
                 (
                     SELECT per_num from PLO_PLONGEUR ORDER BY per_num
-                ) ";
+                ) order by per_nom ";
 
         $req = $pdo->prepare($sql);
         $req->execute();
@@ -72,7 +72,7 @@ class modelPersonne extends model
         $pdo = $this->getBdd();
         $sql = "select * from PLO_PERSONNE where PER_NUM in (
                      select PER_NUM from PLO_SECURITE_DE_SURFACE
-                )";
+                ) order by per_nom";
         $req = $pdo->prepare($sql);
         $req->execute();
 
@@ -85,7 +85,7 @@ class modelPersonne extends model
         $pdo = $this->getBdd();
         $sql = "select * from PLO_PERSONNE where PER_NUM in (
                      select PER_NUM from PLO_DIRECTEUR
-                )";
+                ) order by per_nom";
         $req = $pdo->prepare($sql);
         $req->execute();
 
