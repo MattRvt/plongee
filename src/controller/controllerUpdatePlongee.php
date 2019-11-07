@@ -31,15 +31,15 @@ class controllerUpdatePlongee
                 try {
                     $model->addOrModifyPlongee($data);
                 } catch (Exception $e) {
-                    echo '<strong>Erreur d\'ecriture dans la base. <br></strong> ', $e->getMessage();
+                    echo 'Erreur d\'ecriture dans la base', $e->getMessage();
                 }
             }
             else
             {
-                echo '<strong>erreur, Plongee existe déjà</strong>';
+                echo 'erreur, Plongee existe déjà';
             }
         } else {
-            echo '<strong>erreur, formulaire invalide</strong>';
+            echo 'erreur, formulaire invalide';
         }
     }
 }
