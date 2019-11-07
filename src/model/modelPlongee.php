@@ -176,15 +176,34 @@ class modelPlongee extends model
         $PER_NUM_SECU = $data['securiteDeSurface'];
         $PLO_EFFECTIF_PLONGEURS = 0;
         $PLO_EFFECTIF_BATEAU = 0;
-        $PLO_NB_PALANQUEES = 0;
         $PLO_ETAT = $data['etat'];
 
         $plongeeExiste = $this->plongeeExiste($PLO_DATE, $PLO_MATIN_APRESMIDI);
         if ($plongeeExiste) {
+            $PLO_NB_PALANQUEES = $this->getNbPalanquee($PLO_DATE,$PLO_MATIN_APRESMIDI)["count(*)"];
             $this->updatePlongee($PLO_DATE, $PLO_MATIN_APRESMIDI, $SIT_NUM, $EMB_NUM, $PER_NUM_DIR, $PER_NUM_SECU, $PLO_EFFECTIF_PLONGEURS, $PLO_EFFECTIF_BATEAU, $PLO_NB_PALANQUEES);
         } else {
+            $PLO_NB_PALANQUEES = 0;
             $this->addPlongee($PLO_DATE, $PLO_MATIN_APRESMIDI, $SIT_NUM, $EMB_NUM, $PER_NUM_DIR, $PER_NUM_SECU, $PLO_EFFECTIF_PLONGEURS, $PLO_EFFECTIF_BATEAU, $PLO_NB_PALANQUEES, $PLO_ETAT);
         }
+    }
+
+    public function verifierNbPalanquee($date, $moment)
+    {
+        $pdo = $this->getBdd();
+        $PLO_NB_PALANQUEES = $this->getNbPalanquee($date,$moment)["count(*)"];
+
+        $sql = "
+            UPDATE `PLO_PLONGEE`
+            SET `PLO_NB_PALANQUEES` = ".$PLO_NB_PALANQUEES."
+            WHERE`PLO_DATE`= \"".$date."\" 
+            and`PLO_MAT_MID_SOI` = \"".$moment."\"
+           ";
+
+        $req = $pdo->prepare($sql);
+        $req->execute();
+
+        $req->closeCursor();
     }
 
     public function setEtat($etat, $moment, $date)

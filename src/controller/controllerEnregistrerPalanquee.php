@@ -54,5 +54,7 @@ class controllerEnregistrerPalanquee
             $model->setEtat("Créée", $_POST["momentAj"], $_POST["dateAj"]);
         }
         echo $model->getEtat($_POST["dateAj"],$_POST["momentAj"]);
+
+        $model->verifierNbPalanquee($_POST["dateAj"],$_POST["momentAj"]);
     }
 }

@@ -53,7 +53,7 @@
     });
 
     var date = new Date();
-    today = new Date(date.getFullYear(),date.getMonth(),date.getDate())
+    today = new Date(date.getFullYear(),date.getMonth(),date.getDate());
 
     $(document).ready(function(){
         $('.datepicker').datepicker({

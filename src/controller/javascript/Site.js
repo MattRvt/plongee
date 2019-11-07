@@ -28,7 +28,7 @@ $(document).ready(function () {
     $("#searchSite").keyup(function() {
         afficheSite(db_returnSite);
     });
-})
+});
 
 function afficheSite(db) {
     var output = [];
@@ -117,6 +117,9 @@ function initModifSite(num)
     document.getElementById("localisationSite").value = data[1];
 }
 
+/**
+ *
+ */
 function getDataSite(num = numSite)
 {
     var xhr = initXHR();

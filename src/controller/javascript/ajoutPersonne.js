@@ -9,6 +9,9 @@ var personne = {
     active: "",
 };
 
+/**
+ *
+ */
 function addPersonne() {
     personne.nom = document.getElementById('nomPlongeur').value;
     personne.prenom = document.getElementById('prenomPlongeur').value;
@@ -56,7 +59,6 @@ function addPersonne() {
             if(modif != -1)
             {
                 fichier = "ModifierPersonne";
-                alert ("je suis la");
                 text = text + "&num="+document.getElementById("modfiAjout").value;
             }
             else
@@ -118,6 +120,9 @@ function addPersonne() {
     }
 }
 
+/**
+ *
+ */
 function selectAptitude() {
     personne.plongeur = document.getElementById('Plongeur').checked;
 
@@ -134,6 +139,10 @@ function selectAptitude() {
     }
 }
 
+/**
+ *
+ * @param num
+ */
 function initModalAjoutPers(num)
 {
     $("#erreur").html("");
@@ -199,6 +208,11 @@ function initModalAjoutPers(num)
     });
 }
 
+/**
+ *
+ * @param num
+ * @returns {string}
+ */
 function getNom(num)
 {
     var xhr = initXHR();
@@ -210,6 +224,11 @@ function getNom(num)
     return xhr.responseText;
 }
 
+/**
+ *
+ * @param num
+ * @returns {string}
+ */
 function getPrenom(num)
 {
     var xhr = initXHR();
@@ -221,6 +240,11 @@ function getPrenom(num)
     return xhr.responseText;
 }
 
+/**
+ *
+ * @param num
+ * @returns {boolean}
+ */
 function estActive(num)
 {
     var xhr = initXHR();
@@ -232,6 +256,11 @@ function estActive(num)
     return (xhr.responseText==0);
 }
 
+/**
+ *
+ * @param num
+ * @returns {string}
+ */
 function getDateCertif(num)
 {
     var xhr = initXHR();
@@ -243,6 +272,11 @@ function getDateCertif(num)
     return (xhr.responseText);
 }
 
+/**
+ *
+ * @param num
+ * @returns {string}
+ */
 function isPlongeur(num)
 {
     var xhr = initXHR();
@@ -254,6 +288,11 @@ function isPlongeur(num)
     return xhr.responseText;
 }
 
+/**
+ *
+ * @param num
+ * @returns {string}
+ */
 function getAptitude(num)
 {
     var xhr = initXHR();
@@ -265,6 +304,11 @@ function getAptitude(num)
     return xhr.responseText;
 }
 
+/**
+ *
+ * @param num
+ * @returns {boolean}
+ */
 function isDirecteur(num)
 {
     var xhr = initXHR();
@@ -276,6 +320,11 @@ function isDirecteur(num)
     return (xhr.responseText==1);
 }
 
+/**
+ *
+ * @param num
+ * @returns {boolean}
+ */
 function isSecuriteSurface(num)
 {
     var xhr = initXHR();
@@ -308,6 +357,9 @@ function estConcerne(){
     }
 }
 
+/**
+ * @param num
+ */
 function supprimer(num){
     var plongeur;
     var directeur;

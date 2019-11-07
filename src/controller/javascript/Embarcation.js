@@ -28,7 +28,7 @@ $(document).ready(function () {
     $("#searchEmbarcation").keyup(function() {
         afficheEmbarcation(db_returnEmbarcation );
     });
-})
+});
 
 function afficheEmbarcation(db) {
     var output = [];
@@ -111,6 +111,11 @@ function initModifEmbarcation(num) {
     document.getElementById("nomEmbarcation").value = data[0];
 }
 
+/**
+ *
+ * @param num
+ * @returns {string[]}
+ */
 function getDataEmbarcation(num = numEmbarcation) {
     var xhr = initXHR();
 

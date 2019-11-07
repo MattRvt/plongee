@@ -265,6 +265,4 @@ class controllerPlongee extends controller
     }
 
 
-}
-
-?>
+}?>

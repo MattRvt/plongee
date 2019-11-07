@@ -24,7 +24,7 @@ $(document).ready(function () {
     $("#searchAptitude").keyup(function() {
         afficheAptitude(db_returnAptitude);
     });
-})
+});
 
 function afficheAptitude(db) {
     var output = [];

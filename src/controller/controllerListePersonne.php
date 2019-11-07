@@ -21,3 +21,4 @@ class controllerListePersonne
         echo "<script type='text/javascript'>update()</script>";
     }
 }
+

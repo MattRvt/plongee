@@ -157,6 +157,5 @@ class controllerNewPlongeur extends controller
     }
 
 
-}
+}?>
 
-?>

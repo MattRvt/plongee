@@ -1,3 +1,7 @@
+/**
+ *
+ * @param modal
+ */
 function closeModal(modal)
 {
     var ref = '#'+modal+"Modal";

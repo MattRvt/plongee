@@ -1,4 +1,7 @@
-
+/**
+ *
+ * @param type
+ */
 function validation(type)
 {
     var ans = verification(type,0);
@@ -10,6 +13,12 @@ function validation(type)
         item.style.boxShadow = "0px 0px 40px 0px rgba(255,8,8,1)";
 }
 
+/**
+ *
+ * @param actif
+ * @param val
+ * @returns {string}
+ */
 function verification(actif,val)
 {
     var xhr = initXHR();
@@ -36,16 +45,26 @@ function verification2(string, actif, val)
     return resp;
 }
 
+/**
+ *
+ * @param type
+ * @returns {HTMLElement}
+ */
 function itemType(type)
 {
     var id = getType(type);
 
-    var item = document.getElementById(id)
+    var item = document.getElementById(id);
 
     return item;
 
 }
 
+/**
+ *
+ * @param type
+ * @returns {string}
+ */
 function getType(type){
     if (type == 0)
         id = "nomPlongeur";
@@ -75,7 +94,7 @@ function verifSubmitPersonne()
 
 function afficheErreur(id){
     var type = getType(id);
-    var res = verification(id,0)
+    var res = verification(id,0);
     if (res==0){
         var span = "span"+type;
         document.getElementById(span).innerHTML = "Erreur : le "+type+" contient des caractères non-autorisés. <br/><br/>";
