@@ -20,9 +20,6 @@ $(document).ready(function(){
     });
 });
 
-/**
- *
- */
 function autocomplete(){
     var str = {};
     db_plongeur.forEach((item) => {
@@ -35,9 +32,6 @@ function autocomplete(){
     });
 }
 
-/**
- *
- */
 function resetModalModifAjoutPal()
 {
     $("#erreurPalPlong").html("");
@@ -52,9 +46,6 @@ function resetModalModifAjoutPal()
     }
 }
 
-/**
- *
- */
 function initAjoutPalanqueeVide()
 {
     palanquee.datePal = null;
@@ -63,9 +54,6 @@ function initAjoutPalanqueeVide()
     initAjoutPalanqueeCommun();
 }
 
-/**
- *
- */
 function initAjoutPalanqueeCommun()
 {
     $("#titreAjoutModifPal").html("Créer une palanquée");
@@ -81,11 +69,6 @@ function initAjoutPalanqueeCommun()
     $('#addPlongeurPal').html("<a class='waves-effect waves-light btn green' onclick='addCasePlongeur()'>Ajouter Plongeur</a>");
 }
 
-/**
- *
- * @param datePal
- * @param matMidSoi
- */
 function initAjoutPalanquee(datePal, matMidSoi)
 {
     palanquee.datePal = datePal;
@@ -94,10 +77,6 @@ function initAjoutPalanquee(datePal, matMidSoi)
     initAjoutPalanqueeCommun();
 }
 
-/**
- *
- * @param num
- */
 function initModifPalanquee(num)
 {
     var pal = palanquees[num-1];
@@ -138,10 +117,6 @@ function initModifPalanquee(num)
     }
 }
 
-/**
- *
- * @param nb
- */
 function nbCasePlongeur(nb)
 {
     var depart=1;

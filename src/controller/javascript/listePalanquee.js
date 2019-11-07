@@ -217,7 +217,7 @@ function initCompleterPal(datePal, matMidSoi, num)
     document.getElementById("inpProfondeurReel").value = pal.profReel;
     document.getElementById("inpDureeFond").value = pal.durFond;
 
-    $("#validerModifPal").html("<input type='submit' name='EN' value='Envoyer' onclick='modifierCompleterPalanquee(\""+datePal+"\",\""+matMidSoi+"\","+num+")'>");
+    $("#validerModifPal").html("<button class=\"green waves-effect waves-light btn\" type=\"submit\" name=\"EN\" onclick='modifierCompleterPalanquee(\""+datePal+"\",\""+matMidSoi+"\","+num+")'><i class=\"material-icons right\">send</i>Valider</button>");
 
     $(document).ready(function(){
         $('#modifierCompleterModal').modal('open');

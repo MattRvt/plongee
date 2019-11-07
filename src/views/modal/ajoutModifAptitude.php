@@ -16,7 +16,7 @@
             </label>
         </div>
 
-        <a class="waves-effect waves-light btn-large" onclick="traitementAptitude()">Valider</a>
+        <button class="green waves-effect waves-light btn" type="submit" name="EN" onclick="traitementAptitude()"><i class="material-icons right">send</i>Valider</button>
 
         <div class="erreur" id="erreurAptitude"></div>
     </div>

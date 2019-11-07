@@ -26,7 +26,7 @@
         <div id="addPlongeurPal" class="right"></div>
 
         <br />
-        <input type="submit" name="EN" value="Envoyer" onclick="traitementAjoutPal()">
+        <button class="green waves-effect waves-light btn" type="submit" name="EN" onclick="traitementAjoutPal()"><i class="material-icons right">send</i>Valider</button>
         <div class="erreur" id="erreurPal"></div>
     </div>
 </div>
