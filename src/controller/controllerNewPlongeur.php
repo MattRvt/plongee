@@ -42,6 +42,7 @@ class controllerNewPlongeur extends controller
             if (!empty($_POST["securiteSurface"])) {
                 $this->addSecuriteSurface();
             }
+            echo true;
         }
     }
 

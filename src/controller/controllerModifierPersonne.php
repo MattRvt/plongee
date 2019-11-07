@@ -57,6 +57,7 @@ class controllerModifierPersonne  extends controller
         else{
             $this->modifierSecuSurface(-1);
         }
+        echo true;
     }
 
     public function modifierSecuSurface($bool)

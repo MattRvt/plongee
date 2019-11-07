@@ -81,7 +81,7 @@ function addPersonne() {
                 text = text + "&securiteSurface=securiteSurface";
             }
             xhr.send(text);
-            if(xhr.responseText!="")
+            if(!xhr.responseText)
             {
                 if(modif != -1) {
                     var num = document.getElementById("modfiAjout").value;
