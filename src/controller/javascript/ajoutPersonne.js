@@ -189,7 +189,7 @@ function initModalAjoutPers(num)
         document.getElementById("Directeur").checked = personne.directeur;
         document.getElementById("SecuriteSurface").checked = personne.secuSurface;
 
-        $('#supprime').append("<input type='button' id='delete' value='Supprimer' onclick='supprimer("+num+")'/>");
+        $('#supprime').append("<a class='waves-effect red waves-light center btn' id='delete' onclick='supprimer("+num+")'><i class='material-icons right'>delete</i>Supprimer</a>");
         estConcerne();
     }
 
@@ -305,7 +305,7 @@ function estConcerne(){
     var resp = xhr.responseText;
 
     if(resp!=1){
-        btn.prop("disabled",true);
+        btn.addClass("disabled");
     }
 }
 
