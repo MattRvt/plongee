@@ -56,6 +56,10 @@ function initAjoutPalanqueeVide()
 
 function initAjoutPalanqueeCommun()
 {
+    for(var n = 0; n<5; n++)
+    {
+        $("#erreurPlongeur"+n).html("");
+    }
     $("#titreAjoutModifPal").html("Créer une palanquée");
     resetModalModifAjoutPal();
 
@@ -79,6 +83,11 @@ function initAjoutPalanquee(datePal, matMidSoi)
 
 function initModifPalanquee(num)
 {
+    for(var n = 0; n<5; n++)
+    {
+        $("#erreurPlongeur"+n).html("");
+    }
+
     var pal = palanquees[num-1];
     palanquee.datePal = pal.date;
     palanquee.matMidSoi = pal.moment;
@@ -158,7 +167,10 @@ function addCasePlongeur()
     var nb = document.getElementById('addPlongeurPal').value;
     if(nb < 5 && document.getElementById('plongeur'+nb).value != "")
     {
-        document.getElementById('addPlongeurPal').value = ++nb;
+        if(!verifierPlongeurDejaPresent(nb))
+        {
+            document.getElementById('addPlongeurPal').value = ++nb;
+        }
     }
     else
     {
@@ -206,37 +218,36 @@ function supprCasePlongeur(nbSuppr)
 
 function traitementAjoutPal()
 {
-    var plongeur = [];
     var nb = document.getElementById('addPlongeurPal').value;
+    if(!verifierPlongeurDejaPresent(nb)) {
+        var plongeur = [];
 
-    for(var n=0; n<nb; n++)
-    {
-        var plongNum = document.getElementById("plongeur"+(n+1)).value.split('|')[0];
-        var plongNom = document.getElementById("plongeur"+(n+1)).value.split('|')[1].split(" ")[1];
-        var plongPrenom = document.getElementById("plongeur"+(n+1)).value.split('|')[1].split(" ")[2];
+        for (var n = 0; n < nb; n++) {
+            var plongNum = document.getElementById("plongeur" + (n + 1)).value.split('|')[0];
+            var plongNom = document.getElementById("plongeur" + (n + 1)).value.split('|')[1].split(" ")[1];
+            var plongPrenom = document.getElementById("plongeur" + (n + 1)).value.split('|')[1].split(" ")[2];
 
-        plongeur[n] = Array(plongNum, plongNom, plongPrenom);
-    }
+            plongeur[n] = Array(plongNum, plongNom, plongPrenom);
+        }
 
-    if (palanquee.num != null) {
-        var send = "&num="+palanquee.num;
-    }
-    else {
-        var len = palanquees.length;
-        var send = "&num="+(len+1);
-    }
+        if (palanquee.num != null) {
+            var send = "&num=" + palanquee.num;
+        } else {
+            var len = palanquees.length;
+            var send = "&num=" + (len + 1);
+        }
         var profMax = document.getElementById("profMax").value;
         var DurMax = document.getElementById("DurMax").value;
 
-        $(document).ready(function(){
+        $(document).ready(function () {
             $.ajax({
                 url: "AjoutPalanquee",
                 type: 'post',
-                data: "date="+palanquee.datePal+"&moment="+palanquee.matMidSoi+"&profMax="+profMax+"&durMax="+DurMax+"&nb="+nb+"&plongeur="+plongeur+send,
+                data: "date=" + palanquee.datePal + "&moment=" + palanquee.matMidSoi + "&profMax=" + profMax + "&durMax=" + DurMax + "&nb=" + nb + "&plongeur=" + plongeur + send,
                 dataType: 'JSON',
-                success: function(response1){
-                    palanquees[response1.num-1] = response1;
-                    afficherPalanquee(palanquee.datePal,palanquee.matMidSoi);
+                success: function (response1) {
+                    palanquees[response1.num - 1] = response1;
+                    afficherPalanquee(palanquee.datePal, palanquee.matMidSoi);
                 },
                 error: function (response1) {
                     document.write(response1.responseText);
@@ -246,5 +257,47 @@ function traitementAjoutPal()
             });
         });
 
-    closeModal("newPalanquee");
+        closeModal("newPalanquee");
+    }
+}
+
+function verifierPlongeurDejaPresent(nb)
+{
+    var plongeur = [];
+    for(var n=0; n<5; n++)
+    {
+        if(n<nb)
+        {
+            var plongNum = document.getElementById("plongeur"+(n+1)).value.split('|')[0];
+            plongeur[n] = Array(plongNum);
+        }
+        else
+        {
+            plongeur[n] = -1;
+        }
+    }
+
+    var len = palanquees.length;
+    var bool = false;
+    for(var i = 0; i<len; i++)
+    {
+        if(i+1 != palanquee.num)
+        {
+            var pal = palanquees[i];
+            for(var k = 0; k<pal.nbPlongeur; k++)
+            {
+                for(var n = 0; n<5; n++)
+                {
+                    if(Number(pal.plongeur[k].PER_NUM) == Number(plongeur[n]))
+                    {
+                        $("#erreurPlongeur"+(n+1)).html("Le plongeur est déjà dans la plongée");
+                        bool = true;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    return bool;
 }

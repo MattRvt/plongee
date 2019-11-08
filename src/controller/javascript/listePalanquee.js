@@ -75,7 +75,6 @@ function afficherPalanquee(datePal, matMidSoi)
     }
 
     var tr_str = "<thead class='center'><tr> " +
-        "<th>P.no</th> " +
         "<th>Profondeur Max</th> " +
         "<th>Duree Max</th> "+
         "<th>Nombre de plongeur</th>";
@@ -127,7 +126,6 @@ function afficherPalanquee(datePal, matMidSoi)
         //var btn = data[i].btn;
 
         tr_str += "<tr>" +
-            "<td align='center'>" + num + "</td>" +
             "<td align='center'>" + profondeurMax + "</td>" +
             "<td align='center'>" + dureeMax + "</td>"+
             "<td align='center'>" + nbPlongeur + "</td>";
@@ -207,7 +205,6 @@ function initCompleterPal(datePal, matMidSoi, num)
         var moment = "soir"
     }
 
-    $("#numPalPasse").html("numero : "+num);
     $("#datePalPasse").html(datePal+" le "+moment);
     $("#profMaxPalPasse").html("Profondeur Maximum : "+pal.profMax);
     $("#durMaxPalPasse").html("Duree Maximum : "+pal.durMax);
@@ -216,6 +213,15 @@ function initCompleterPal(datePal, matMidSoi, num)
     document.getElementById("inpHeureSor").value = pal.heureSor;
     document.getElementById("inpProfondeurReel").value = pal.profReel;
     document.getElementById("inpDureeFond").value = pal.durFond;
+
+    var text = "Plongeur :<br/>";
+
+    for(var k = 0; k<pal.nbPlongeur; k++)
+    {
+        text += "• "+pal.plongeur[k].PER_NOM+" "+pal.plongeur[k].PER_PRENOM+"<br/>";
+    }
+
+    $("#listPlongeurPalPasse").html(""+text);
 
     $("#validerModifPal").html("<button class=\"green waves-effect waves-light btn\" type=\"submit\" name=\"EN\" onclick='modifierCompleterPalanquee(\""+datePal+"\",\""+matMidSoi+"\","+num+")'><i class=\"material-icons right\">send</i>Valider</button>");
 

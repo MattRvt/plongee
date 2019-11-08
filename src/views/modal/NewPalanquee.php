@@ -18,10 +18,16 @@
         </div>
 
         <div id="plongeurPalanquee1"></div>
+        <div class="erreur" id="erreurPlongeur1"></div>
         <div id="plongeurPalanquee2"></div>
+        <div class="erreur" id="erreurPlongeur2"></div>
         <div id="plongeurPalanquee3"></div>
+        <div class="erreur" id="erreurPlongeur3"></div>
         <div id="plongeurPalanquee4"></div>
+        <div class="erreur" id="erreurPlongeur4"></div>
         <div id="plongeurPalanquee5"></div>
+        <div class="erreur" id="erreurPlongeur5"></div>
+
         <div class="erreur" id="erreurPalPlong"></div>
         <div id="addPlongeurPal" class="right"></div>
 
