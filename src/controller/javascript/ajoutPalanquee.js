@@ -23,7 +23,10 @@ $(document).ready(function(){
 function autocomplete(){
     var str = {};
     db_plongeur.forEach((item) => {
-        str[item.PER_NUM+" | "+item.PER_NOM+" "+item.PER_PRENOM]= null;
+        if(!verifierPlongeurDejaPresent(1,item.PER_NUM))
+        {
+            str[item.PER_NUM+" | "+item.PER_NOM+" "+item.PER_PRENOM] = null;
+        }
     });
     $(document).ready(function(){
         $('input.autocomplete').autocomplete({
@@ -261,15 +264,32 @@ function traitementAjoutPal()
     }
 }
 
-function verifierPlongeurDejaPresent(nb)
+function verifierPlongeurDejaPresent(nb,num = null)
 {
     var plongeur = [];
+    var bool = false;
+
     for(var n=0; n<5; n++)
     {
         if(n<nb)
         {
-            var plongNum = document.getElementById("plongeur"+(n+1)).value.split('|')[0];
-            plongeur[n] = Array(plongNum);
+            if(num == null) {
+                var plongNum = document.getElementById("plongeur" + (n + 1)).value.split('|')[0];
+                plongeur[n] = Array(plongNum);
+            }
+            else
+            {
+                plongeur[n] = Array(num);
+            }
+            for(var k = 0; k<plongeur.length; k++)
+            {
+                if(Number(plongeur[n]) == Number(plongeur[k]) && n != k)
+                {
+                    $("#erreurPlongeur"+(n+1)).html("Le plongeur est déjà dans la palanquee");
+                    $("#erreurPlongeur"+(k+1)).html("Le plongeur est déjà dans la palanquee");
+                    bool = true;
+                }
+            }
         }
         else
         {
@@ -278,7 +298,6 @@ function verifierPlongeurDejaPresent(nb)
     }
 
     var len = palanquees.length;
-    var bool = false;
     for(var i = 0; i<len; i++)
     {
         if(i+1 != palanquee.num)
@@ -290,9 +309,16 @@ function verifierPlongeurDejaPresent(nb)
                 {
                     if(Number(pal.plongeur[k].PER_NUM) == Number(plongeur[n]))
                     {
-                        $("#erreurPlongeur"+(n+1)).html("Le plongeur est déjà dans la plongée");
-                        bool = true;
-                        break;
+                        if(num == null)
+                        {
+                            $("#erreurPlongeur"+(n+1)).html("Le plongeur est déjà dans la plongée");
+                            bool = true;
+                            break;
+                        }
+                        else
+                        {
+                            return true;
+                        }
                     }
                 }
             }
