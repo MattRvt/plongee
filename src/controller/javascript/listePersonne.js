@@ -91,8 +91,6 @@ function affichePlongeur(db,type) {
     else {
         var tr_str = " <thead><tr> " +
             "<th width='10%'>Rôle</th> " +
-            "<th width='5%'>S.no</th> " +
-            "<th width='20%'>Nom</th> " +
             "<th width='20%'>Prenom</th> " +
             "<th width='5%'>Actif</th> " ;
         if (!type) tr_str+="<th width='20%'>Certif</th> <th width='20%'>Apt-code</th> ";
@@ -129,7 +127,6 @@ function affichePlongeur(db,type) {
             var certifValide = dateFinCertif > today;
             tr_str = "<tr>" +
                 "<td align='center'> " + dir + secu + "</td>" +
-                "<td align='center'>" + num + "</td>" +
                 "<td align='center'>" + nom + "</td>" +
                 "<td align='center'>" + prenom + "</td>" +
                 "<td align='center'>" + actif + "</td>";
