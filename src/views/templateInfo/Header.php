@@ -13,6 +13,10 @@
             <li><a href="Site">Site</a></li>
             <li><a href="Embarcation">Embarcation</a></li>
             <li><a href="Aptitude">Aptitude</a></li>
+
+        </ul>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a onclick="initModalNotice()">notice</a></li>
         </ul>
     </div>
 </nav>
@@ -24,3 +28,4 @@
     <li><a href="Embarcation">Embarcation</a></li>
     <li><a href="Aptitude">Aptitude</a></li>
 </ul>
+

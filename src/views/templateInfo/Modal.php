@@ -7,5 +7,7 @@ require_once ("views/modal/ajoutModifEmbarcation.php");
 require_once ("views/modal/ajoutModifSite.php");
 require_once ("views/modal/ajoutModifAptitude.php");
 require_once ("views/modal/infoArchivePalanquee.php");
+require_once ("views/modal/notice.php");
 
 
+?>
