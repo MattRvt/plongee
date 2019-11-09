@@ -16,7 +16,7 @@
 
         </ul>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a onclick="initModalNotice()">notice</a></li>
+            <li><a onclick="initModalNotice()">FAQ</a></li>
         </ul>
     </div>
 </nav>
