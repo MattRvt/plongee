@@ -249,6 +249,7 @@ function traitementAjoutPal()
             dataType: 'JSON',
             success: function (response1) {
                 palanquees[response1.num - 1] = response1;
+                initDirecteurSecurite();
                 afficherPalanquee(palanquee.datePal, palanquee.matMidSoi);
             },
             error: function (response1) {

@@ -15,38 +15,64 @@ class controllerSelectDirecteurSecurite extends controller
     {
         $reader = new modelPersonne();
 
-        if($this->isPlongeePassee()) $bon = "disabled";
-        else $bon = "";
+        $plongeur = $_POST["plongeurNum"];
+        foreach ($plongeur as $key => $content)
+        {
+            $plongeur[$key] = rtrim($content);
+        }
+        var_dump($plongeur);
 
-        $plongeur = explode(",",$_POST["plongeurNum"]);
+        $defaultCode = $this->defaut();
+        $dernier = sizeof($plongeur);
 
-        $text = "<select id='directeurDePlongee' name='directeurDePlongee' $bon>";
-
-        $req = $reader->getDirecteurDePlongee();
-
-        $defaultCode = $this->defaut()[0];
-
-        $text = $text.$this->listeDeroulante($req, "PER_NOM", "PER_NUM", $defaultCode["PER_NUM_DIR"], $plongeur)."</select>";
-
-        $text = $text."|"."<select id='securiteDeSurface' name='securiteDeSurface' $bon >";
-
-        $req = $reader->getSecuriteDeSurface();
-
-        $text = $text.$this->listeDeroulante($req, "PER_NOM", "PER_NUM", $defaultCode["PER_NUM_SECU"], $plongeur)."</select>";
+        if($_POST["dirSecu"] == "true") {
+            $plongeur[$dernier] = $defaultCode["Secu"];
+            $req = $reader->getDirecteurDePlongee();
+            $text = $this->listeDeroulante($req, "PER_NOM", "PER_NUM", $defaultCode["Dir"], $plongeur);
+        }
+        else
+        {
+            $plongeur[$dernier] = $defaultCode["Dir"];
+            $req = $reader->getSecuriteDeSurface();
+            $text = $this->listeDeroulante($req, "PER_NOM", "PER_NUM", $defaultCode["Secu"], $plongeur);
+        }
 
         echo $text;
-        echo "|".$defaultCode["PER_NUM_DIR"];
-        echo "|".$defaultCode["PER_NUM_SECU"];
     }
 
     public function defaut()
     {
+        $defaut = array();
+        if($_POST['selectDir']!=null)
+        {
+            $defaut["Dir"] = $_POST['selectDir'];
+        }
+        if($_POST["selectSecu"]!=null)
+        {
+            $defaut["Secu"] = $_POST['selectSecu'];
+        }
         if($_POST['date']!="null" && $_POST['moment']!="null")
         {
             $reader = new modelPlongee();
-            return $reader->getMatch($_POST['date'],$_POST['moment']);
+            $plongee = $reader->getMatch($_POST['date'],$_POST['moment'])[0];
+            if(!isset($defaut["Dir"]))
+            {
+                $defaut["Dir"] = $plongee["PER_NUM_DIR"];
+            }
+            if(!isset($defaut["Secu"]))
+            {
+                $defaut["Secu"] = $plongee["PER_NUM_SECU"];
+            }
         }
-        return null;
+        if(!isset($defaut["Secu"]))
+        {
+            $defaut["Secu"] = null;
+        }
+        if(!isset($defaut["Dir"]))
+        {
+            $defaut["Dir"] = null;
+        }
+        return $defaut;
     }
 
     public function isPlongeePassee()

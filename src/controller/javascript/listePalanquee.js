@@ -52,7 +52,7 @@ function initListePalanquee(datePal, matMidSoi)
                 palanquees[i] = response1[i];
             }
             afficherPalanquee(datePal, matMidSoi);
-            initDirecteurSecurite(datePal, matMidSoi);
+            initDirecteurSecurite();
             },
         error: function (response1) {
             document.write(response1.responseText);
@@ -256,6 +256,7 @@ function supprimerPal(datePal,matMidSoi,num)
                 palanquees[i].num = i + 1;
             }
         }
+        initDirecteurSecurite();
         afficherPalanquee(datePal, matMidSoi);
     }
 }
@@ -384,11 +385,14 @@ function enregistrerPalanqueeBase()
     });
 }
 
-function initDirecteurSecurite(date="null", moment="null")
+function initDirecteurSecurite()
 {
+    var selectDir = document.getElementById("directeurDePlongee").value;
+    var selectSecu = document.getElementById("securiteDeSurface").value;
+
     var plongeurNum = [];
     var compteur = 0;
-    if(date != "null" && moment != "null")
+    if(datePalanquee != "null" && momentPalanquee != "null")
     {
         var len = palanquees.length;
         for(var i = 0; i<len; i++)
@@ -402,20 +406,28 @@ function initDirecteurSecurite(date="null", moment="null")
         }
     }
 
-    $("#selectDirPlong").html("");
+    var refDir = $("#directeurDePlongee");
+    var refSecu = $("#securiteDeSurface");
 
-    var xhr = initXHR();
+    alert(plongeurNum);
 
-    xhr.open('POST', 'index.php?url=SelectDirecteurSecurite', false);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("date="+date+"&moment="+moment+"&plongeurNum="+plongeurNum);
+    refDir.load("SelectDirecteurSecurite",{
+        date : datePalanquee,
+        moment : momentPalanquee,
+        plongeurNum : plongeurNum,
+        selectDir : selectDir,
+        selectSecu : selectSecu,
+        dirSecu : true
+    });
+    refSecu.load("SelectDirecteurSecurite",{
+        date : datePalanquee,
+        moment : momentPalanquee,
+        plongeurNum : plongeurNum,
+        selectDir : selectDir,
+        selectSecu : selectSecu,
+        dirSecu : false
+    });
 
-    var split = xhr.responseText.split("|");
-    var directeur = split[0];
-    var securite = split[1];
-    numDir = split[2];
-    numSecu = split[3];
-
-    document.getElementById("selectDirPlong").innerHTML = directeur;
-    document.getElementById("selectSecuPlong").innerHTML = securite;
+    numDir = document.getElementById("directeurDePlongee").value;
+    numSecu = document.getElementById("securiteDeSurface").value;
 }

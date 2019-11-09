@@ -11,14 +11,14 @@
         </div>
         <div class="col offset-s1 s2">
             <label for="moment">Moment: </label>
-            <select id="moment" name="moment" <?php $this->controller->selectIsDisabledPrimaire("moment") ?> >
+            <select class="browser-default" id="moment" name="moment" <?php $this->controller->selectIsDisabledPrimaire("moment") ?> >
                 <?php $this->controller->selectMoment() ?>
             </select>
             <br/>
         </div>
         <div class="col  offset-s1 s3">
             <label for="siteNom">Nom du site: </label>
-            <select id="site" name="site" <?php $this->controller->selectIsDisabled("site") ?> >
+            <select class="browser-default" id="site" name="site" <?php $this->controller->selectIsDisabled("site") ?> >
                 <?php $this->controller->selectSite() ?>
             </select>
         </div>
@@ -26,22 +26,22 @@
 
     <div class="row">
         <div class="col s10 offset-s1">
-            <label for="directeurDePlongee">Directeur de plongée: </label>
-            <div id="selectDirPlong"></div>
+            <label>Directeur de plongée: </label>
+            <select class="browser-default" id='directeurDePlongee' name='directeurDePlongee' onchange="initDirecteurSecurite()"></select>
         </div>
     </div>
 
     <div class="row">
         <div class="col s10 offset-s1">
-            <label for="securiteDeSurface">Sécurite de surface: </label> <br/>
-            <div id="selectSecuPlong"></div>
+            <label>Sécurite de surface: </label> <br/>
+            <select class="browser-default" id='securiteDeSurface' name='securiteDeSurface' onchange="initDirecteurSecurite()"></select>
         </div>
 
     </div>
     <div class="row">
         <div class="col s10 offset-s1">
             <label for="embarcation">Embarcation: </label>
-            <select id="embarcation" name="embarcation" <?php $this->controller->selectIsDisabled("embarcation") ?>>
+            <select class="browser-default" id="embarcation" name="embarcation" <?php $this->controller->selectIsDisabled("embarcation") ?>>
                 <?php $this->controller->selectEmbarcation() ?>
             </select>
         </div>
