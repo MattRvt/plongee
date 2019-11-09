@@ -12,12 +12,18 @@ abstract class controller
      * @param $defaultCode parametre optionel permetant de definir une valeur par defaut
      */
 
-    public function listeDeroulante($req, $label, $code, $defaultCode=null)
+    public function listeDeroulante($req, $label, $code, $defaultCode=null, $pasAffiche=null)
     {
+        foreach ($pasAffiche as $key => $value)
+        {
+            if($value == $defaultCode)
+            {
+                $defaultCode = null;
+            }
+        }
         if($defaultCode == null)
         {
-            $text = "<option value=\"rien\" hidden selected disabled>--Please choose an option--</option>";
-
+            $text = "<option value=\"rien\" hidden Selected disabled>--Please choose an option--</option>";
         }
         else
         {
@@ -26,11 +32,23 @@ abstract class controller
         foreach ($req as $ligne) {
             $labelOption = $ligne[$label];
             $codeOption = $ligne[$code];
-            if ($defaultCode == $codeOption) {
-                $text = $text."<option value=\"" . $codeOption . "\" Selected> " . $labelOption . "</option>";
-            } else {
-                $text = $text."<option value=\"" . $codeOption . "\" > " . $labelOption . "</option>";
+            $valide = true;
+            foreach ($pasAffiche as $key => $value)
+            {
+                if($value == $codeOption)
+                {
+                    $valide = false;
+                }
             }
+
+            if($valide) {
+                if ($defaultCode == $codeOption) {
+                    $text = $text . "<option value=\"" . $codeOption . "\" Selected> " . $labelOption . "</option>";
+                } else {
+                    $text = $text . "<option value=\"" . $codeOption . "\"> " . $labelOption . "</option>";
+                }
+            }
+
         }
         return $text;
     }

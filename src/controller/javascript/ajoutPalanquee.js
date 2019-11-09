@@ -242,24 +242,21 @@ function traitementAjoutPal()
         var profMax = document.getElementById("profMax").value;
         var DurMax = document.getElementById("DurMax").value;
 
-        $(document).ready(function () {
-            $.ajax({
-                url: "AjoutPalanquee",
-                type: 'post',
-                data: "date=" + palanquee.datePal + "&moment=" + palanquee.matMidSoi + "&profMax=" + profMax + "&durMax=" + DurMax + "&nb=" + nb + "&plongeur=" + plongeur + send,
-                dataType: 'JSON',
-                success: function (response1) {
-                    palanquees[response1.num - 1] = response1;
-                    afficherPalanquee(palanquee.datePal, palanquee.matMidSoi);
-                },
-                error: function (response1) {
-                    document.write(response1.responseText);
-                    alert("erreur de création de la palanquee");
-                    console.log(response1);
-                }
-            });
+        $.ajax({
+            url: "AjoutPalanquee",
+            type: 'post',
+            data: "date=" + palanquee.datePal + "&moment=" + palanquee.matMidSoi + "&profMax=" + profMax + "&durMax=" + DurMax + "&nb=" + nb + "&plongeur=" + plongeur + send,
+            dataType: 'JSON',
+            success: function (response1) {
+                palanquees[response1.num - 1] = response1;
+                afficherPalanquee(palanquee.datePal, palanquee.matMidSoi);
+            },
+            error: function (response1) {
+                document.write(response1.responseText);
+                alert("erreur de création de la palanquee");
+                console.log(response1);
+            }
         });
-
         closeModal("newPalanquee");
     }
 }
@@ -305,18 +302,15 @@ function verifierPlongeurDejaPresent(nb,num = null)
             var pal = palanquees[i];
             for(var k = 0; k<pal.nbPlongeur; k++)
             {
-                for(var n = 0; n<5; n++)
-                {
-                    if(Number(pal.plongeur[k].PER_NUM) == Number(plongeur[n]))
-                    {
-                        if(num == null)
-                        {
-                            $("#erreurPlongeur"+(n+1)).html("Le plongeur est déjà dans la plongée");
+                var palNum = Number(pal.plongeur[k].PER_NUM);
+                for (var n = 0; n < 5; n++) {
+                    var numeroPlongeur = Number(plongeur[n]);
+                    if (palNum == numeroPlongeur || numeroPlongeur == Number(numSecu) || numeroPlongeur== Number(numDir)) {
+                        if (num == null) {
+                            $("#erreurPlongeur" + (n + 1)).html("Le plongeur est déjà dans la plongée");
                             bool = true;
                             break;
-                        }
-                        else
-                        {
+                        } else {
                             return true;
                         }
                     }
@@ -324,6 +318,5 @@ function verifierPlongeurDejaPresent(nb,num = null)
             }
         }
     }
-
     return bool;
 }

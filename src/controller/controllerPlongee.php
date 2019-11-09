@@ -142,19 +142,14 @@ class controllerPlongee extends controller
         if ($valide) {
             $model = new modelPlongee();
 
-            if(!$model->plongeeExiste($_POST['date'],$_POST['moment'])) {
-                try {
-                    $model->addOrModifyPlongee($data);
-                    //echo '<strong>Donées correctement enregistré.</strong>';
-                } catch (Exception $e) {
-                    //echo '<strong>Erreur d\'ecriture dans la base. <br></strong> ', $e->getMessage();
-                }
+            try {
+                $model->addOrModifyPlongee($data);
+                //echo '<strong>Donées correctement enregistré.</strong>';
+            } catch (Exception $e) {
+                //echo '<strong>Erreur d\'ecriture dans la base. <br></strong> ', $e->getMessage();
             }
-            else
-            {
-                //echo '<strong>erreur, Plongee existe déjà</strong>';
-            }
-        } else {
+        }
+        else {
             //echo '<strong>erreur, formulaire invalide</strong>';
         }
     }
@@ -195,32 +190,6 @@ class controllerPlongee extends controller
             $defaultCode = null;
         }
         echo $this->listeDeroulante($req, "SIT_NOM", "SIT_NUM", $defaultCode);
-    }
-
-    public function selectDirecteurDePlongee()
-    {
-        require_once('model/modelPersonne.php');
-        $reader = new modelPersonne();
-        $req = $reader->getDirecteurDePlongee();
-        if (isset($_POST['directeurDePlongee'])) {
-            $defaultCode = $_POST['directeurDePlongee'];
-        } else {
-            $defaultCode = null;
-        }
-        echo $this->listeDeroulante($req, "PER_NOM", "PER_NUM", $defaultCode);
-    }
-
-    public function selectSecuriteDeSurface()
-    {
-        require_once('model/modelPersonne.php');
-        $reader = new modelPersonne();
-        $req = $reader->getSecuriteDeSurface();
-        if (isset($_POST['securiteDeSurface'])) {
-            $defaultCode = $_POST['securiteDeSurface'];
-        } else {
-            $defaultCode = null;
-        }
-        echo $this->listeDeroulante($req, "PER_NOM", "PER_NUM", $defaultCode);
     }
 
     public function selectEmbarcation()

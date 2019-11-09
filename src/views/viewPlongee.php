@@ -27,18 +27,14 @@
     <div class="row">
         <div class="col s10 offset-s1">
             <label for="directeurDePlongee">Directeur de plongée: </label>
-            <select id="directeurDePlongee" name="directeurDePlongee" <?php $this->controller->selectIsDisabled("directeurDePlongee") ?>>
-                <?php $this->controller->selectDirecteurDePlongee() ?>
-            </select>
+            <div id="selectDirPlong"></div>
         </div>
     </div>
 
     <div class="row">
         <div class="col s10 offset-s1">
             <label for="securiteDeSurface">Sécurite de surface: </label> <br/>
-            <select id="securiteDeSurface" name="securiteDeSurface" <?php $this->controller->selectIsDisabled("securiteDeSurface") ?>>
-                <?php $this->controller->selectSecuriteDeSurface() ?>
-            </select>
+            <div id="selectSecuPlong"></div>
         </div>
 
     </div>

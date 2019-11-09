@@ -1,5 +1,7 @@
 var datePalanquee = null;
 var momentPalanquee = null;
+var numDir = null;
+var numSecu = null;
 
 function initListePalanqueeVide()
 {
@@ -12,6 +14,7 @@ function initListePalanqueeVide()
 
     $("#btnAjout").html("<a class='waves-effect waves-light btn' onclick='initAjoutPalanqueeVide()'>Ajouter Palanquee</a>");
     afficherPalanquee(null,null);
+    initDirecteurSecurite();
 }
 
 function initListePalanquee(datePal, matMidSoi)
@@ -36,27 +39,26 @@ function initListePalanquee(datePal, matMidSoi)
         $("#btnAjout").html("");
     }
 
-    $(document).ready(function(){
-        $.ajax({
-            url: 'ListePalanqueePlongee',
-            type: 'post',
-            data: "date="+datePal+"&moment="+matMidSoi+"&passerOuPas="+passerOuPas,
-            dataType: 'JSON',
-            success: function(response1)
+    $.ajax({
+        url: 'ListePalanqueePlongee',
+        type: 'post',
+        data: "date="+datePal+"&moment="+matMidSoi+"&passerOuPas="+passerOuPas,
+        dataType: 'JSON',
+        success: function(response1)
+        {
+            var len = response1.length;
+            for (var i = 0; i < len; i++)
             {
-                var len = response1.length;
-                for (var i = 0; i < len; i++)
-                {
-                    palanquees[i] = response1[i];
-                }
-                afficherPalanquee(datePal, matMidSoi);
-            },
-            error: function (response1) {
-                document.write(response1.responseText);
-                alert("erreur de chargement des données");
-                console.log(response1);
+                palanquees[i] = response1[i];
             }
-        });
+            afficherPalanquee(datePal, matMidSoi);
+            initDirecteurSecurite(datePal, matMidSoi);
+            },
+        error: function (response1) {
+            document.write(response1.responseText);
+            alert("erreur de chargement des données");
+            console.log(response1);
+        }
     });
 }
 
@@ -380,4 +382,40 @@ function enregistrerPalanqueeBase()
             }
         });
     });
+}
+
+function initDirecteurSecurite(date="null", moment="null")
+{
+    var plongeurNum = [];
+    var compteur = 0;
+    if(date != "null" && moment != "null")
+    {
+        var len = palanquees.length;
+        for(var i = 0; i<len; i++)
+        {
+            var pal = palanquees[i];
+            for (var k = 0; k < pal.nbPlongeur; k++)
+            {
+                plongeurNum[compteur] = pal.plongeur[k].PER_NUM;
+                compteur++;
+            }
+        }
+    }
+
+    $("#selectDirPlong").html("");
+
+    var xhr = initXHR();
+
+    xhr.open('POST', 'index.php?url=SelectDirecteurSecurite', false);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("date="+date+"&moment="+moment+"&plongeurNum="+plongeurNum);
+
+    var split = xhr.responseText.split("|");
+    var directeur = split[0];
+    var securite = split[1];
+    numDir = split[2];
+    numSecu = split[3];
+
+    document.getElementById("selectDirPlong").innerHTML = directeur;
+    document.getElementById("selectSecuPlong").innerHTML = securite;
 }
