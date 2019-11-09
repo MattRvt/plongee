@@ -117,7 +117,7 @@ function exist(nom, prenom) {
     console.log(personne);
 
 
-    if (personne.length == 0){
+    if (!(personne>= 1)){
         return false;
     }
     else {

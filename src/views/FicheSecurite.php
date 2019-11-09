@@ -2,20 +2,36 @@
     <html lang="fr">
         <head>
             <meta charset="UTF-8">
-            <title>Plongee</title>
+            <title>Fiche de sécurité</title>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
             <style>
-                .saut {
-                    page-break-after:always
+                html {
+                    line-height: 1.2;
                 }
                 th {
                     border-radius: 0;
                 }
+
+                .saut {
+                    display: block !important;
+                    page-break-after: always;
+                    position: relative;
+                }
+
+                body {
+                    -webkit-print-color-adjust: exact;
+                }
+
+                @page {
+                    size: auto;
+                    margin: 0;  /* enlève l'affichage de l'url dans le pdf */
+                }
             </style>
             <script type="text/javascript">
-                function f(){
+                function f(date, moment){
+                    document.title = "Plongee_du_"+date+"_"+moment;
                     window.print();
-                    setTimeout("closePrintView()", 800);
+
                 }
 
                 function closePrintView() {
@@ -33,14 +49,14 @@
                 $palanquee = $readerpal->getDansPlongee($_GET['date'], $_GET['moment']);
             ?>
         </head>
-        <body onload="f();">
+        <body onload="f(<?php echo "'".$_GET['date']."','". $_GET['moment']."'" ?>);">
             <h4 class="center-align">FICHE DE SECURITE</h4>
             <div class="container">
                 <div class="row">
                     <table class="col s6 centered">
                         <tr>
                             <th>Date</th>
-                            <td><?php echo $plongee['PLO_DATE'] ;?><br> <?php switch ($plongee['PLO_MAT_MID_SOI']) {
+                            <td id="date"><?php echo $plongee['PLO_DATE'] ;?><br> <?php switch ($plongee['PLO_MAT_MID_SOI']) {
                                     case 'M':
                                         echo "Matin";
                                         break;
@@ -66,7 +82,7 @@
                         </tr>
                     </table>
                     <div class="col offset-s2">
-                        <img class="responsive-img" alt="Logo" style="max-width: 190px;margin-top: 50px" src="views/image/company-name.jpg">
+                        <img class="responsive-img" alt="Logo" style="max-width: 180px;margin-top: 50px" src="views/image/company-name.jpg">
                     </div>
                 </div>
 
@@ -85,7 +101,13 @@
 
                 <?php
                 for ($i = 0; $i<$plongee['PLO_NB_PALANQUEES'] ; $i++){
-                    echo " <div class=\"saut\">
+                    if ($i%2==1){
+                        echo " <div>";
+                    }
+                    else {
+                        echo " <div class=\"saut\">";
+                    }
+                    echo " 
                     <div class=\"row\" style=\"border: 5px #424242 solid;\">
                         <table class=\"col s12 centered\">
                             <tr>

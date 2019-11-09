@@ -144,6 +144,7 @@ function initModalAjoutPers(num)
     document.getElementById('Plongeur').checked = true;
     document.getElementById('Directeur').checked = false;
     document.getElementById('SecuriteSurface').checked = false;
+    document.getElementById("estActive").checked = true;
     $('#supprime').html("");
     selectAptitude();
 
