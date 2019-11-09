@@ -9,8 +9,6 @@ class modelConcerner extends model
 
     public function addPersonne($PLO_DATE,$PLO_MATIN_APRESMIDI, $PAL_NUM, $PER_NUM)
     {
-        $model = new modelPersonne();
-        $model->statePersonne($PER_NUM,1);
 
         $sql = "INSERT INTO `PLO_CONCERNER`(`PLO_DATE`, `PLO_MAT_MID_SOI`, `PAL_NUM`, `PER_NUM`) VALUES (\"".$PLO_DATE."\",\"".$PLO_MATIN_APRESMIDI."\",\"".$PAL_NUM."\",\"".$PER_NUM."\")";
         $statement = $this->getBdd()->prepare($sql);
