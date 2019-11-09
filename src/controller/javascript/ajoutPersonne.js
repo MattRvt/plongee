@@ -18,6 +18,7 @@ function addPersonne() {
     personne.directeur = document.getElementById('Directeur').checked;
     personne.secuSurface = document.getElementById('SecuriteSurface').checked;
     personne.active = document.getElementById("estActive").checked;
+    personne.aptitude = document.getElementById("aptitude").value;
     var modif = document.getElementById('modfiAjout').value;
 
     $("#erreurN").html("");
@@ -45,7 +46,7 @@ function addPersonne() {
         valid = false;
     }
     if (valid) {
-        if(personne.plongeur && modif == "rien")
+        if(personne.plongeur && personne.aptitude == "rien")
         {
             $("#erreur").html("Un plongeur a obligatoirement une aptitude");
         }
