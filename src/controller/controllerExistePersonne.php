@@ -21,6 +21,6 @@ class controllerExistePersonne
         $reader = new modelPersonne();
         $personne = $reader->existPersonne($nom, $prenom);
 
-        echo $personne;
+        echo sizeof($personne);
     }
 }

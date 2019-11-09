@@ -21,13 +21,15 @@ abstract class controller
                 $defaultCode = null;
             }
         }
+        $defaultValue = "--Sélectionnez une option--";
         if($defaultCode == null)
         {
-            $text = "<option value=\"rien\" hidden Selected disabled>--Please choose an option--</option>";
+            $text = "<option value=\"rien\" hidden Selected disabled>".$defaultValue."</option>";
+
         }
         else
         {
-            $text = "<option value=\"rien\" hidden disabled>--Please choose an option--</option>";
+            $text = "<option value=\"rien\" hidden disabled>".$defaultValue."</option>";
         }
         foreach ($req as $ligne) {
             $labelOption = $ligne[$label];

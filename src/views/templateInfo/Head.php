@@ -18,6 +18,7 @@
 <script src="controller/javascript/Aptitude.js"></script>
 <script src="controller/javascript/listePlongee.js"></script>
 <script src="controller/javascript/historique.js"></script>
+<script src="controller/javascript/notice.js"></script>
 
 <!-- Css projet -->
 <link rel="stylesheet" href="views/Css/modal.css">
