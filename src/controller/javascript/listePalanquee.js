@@ -408,9 +408,7 @@ function initDirecteurSecurite()
 
     var refDir = $("#directeurDePlongee");
     var refSecu = $("#securiteDeSurface");
-
-    alert(plongeurNum);
-
+    
     refDir.load("SelectDirecteurSecurite",{
         date : datePalanquee,
         moment : momentPalanquee,
