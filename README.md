@@ -8,7 +8,7 @@ Site réalisé pour permettre à un club de plongée de gérer ses activités de
 --version php: PHP Version 7.0.33-0+deb9u3
 
 ## Créateurs du projet
-4 étudiants de 1A DUT informatique :
+4 étudiants de 2A DUT informatique :
 - [***SIMONIN Mélissande***](https://github.com/Meli5070)
 - [***AUDABRAM Luc***](https://github.com/Yodaluc)
 - [***Nathan Chavas***](https://github.com/Akodix)
