@@ -31,6 +31,7 @@
                 function f(date, moment){
                     document.title = "Plongee_du_"+date+"_"+moment;
                     window.print();
+                    setTimeout(function(){ closePrintView(); }, 800);
 
                 }
 
