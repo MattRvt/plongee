@@ -11,7 +11,7 @@ Site réalisé pour permettre à un club de plongée de gérer ses activités de
 4 étudiants de 1A DUT informatique :
 - [***SIMONIN Mélissande***](https://github.com/Meli5070)
 - [***AUDABRAM Luc***](https://github.com/Yodaluc)
-- [***Nathan Chavas***] (https://github.com/Akodix)
+- [***Nathan Chavas***](https://github.com/Akodix)
 - [***RIVAT Matthis***](https://github.com/MattRvt)
 
 ## FAIT A  
