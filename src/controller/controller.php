@@ -12,7 +12,7 @@ abstract class controller
      * @param $defaultCode parametre optionel permetant de definir une valeur par defaut
      */
 
-    public function listeDeroulante($req, $label, $code, $defaultCode=null, $pasAffiche=null)
+    public function listeDeroulante($req, $label, $code, $defaultCode=null, $pasAffiche=Array())
     {
         foreach ($pasAffiche as $key => $value)
         {
