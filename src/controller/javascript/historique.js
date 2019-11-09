@@ -56,6 +56,7 @@ function afficheHisto(db, id) {
 
         var diff = today - newdate;
         diff = diff/(1000*60*60*24);
+        if (diff<0) diff-=1;
         diff= Math.trunc(diff);
 
         var momentModif = matMidSoi(moment);

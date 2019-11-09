@@ -1,7 +1,7 @@
 <!-- Navbar -->
 <nav class="blue">
     <div class="nav-wrapper">
-        <a href="Accueil" class="center brand-logo">Plongée au pays des bretons</a>
+        <a href="Accueil" class="center brand-logo truncate">Plongée au pays des bretons</a>
 
         <a href="Accueil" class="sidenav-trigger" data-target="mobile-nav">
             <i class="material-icons">menu</i>
